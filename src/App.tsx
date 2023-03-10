@@ -1,4 +1,4 @@
-import "./App.css";
+import "@/styles/common/index.scss";
 
 function App() {
   return <div className="App"></div>;
