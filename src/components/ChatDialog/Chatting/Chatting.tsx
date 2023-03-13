@@ -1,5 +1,5 @@
-import avatar from '../../../../public/assets/chatAvatars.svg';
-import message from '../../../../public/assets/chatMessage.svg';
+import avatar from '/public/assets/chatAvatars.svg';
+import message from '/public/assets/chatMessage.svg';
 import classes from './Chatting.module.scss';
 import { ChattingInput, Messages } from '../index';
 
