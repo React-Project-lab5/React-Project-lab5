@@ -7,6 +7,7 @@ import MyPage from '@/pages/MyPage/MyPage';
 import NotFound from '@/pages/NotFound/NotFound';
 import { Header, Footer } from '@/components/index';
 
+
 function App() {
   return (
     <BrowserRouter>
