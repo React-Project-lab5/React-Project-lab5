@@ -1,11 +1,6 @@
 import classes from './Input.module.scss';
 
-export default function Input({
-  maxWidthValue,
-  heightValue,
-  labelText,
-  placeHolder,
-}) {
+export function Input({ maxWidthValue, heightValue, labelText, placeHolder }) {
   const inputStyle = {
     maxWidth: maxWidthValue,
     height: heightValue,

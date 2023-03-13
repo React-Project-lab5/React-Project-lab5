@@ -1,7 +1,7 @@
 import classes from './InputSelector.module.scss';
 import { useState, useRef } from 'react';
 
-export default function InputSelector({ maxWidthValue }) {
+export function InputSelector({ maxWidthValue }) {
   const selectStyle = {
     maxWidth: maxWidthValue,
   };
