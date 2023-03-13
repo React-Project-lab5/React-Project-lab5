@@ -2,7 +2,15 @@
   width: 100%;
   height: 10rem;
   background: var(--secondary);
+  margin-top: auto;
+}
 
-  position: fixed;
-  bottom: 0;
+.contents {
+  width: 100vw;
+  max-width: 1440px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
 }
