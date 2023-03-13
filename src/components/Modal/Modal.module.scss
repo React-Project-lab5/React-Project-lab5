@@ -1,0 +1,28 @@
+/* modal scss */
+@import url("@/styles/common/theme.scss");
+
+.modal-wrap{
+  max-width: 900px;
+  max-height: 600px;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--white);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.45);
+};
+
+
+.modal-top{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  max-height: 50px;
+  width: 100%;
+  height: 100%;
+  background-color:var(--secondary);
+}
+
+.img{
+  width: 32px;
+  height: 32px;
+  margin-right: 0.94rem;
+}

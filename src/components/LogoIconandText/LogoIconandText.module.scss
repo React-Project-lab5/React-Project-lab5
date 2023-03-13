@@ -1,0 +1,20 @@
+.logoIconandText {
+  display: flex;
+  align-items: center;
+  
+}
+.logoIconandText > img {
+  margin-top: 8px;
+  margin-right: 3px;
+}
+
+.logoTextSmall {
+  display: flex;
+  align-items: flex-start;
+}
+
+.logoTextSmall > img{
+  width: 25px;
+  height: 25px;
+  padding-right: 5px;
+}
