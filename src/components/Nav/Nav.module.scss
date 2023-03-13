@@ -1,0 +1,14 @@
+.nav {
+  display: flex;
+}
+
+.nav > div {
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.nav > div:last-child {
+  padding-right: 0;
+}
