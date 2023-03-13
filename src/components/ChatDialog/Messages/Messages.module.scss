@@ -1,0 +1,21 @@
+.messages {
+  background-color: var(--gray-100);
+  padding: 10px;
+  height: calc(100% - 110px);
+  overflow: auto;
+}
+
+.messages::-webkit-scrollbar {
+  width: 8px; /* 스크롤바의 너비 */
+}
+
+.messages::-webkit-scrollbar-thumb {
+  height: 10%; /* 스크롤바의 길이 */
+  background: var(--gray-400); /* 스크롤바의 색상 */
+
+  border-radius: 32px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: var(--gray-200); /*스크롤바 뒷 배경 색상*/
+}

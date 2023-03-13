@@ -1,9 +1,12 @@
+import { Chatting } from '@/components/ChatDialog/Chatting/Chatting';
+import { Sidebar } from '@/components/ChatDialog/Sidebar/Sidebar';
 import classes from './Chat.module.scss';
 
 export default function Chat() {
   return (
     <div className={classes.chat}>
-      <h1>채팅페이지</h1>
+      <Sidebar />
+      <Chatting />
     </div>
   );
 }

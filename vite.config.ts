@@ -7,6 +7,9 @@ export default defineConfig({
   resolve: {
     alias: [{ find: '@', replacement: path.resolve('src') }],
   },
+  define: {
+    'process.env': {},
+  },
   plugins: [react(), svgr()],
   server: {
     host: 'localhost',
@@ -14,8 +17,5 @@ export default defineConfig({
   },
   css: {
     devSourcemap: true,
-  },
-  define: {
-    'process.env': {},
   },
 });
