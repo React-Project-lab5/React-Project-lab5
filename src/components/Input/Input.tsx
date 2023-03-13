@@ -1,10 +1,27 @@
 import classes from './Input.module.scss';
 
-export default function Input({ maxWidthValue }) {
+export default function Input({
+  maxWidthValue,
+  heightValue,
+  labelText,
+  placeHolder,
+}) {
   const inputStyle = {
     maxWidth: maxWidthValue,
+    height: heightValue,
   };
+
   return (
-    <input type="text" className={classes['input-list']} style={inputStyle} />
+    <div className={classes['inputContainer']}>
+      <label htmlFor={labelText} className={classes['inputLabel']}>
+        {labelText ? labelText : null}
+      </label>
+      <input
+        type="text"
+        className={classes['inputList']}
+        style={inputStyle}
+        placeholder={placeHolder}
+      />
+    </div>
   );
 }

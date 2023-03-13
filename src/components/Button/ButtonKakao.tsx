@@ -1,6 +1,6 @@
 import kakao from '../../assets/kakaoLogo.svg';
 
-function ButtonKakao() {
+export default function ButtonKakao() {
   return (
     <button type="button" aria-label="Kakao 회원가입 버튼">
       <img src={kakao} alt="Kakao 로고 이미지" />
@@ -8,5 +8,3 @@ function ButtonKakao() {
     </button>
   );
 }
-
-export default ButtonKakao;

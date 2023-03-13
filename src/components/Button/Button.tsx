@@ -1,6 +1,6 @@
 import classes from './Button.module.scss';
 
-function Button({
+export default function Button({
   backgroundColor,
   isSmall,
   widthValue,
@@ -29,5 +29,3 @@ function Button({
     </button>
   );
 }
-
-export default Button;
