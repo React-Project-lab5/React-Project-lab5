@@ -3,6 +3,7 @@
 import classes from './Modal.module.scss';
 
 export function Modal({ widthValue, heightValue }) {
+
   const modalStyle = {
     width: widthValue,
     height: heightValue,
