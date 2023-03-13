@@ -1,3 +1,19 @@
+@mixin mobile {
+  @media screen and (max-width: 360px) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin laptop {
+  @media screen and (max-width: 1440px) {
+    @content;
+  }
+}
+
 .navbar {
   display: flex;
   align-items: center;
@@ -9,6 +25,9 @@
   .logo {
     font-weight: bold;
     font-size: 18px;
+    @include tablet {
+      display: none;
+    }
   }
 
   .user {
