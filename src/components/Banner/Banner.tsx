@@ -1,5 +1,3 @@
-import classes from './Banner.modules.scss';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -8,6 +6,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper';
+import classes from './Banner.module.scss';
 
 export function Banner() {
   const items = [
@@ -15,9 +14,15 @@ export function Banner() {
     { src: '../assets/banner_2.svg' },
   ];
   return (
-    <>
+    <div className={classes.banner}>
       <Swiper
-        effect={'fade'}
+        coverflowEffect={{
+          rotate: 10, // 회전각도
+          stretch: 0,
+          depth: 100, // 깊이감도
+          modifier: 2, //
+          slideShadows: true, //선택한 부분 밝게 나머지는 그늘지게 해준다.
+        }}
         autoplay={{
           delay: 3000,
           disableOnInteraction: false,
@@ -26,18 +31,17 @@ export function Banner() {
           clickable: true,
         }}
         modules={[Navigation, EffectFade, Pagination, Autoplay]}
-        className="mySwiper"
+        className={classes.swiper}
         loop={true}
       >
         {items.map((item, idx) => {
-          console.log(item.src.value);
           return (
-            <SwiperSlide key={idx}>
+            <SwiperSlide key={idx} className={classes.swiperSlide}>
               <img src={item.src} />
             </SwiperSlide>
           );
         })}
       </Swiper>
-    </>
+    </div>
   );
 }
