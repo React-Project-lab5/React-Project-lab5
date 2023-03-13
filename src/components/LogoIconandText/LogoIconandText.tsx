@@ -1,5 +1,4 @@
 import { LogoText } from '@/components/index';
-import logo from '@/assets/logo.svg';
 import classes from './LogoIconandText.module.scss';
 
 export function LogoIconandText({ small }) {
@@ -14,7 +13,7 @@ export function LogoIconandText({ small }) {
 
   return (
     <div className={logoTextClass}>
-      <img src={logo} alt="logo" />
+      <img src="../assets/logo.svg" alt="logo" />
       <LogoText small={logoTextSmall} />
     </div>
   );
