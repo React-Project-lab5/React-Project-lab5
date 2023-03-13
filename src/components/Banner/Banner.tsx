@@ -1,13 +1,12 @@
-import React, { useRef, useState } from 'react';
-// Import Swiper React components
+import classes from './Banner.modules.scss';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-// import required modules
+
 import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper';
 
 export function Banner() {
