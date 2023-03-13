@@ -1,0 +1,14 @@
+@mixin mobile {
+  @media screen and (max-width: 360px) {
+    @content;
+  }
+}
+
+.sidebar {
+  flex: 1;
+  background: var(--gray-200);
+
+  @include mobile {
+    display: none;
+  }
+}
