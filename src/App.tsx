@@ -11,7 +11,6 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Banner />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mainPage" element={<MainPage />} />

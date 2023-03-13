@@ -1,6 +1,6 @@
 import classes from './ChattingInput.module.scss';
-import Plane from '@/assets/chatPaperPlane.svg';
-import Img from '@/assets/chatImagePlaceholder.svg';
+import Plane from '../../../../public/assets/chatPaperPlane.svg';
+import Img from '../../../../public/assets/chatImagePlaceholder.svg';
 export const ChattingInput = () => {
   return (
     <form className={classes.input}>
