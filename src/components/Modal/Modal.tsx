@@ -1,9 +1,9 @@
 /* modal.tsx */
 
 import classes from './Modal.module.scss';
-import close from '@/assets/close.svg';
 
-export default function Modal({ widthValue, heightValue }) {
+export function Modal({ widthValue, heightValue }) {
+
   const modalStyle = {
     width: widthValue,
     height: heightValue,
@@ -17,7 +17,11 @@ export default function Modal({ widthValue, heightValue }) {
           aria-label="닫기버튼"
           className={classes['close']}
         >
-          <img className={classes.img} src={close} alt="닫기 버튼" />
+          <img
+            className={classes.img}
+            src="../assets/close.svg"
+            alt="닫기 버튼"
+          />
         </button>
       </div>
     </div>
