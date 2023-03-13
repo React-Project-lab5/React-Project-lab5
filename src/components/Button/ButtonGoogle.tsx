@@ -1,4 +1,4 @@
-import google from '../../assets/googleLogo.svg';
+import google from '/public/assets/googleLogo.svg';
 
 export function ButtonGoogle() {
   return (

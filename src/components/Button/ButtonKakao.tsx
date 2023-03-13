@@ -1,4 +1,4 @@
-import kakao from '../../assets/kakaoLogo.svg';
+import kakao from '/public/assets/kakaoLogo.svg';
 
 export function ButtonKakao() {
   return (
