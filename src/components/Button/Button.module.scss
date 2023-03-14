@@ -1,4 +1,4 @@
-button {
+.button {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -28,11 +28,11 @@ button {
 }
 
 .orange {
-  background-color: var(--orange-200);
+  background-color: var(--orange-500);
   color: var(--black);
 
   &:hover {
-    background-color: var(--orange-500);
+    background-color: var(--orange-700);
   }
 }
 
