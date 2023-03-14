@@ -20,17 +20,18 @@
 
   .send {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
 
     img {
-      height: 40px;
+      height: 36px;
       cursor: pointer;
     }
 
     button {
-      width: 3rem;
-      padding: 8px 8px;
+      width: 36px;
+      height: 36px;
+      padding: 10px 10px;
       color: white;
       background-color: var(--primary);
       cursor: pointer;
