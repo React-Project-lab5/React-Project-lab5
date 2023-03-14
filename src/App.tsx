@@ -5,7 +5,7 @@ import Recommend from '@/pages/Recommend/Recommend';
 import Chat from '@/pages/Chat/Chat';
 import MyPage from '@/pages/MyPage/MyPage';
 import NotFound from '@/pages/NotFound/NotFound';
-import { Header, Footer, MeetingPopup } from '@/components/index';
+import { Header, Footer, ModalTotal } from '@/components/index';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
         <Route path="/myPage" element={<MyPage />} />
         <Route path="/notFound" element={<NotFound />} />
       </Routes>
-      <MeetingPopup />
+      <ModalTotal />
       <Footer />
     </BrowserRouter>
   );

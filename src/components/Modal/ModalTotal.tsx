@@ -7,9 +7,17 @@ import {
   ModalPotal,
 } from '@/components/index';
 import classes from './Modal.module.scss';
+import DatePicker from 'react-datepicker';
+import setHours from 'date-fns/setHours';
+import setMinutes from 'date-fns/setMinutes';
+import 'react-datepicker/dist/react-datepicker.css';
+import { MapContainer } from './../../utils/MapContainer';
 
 export function ModalTotal() {
   const [modalOpened, setModalOpened] = useState(false);
+  const [startDate, setStartDate] = useState(
+    setHours(setMinutes(new Date(), 30), 16)
+  );
 
   const handleOpen = () => {
     setModalOpened(true);
@@ -25,27 +33,39 @@ export function ModalTotal() {
       {modalOpened && (
         <ModalPotal closePortal={handleClose}>
           <Modal>
+            <h2 className={classes.popupTitle}>모임 만들기</h2>
             <div className={classes.popupContent}>
+              <MapContainer />
               <div>
-                <Input widthValue={311} heightValue={59} />
-                <InputSelector />
-                <Input widthValue={311} heightValue={59} />
-                <Input widthValue={311} heightValue={59} />
-              </div>
-              <div>
-                <Input widthValue={311} heightValue={59} />
+                <Input widthValue={300} heightValue={50} />
                 <div className={classes.selector}>
-                  <InputSelector widthValue={311} />
+                  <InputSelector widthValue={300} />
                 </div>
-                <Input widthValue={311} heightValue={59} />
-                <Input widthValue={311} heightValue={59} />
-                <Button />
+                <Input widthValue={300} heightValue={50} />
+
+                <DatePicker
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date)}
+                  closeOnScroll={true}
+                  showTimeSelect
+                  dateFormat="yy/MM/dd | aa h:mm"
+                  isClearable
+                  placeholderText="날짜를 선택하세요"
+                  className={classes.datePicker}
+                />
+                <div className={classes.signupButton} onClick={handleClose}>
+                  <Button
+                    widthValue={300}
+                    heightValue={50}
+                    text={'모임 만들기'}
+                    backgroundColor={'orange'}
+                  />
+                </div>
               </div>
             </div>
           </Modal>
         </ModalPotal>
       )}
-      <div id="root-modal"></div>
     </div>
   );
 }

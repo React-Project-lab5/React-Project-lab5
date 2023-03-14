@@ -33,6 +33,7 @@
   height: 100%;
   padding: 10px 0;
   background-color:var(--secondary);
+  position: relative;
 
   img {
     width: 20px;
@@ -40,11 +41,23 @@
     margin-right: 0.7rem;
     vertical-align: middle;
   }
+
+  &:hover .closeTooltip {
+    visibility: visible;
+  }
+}
+.closeTooltip {
+  padding: 5px 7px;
+  background: #292A2D;
+  color: var(--gray-200);
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  right: -46px;
 }
 
 .modalContentMain {
   display: flex;
-  padding: 1rem;
 }
 
 .modalBackground {
@@ -55,13 +68,38 @@
   opacity: 0.5;
 }
 .modalRealContent {
-  padding: 50px;
+  padding: 35px 50px;
+}
+
+.popupTitle {
+  text-align: center;
+  padding-bottom: 20px;
 }
 
 .popupContent {
   display: flex;
 }
 
+
+
 .selector {
-  margin-top: 30px;
+  margin-top: 6px;
+}
+
+.datePicker {
+  margin-top: 6px;
+  display: flex;
+  background: #fff;
+  border: 1px solid var(--gray-700);
+  border-radius: 16px;
+  padding: 20px 12px;
+  text-align: center;
+  width: 300px;
+  height: 50px;
+  color: red;
+  vertical-align: middle;
+}
+
+.signupButton {
+  margin-top: 35px;
 }

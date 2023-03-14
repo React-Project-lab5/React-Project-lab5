@@ -30,6 +30,7 @@ export const ModalPotal = ({ children, closePortal }) => {
           <div className={classes.modalContentClose}>
             <button onClick={closePortal} type="button" aria-label="닫기버튼">
               <img src="/public/assets/close.svg" alt="닫기 버튼" />
+              <div className={classes.closeTooltip}>닫기</div>
             </button>
           </div>
           <div className={classes.modalContentMain}>{children}</div>
