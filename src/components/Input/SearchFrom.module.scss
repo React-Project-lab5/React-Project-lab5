@@ -1,0 +1,17 @@
+.InputContainer{
+  width: 100%;
+  margin:0 auto;
+  .mainInput{
+    max-width: 1159px;
+    width: 100%;
+    margin:0 auto;
+    background: var(--orange-100);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2.375rem 3.625rem;
+    border-radius: 1rem;
+  }
+
+}
+
