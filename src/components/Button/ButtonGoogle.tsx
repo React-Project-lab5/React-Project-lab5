@@ -1,6 +1,6 @@
 import google from '../../assets/googleLogo.svg';
 
-function ButtonGoogle() {
+export default function ButtonGoogle() {
   return (
     <button type="button" aria-label="Google 회원가입 버튼">
       <img src={google} alt="Google 로고 이미지" />
@@ -8,5 +8,3 @@ function ButtonGoogle() {
     </button>
   );
 }
-
-export default ButtonGoogle;

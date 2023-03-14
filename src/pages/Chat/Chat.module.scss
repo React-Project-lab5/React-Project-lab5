@@ -1,4 +1,26 @@
+@mixin mobile {
+  @media screen and (max-width: 360px) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin laptop {
+  @media screen and (max-width: 1440px) {
+    @content;
+  }
+}
+
 .chat {
-  padding-top:100px;
-  color: red;
+  border: 1px solid white;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+  margin-top: 1rem;
+  max-height: 1000px;
 }

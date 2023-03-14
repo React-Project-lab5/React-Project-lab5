@@ -1,0 +1,45 @@
+.input {
+  background: var(--gray-100);
+  height: 50px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 16px;
+  border: 1px solid var(--gray-700);
+
+  input {
+    width: 100%;
+    color: var(--gray-600);
+    font-size: 18px;
+
+    &::placeholder {
+      color: var(--gray-700);
+    }
+  }
+
+  .send {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    img {
+      height: 40px;
+      cursor: pointer;
+    }
+
+    button {
+      width: 3rem;
+      padding: 8px 8px;
+      color: white;
+      background-color: var(--primary);
+      cursor: pointer;
+      border-radius: 50%;
+
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}
