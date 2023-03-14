@@ -1,7 +1,7 @@
 import classes from './Card.module.scss';
 
 interface Props {
-  children: React.ReactElement | string;
+  children?: React.ReactNode;
 }
 
 export default function Card({ children }: Props) {
