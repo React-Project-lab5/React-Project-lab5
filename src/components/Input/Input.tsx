@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Input.module.scss';
 
 interface Props {
-  widthValue: string | number;
+  maxWidthValue: string | number;
   heightValue: string | number;
   labelText: string;
   placeHolder: string;
@@ -10,14 +10,14 @@ interface Props {
 }
 
 export function Input({
-  widthValue,
+  maxWidthValue,
   heightValue,
   labelText,
   placeHolder,
   isA11yHidden,
 }: Props) {
   const inputStyle = {
-    width: widthValue,
+    maxWidth: maxWidthValue,
     height: heightValue,
   };
 
