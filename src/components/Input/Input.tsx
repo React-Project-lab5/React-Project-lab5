@@ -8,6 +8,7 @@ interface Props {
   labelText: string;
   placeHolder: string;
   isA11yHidden: boolean;
+  className?: string;
   onChange?: () => void;
 }
 
@@ -17,6 +18,7 @@ export function Input({
   labelText,
   placeHolder,
   isA11yHidden,
+  className,
   onChange,
 }: Props) {
   const inputStyle = {

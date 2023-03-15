@@ -5,6 +5,7 @@ export function ShowMeetings({ users }) {
     <div key={index}>
       <h1>title: {value.title}</h1>
       <h1>address: {value.address}</h1>
+      <h1>detail: {value.detail}</h1>
     </div>
   ));
 }
