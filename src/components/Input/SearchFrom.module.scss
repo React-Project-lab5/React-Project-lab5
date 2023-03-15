@@ -1,0 +1,58 @@
+@import "@/styles/common/index.scss";
+
+
+.InputContainer{
+  width: 100%;
+  margin:3.75rem auto;
+
+  .mainInput{
+    max-width: 1159px;
+    width: 100%;
+    margin:0 auto;
+    background: var(--orange-100);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap:14px;
+    padding: 2.375rem 3.625rem;
+    border-radius: 1rem;
+    @include tablet{
+        flex-direction: column;
+    }
+
+    @include mobile{
+      flex-direction: row;
+      background:none;
+  }
+    .searchFormInputSelector,
+    .searchFormInput{
+      @include mobile{
+        display:none;
+    }
+    }
+
+    .MeetingButton{
+      @include mobile{
+        width: 100px;
+        // flex-direction: row;
+    }
+    }
+
+    .ChatButton{
+        display: none;
+        @include mobile{
+          width: 100px;
+          display: flex;
+      }
+      }
+    }
+
+
+
+  }
+
+
+
+
+
+
