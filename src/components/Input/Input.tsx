@@ -7,6 +7,7 @@ interface Props {
   labelText: string;
   placeHolder: string;
   isA11yHidden: boolean;
+  onChange?: () => void;
 }
 
 export function Input({
@@ -15,6 +16,7 @@ export function Input({
   labelText,
   placeHolder,
   isA11yHidden,
+  onChange,
 }: Props) {
   const inputStyle = {
     width: widthValue,
@@ -41,6 +43,7 @@ export function Input({
         className={classes['inputList']}
         style={inputStyle}
         placeholder={placeHolder}
+        onChange={onChange}
       />
     </React.Fragment>
   );

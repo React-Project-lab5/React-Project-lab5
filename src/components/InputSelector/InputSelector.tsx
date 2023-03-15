@@ -1,7 +1,8 @@
 import classes from './InputSelector.module.scss';
 import { useState, useRef } from 'react';
+import classnames from 'classnames';
 
-export function InputSelector({ widthValue }) {
+export function InputSelector({ widthValue, className }) {
   const selectStyle = {
     width: widthValue,
   };
@@ -42,7 +43,7 @@ export function InputSelector({ widthValue }) {
   return (
     <select
       onChange={onChangeHanlder}
-      className={classes['selectBox']}
+      className={classnames(classes['selectBox'], className)}
       style={selectStyle}
     >
       <option value="default">지역을 선택하세요</option>

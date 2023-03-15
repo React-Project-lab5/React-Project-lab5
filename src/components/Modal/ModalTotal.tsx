@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   Button,
   Input,
@@ -12,8 +11,10 @@ import setHours from 'date-fns/setHours';
 import setMinutes from 'date-fns/setMinutes';
 import 'react-datepicker/dist/react-datepicker.css';
 import { MapContainer } from './../../utils/MapContainer';
+import { useState } from 'react';
+import { debounce } from 'lodash';
 
-export function ModalTotal() {
+export function ModalTotal({ createUsers, getUsers, setTitle, setAddress }) {
   const [modalOpened, setModalOpened] = useState(false);
   const [startDate, setStartDate] = useState(
     setHours(setMinutes(new Date(), 30), 16)
@@ -25,6 +26,8 @@ export function ModalTotal() {
 
   const handleClose = () => {
     setModalOpened(false);
+    createUsers();
+    getUsers();
   };
 
   return (
@@ -35,12 +38,23 @@ export function ModalTotal() {
           <Modal>
             <h2 className={classes.popupTitle}>모임 만들기</h2>
             <div className={classes.popupContent}>
+              <MapContainer />
               <div>
-                <Input widthValue={300} heightValue={50} />
-                <div className={classes.selector}>
-                  <InputSelector widthValue={300} />
-                </div>
-                <Input widthValue={300} heightValue={50} />
+                <Input
+                  widthValue={300}
+                  heightValue={50}
+                  onChange={debounce((event) => {
+                    setTitle(event.target.value);
+                  }, 500)}
+                />
+                <InputSelector widthValue={300} className={classes.selector} />
+                <Input
+                  widthValue={300}
+                  heightValue={50}
+                  onChange={debounce((event) => {
+                    setAddress(event.target.value);
+                  }, 500)}
+                />
 
                 <DatePicker
                   selected={startDate}
