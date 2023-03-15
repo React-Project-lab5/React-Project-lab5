@@ -1,18 +1,4 @@
-@mixin mobile {
-  @media screen and (max-width: 360px) {
-    @content;
-  }
-}
-@mixin tablet {
-  @media screen and (max-width: 768px) {
-    @content;
-  }
-}
-@mixin laptop {
-  @media screen and (max-width: 1440px) {
-    @content;
-  }
-}
+@import "@/styles/common/index.scss";
 
 
 .InputContainer{
@@ -31,13 +17,42 @@
     padding: 2.375rem 3.625rem;
     border-radius: 1rem;
     @include tablet{
-      flex-direction: column;
+        flex-direction: column;
     }
-    @include mobile {
-      display: none;
-    }
+
+    @include mobile{
+      flex-direction: row;
+      background:none;
   }
-}
+    .searchFormInputSelector,
+    .searchFormInput{
+      @include mobile{
+        display:none;
+    }
+    }
+
+    .MeetingButton{
+      @include mobile{
+        width: 100px;
+        // flex-direction: row;
+    }
+    }
+
+    .ChatButton{
+        display: none;
+        @include mobile{
+          width: 100px;
+          display: flex;
+      }
+      }
+    }
+
+
+
+  }
+
+
+
 
 
 
