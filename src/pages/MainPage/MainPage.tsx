@@ -9,7 +9,7 @@ export default function MainPage() {
       <Banner />
       <SearchFrom />
       <div className={classes['meetingContainer']}>
-        <Card>
+        <Card className={classes.mainPageCard}>
           <Meeting
             toDate="3월15일"
             time="12시"
@@ -18,7 +18,7 @@ export default function MainPage() {
             title="모집합니다"
           />
         </Card>
-        <Card>
+        <Card className={classes.mainPageCard}>
           <Meeting
             toDate="3월15일"
             time="12시"
@@ -27,7 +27,7 @@ export default function MainPage() {
             title="모집합니다"
           />
         </Card>
-        <Card>
+        <Card className={classes.mainPageCard}>
           <Meeting
             toDate="3월15일"
             time="12시"
@@ -36,7 +36,7 @@ export default function MainPage() {
             title="모집합니다"
           />
         </Card>
-        <Card>
+        <Card className={classes.mainPageCard}>
           <Meeting
             toDate="3월15일"
             time="12시"

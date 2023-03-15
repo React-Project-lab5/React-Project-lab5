@@ -1,6 +1,28 @@
+@import "@/styles/common/index.scss";
+
 .meetingContainer{
-  width: 1159px;
+  max-width: 72.4375rem;
+  width: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+
+  
+
+  @include tablet{
+    grid-template-columns: 1fr 1fr ;
+    margin:0 auto;
+  }
+  
+  @include mobile{
+    grid-template-columns: 1fr;
+    margin:0 auto;
+  }
+
+
+  .mainPageCard{
+    @include mobile{
+      margin:0px 0px 10px 10px ;
+    }
+  }
 }
