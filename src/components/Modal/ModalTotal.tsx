@@ -35,7 +35,6 @@ export function ModalTotal() {
           <Modal>
             <h2 className={classes.popupTitle}>모임 만들기</h2>
             <div className={classes.popupContent}>
-              <MapContainer />
               <div>
                 <Input widthValue={300} heightValue={50} />
                 <div className={classes.selector}>
@@ -53,14 +52,14 @@ export function ModalTotal() {
                   placeholderText="날짜를 선택하세요"
                   className={classes.datePicker}
                 />
-                <div className={classes.signupButton} onClick={handleClose}>
-                  <Button
-                    widthValue={300}
-                    heightValue={50}
-                    text={'모임 만들기'}
-                    backgroundColor={'orange'}
-                  />
-                </div>
+                <Button
+                  widthValue={300}
+                  heightValue={50}
+                  text={'모임 만들기'}
+                  backgroundColor={'orange'}
+                  className={classes.signupButton}
+                  onClick={handleClose}
+                />
               </div>
             </div>
           </Modal>

@@ -5,5 +5,12 @@
   font-weight: 700;
   font-size: 1.25rem;
   color: var(--colar-700);
-
+  background: gray;
+  
+  @media ( min-width: 360px ) {
+    background: red;
+  }
+  @media ( min-width: 768px ) {
+    background: blue;
+  }
 }
