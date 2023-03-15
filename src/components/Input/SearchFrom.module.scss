@@ -1,6 +1,24 @@
+@mixin mobile {
+  @media screen and (max-width: 360px) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin laptop {
+  @media screen and (max-width: 1440px) {
+    @content;
+  }
+}
+
+
 .InputContainer{
   width: 100%;
-  margin:0 auto;
+  margin:3.75rem auto;
+
   .mainInput{
     max-width: 1159px;
     width: 100%;
@@ -9,9 +27,17 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    gap:14px;
     padding: 2.375rem 3.625rem;
     border-radius: 1rem;
+    @include tablet{
+      flex-direction: column;
+    }
+    @include mobile {
+      display: none;
+    }
   }
-
 }
+
+
 

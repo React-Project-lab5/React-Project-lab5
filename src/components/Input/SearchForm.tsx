@@ -1,7 +1,7 @@
 import classes from './SearchFrom.module.scss';
 import { Input } from './Input';
-import Button from '../Button/Button';
 import { InputSelector } from '../InputSelector/InputSelector';
+import { Button } from '../Button';
 
 export function SearchFrom() {
   return (
@@ -9,7 +9,12 @@ export function SearchFrom() {
       <div className={classes['InputContainer']}>
         <div className={classes['mainInput']}>
           <InputSelector maxWidthValue={'200px'} heightValue={'75px'} />
-          <Input widthValue={'35rem'} heightValue={'75px'} labelText="검색창" />
+          <Input
+            maxWidthValue={'35rem'}
+            heightValue={'75px'}
+            labelText="검색창"
+            isA11yHidden
+          />
           <Button
             widthValue={'190px'}
             heightValue={'75px'}
