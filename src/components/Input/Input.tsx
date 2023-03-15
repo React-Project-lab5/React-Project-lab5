@@ -1,8 +1,9 @@
 import React from 'react';
 import classes from './Input.module.scss';
+import classNames from 'classnames';
 
 interface Props {
-  widthValue: string | number;
+  maxWidthValue: string | number;
   heightValue: string | number;
   labelText: string;
   placeHolder: string;
@@ -11,7 +12,7 @@ interface Props {
 }
 
 export function Input({
-  widthValue,
+  maxWidthValue,
   heightValue,
   labelText,
   placeHolder,
@@ -19,7 +20,7 @@ export function Input({
   onChange,
 }: Props) {
   const inputStyle = {
-    width: widthValue,
+    maxWidth: maxWidthValue,
     height: heightValue,
   };
 
@@ -28,11 +29,9 @@ export function Input({
       <label
         htmlFor={labelText}
         aria-label={labelText + ' 라벨'}
-        className={
-          isA11yHidden === true
-            ? `${classes.inputLabel} ${'a11yHidden'}`
-            : `${classes.inputLabel}`
-        }
+        className={classNames(classes.inputLabel, {
+          ['a11yHidden']: isA11yHidden,
+        })}
       >
         {labelText}
       </label>
@@ -40,7 +39,7 @@ export function Input({
         type="text"
         id={labelText}
         aria-label={labelText + ' 입력'}
-        className={classes['inputList']}
+        className={classNames(classes['inputList'], className)}
         style={inputStyle}
         placeholder={placeHolder}
         onChange={onChange}
