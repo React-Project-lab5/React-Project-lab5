@@ -1,9 +1,10 @@
 import classes from './InputSelector.module.scss';
 import { useState, useRef } from 'react';
 
-export function InputSelector({ widthValue }) {
+export function InputSelector({ widthValue, heightValue }) {
   const selectStyle = {
     width: widthValue,
+    height: heightValue,
   };
   const [Content, setContent] = useState('');
   const onChangeHanlder = (e) => {
