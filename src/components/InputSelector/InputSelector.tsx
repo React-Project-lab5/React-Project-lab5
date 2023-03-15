@@ -2,16 +2,16 @@ import classes from './InputSelector.module.scss';
 import { useState, useRef } from 'react';
 import classNames from 'classnames';
 
-export function InputSelector({ widthValue, heightValue, className }) {
+export function InputSelector({
+  widthValue,
+  heightValue,
+  className,
+  onChange,
+}) {
   const selectStyle = {
     width: widthValue,
     height: heightValue,
-    className: className
-  };
-  const [Content, setContent] = useState('');
-  const onChangeHanlder = (e) => {
-    setContent(e.currentTarget.value);
-    console.log(e.target.value);
+    className: className,
   };
 
   const location = [
@@ -44,7 +44,7 @@ export function InputSelector({ widthValue, heightValue, className }) {
 
   return (
     <select
-      onChange={onChangeHanlder}
+      onChange={onChange}
       className={classNames(classes['selectBox'], className)}
       style={selectStyle}
     >

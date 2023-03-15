@@ -1,4 +1,5 @@
 import classes from './Button.module.scss';
+import classNames from 'classnames';
 
 interface Props {
   backgroundColor: 'orange' | 'red';
@@ -7,6 +8,8 @@ interface Props {
   heightValue: string | number;
   colorValue: string;
   text: string;
+  className?: string;
+  onClick?: () => void;
 }
 
 export function Button({
@@ -16,6 +19,8 @@ export function Button({
   heightValue,
   colorValue,
   text,
+  className,
+  onClick,
 }: Props) {
   const buttonStyle = {
     width: widthValue,
@@ -27,12 +32,14 @@ export function Button({
     <button
       type="button"
       aria-label={text + ' 버튼'}
-      className={
-        isSmall === true
-          ? `${classes.button} ${classes[backgroundColor]} ${classes.small}`
-          : `${classes.button} ${classes[backgroundColor]}`
-      }
+      className={classNames(
+        className,
+        classes.button,
+        classes[backgroundColor],
+        { [classes.small]: isSmall }
+      )}
       style={buttonStyle}
+      onClick={onClick}
     >
       {text}
     </button>

@@ -5,23 +5,23 @@ import Recommend from '@/pages/Recommend/Recommend';
 import Chat from '@/pages/Chat/Chat';
 import MyPage from '@/pages/MyPage/MyPage';
 import NotFound from '@/pages/NotFound/NotFound';
-import { Header, Footer, ModalTotal } from '@/components/index';
+import { Header, Footer } from '@/components/index';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/mainPage" element={<MainPage />} />
-        <Route path="/recommend" element={<Recommend />} />
-        <Route path="/chat" element={<Chat />} />
-        <Route path="/myPage" element={<MyPage />} />
-        <Route path="/notFound" element={<NotFound />} />
-      </Routes>
-      <ModalTotal />
-      <Footer />
-    </BrowserRouter>
+    <div>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/mainPage" element={<MainPage />} />
+          <Route path="/recommend" element={<Recommend />} />
+          <Route path="/chat" element={<Chat />} />
+          <Route path="/myPage" element={<MyPage />} />
+          <Route path="/notFound" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

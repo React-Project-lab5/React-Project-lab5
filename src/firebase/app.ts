@@ -1,4 +1,5 @@
 import { initializeApp } from '@firebase/app';
+import { getFirestore } from '@firebase/firestore';
 
 const {
   VITE_API_KEY,
@@ -20,4 +21,6 @@ const firebaseConfig = {
   measurementId: VITE_MEASUREMENT_ID,
 };
 
-export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+
+export const db = getFirestore(app);
