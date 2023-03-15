@@ -1,10 +1,6 @@
 import React from 'react';
+import classes from './Modal.module.scss';
 
-export const Modal = () => {
-  return (
-    <div>
-      <h3>Sample</h3>
-      <p>Sample Modal</p>
-    </div>
-  );
+export const Modal = ({ children }) => {
+  return <div className={classes.modalRealContent}>{children}</div>;
 };

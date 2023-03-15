@@ -1,13 +1,22 @@
 import classes from './Button.module.scss';
 
-export default function Button({
+interface Props {
+  backgroundColor: 'orange' | 'red';
+  isSmall: boolean;
+  widthValue: string | number;
+  heightValue: string | number;
+  colorValue: string;
+  text: string;
+}
+
+export function Button({
   backgroundColor,
   isSmall,
   widthValue,
   heightValue,
   colorValue,
   text,
-}) {
+}: Props) {
   const buttonStyle = {
     width: widthValue,
     height: heightValue,
@@ -19,9 +28,9 @@ export default function Button({
       type="button"
       aria-label={text + ' 버튼'}
       className={
-        isSmall
-          ? `${classes[backgroundColor]} ${classes.small}`
-          : classes[backgroundColor]
+        isSmall === true
+          ? `${classes.button} ${classes[backgroundColor]} ${classes.small}`
+          : `${classes.button} ${classes[backgroundColor]}`
       }
       style={buttonStyle}
     >

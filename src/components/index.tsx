@@ -8,4 +8,5 @@ export * from './Modal/ModalPotal';
 export * from './Modal/ModalTotal';
 export * from './Banner/Banner';
 export * from './InputSelector/InputSelector';
+export * from './Button/index';
 export * from './Input/Input';

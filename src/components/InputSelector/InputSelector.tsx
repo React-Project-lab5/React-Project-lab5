@@ -1,9 +1,9 @@
 import classes from './InputSelector.module.scss';
 import { useState, useRef } from 'react';
 
-export function InputSelector({ maxWidthValue }) {
+export function InputSelector({ widthValue }) {
   const selectStyle = {
-    maxWidth: maxWidthValue,
+    width: widthValue,
   };
   const [Content, setContent] = useState('');
   const onChangeHanlder = (e) => {
