@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './Input.module.scss';
+import classNames from 'classnames';
 
 interface Props {
   maxWidthValue: string | number;
@@ -7,6 +8,8 @@ interface Props {
   labelText: string;
   placeHolder: string;
   isA11yHidden: boolean;
+  className?:string
+
 }
 
 export function Input({
@@ -15,6 +18,7 @@ export function Input({
   labelText,
   placeHolder,
   isA11yHidden,
+  className
 }: Props) {
   const inputStyle = {
     maxWidth: maxWidthValue,
@@ -26,11 +30,9 @@ export function Input({
       <label
         htmlFor={labelText}
         aria-label={labelText + ' 라벨'}
-        className={
-          isA11yHidden === true
-            ? `${classes.inputLabel} ${'a11yHidden'}`
-            : `${classes.inputLabel}`
-        }
+        className={classNames(classes.inputLabel, {
+          ['a11yHidden']: isA11yHidden,
+        })}
       >
         {labelText}
       </label>
@@ -38,10 +40,10 @@ export function Input({
         type="text"
         id={labelText}
         aria-label={labelText + ' 입력'}
-        className={classes['inputList']}
+        className={classNames(classes['inputList'], className)}
         style={inputStyle}
         placeholder={placeHolder}
       />
-    </React.Fragment>
+    </React.Fragment  >
   );
 }
