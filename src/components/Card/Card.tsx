@@ -1,9 +1,13 @@
 import classes from './Card.module.scss';
+import classNames from 'classnames';
 
 interface Props {
-  children: React.ReactElement | string;
+  children?: React.ReactNode;
+  className?: string;
 }
 
-export default function Card({ children }: Props) {
-  return <div className={classes.card}>{children}</div>;
+export default function Card({ children, className }: Props) {
+  return (
+    <div className={classNames(classes['card'], className)}>{children}</div>
+  );
 }
