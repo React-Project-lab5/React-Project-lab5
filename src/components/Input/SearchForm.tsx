@@ -8,7 +8,7 @@ export function SearchFrom() {
     <>
       <div className={classes['InputContainer']}>
         <div className={classes['mainInput']}>
-          <InputSelector maxWidthValue={'200px'} heightValue={'75px'} />
+          <InputSelector widthValue={'200px'} heightValue={'75px'} />
           <Input
             maxWidthValue={'35rem'}
             heightValue={'75px'}
