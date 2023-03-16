@@ -5,9 +5,11 @@
   align-items: center;
   padding: 9px 13px;
 
-  width: 330px;
+  width: clamp(130px, 200px , 300px);
+  min-width: 140px;
   height: 51px;
-  font-size: 22px;
+  font-size: clamp(0.5rem, 5vw , 18px);
+
   font-weight: 700;
   line-height: 16px;
   gap: 14.5px;

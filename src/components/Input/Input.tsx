@@ -8,8 +8,8 @@ interface Props {
   labelText: string;
   placeHolder: string;
   isA11yHidden: boolean;
-  className?:string
-
+  className?: string;
+  onChange?: () => void;
 }
 
 export function Input({
@@ -18,7 +18,8 @@ export function Input({
   labelText,
   placeHolder,
   isA11yHidden,
-  className
+  className,
+  onChange,
 }: Props) {
   const inputStyle = {
     maxWidth: maxWidthValue,
@@ -43,7 +44,8 @@ export function Input({
         className={classNames(classes['inputList'], className)}
         style={inputStyle}
         placeholder={placeHolder}
+        onChange={onChange}
       />
-    </React.Fragment  >
+    </React.Fragment>
   );
 }

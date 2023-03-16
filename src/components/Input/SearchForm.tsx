@@ -2,8 +2,15 @@ import classes from './SearchFrom.module.scss';
 import { Input } from './Input';
 import { InputSelector } from '../InputSelector/InputSelector';
 import { Button } from '../Button';
+import { ModalTotal } from '@/components/index';
 
-export function SearchFrom() {
+export function SearchFrom({
+  setTitle,
+  setAddress,
+  setDetail,
+  createUsers,
+  getUsers,
+}) {
   return (
     <>
       <div className={classes['InputContainer']}>
@@ -20,12 +27,12 @@ export function SearchFrom() {
             isA11yHidden
             className={classes.searchFormInput}
           />
-          <Button
-            widthValue={'190px'}
-            heightValue={'75px'}
-            text="모임 만들기"
-            backgroundColor={'orange'}
-            className={classes.MeetingButton}
+          <ModalTotal
+            setTitle={setTitle}
+            setAddress={setAddress}
+            setDetail={setDetail}
+            createUsers={createUsers}
+            getUsers={getUsers}
           />
 
           <Button
