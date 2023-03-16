@@ -1,9 +1,10 @@
-.socialIconGroup-Wrapper {
+@import '@/styles/common/index.scss';
+
+.socialIconGroupWrapper {
+  grid-column: 1 / 3;
   display: flex;
   flex-flow: row nowrap;
-  padding: 0px;
   gap: 20px;
-  position: absolute;
   width: 230px;
   height: 30px;
 }
