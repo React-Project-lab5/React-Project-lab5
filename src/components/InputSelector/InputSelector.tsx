@@ -1,14 +1,17 @@
 import classes from './InputSelector.module.scss';
 import { useState, useRef } from 'react';
+import classNames from 'classnames';
 
-export function InputSelector({ maxWidthValue }) {
+export function InputSelector({
+  widthValue,
+  heightValue,
+  className,
+  onChange,
+}) {
   const selectStyle = {
-    maxWidth: maxWidthValue,
-  };
-  const [Content, setContent] = useState('');
-  const onChangeHanlder = (e) => {
-    setContent(e.currentTarget.value);
-    console.log(e.target.value);
+    width: widthValue,
+    height: heightValue,
+    className: className,
   };
 
   const location = [
@@ -41,8 +44,8 @@ export function InputSelector({ maxWidthValue }) {
 
   return (
     <select
-      onChange={onChangeHanlder}
-      className={classes['selectBox']}
+      onChange={onChange}
+      className={classNames(classes['selectBox'], className)}
       style={selectStyle}
     >
       <option value="default">지역을 선택하세요</option>
