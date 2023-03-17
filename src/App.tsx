@@ -20,6 +20,7 @@ function App() {
           <Route path="/myPage" element={<MyPage />} />
           <Route path="/notFound" element={<NotFound />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

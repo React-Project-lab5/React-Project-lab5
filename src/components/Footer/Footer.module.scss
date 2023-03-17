@@ -24,7 +24,6 @@ html {
   height: auto;
   @include tablet {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 10px;
   }
@@ -51,6 +50,19 @@ html {
     color: #1a202c;
     font-size: 1.6rem;
     grid-column: 2 / 3;
+  }
+}
+
+.infoGroup {
+  grid-column: 3 / 6;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  @include tablet {
+    grid-column: 1 / 6;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
   }
 }
 

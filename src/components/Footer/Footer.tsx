@@ -10,29 +10,31 @@ export function Footer() {
           <span className={classes.slogan}>Eat, Share, Be Happy</span>
           <SocialIconGroup />
         </div>
-        <dl className={classes.infoList}>
-          <dt className={classes.listTitle}>회사소개</dt>
-          <dd>투자 정보</dd>
-          <dd>브랜드 가이드라인</dd>
-          <dd>혼밥 비즈니스</dd>
-          <dd>광고 문의</dd>
-        </dl>
-        <dl className={classes.infoList}>
-          <dt className={classes.listTitle}>공지사항</dt>
-          <dd>이용약관</dd>
-          <dd>개인정보처리방침</dd>
-          <dd>위치기반서비스 이용약관</dd>
-          <dd>커뮤니티 가이드라인</dd>
-          <dd>청소년보호정책</dd>
-          <dd>문의하기</dd>
-        </dl>
-        <dl className={classes.infoList}>
-          <dt className={classes.listTitle}>SNS</dt>
-          <dd>Discord</dd>
-          <dd>Instagram</dd>
-          <dd>Twitter</dd>
-          <dd>Facebook</dd>
-        </dl>
+        <div className={classes.infoGroup}>
+          <dl className={classes.infoList}>
+            <dt className={classes.listTitle}>회사소개</dt>
+            <dd>투자 정보</dd>
+            <dd>브랜드 가이드라인</dd>
+            <dd>혼밥 비즈니스</dd>
+            <dd>광고 문의</dd>
+          </dl>
+          <dl className={classes.infoList}>
+            <dt className={classes.listTitle}>공지사항</dt>
+            <dd>이용약관</dd>
+            <dd>개인정보처리방침</dd>
+            <dd>위치기반서비스 이용약관</dd>
+            <dd>커뮤니티 가이드라인</dd>
+            <dd>청소년보호정책</dd>
+            <dd>문의하기</dd>
+          </dl>
+          <dl className={classes.infoList}>
+            <dt className={classes.listTitle}>SNS</dt>
+            <dd>Discord</dd>
+            <dd>Instagram</dd>
+            <dd>Twitter</dd>
+            <dd>Facebook</dd>
+          </dl>
+        </div>
       </div>
       <div className={classes.footerBottom}>
         <ul>
