@@ -2,7 +2,7 @@ import classes from './Card.module.scss';
 import classNames from 'classnames';
 
 interface Props {
-  children: React.ReactElement | string;
+  children?: React.ReactNode;
   className?: string;
 }
 
