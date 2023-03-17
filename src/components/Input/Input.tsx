@@ -3,6 +3,7 @@ import classes from './Input.module.scss';
 import classNames from 'classnames';
 
 interface Props {
+  type: string;
   maxWidthValue: string | number;
   heightValue: string | number;
   labelText: string;
@@ -13,6 +14,7 @@ interface Props {
 }
 
 export function Input({
+  type,
   maxWidthValue,
   heightValue,
   labelText,
@@ -38,7 +40,7 @@ export function Input({
         {labelText}
       </label>
       <input
-        type="text"
+        type={type}
         id={labelText}
         aria-label={labelText + ' 입력'}
         className={classNames(classes['inputList'], className)}
