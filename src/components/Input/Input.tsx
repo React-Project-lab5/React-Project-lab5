@@ -47,6 +47,7 @@ export function Input({
         style={inputStyle}
         placeholder={placeHolder}
         onChange={onChange}
+        required
       />
     </React.Fragment>
   );

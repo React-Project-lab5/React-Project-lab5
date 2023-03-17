@@ -126,6 +126,11 @@
 .signupButton {
   margin-top: 35px;
 
+.mainPageCard{
+  @include mobile{
+    margin:0px 0px 10px 10px ;
+  }
+}
   @include mobile {
     width: 100%;
     margin: 16px 0px ;

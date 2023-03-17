@@ -12,3 +12,5 @@ export * from './InputSelector/InputSelector';
 export * from './Button/index';
 export * from './Input/Input';
 export * from './Input/SearchForm';
+export * from './Card/index';
+export * from './ChatDialog/index';
