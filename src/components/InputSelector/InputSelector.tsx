@@ -3,13 +3,13 @@ import { useState, useRef } from 'react';
 import classNames from 'classnames';
 
 export function InputSelector({
-  widthValue,
+  maxWidthValue,
   heightValue,
   className,
   onChange,
 }) {
   const selectStyle = {
-    width: widthValue,
+    maxWidth: maxWidthValue,
     height: heightValue,
     className: className,
   };
