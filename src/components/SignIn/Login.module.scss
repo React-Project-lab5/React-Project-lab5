@@ -1,0 +1,35 @@
+.formContainer {
+  background: rgb(216, 244, 255);
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formWrapper {
+  background: var(--white);
+  min-width: 330px;
+  width: 450px;
+  min-height: 700px;
+  padding: 60px;
+  border-radius: 16px;
+  display: flex;
+  flex-flow: column;
+  gap: 40px;
+  align-items: center;
+
+  form {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 15px;
+  }
+  p {
+    font-size: 12px;
+    font-weight: 600;
+
+    span {
+      color: var(--accent);
+    }
+  }
+}
