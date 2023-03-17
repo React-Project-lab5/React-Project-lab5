@@ -9,6 +9,7 @@ interface Props {
   placeHolder: string;
   isA11yHidden: boolean;
   className?: string;
+  type?: string;
   onChange?: () => void;
 }
 
@@ -19,6 +20,7 @@ export function Input({
   placeHolder,
   isA11yHidden,
   className,
+  type,
   onChange,
 }: Props) {
   const inputStyle = {
@@ -38,7 +40,7 @@ export function Input({
         {labelText}
       </label>
       <input
-        type="text"
+        type={type}
         id={labelText}
         aria-label={labelText + ' 입력'}
         className={classNames(classes['inputList'], className)}
