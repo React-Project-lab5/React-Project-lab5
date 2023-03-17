@@ -9,9 +9,9 @@
 
 .myPageContainer {
   background-color: white;
-  margin: 4.25rem 5.875rem;
+  // margin: 4.25rem 5.875rem;
+  margin: 4.25rem 32px;
   width: 100%;
-  min-width: 40.0625rem;
   border-radius: 16px;
   @include tablet {
     display: block;
@@ -44,9 +44,6 @@
   gap: 5.4375rem;
   @include tablet {
     display: block;
-    min-width: 768px;
-    align-items: center;
-    justify-content: center;
   }
   @include mobile {
     min-width: 360px;
@@ -68,37 +65,37 @@
 }
 
 .inputContainer {
-  // background-color: greenyellow;
+  background-color: greenyellow;
   display: flex;
   gap: 2.5625rem;
-  overflow: hidden;
+  max-width: 621px;
+  width: 100%;
   @include tablet {
-    margin-top: 3rem;
-    padding-right: 0;
+    margin: auto;
     justify-content: center;
+    margin-top: 3rem;
+    width: 100%;
   }
   @include mobile {
-    min-width: 360px;
     display: block;
-    justify-content: center;
+    margin: 13px auto 24px;
   }
 }
 
 .userInfoContainer {
-  // background-color: skyblue;
+  background-color: skyblue;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin-bottom: 10px;
+  width: 100%;
   @include tablet {
-    justify-content: center;
-    gap: 0px;
+    height: 300px;
   }
   @include mobile {
-    display: flex;
-    width: 250px;
-    justify-content: center;
-    gap: 0px;
+    max-width: 245px;
+    gap: 7px;
+    height: 100%;
+    margin: 0 auto;
   }
 }
 
@@ -113,11 +110,20 @@
   font-size: 20px;
   line-height: 24px;
   @include tablet {
-    min-width: 768px;
     margin-top: 24px;
   }
   @include mobile {
     min-width: 360px;
     font-size: 16px;
+  }
+}
+
+.inputMobile {
+  @include mobile {
+    width: 245px;
+    height: 40px;
+    border: 1px solid #949494;
+    border-radius: 16px;
+    background-color: yellow;
   }
 }
