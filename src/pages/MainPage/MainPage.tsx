@@ -1,15 +1,18 @@
-import { Meeting } from '@/components/Card';
 import { Banner, ShowMeetings } from '@/components/index';
 import { SearchFrom } from '@/components/Input/SearchForm';
 import classes from './MainPage.module.scss';
-import { db } from '@/firebase/app';
-import { collection, getDocs, addDoc } from 'firebase/firestore';
+import { db } from '@/firebase/firestore/index';
+import { collection, getDocs, addDoc } from '@firebase/firestore';
 import { useState, useEffect } from 'react';
+import { useRecoilValue } from 'recoil';
+import { cardDataState } from './../../states/cardDataState';
 
 export default function MainPage() {
   const [title, setTitle] = useState('');
   const [address, setAddress] = useState('');
   const [detail, setDetail] = useState('');
+
+  const cardData = useRecoilValue(cardDataState);
 
   // db의 users 컬렉션을 가져옴
   const usersCollectionRef = collection(db, 'makeMeetings');
@@ -28,7 +31,7 @@ export default function MainPage() {
 
   useEffect(() => {
     getUsers();
-  }, [title]);
+  }, [cardData]);
 
   const createUsers = async () => {
     // addDoc을 이용해서 내가 원하는 collection에 내가 원하는 key로 값을 추가한다.
@@ -36,6 +39,7 @@ export default function MainPage() {
       title: title,
       address: address,
       detail: detail,
+      cardData: cardData,
     });
   };
 
