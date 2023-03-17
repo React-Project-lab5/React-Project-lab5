@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback } from 'react';
-import { deleteObject, ref } from 'firebase/storage';
+import { deleteObject, ref } from '@firebase/storage';
 import { storage } from './index';
 
 /**
