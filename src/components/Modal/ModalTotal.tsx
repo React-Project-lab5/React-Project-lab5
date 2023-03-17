@@ -54,7 +54,7 @@ export function ModalTotal({
             <h2 className={classes.popupTitle}>모임 만들기</h2>
             <div className={classes.popupContent}>
               <MapContainer />
-              <div>
+              <div className={classes['popupSelector']}>
                 <Input
                   widthValue={300}
                   heightValue={50}
