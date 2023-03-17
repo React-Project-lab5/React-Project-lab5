@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from 'react';
-import { signOut as firebaseSignOut } from 'firebase/auth';
+import { signOut as firebaseSignOut } from '@firebase/auth';
 import { auth } from './index';
 
 /* -------------------------------------------------------------------------- */

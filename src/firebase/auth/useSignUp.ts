@@ -3,7 +3,7 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
   sendEmailVerification as firebaseSendEmailVerification,
-} from 'firebase/auth';
+} from '@firebase/auth';
 import { auth } from './index';
 
 /* -------------------------------------------------------------------------- */
