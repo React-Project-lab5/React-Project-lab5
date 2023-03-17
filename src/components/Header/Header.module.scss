@@ -1,8 +1,24 @@
+@import '@/styles/common/index.scss';
+
 .header {
   padding: 30px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-weight: 700;
   font-size: 1.25rem;
   color: var(--colar-700);
+
+  @include tablet {
+    font-size: 1rem;
+    padding: 30px 7px;
+    display: flex;
+    align-items: center;
+  }
+  @include mobile {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 10px;
+    align-items: center;
+  }
 }

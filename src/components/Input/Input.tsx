@@ -14,7 +14,6 @@ interface Props {
 }
 
 export function Input({
-  type,
   maxWidthValue,
   heightValue,
   labelText,

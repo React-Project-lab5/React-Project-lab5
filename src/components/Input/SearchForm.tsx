@@ -3,6 +3,7 @@ import { Input } from './Input';
 import { InputSelector } from '../InputSelector/InputSelector';
 import { Button } from '../Button';
 import { ModalTotal } from '@/components/index';
+import { useNavigate } from 'react-router-dom';
 
 export function SearchFrom({
   setTitle,
@@ -11,6 +12,12 @@ export function SearchFrom({
   createUsers,
   getUsers,
 }) {
+  const movePage = useNavigate();
+
+  const goChatPage = () => {
+    movePage('/chat');
+  };
+
   return (
     <>
       <div className={classes['InputContainer']}>
@@ -41,6 +48,7 @@ export function SearchFrom({
             text="채팅 하기"
             backgroundColor={'orange'}
             className={classes.ChatButton}
+            onClick={goChatPage}
           />
         </div>
       </div>
