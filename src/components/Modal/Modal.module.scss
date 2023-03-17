@@ -1,3 +1,4 @@
+@import "@/styles/common/index.scss";
 
 .modal {
   display: flex;
@@ -104,3 +105,8 @@
   margin-top: 35px;
 }
 
+.mainPageCard{
+  @include mobile{
+    margin:0px 0px 10px 10px ;
+  }
+}

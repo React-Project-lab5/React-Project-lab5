@@ -1,5 +1,5 @@
 import classes from './Card.module.scss';
-import avatar from '../../../public/assets/avatar_1.svg';
+import avatar from '/public/assets/avatar_1.svg';
 
 export function Meeting({ toDate, time, town, place, title }) {
   return (
