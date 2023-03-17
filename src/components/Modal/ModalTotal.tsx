@@ -13,7 +13,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { MapContainer } from './../../utils/MapContainer';
 import { useState } from 'react';
 import { debounce } from 'lodash';
-import Select from 'react-select';
+import { useSetRecoilState } from 'recoil';
+import { cardDataState } from './../../states/cardDataState';
 
 export function ModalTotal({
   createUsers,
@@ -27,15 +28,20 @@ export function ModalTotal({
     setHours(setMinutes(new Date(), 30), 16)
   );
 
+  const setCardData = useSetRecoilState(cardDataState);
+
   const handleOpen = () => {
     setModalOpened(true);
   };
 
-  const handleClose = () => {
+  const handleRegister = () => {
     setModalOpened(false);
-
     createUsers();
     getUsers();
+  };
+
+  const handleClose = () => {
+    setModalOpened(false);
   };
 
   return (
@@ -54,16 +60,17 @@ export function ModalTotal({
             <h2 className={classes.popupTitle}>모임 만들기</h2>
             <div className={classes.popupContent}>
               <MapContainer />
-              <div className={classes['popupSelector']}>
+              <div>
                 <Input
                   widthValue={300}
                   heightValue={50}
+                  placeHolder={'제목을 입력하세요'}
                   onChange={debounce((event) => {
                     setTitle(event.target.value);
                   }, 500)}
                 />
                 <InputSelector
-                  widthValue={300}
+                  maxWidthValue={300}
                   className={classes.selector}
                   onChange={(event) => {
                     setAddress(event.target.value);
@@ -73,6 +80,7 @@ export function ModalTotal({
                 <Input
                   widthValue={300}
                   heightValue={50}
+                  placeHolder={'상세한 모임위치를 적으세요'}
                   onChange={debounce((event) => {
                     setDetail(event.target.value);
                   }, 500)}
@@ -80,7 +88,10 @@ export function ModalTotal({
 
                 <DatePicker
                   selected={startDate}
-                  onChange={(date) => setStartDate(date)}
+                  onChange={(date) => {
+                    setStartDate(date);
+                    setCardData(String(date).substring(0, 21));
+                  }}
                   closeOnScroll={true}
                   showTimeSelect
                   dateFormat="yy/MM/dd | aa h:mm"
@@ -94,7 +105,7 @@ export function ModalTotal({
                   text={'모임 만들기'}
                   backgroundColor={'orange'}
                   className={classes.signupButton}
-                  onClick={handleClose}
+                  onClick={handleRegister}
                 />
               </div>
             </div>

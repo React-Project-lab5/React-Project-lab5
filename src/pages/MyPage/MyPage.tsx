@@ -17,18 +17,38 @@ export default function MyPage() {
           <div className={classes.inputContainer}>
             <div className={classes.userInfoContainer}>
               <form>
-                <Input widthValue={290} heightValue={80} labelText="Name" />
+                <Input
+                  className={classes.inputMobile}
+                  maxWidthValue={290}
+                  heightValue={80}
+                  labelText="Name"
+                />
               </form>
               <form>
-                <Input widthValue={290} heightValue={80} labelText="Email" />
+                <Input
+                  className={classes.inputMobile}
+                  maxWidthValue={290}
+                  heightValue={80}
+                  labelText="Email"
+                />
               </form>
             </div>
             <div className={classes.userInfoContainer}>
               <form>
-                <Input widthValue={290} heightValue={80} labelText="Phone" />
+                <Input
+                  className={classes.inputMobile}
+                  maxWidthValue={290}
+                  heightValue={80}
+                  labelText="Phone"
+                />
               </form>
               <form>
-                <Input widthValue={290} heightValue={80} labelText="Address" />
+                <Input
+                  className={classes.inputMobile}
+                  maxWidthValue={290}
+                  heightValue={80}
+                  labelText="Address"
+                />
               </form>
             </div>
           </div>

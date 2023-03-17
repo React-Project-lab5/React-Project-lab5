@@ -6,7 +6,7 @@ interface Props {
   className?: string;
 }
 
-export default function Card({ children, className }: Props) {
+export function Card({ children, className }: Props) {
   return (
     <div className={classNames(classes['card'], className)}>{children}</div>
   );

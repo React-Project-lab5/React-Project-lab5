@@ -14,13 +14,13 @@ interface Props {
 }
 
 export function Input({
+  type,
   maxWidthValue,
   heightValue,
   labelText,
   placeHolder,
   isA11yHidden,
   className,
-  type,
   onChange,
 }: Props) {
   const inputStyle = {
@@ -47,6 +47,7 @@ export function Input({
         style={inputStyle}
         placeholder={placeHolder}
         onChange={onChange}
+        required
       />
     </React.Fragment>
   );
