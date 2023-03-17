@@ -103,6 +103,7 @@ export function ModalTotal({
                   widthValue={300}
                   heightValue={50}
                   text={'모임 만들기'}
+                  type={'submit'}
                   backgroundColor={'orange'}
                   className={classes.signupButton}
                   onClick={handleRegister}

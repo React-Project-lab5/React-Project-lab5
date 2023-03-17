@@ -1,14 +1,77 @@
+@import '@/styles/common/index.scss';
+
 .nav {
   display: flex;
+
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  li {
+    padding: 0 10px;
+    
+    &:last-child {
+      padding-right: 0;
+    }
+  
+    @include tablet {
+      padding: 0 0.2rem;
+      font-size: 0.93rem;
+      font-weight: 800;
+    }
+    @include mobile {
+      display: none;
+    }
+  }
 }
 
-.nav > div {
-  padding: 0 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+
+
+.hamburger {
+  display: none;
+
+  @include mobile {
+    display: flex;
+    justify-content: flex-end;
+    width: 3vw;
+    height: 3vh;
+  }
 }
-.nav > div:last-child {
-  padding-right: 0;
+
+.open {
+  z-index: 10;
+  transition: all .2s ease;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  padding: 30px;
+  background-color: var(--secondary);
+
+  li {
+    padding: 15px 0;
+
+    &:last-child {
+      font-size: 83%;
+
+      span {
+        font-size: 115%;
+      }
+    }
+    &:hover {
+      text-decoration: underline;
+      color: var(--positive);
+    }
+  }
+
+  img {
+    width: 80%;
+    height: 80%;
+    padding-top: 30px;
+}
+}
+
+.closeHidden {
+  display: none;
 }
