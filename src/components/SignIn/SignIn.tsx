@@ -1,8 +1,8 @@
-import classes from './Login.module.scss';
+import classes from './SignIn.module.scss';
 import { Input } from '../Input/Input';
 import { LogoIconandText } from '../LogoIconandText/LogoIconandText';
 import { Button, ButtonGoogle, ButtonKakao } from '../Button';
-export default function Login() {
+export default function SignIn() {
   const inputProps = {
     maxWidthValue: '30',
     heightValue: '50',
