@@ -8,6 +8,7 @@ interface Props {
   heightValue: string | number;
   colorValue: string;
   text: string;
+  type: string;
   className?: string;
   onClick?: () => void;
 }
@@ -19,6 +20,7 @@ export function Button({
   heightValue,
   colorValue,
   text,
+  type = 'button',
   className,
   onClick,
 }: Props) {
@@ -30,7 +32,7 @@ export function Button({
 
   return (
     <button
-      type="button"
+      type={type}
       aria-label={text + ' 버튼'}
       className={classNames(
         className,
