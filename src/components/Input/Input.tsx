@@ -3,6 +3,7 @@ import classes from './Input.module.scss';
 import classNames from 'classnames';
 
 interface Props {
+  type: string;
   maxWidthValue: string | number;
   heightValue: string | number;
   labelText: string;
@@ -14,6 +15,7 @@ interface Props {
 }
 
 export function Input({
+  type,
   maxWidthValue,
   heightValue,
   labelText,
