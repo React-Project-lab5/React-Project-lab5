@@ -2,10 +2,7 @@ import classes from './SignUp.module.scss';
 import { Input } from '../Input/Input';
 import { LogoIconandText } from '../LogoIconandText/LogoIconandText';
 import { InputSelector } from '../InputSelector/InputSelector';
-import { useState } from 'react';
 export default function SignUp() {
-  const [err, setErr] = useState(false);
-
   const inputProps = {
     maxWidthValue: '300px',
     heightValue: '45px',
@@ -57,7 +54,6 @@ export default function SignUp() {
           <button type="button" className={classes.button}>
             회원가입
           </button>
-          {err && <span>Something went wrong</span>}
         </form>
         <p>
           <span>로그인</span> 계정이 있으신가요?
