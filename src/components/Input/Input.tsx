@@ -20,6 +20,7 @@ export function Input({
   placeHolder,
   isA11yHidden,
   className,
+  type,
   onChange,
 }: Props) {
   const inputStyle = {
