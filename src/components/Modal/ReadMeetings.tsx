@@ -1,74 +1,33 @@
+import { MapContainer } from './../../utils/MapContainer';
 import {
   Button,
   Input,
   InputSelector,
-  Modal,
   ModalPotal,
+  Modal,
 } from '@/components/index';
 import classes from './Modal.module.scss';
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import { MapContainer } from './../../utils/MapContainer';
 import { useState } from 'react';
-import { debounce } from 'lodash';
-import { useSetRecoilState } from 'recoil';
-import { cardDataState } from './../../states/cardDataState';
-//import { Form } from './Form';
 
-export function ModalTotal({
-  createUsers,
-  getUsers,
-  setTitle,
-  setAddress,
-  setDetail,
-}) {
-  const [modalOpened, setModalOpened] = useState(false);
+export const ReadMeetings = ({ openModal, setOpenModal }) => {
+  console.log(openModal);
+
   const [startDate, setStartDate] = useState(null);
 
-  const setCardData = useSetRecoilState(cardDataState);
-
-  const handleOpen = () => {
-    setModalOpened(true);
-  };
-
   const handleRegister = () => {
-    setModalOpened(false);
-    createUsers();
-    getUsers();
+    setOpenModal(false);
   };
 
   const handleClose = () => {
-    setModalOpened(false);
-  };
-
-  const handleDebounceTitle = debounce((event) => {
-    setTitle(event.target.value);
-    console.log(event.target.value);
-  }, 500);
-
-  const handleDebounceDetail = debounce((event) => {
-    setDetail(event.target.value);
-    console.log('input onChange 확인', event);
-  }, 500);
-
-  const handleOnChangeTown = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAddress(event.target.value);
+    setOpenModal(false);
   };
 
   return (
     <div>
-      <Button
-        widthValue={'190px'}
-        heightValue={'75px'}
-        text="모임 만들기"
-        backgroundColor={'orange'}
-        className={classes.MeetingButton}
-        onClick={handleOpen}
-      />
-      {modalOpened && (
+      {openModal && (
         <ModalPotal closePortal={handleClose}>
           <Modal>
-            <h2 className={classes.popupTitle}>모임 만들기</h2>
             <div className={classes.popupContent}>
               <MapContainer />
 
@@ -79,12 +38,10 @@ export function ModalTotal({
                   labelText={'모임만들기 제목'}
                   isA11yHidden={true}
                   placeHolder={'제목을 입력하세요'}
-                  onChange={handleDebounceTitle}
                 />
                 <InputSelector
                   maxWidthValue={300}
                   className={classes.selector}
-                  onChange={handleOnChangeTown}
                   marginBottom={6}
                 />
                 <Input
@@ -93,14 +50,9 @@ export function ModalTotal({
                   labelText={'모임만들기 위치'}
                   isA11yHidden={true}
                   placeHolder={'상세한 모임위치를 적으세요'}
-                  onChange={handleDebounceDetail}
                 />
                 <DatePicker
                   selected={startDate}
-                  onChange={(date: object) => {
-                    setStartDate(date);
-                    setCardData(String(date).substring(0, 21));
-                  }}
                   closeOnScroll={true}
                   showTimeSelect
                   dateFormat="yy/MM/dd | aa h:mm"
@@ -112,9 +64,8 @@ export function ModalTotal({
                 <Button
                   widthValue={300}
                   heightValue={50}
-                  text={'모임 만들기'}
-                  type={'submit'}
-                  backgroundColor={'orange'}
+                  text={'탈퇴하기'}
+                  backgroundColor={'red'}
                   className={classes.signupButton}
                   onClick={handleRegister}
                 />
@@ -125,4 +76,4 @@ export function ModalTotal({
       )}
     </div>
   );
-}
+};

@@ -8,7 +8,7 @@ interface Props {
   heightValue?: string | number;
   colorValue?: string;
   text: string;
-  type?: string;
+  type?: 'button' | 'submit' | 'reset';
   className?: string;
   onClick?: () => void;
 }
