@@ -6,7 +6,7 @@ interface Props {
   maxWidthValue: string | number;
   heightValue: string | number;
   labelText: string;
-  placeHolder: string;
+  placeHolder?: string;
   isA11yHidden: boolean;
   className?: string;
   type?: string;

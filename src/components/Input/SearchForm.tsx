@@ -23,8 +23,8 @@ export function SearchFrom({
       <div className={classes['InputContainer']}>
         <div className={classes['mainInput']}>
           <InputSelector
-            maxWidthValue={'200px'}
-            heightValue={'75px'}
+            maxWidthValue={200}
+            heightValue={75}
             className={classes.searchFormInputSelector}
           />
           <Input

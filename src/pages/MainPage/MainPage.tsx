@@ -28,7 +28,6 @@ export default function MainPage() {
     // users에 data안의 자료 추가. 객체에 id 덮어씌우는거
     setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
-
   useEffect(() => {
     getUsers();
   }, [cardData]);
