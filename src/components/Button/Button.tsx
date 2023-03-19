@@ -3,12 +3,12 @@ import classNames from 'classnames';
 
 interface Props {
   backgroundColor: 'orange' | 'red';
-  isSmall: boolean;
+  isSmall?: boolean;
   widthValue: string | number;
-  heightValue: string | number;
-  colorValue: string;
+  heightValue?: string | number;
+  colorValue?: string;
   text: string;
-  type: string;
+  type?: string;
   className?: string;
   onClick?: () => void;
 }

@@ -7,14 +7,13 @@ import {
 } from '@/components/index';
 import classes from './Modal.module.scss';
 import DatePicker from 'react-datepicker';
-import setHours from 'date-fns/setHours';
-import setMinutes from 'date-fns/setMinutes';
 import 'react-datepicker/dist/react-datepicker.css';
 import { MapContainer } from './../../utils/MapContainer';
 import { useState } from 'react';
 import { debounce } from 'lodash';
 import { useSetRecoilState } from 'recoil';
 import { cardDataState } from './../../states/cardDataState';
+import { Form } from './Form';
 
 export function ModalTotal({
   createUsers,
@@ -24,9 +23,7 @@ export function ModalTotal({
   setDetail,
 }) {
   const [modalOpened, setModalOpened] = useState(false);
-  const [startDate, setStartDate] = useState(
-    setHours(setMinutes(new Date(), 30), 16)
-  );
+  const [startDate, setStartDate] = useState(null);
 
   const setCardData = useSetRecoilState(cardDataState);
 
@@ -42,6 +39,20 @@ export function ModalTotal({
 
   const handleClose = () => {
     setModalOpened(false);
+  };
+
+  const handleDebounceTitle = debounce((event) => {
+    setTitle(event.target.value);
+    console.log(event.target.value);
+  }, 500);
+
+  const handleDebounceDetail = debounce((event) => {
+    setDetail(event.target.value);
+    console.log('input onChange 확인', event);
+  }, 500);
+
+  const handleOnChangeTown = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAddress(event.target.value);
   };
 
   return (
@@ -60,35 +71,33 @@ export function ModalTotal({
             <h2 className={classes.popupTitle}>모임 만들기</h2>
             <div className={classes.popupContent}>
               <MapContainer />
+
               <div>
                 <Input
-                  widthValue={300}
+                  maxWidthValue={300}
                   heightValue={50}
+                  labelText={'모임만들기 제목'}
+                  isA11yHidden={true}
                   placeHolder={'제목을 입력하세요'}
-                  onChange={debounce((event) => {
-                    setTitle(event.target.value);
-                  }, 500)}
+                  onChange={handleDebounceTitle}
                 />
                 <InputSelector
                   maxWidthValue={300}
                   className={classes.selector}
-                  onChange={(event) => {
-                    setAddress(event.target.value);
-                  }}
+                  onChange={handleOnChangeTown}
+                  marginBottom={6}
                 />
-
                 <Input
-                  widthValue={300}
+                  maxWidthValue={300}
                   heightValue={50}
+                  labelText={'모임만들기 위치'}
+                  isA11yHidden={true}
                   placeHolder={'상세한 모임위치를 적으세요'}
-                  onChange={debounce((event) => {
-                    setDetail(event.target.value);
-                  }, 500)}
+                  onChange={handleDebounceDetail}
                 />
-
                 <DatePicker
                   selected={startDate}
-                  onChange={(date) => {
+                  onChange={(date: object) => {
                     setStartDate(date);
                     setCardData(String(date).substring(0, 21));
                   }}
@@ -98,6 +107,7 @@ export function ModalTotal({
                   isClearable
                   placeholderText="날짜를 선택하세요"
                   className={classes.datePicker}
+                  showDisabledMonthNavigation
                 />
                 <Button
                   widthValue={300}
