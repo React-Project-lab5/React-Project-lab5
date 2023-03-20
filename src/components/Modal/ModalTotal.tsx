@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { debounce } from 'lodash';
 import { useSetRecoilState } from 'recoil';
 import { cardDataState } from './../../states/cardDataState';
+import React from 'react';
 //import { Form } from './Form';
 
 export function ModalTotal({
@@ -56,9 +57,9 @@ export function ModalTotal({
   };
 
   return (
-    <div>
+    <React.Fragment>
       <Button
-        widthValue={'190px'}
+        maxWidthValue={'190px'}
         heightValue={'75px'}
         text="모임 만들기"
         backgroundColor={'orange'}
@@ -72,7 +73,7 @@ export function ModalTotal({
             <div className={classes.popupContent}>
               <MapContainer />
 
-              <div>
+              <div className={classes['modalSearch']}>
                 <Input
                   maxWidthValue={300}
                   heightValue={50}
@@ -110,7 +111,7 @@ export function ModalTotal({
                   showDisabledMonthNavigation
                 />
                 <Button
-                  widthValue={300}
+                  maxWidthValue={300}
                   heightValue={50}
                   text={'모임 만들기'}
                   type={'submit'}
@@ -123,6 +124,6 @@ export function ModalTotal({
           </Modal>
         </ModalPotal>
       )}
-    </div>
+    </React.Fragment>
   );
 }
