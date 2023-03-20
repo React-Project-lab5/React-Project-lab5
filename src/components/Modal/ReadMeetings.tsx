@@ -57,7 +57,7 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
               {localStorage.getItem('Unique ID')}
               <div>
                 <Button
-                  widthValue={300}
+                  maxWidthValue={300}
                   heightValue={50}
                   text={'탈퇴하기'}
                   backgroundColor={'red'}

@@ -13,6 +13,8 @@ import { useState } from 'react';
 import { debounce } from 'lodash';
 import { useSetRecoilState } from 'recoil';
 import { cardDataState } from './../../states/cardDataState';
+import React from 'react';
+//import { Form } from './Form';
 
 export function ModalTotal({
   createUsers,
@@ -56,9 +58,9 @@ export function ModalTotal({
   };
 
   return (
-    <div>
+    <React.Fragment>
       <Button
-        widthValue={'190px'}
+        maxWidthValue={'190px'}
         heightValue={'75px'}
         text="모임 만들기"
         backgroundColor={'orange'}
@@ -73,55 +75,57 @@ export function ModalTotal({
               <MapContainer />
 
               <form onSubmit={handleRegister}>
-                <Input
-                  maxWidthValue={300}
-                  heightValue={50}
-                  labelText={'모임만들기 제목'}
-                  isA11yHidden={true}
-                  placeHolder={'제목을 입력하세요'}
-                  onChange={handleDebounceTitle}
-                />
-                <InputSelector
-                  maxWidthValue={300}
-                  className={classes.selector}
-                  onChange={handleOnChangeTown}
-                  marginBottom={6}
-                />
-                <Input
-                  maxWidthValue={300}
-                  heightValue={50}
-                  labelText={'모임만들기 위치'}
-                  isA11yHidden={true}
-                  placeHolder={'상세한 모임위치를 적으세요'}
-                  onChange={handleDebounceDetail}
-                />
-                <DatePicker
-                  selected={startDate}
-                  onChange={(date: object) => {
-                    setStartDate(date);
-                    setCardData(String(date).substring(0, 21));
-                  }}
-                  closeOnScroll={true}
-                  showTimeSelect
-                  dateFormat="yy/MM/dd | aa h:mm"
-                  isClearable
-                  placeholderText="날짜를 선택하세요"
-                  className={classes.datePicker}
-                  showDisabledMonthNavigation
-                />
-                <Button
-                  widthValue={300}
-                  heightValue={50}
-                  text={'모임 만들기'}
-                  type={'submit'}
-                  backgroundColor={'orange'}
-                  className={classes.signupButton}
-                />
+                <div className={classes['modalSearch']}>
+                  <Input
+                    maxWidthValue={300}
+                    heightValue={50}
+                    labelText={'모임만들기 제목'}
+                    isA11yHidden={true}
+                    placeHolder={'제목을 입력하세요'}
+                    onChange={handleDebounceTitle}
+                  />
+                  <InputSelector
+                    maxWidthValue={300}
+                    className={classes.selector}
+                    onChange={handleOnChangeTown}
+                    marginBottom={6}
+                  />
+                  <Input
+                    maxWidthValue={300}
+                    heightValue={50}
+                    labelText={'모임만들기 위치'}
+                    isA11yHidden={true}
+                    placeHolder={'상세한 모임위치를 적으세요'}
+                    onChange={handleDebounceDetail}
+                  />
+                  <DatePicker
+                    selected={startDate}
+                    onChange={(date: object) => {
+                      setStartDate(date);
+                      setCardData(String(date).substring(0, 21));
+                    }}
+                    closeOnScroll={true}
+                    showTimeSelect
+                    dateFormat="yy/MM/dd | aa h:mm"
+                    isClearable
+                    placeholderText="날짜를 선택하세요"
+                    className={classes.datePicker}
+                    showDisabledMonthNavigation
+                  />
+                  <Button
+                    maxWidthValue={300}
+                    heightValue={50}
+                    text={'모임 만들기'}
+                    type={'submit'}
+                    backgroundColor={'orange'}
+                    className={classes.signupButton}
+                  />
+                </div>
               </form>
             </div>
           </Modal>
         </ModalPotal>
       )}
-    </div>
+    </React.Fragment>
   );
 }

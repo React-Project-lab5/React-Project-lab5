@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged } from '@firebase/auth';
 import { auth } from './index';
 
 /* -------------------------------------------------------------------------- */

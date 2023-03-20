@@ -48,18 +48,6 @@
   }
 }
 
-.userPicture {
-  border-radius: 25px;
-  @include tablet {
-    display: block;
-    margin: auto;
-  }
-  @include mobile {
-    width: 150px;
-    height: 150px;
-  }
-}
-
 .inputContainer {
   display: flex;
   gap: 2.5625rem;
@@ -98,6 +86,7 @@
   @include mobile {
     max-width: 245px;
     max-height: 40px;
+    font-size: 16px;
   }
 }
 
@@ -110,6 +99,22 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
+
+  .userAbleItem {
+    float: left;
+
+    cursor: pointer;
+
+    &::after {
+      content: '|';
+      margin: 0 5px;
+      cursor: default;
+    }
+    &:last-child::after {
+      content: '';
+    }
+  }
+
   @include tablet {
     margin-top: 24px;
   }

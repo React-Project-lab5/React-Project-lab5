@@ -12,6 +12,7 @@ interface Props {
   className?: string;
   type?: string;
   onChange?: DebouncedFunc<() => void>;
+  disabled?: boolean;
 }
 
 export function Input({
@@ -22,6 +23,7 @@ export function Input({
   isA11yHidden,
   className,
   type,
+  disabled,
   onChange,
 }: Props) {
   const inputStyle = {
@@ -34,7 +36,7 @@ export function Input({
       <label
         htmlFor={labelText}
         aria-label={labelText + ' 라벨'}
-        className={classNames(classes.inputLabel, {
+        className={classNames(classes.inputLabel, className, {
           ['a11yHidden']: isA11yHidden,
         })}
       >
@@ -49,6 +51,7 @@ export function Input({
         placeholder={placeHolder}
         onChange={onChange}
         required
+        disabled={disabled}
       />
     </React.Fragment>
   );

@@ -61,9 +61,7 @@ export default function MainPage() {
     <>
       <Banner />
       <SearchFrom {...searchFormProps} />
-      <div className={classes['meetingContainer']}>
-        <ShowMeetings users={users} />
-      </div>
+      <ShowMeetings users={users} />
     </>
   );
 }

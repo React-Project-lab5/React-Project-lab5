@@ -1,4 +1,4 @@
-import { doc, updateDoc } from 'firebase/firestore';
+import { doc, updateDoc } from '@firebase/firestore';
 import { useCallback, useMemo, useState } from 'react';
 import { db } from './index';
 
@@ -20,7 +20,7 @@ export function useUpdateData(collectionKey, documentKey) {
     collectionKey = collectionAndDocumentKey[0];
     documentKey = collectionAndDocumentKey[1];
   }
-  
+
   const updateData = useCallback(
     async (data, docKey) => {
       docKey = docKey ?? documentKey;

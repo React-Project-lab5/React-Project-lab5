@@ -1,4 +1,4 @@
-import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { doc, getDoc, serverTimestamp, setDoc } from '@firebase/firestore';
 import { useCallback, useMemo, useState } from 'react';
 import { db } from './index';
 

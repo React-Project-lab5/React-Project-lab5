@@ -1,13 +1,33 @@
 import classes from './Button.module.scss';
 import google from '/public/assets/googleLogo.svg';
+import { GoogleAuthProvider, signInWithRedirect } from '@firebase/auth';
+import { auth } from '@/firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   text: '로그인' | '회원가입';
+  widthValue?: string | number;
+  maxWidthValue?: string | number;
+  heightValue?: string | number;
 }
 
-export function ButtonGoogle({ text }: Props) {
+export function ButtonGoogle({
+  text,
+  widthValue,
+  maxWidthValue,
+  heightValue,
+}: Props) {
+  const buttonStyle = {
+    width: widthValue,
+    maxWidth: maxWidthValue,
+    height: heightValue,
+  };
+  const navigate = useNavigate();
+
   const handleGoogleSignIn = () => {
-    console.log('handleGoogleSignIn');
+    const provider = new GoogleAuthProvider();
+    signInWithRedirect(auth, provider);
+    navigate('/mainpage');
   };
 
   const handleGoogleSignUp = () => {
@@ -20,6 +40,7 @@ export function ButtonGoogle({ text }: Props) {
         type="button"
         aria-label={'Google ' + text + ' 버튼'}
         className={classes.button}
+        style={buttonStyle}
         onClick={text === '회원가입' ? handleGoogleSignUp : handleGoogleSignIn}
       >
         <img src={google} alt="Google 로고 이미지" />

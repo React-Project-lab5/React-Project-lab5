@@ -27,13 +27,22 @@ export function SearchFrom({
             heightValue={75}
             className={classes.searchFormInputSelector}
           />
-          <Input
-            maxWidthValue={'35rem'}
-            heightValue={'75px'}
-            labelText="검색창"
-            isA11yHidden
-            className={classes.searchFormInput}
-          />
+          <div className={classes['inputSearchButton']}>
+            <Input
+              maxWidthValue={'35rem'}
+              heightValue={'75px'}
+              labelText="검색창"
+              isA11yHidden
+              className={classes.searchFormInput}
+            />
+            <button
+              className={classes['searchButton']}
+              type="button"
+              aria-label="검색 버튼"
+            >
+              <img src="/public/assets/search.svg" alt="검색 버튼" />
+            </button>
+          </div>
           <ModalTotal
             setTitle={setTitle}
             setAddress={setAddress}
@@ -43,7 +52,7 @@ export function SearchFrom({
           />
 
           <Button
-            widthValue={'190px'}
+            maxWidthValue={'190px'}
             heightValue={'75px'}
             text="채팅 하기"
             backgroundColor={'orange'}
