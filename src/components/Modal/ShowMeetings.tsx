@@ -6,7 +6,6 @@ import { ReadMeetings } from './ReadMeetings';
 // 띄워줄 데이터 key값에 고유ID를 넣어준다.
 export function ShowMeetings({ users }) {
   const [openModal, setOpenModal] = useState(false);
-  const [a, setA] = useState(true);
 
   const toggleBool = () => {
     setOpenModal(true);

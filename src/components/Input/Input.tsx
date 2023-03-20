@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Input.module.scss';
 import classNames from 'classnames';
+import type { DebouncedFunc } from 'lodash';
 
 interface Props {
   maxWidthValue: string | number;
@@ -10,8 +11,8 @@ interface Props {
   isA11yHidden: boolean;
   className?: string;
   type?: string;
+  onChange?: DebouncedFunc<() => void>;
   disabled?: boolean;
-  onChange?: () => void;
 }
 
 export function Input({

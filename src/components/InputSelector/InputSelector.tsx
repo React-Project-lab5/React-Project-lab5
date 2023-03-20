@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import classes from './InputSelector.module.scss';
 import classNames from 'classnames';
 
@@ -5,7 +6,7 @@ interface Props {
   maxWidthValue: number;
   heightValue?: number;
   className: string;
-  onChange?: () => void;
+  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   marginBottom?: number;
 }
 

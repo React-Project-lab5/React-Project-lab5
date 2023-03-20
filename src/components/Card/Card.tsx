@@ -2,9 +2,9 @@ import classes from './Card.module.scss';
 import classNames from 'classnames';
 
 interface Props {
-  children?: React.ReactNode;
   className?: string;
   onClick?: () => void;
+  children?: JSX.Element | JSX.Element[];
 }
 
 export function Card({ children, className, onClick }: Props) {

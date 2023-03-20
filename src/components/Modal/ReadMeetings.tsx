@@ -1,19 +1,33 @@
 import { MapContainer } from './../../utils/MapContainer';
-import {
-  Button,
-  Input,
-  InputSelector,
-  ModalPotal,
-  Modal,
-} from '@/components/index';
+import { Button, ModalPotal, Modal } from '@/components/index';
 import classes from './Modal.module.scss';
-import DatePicker from 'react-datepicker';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { db } from '@/firebase/firestore/index';
+import { collection, getDocs, orderBy, query } from '@firebase/firestore';
 
-export const ReadMeetings = ({ openModal, setOpenModal }) => {
-  console.log(openModal);
+interface Props {
+  openModal: boolean;
+  // eslint-disable-next-line no-unused-vars
+  setOpenModal: (p: boolean) => void;
+}
 
-  const [startDate, setStartDate] = useState(null);
+export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
+  const usersCollectionRef = query(
+    collection(db, 'makeMeetings'),
+    orderBy('timestamp', 'asc')
+  );
+
+  const [users, setUsers] = useState([]);
+
+  const getUsers = async () => {
+    await getDocs(usersCollectionRef).then((data) => {
+      setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    });
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   const handleRegister = () => {
     setOpenModal(false);
@@ -23,6 +37,16 @@ export const ReadMeetings = ({ openModal, setOpenModal }) => {
     setOpenModal(false);
   };
 
+  const showUsers = users.map((value, index) => (
+    <div key={index}>
+      <h1>title: {value.title}</h1>
+      <h1>detail: {value.detail}</h1>
+    </div>
+  ));
+
+  console.log(users[0]);
+  console.log(localStorage.getItem('Unique ID'));
+
   return (
     <div>
       {openModal && (
@@ -30,37 +54,8 @@ export const ReadMeetings = ({ openModal, setOpenModal }) => {
           <Modal>
             <div className={classes.popupContent}>
               <MapContainer />
-
-              <div className={classes['readMeetingContainer']}>
-                <Input
-                  maxWidthValue={300}
-                  heightValue={50}
-                  labelText={'모임만들기 제목'}
-                  isA11yHidden={true}
-                  placeHolder={'제목을 입력하세요'}
-                />
-                <InputSelector
-                  maxWidthValue={300}
-                  className={classes.selector}
-                  marginBottom={6}
-                />
-                <Input
-                  maxWidthValue={300}
-                  heightValue={50}
-                  labelText={'모임만들기 위치'}
-                  isA11yHidden={true}
-                  placeHolder={'상세한 모임위치를 적으세요'}
-                />
-                <DatePicker
-                  selected={startDate}
-                  closeOnScroll={true}
-                  showTimeSelect
-                  dateFormat="yy/MM/dd | aa h:mm"
-                  isClearable
-                  placeholderText="날짜를 선택하세요"
-                  className={classes.datePicker}
-                  showDisabledMonthNavigation
-                />
+              {localStorage.getItem('Unique ID')}
+              <div>
                 <Button
                   maxWidthValue={300}
                   heightValue={50}

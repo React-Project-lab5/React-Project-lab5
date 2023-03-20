@@ -11,7 +11,7 @@ export function SearchFrom({
   setDetail,
   createUsers,
   getUsers,
-}) {
+}: SearchFormProps) {
   const movePage = useNavigate();
 
   const goChatPage = () => {
