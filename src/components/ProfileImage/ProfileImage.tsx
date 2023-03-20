@@ -10,7 +10,7 @@ function fileInput() {
 
 export function ProfileImage() {
   const [imageURL, setImageURL] = useState<string>(
-    '/public/assets/avatar_1.svg'
+    '/public/assets/defaultImage.svg'
   );
 
   const onImageChange = (
