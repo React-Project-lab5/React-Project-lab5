@@ -15,3 +15,4 @@ export * from './Input/SearchForm';
 export * from './Card/index';
 export * from './ChatDialog/index';
 export * from './ProfileImage/ProfileImage';
+export * from './SocialIconGroup/SocialIconGroup';

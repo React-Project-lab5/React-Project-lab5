@@ -1,16 +1,105 @@
+@import '@/styles/common/index.scss';
+html {
+  font-size: 16px;
+
+  @include mobile {
+    font-size: 10px;
+  }
+}
 .footer {
-  width: 100%;
-  height: 10rem;
+  width: auto;
+  height: auto;
   background: var(--secondary);
   margin-top: auto;
+  padding: 1rem;
+  display: flex;
+  flex-flow: column nowrap;
+  overflow: hidden;
 }
 
-.contents {
-  width: 100vw;
-  max-width: 1440px;
-  height: 500px;
-  display: flex;
+.footerTop {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-bottom: 2rem;
+  height: auto;
+  @include tablet {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+.logoAndSlogan {
+  grid-column: 1 / 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   align-items: center;
-  justify-content: center;
-  margin: 0 auto;
+  @include tablet {
+    grid-column: 1 / 4;
+  }
+}
+.slogan {
+  display: inline-block;
+  width: 165px;
+  height: 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 150%;
+  color: #642e09;
+  @include mobile {
+    color: #1a202c;
+    font-size: 1.6rem;
+    grid-column: 2 / 3;
+  }
+}
+
+.infoGroup {
+  grid-column: 3 / 6;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  @include tablet {
+    grid-column: 1 / 6;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+}
+
+.infoList {
+  font-size: 1rem;
+  line-height: 150%;
+  @include tablet {
+    grid-row: 2 / 3;
+  }
+}
+.listTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 150%;
+  @include mobile {
+    font-size: 1.4rem;
+  }
+}
+
+.footerBottom {
+  position: relative;
+  font-size: 1rem;
+}
+.footerBottom::before {
+  position: absolute;
+  content: '';
+  display: block;
+  background-color: rgba(72, 98, 132, 0.16);
+  height: 1px;
+  width: 100%;
+  top: -1rem;
+  @include mobile {
+    background-color: #5a0a00;
+  }
+}
+.companyInfo {
+  @include mobile {
+    display: none;
+  }
 }
