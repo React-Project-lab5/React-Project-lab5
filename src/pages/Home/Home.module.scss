@@ -1,8 +1,10 @@
 .contents {
+  background-color: var(--gray-200);
   width: 360px;
   height: 1024px;
   padding: 0 15px;
   display: flex;
+  margin-left: auto;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
