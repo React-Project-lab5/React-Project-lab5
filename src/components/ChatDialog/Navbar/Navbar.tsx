@@ -10,7 +10,6 @@ export function Navbar() {
 
   const handleSignOut = () => {
     signOut(auth);
-
     navigation('/');
   };
 
