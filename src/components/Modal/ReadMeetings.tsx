@@ -31,7 +31,7 @@ export const ReadMeetings = ({ openModal, setOpenModal }) => {
             <div className={classes.popupContent}>
               <MapContainer />
 
-              <div>
+              <div className={classes['readMeetingContainer']}>
                 <Input
                   maxWidthValue={300}
                   heightValue={50}
@@ -62,7 +62,7 @@ export const ReadMeetings = ({ openModal, setOpenModal }) => {
                   showDisabledMonthNavigation
                 />
                 <Button
-                  widthValue={300}
+                  maxWidthValue={300}
                   heightValue={50}
                   text={'탈퇴하기'}
                   backgroundColor={'red'}

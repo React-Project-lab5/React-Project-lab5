@@ -4,8 +4,7 @@
 .mapContainer{
   max-width:300px;
   min-width: 200px;
-  width: 300px;
-  margin-top: 10px;
+  width: 100%;
 
   @include mobile {
     width: 100%;

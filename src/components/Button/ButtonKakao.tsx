@@ -3,14 +3,29 @@ import kakao from '/public/assets/kakaoLogo.svg';
 
 interface Props {
   text: '로그인' | '회원가입';
+  widthValue?: string | number;
+  maxWidthValue?: string | number;
+  heightValue?: string | number;
 }
-export function ButtonKakao({ text }: Props) {
-  const resgi = () => {
-    console.log('클릭');
+
+export function ButtonKakao({
+  text,
+  widthValue,
+  maxWidthValue,
+  heightValue,
+}: Props) {
+  const buttonStyle = {
+    width: widthValue,
+    maxWidth: maxWidthValue,
+    height: heightValue,
   };
 
-  const login = () => {
-    console.log('클릭2');
+  const handleKakaoSignUp = () => {
+    console.log('handleKakaoSignUp');
+  };
+
+  const handleKakaoSignIn = () => {
+    console.log('handleKakaoSignIn');
   };
 
   return (
@@ -18,7 +33,8 @@ export function ButtonKakao({ text }: Props) {
       type="button"
       aria-label={'Kakao' + text + '버튼'}
       className={classes.button}
-      onClick={text === '회원가입' ? resgi : login}
+      style={buttonStyle}
+      onClick={text === '회원가입' ? handleKakaoSignUp : handleKakaoSignIn}
     >
       <img src={kakao} alt="Kakao 로고 이미지" />
       Kakao {text}

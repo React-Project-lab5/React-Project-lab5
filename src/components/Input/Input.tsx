@@ -10,6 +10,7 @@ interface Props {
   isA11yHidden: boolean;
   className?: string;
   type?: string;
+  disabled?: boolean;
   onChange?: () => void;
 }
 
@@ -21,6 +22,7 @@ export function Input({
   isA11yHidden,
   className,
   type,
+  disabled,
   onChange,
 }: Props) {
   const inputStyle = {
@@ -48,6 +50,7 @@ export function Input({
         placeholder={placeHolder}
         onChange={onChange}
         required
+        disabled={disabled}
       />
     </React.Fragment>
   );

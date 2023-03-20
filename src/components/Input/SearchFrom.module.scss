@@ -3,7 +3,10 @@
 
 .InputContainer{
   width: 100%;
-  margin:3.75rem auto;
+  margin:3rem auto;
+  @include mobile {
+    padding:0 10px;
+  }
 
   .mainInput{
     max-width: 1159px;
@@ -34,8 +37,9 @@
     }
     }
 
-    
-
+    .searchFormInput{
+      position: relative;
+    }
     .ChatButton{
         display: none;
         @include mobile{
@@ -45,6 +49,29 @@
     }
   }
 
+.inputSearchButton{
+  position:relative;
+  max-width: 35rem;
+  width: 100%;
+
+  @include mobile{
+    display: none;
+  }
+}
+
+  .searchButton{
+    width: 32px;
+    height: 32px;
+    border:none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(-50%,-50%);
+    margin-right:-48%;
+  }
 
 
 
