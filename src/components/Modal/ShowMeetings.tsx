@@ -3,30 +3,35 @@ import classes from './Modal.module.scss';
 import { useState } from 'react';
 import { ReadMeetings } from './ReadMeetings';
 
-// 띄워줄 데이터 key값에 고유ID를 넣어준다.
+// eslint-disable-next-line react/prop-types
 export function ShowMeetings({ users }) {
   const [openModal, setOpenModal] = useState(false);
-  const [a, setA] = useState(true);
 
-  const toggleBool = () => {
-    setOpenModal(true);
-  };
+  // eslint-disable-next-line react/prop-types
+  const showCard = users.map((value, index) => (
+    <div key={index}>
+      <Card
+        className={classes.mainPageCard}
+        onClick={() => {
+          setOpenModal(true);
+          localStorage.setItem('Unique ID', JSON.stringify(value.id));
+          console.log(value);
+        }}
+      >
+        <Meeting
+          title={value.title}
+          town={value.address}
+          place={value.detail}
+          time={value.cardData}
+        />
+      </Card>
+    </div>
+  ));
 
   return (
     <div>
-      {/* eslint-disable-next-line react/prop-types  */}
-      {users.map((value, index) => (
-        <div key={index}>
-          <Card className={classes.mainPageCard} onClick={toggleBool}>
-            <Meeting
-              title={value.title}
-              town={value.address}
-              place={value.detail}
-              time={value.cardData}
-            />
-          </Card>
-        </div>
-      ))}
+      {/* eslint-disable-next-line react/prop-types */}
+      {showCard}
       {openModal ? (
         <ReadMeetings openModal={openModal} setOpenModal={setOpenModal} />
       ) : (
