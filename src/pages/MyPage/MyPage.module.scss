@@ -48,18 +48,6 @@
   }
 }
 
-.userPicture {
-  border-radius: 25px;
-  @include tablet {
-    display: block;
-    margin: auto;
-  }
-  @include mobile {
-    width: 150px;
-    height: 150px;
-  }
-}
-
 .inputContainer {
   display: flex;
   gap: 2.5625rem;
