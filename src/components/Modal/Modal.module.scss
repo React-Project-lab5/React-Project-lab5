@@ -142,3 +142,29 @@
     margin:0 auto;
   }
 }
+
+
+.meetingCardContainer{
+    max-width: 1159px;
+    width: 100%;
+    margin:0 auto 3rem auto;
+    place-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:10px;
+  
+    @include tablet{
+      grid-template-columns: 1fr 1fr ;
+
+    }
+    
+    @include mobile{
+      grid-template-columns: 1fr;
+
+    }
+
+    .meetingCard{
+      max-width: 340px;
+      width: 100%;
+    }
+  }

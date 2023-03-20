@@ -13,10 +13,10 @@ export function ShowMeetings({ users }) {
   };
 
   return (
-    <div>
+    <div className={classes['meetingCardContainer']}>
       {/* eslint-disable-next-line react/prop-types  */}
       {users.map((value, index) => (
-        <div key={index}>
+        <div key={index} className={classes['meetingCard']}>
           <Card className={classes.mainPageCard} onClick={toggleBool}>
             <Meeting
               title={value.title}
