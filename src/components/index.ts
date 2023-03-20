@@ -14,3 +14,4 @@ export * from './Input/Input';
 export * from './Input/SearchForm';
 export * from './Card/index';
 export * from './ChatDialog/index';
+export * from './SocialIconGroup/SocialIconGroup';
