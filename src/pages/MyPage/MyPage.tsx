@@ -1,5 +1,5 @@
 import classes from './MyPage.module.scss';
-import { Input } from '@/components';
+import { Input, ProfileImage } from '@/components';
 
 export default function MyPage() {
   return (
@@ -7,13 +7,7 @@ export default function MyPage() {
       <div className={classes.myPageContainer}>
         <h1 className={classes.myPageTitle}>마이페이지</h1>
         <div className={classes.userContainer}>
-          <img
-            className={classes.userPicture}
-            src="/public/assets/avatar_1.svg"
-            alt="프로필 사진"
-            width={300}
-            height={300}
-          />
+          <ProfileImage />
           <div className={classes.inputContainer}>
             <div className={classes.userInfoContainer}>
               <form>

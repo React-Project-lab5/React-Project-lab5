@@ -1,0 +1,25 @@
+@import '../../styles/common/mediaQuery.scss';
+
+.userPictureButton {
+  width: 300px;
+  height: 300px;
+  cursor: pointer;
+  .userPicture {
+    border-radius: 25px;
+    width: 300px;
+    height: 300px;
+  }
+
+  @include tablet {
+    display: block;
+    margin: auto;
+  }
+  @include mobile {
+    width: 150px;
+    height: 150px;
+    .userPicture {
+      width: 150px;
+      height: 150px;
+    }
+  }
+}
