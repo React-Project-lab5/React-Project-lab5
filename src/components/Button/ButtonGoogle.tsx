@@ -1,13 +1,20 @@
 import classes from './Button.module.scss';
 import google from '/public/assets/googleLogo.svg';
+import { GoogleAuthProvider, signInWithRedirect } from '@firebase/auth';
+import { auth } from '@/firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   text: '로그인' | '회원가입';
 }
 
 export function ButtonGoogle({ text }: Props) {
+  const navigate = useNavigate();
+
   const handleGoogleSignIn = () => {
-    console.log('handleGoogleSignIn');
+    const provider = new GoogleAuthProvider();
+    signInWithRedirect(auth, provider);
+    navigate('/mainpage');
   };
 
   const handleGoogleSignUp = () => {
