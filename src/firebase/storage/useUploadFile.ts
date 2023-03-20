@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { getDownloadURL, ref, uploadBytes } from '@firebase/storage';
 import { storage } from './index';
 
 /* -------------------------------------------------------------------------- */
@@ -24,9 +24,11 @@ export function useUploadFiles({ dirName = 'assets', usingId = true } = {}) {
 
       const filesRef = Array.from(files).map((file) => {
         if (!file.name.includes('.')) {
-          throw new TypeError('업로드 할 파일에 확장자가 포함되어 있지 않습니다.');
+          throw new TypeError(
+            '업로드 할 파일에 확장자가 포함되어 있지 않습니다.'
+          );
         }
-        const [ fileName = '', fileExt = '' ] = file.name.split('.');
+        const [fileName = '', fileExt = ''] = file.name.split('.');
         const fileId = usingId ? `${generateId()}.` : '';
         return ref(storage, `${dirName}/${fileName}.${fileId}${fileExt}`);
       });
@@ -64,8 +66,10 @@ export function useUploadFiles({ dirName = 'assets', usingId = true } = {}) {
 }
 
 function generateId({ prefix = 'euid', digit = 9 } = {}) {
-  const suffix='abcdefghijklmnopqrstuvwxyz-_+=';
-  return `${prefix}-${getRandomNumber(getDigitNumber(digit))}${suffix[getRandomNumber(suffix.length - 1)][getRandomNumber(2) > 0 ? 'toUpperCase' : 'toLowerCase']()}`;
+  const suffix = 'abcdefghijklmnopqrstuvwxyz-_+=';
+  return `${prefix}-${getRandomNumber(getDigitNumber(digit))}${suffix[
+    getRandomNumber(suffix.length - 1)
+  ][getRandomNumber(2) > 0 ? 'toUpperCase' : 'toLowerCase']()}`;
 }
 
 function getRandomNumber(n = 10) {

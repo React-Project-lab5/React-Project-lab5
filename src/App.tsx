@@ -1,29 +1,29 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from '@/pages/Home/Home';
-import MainPage from '@/pages/MainPage/MainPage';
-import Recommend from '@/pages/Recommend/Recommend';
 import Chat from '@/pages/Chat/Chat';
 import MyPage from '@/pages/MyPage/MyPage';
+import RootLayout from './pages/Layout/Layout';
 import NotFound from '@/pages/NotFound/NotFound';
-import { Header, Footer } from '@/components/index';
+import MainPage from '@/pages/MainPage/MainPage';
+import Recommend from '@/pages/Recommend/Recommend';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout />,
+    errorElement: <NotFound />,
+    children: [
+      { path: 'home', element: <Home /> },
+      { path: 'mainPage', element: <MainPage /> },
+      { path: 'recommend', element: <Recommend /> },
+      { path: 'chat', element: <Chat /> },
+      { path: 'myPage', element: <MyPage /> },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <div>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/mainPage" element={<MainPage />} />
-          <Route path="/recommend" element={<Recommend />} />
-          <Route path="/chat" element={<Chat />} />
-          <Route path="/myPage" element={<MyPage />} />
-          <Route path="/notFound" element={<NotFound />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

@@ -1,14 +1,19 @@
 import classes from './Card.module.scss';
-import avatar from '../../../public/assets/avatar_1.svg';
+import avatar from '/public/assets/avatar_1.svg';
 
-export function Meeting({ toDate, time, town, place, title }) {
+interface Props {
+  time: string;
+  town: string;
+  place: string;
+  title: string;
+}
+
+export function Meeting({ time, town, place, title }: Props) {
   return (
     <>
       {/* <div className={classes['cardContainer']}> */}
       <div className={classes['cardWrap']}>
         <div className={classes['dateContainer']}>
-          <div className={classes['toDate']}>{toDate}</div>
-          <div>|</div>
           <div>{time}</div>
         </div>
 

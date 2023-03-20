@@ -2,14 +2,22 @@ import { LogoIconandText } from '@/components/LogoIconandText/LogoIconandText';
 import { Link } from 'react-router-dom';
 import { Nav } from '@/components/Nav/Nav';
 import classes from './Header.module.scss';
+import { useSetRecoilState } from 'recoil';
+import { isActive } from '@/states/isActive';
 
 export function Header() {
+  const setActive = useSetRecoilState(isActive);
+
+  const clickHamburger = () => {
+    setActive((current) => !current);
+  };
+
   return (
     <header className={classes.header}>
-      <Link to="/">
+      <Link to="/mainPage">
         <LogoIconandText small={true} />
       </Link>
-      <Nav />
+      <Nav onClick={clickHamburger} />
     </header>
   );
 }

@@ -1,6 +1,6 @@
 import classes from './ChattingInput.module.scss';
-import Plane from '/public/assets/chatPaperPlane.svg';
 import Img from '/public/assets/chatImagePlaceholder.svg';
+import { BsFillSendFill } from 'react-icons/bs';
 export const ChattingInput = () => {
   return (
     <form className={classes.input}>
@@ -22,7 +22,7 @@ export const ChattingInput = () => {
         </label>
 
         <button>
-          <img src={Plane} alt="메세지 보내기" />
+          <BsFillSendFill />
         </button>
       </div>
     </form>

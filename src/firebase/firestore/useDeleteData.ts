@@ -1,30 +1,28 @@
-import { addDoc, collection } from 'firebase/firestore';
+import { deleteDoc, doc } from '@firebase/firestore';
 import { useCallback, useMemo, useState } from 'react';
 import { db } from './index';
 
 /**
- * Firestore 데이터 생성 훅
+ * Firestore 데이터 삭제 훅
  * @param {string} collectionKey 콜렉션 키 (필수)
  * @returns {{
  *   isLoading: boolean;
  *   error: null | Error;
- *   createData: (data: any) => Promise<any>
+ *   deleteData: (documentKey: string) => void;
  * }}
  */
-export function useCreateData(collectionKey) {
+export function useDeleteData(collectionKey) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [docId, setDocId] = useState('');
 
-  const createData = useCallback(
-    async (data) => {
-      const collectionRef = collection(db, collectionKey);
+  const deleteData = useCallback(
+    async (documentKey) => {
+      const documentRef = doc(db, collectionKey, documentKey);
 
       setIsLoading(true);
 
       try {
-        const { id } = await addDoc(collectionRef, data);
-        setDocId(id);
+        await deleteDoc(documentRef);
       } catch (error) {
         setError(error);
       } finally {
@@ -38,9 +36,8 @@ export function useCreateData(collectionKey) {
     () => ({
       isLoading,
       error,
-      createData,
-      docId,
+      deleteData,
     }),
-    [error, isLoading, createData, docId]
+    [error, isLoading, deleteData]
   );
 }

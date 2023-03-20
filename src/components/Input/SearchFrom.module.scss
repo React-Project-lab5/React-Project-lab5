@@ -13,6 +13,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    vertical-align: middle;
     gap:14px;
     padding: 2.375rem 3.625rem;
     border-radius: 1rem;
@@ -21,7 +22,9 @@
     }
 
     @include mobile{
+      gap: 10px;
       flex-direction: row;
+      padding:0;
       background:none;
   }
     .searchFormInputSelector,
@@ -31,24 +34,15 @@
     }
     }
 
-    .MeetingButton{
-      @include mobile{
-        width: 100px;
-        // flex-direction: row;
-    }
-    }
+    
 
     .ChatButton{
         display: none;
         @include mobile{
-          width: 100px;
           display: flex;
       }
       }
     }
-
-
-
   }
 
 

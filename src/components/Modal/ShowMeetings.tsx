@@ -1,11 +1,37 @@
+import { Card, Meeting } from '@/components/index';
+import classes from './Modal.module.scss';
+import { useState } from 'react';
+import { ReadMeetings } from './ReadMeetings';
+
 // 띄워줄 데이터 key값에 고유ID를 넣어준다.
 export function ShowMeetings({ users }) {
-  console.log(users);
-  return users.map((value, index) => (
-    <div key={index}>
-      <h1>title: {value.title}</h1>
-      <h1>address: {value.address}</h1>
-      <h1>detail: {value.detail}</h1>
+  const [openModal, setOpenModal] = useState(false);
+  const [a, setA] = useState(true);
+
+  const toggleBool = () => {
+    setOpenModal(true);
+  };
+
+  return (
+    <div>
+      {/* eslint-disable-next-line react/prop-types  */}
+      {users.map((value, index) => (
+        <div key={index}>
+          <Card className={classes.mainPageCard} onClick={toggleBool}>
+            <Meeting
+              title={value.title}
+              town={value.address}
+              place={value.detail}
+              time={value.cardData}
+            />
+          </Card>
+        </div>
+      ))}
+      {openModal ? (
+        <ReadMeetings openModal={openModal} setOpenModal={setOpenModal} />
+      ) : (
+        console.log('false')
+      )}
     </div>
-  ));
+  );
 }

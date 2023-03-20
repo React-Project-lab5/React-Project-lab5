@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs } from '@firebase/firestore';
 import { useCallback, useMemo, useState } from 'react';
 import { db } from './index';
 

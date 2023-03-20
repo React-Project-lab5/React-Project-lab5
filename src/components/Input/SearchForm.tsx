@@ -3,6 +3,7 @@ import { Input } from './Input';
 import { InputSelector } from '../InputSelector/InputSelector';
 import { Button } from '../Button';
 import { ModalTotal } from '@/components/index';
+import { useNavigate } from 'react-router-dom';
 
 export function SearchFrom({
   setTitle,
@@ -11,13 +12,19 @@ export function SearchFrom({
   createUsers,
   getUsers,
 }) {
+  const movePage = useNavigate();
+
+  const goChatPage = () => {
+    movePage('/chat');
+  };
+
   return (
     <>
       <div className={classes['InputContainer']}>
         <div className={classes['mainInput']}>
           <InputSelector
-            widthValue={'200px'}
-            heightValue={'75px'}
+            maxWidthValue={200}
+            heightValue={75}
             className={classes.searchFormInputSelector}
           />
           <Input
@@ -41,6 +48,7 @@ export function SearchFrom({
             text="채팅 하기"
             backgroundColor={'orange'}
             className={classes.ChatButton}
+            onClick={goChatPage}
           />
         </div>
       </div>

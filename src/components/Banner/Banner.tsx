@@ -12,6 +12,7 @@ export function Banner() {
   const items = [
     { src: '../assets/banner_1.svg' },
     { src: '../assets/banner_2.svg' },
+    { src: '../assets/banner_3.svg' },
   ];
   return (
     <div className={classes.banner}>
@@ -37,7 +38,7 @@ export function Banner() {
         {items.map((item, idx) => {
           return (
             <SwiperSlide key={idx} className={classes.swiperSlide}>
-              <img src={item.src} />
+              <img src={item.src} alt="배너광고" />
             </SwiperSlide>
           );
         })}

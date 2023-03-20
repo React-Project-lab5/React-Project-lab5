@@ -21,6 +21,6 @@ const firebaseConfig = {
   measurementId: VITE_MEASUREMENT_ID,
 };
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);

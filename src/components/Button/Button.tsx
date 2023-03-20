@@ -3,11 +3,12 @@ import classNames from 'classnames';
 
 interface Props {
   backgroundColor: 'orange' | 'red';
-  isSmall: boolean;
+  isSmall?: boolean;
   widthValue: string | number;
-  heightValue: string | number;
-  colorValue: string;
+  heightValue?: string | number;
+  colorValue?: string;
   text: string;
+  type?: 'button' | 'submit' | 'reset';
   className?: string;
   onClick?: () => void;
 }
@@ -19,6 +20,7 @@ export function Button({
   heightValue,
   colorValue,
   text,
+  type = 'button',
   className,
   onClick,
 }: Props) {
@@ -30,7 +32,7 @@ export function Button({
 
   return (
     <button
-      type="button"
+      type={type}
       aria-label={text + ' 버튼'}
       className={classNames(
         className,
