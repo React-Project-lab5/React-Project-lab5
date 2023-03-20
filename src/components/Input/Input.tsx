@@ -35,7 +35,7 @@ export function Input({
       <label
         htmlFor={labelText}
         aria-label={labelText + ' 라벨'}
-        className={classNames(classes.inputLabel, {
+        className={classNames(classes.inputLabel, className, {
           ['a11yHidden']: isA11yHidden,
         })}
       >
