@@ -1,7 +1,6 @@
 .formContainer {
   background: var(--gray-200);
   height: 100vh;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,13 +23,24 @@
     flex-flow: column nowrap;
     gap: 15px;
 
-    .button {
+    input {
+      padding: 15px;
+      border-radius: 16px;
+      border: 1px solid var(--gray-700);
+
+      &::placeholder {
+        color: var(--gray-400);
+        font-size: 14px;
+      }
+    }
+
+    button {
       background: var(--secondary);
       border-radius: 16px;
-      height: 35px;
+      height: 45px;
       width: 7rem;
       margin: 0 auto;
-      padding: 10px;
+      cursor: pointer;
     }
   }
   p {
@@ -41,4 +51,12 @@
       color: var(--accent);
     }
   }
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 600;
 }
