@@ -4,7 +4,7 @@ import classNames from 'classnames';
 interface Props {
   backgroundColor: 'orange' | 'red';
   isSmall?: boolean;
-  widthValue: string | number;
+  maxWidthValue?: string | number;
   heightValue?: string | number;
   colorValue?: string;
   text: string;
@@ -16,7 +16,7 @@ interface Props {
 export function Button({
   backgroundColor,
   isSmall,
-  widthValue,
+  maxWidthValue,
   heightValue,
   colorValue,
   text,
@@ -25,7 +25,7 @@ export function Button({
   onClick,
 }: Props) {
   const buttonStyle = {
-    width: widthValue,
+    maxWidth: maxWidthValue,
     height: heightValue,
     color: colorValue,
   };
