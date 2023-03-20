@@ -1,0 +1,26 @@
+.contents {
+  width: 360px;
+  height: 1024px;
+  padding: 0 15px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+
+  .startText {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 37px;
+  }
+
+  .joinButton,
+  .loginButton {
+    font-size: 22px;
+  }
+
+  .guestButton {
+    font-size: 32px;
+    margin-top: 40px;
+  }
+}
