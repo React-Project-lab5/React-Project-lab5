@@ -13,7 +13,6 @@ import { useState } from 'react';
 import { debounce } from 'lodash';
 import { useSetRecoilState } from 'recoil';
 import { cardDataState } from './../../states/cardDataState';
-//import { Form } from './Form';
 
 export function ModalTotal({
   createUsers,
@@ -21,7 +20,7 @@ export function ModalTotal({
   setTitle,
   setAddress,
   setDetail,
-}) {
+}: SearchFormProps) {
   const [modalOpened, setModalOpened] = useState(false);
   const [startDate, setStartDate] = useState(null);
 
@@ -31,7 +30,8 @@ export function ModalTotal({
     setModalOpened(true);
   };
 
-  const handleRegister = () => {
+  const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setModalOpened(false);
     createUsers();
     getUsers();
@@ -51,7 +51,7 @@ export function ModalTotal({
     console.log('input onChange 확인', event);
   }, 500);
 
-  const handleOnChangeTown = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChangeTown = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setAddress(event.target.value);
   };
 
@@ -72,7 +72,7 @@ export function ModalTotal({
             <div className={classes.popupContent}>
               <MapContainer />
 
-              <div>
+              <form onSubmit={handleRegister}>
                 <Input
                   maxWidthValue={300}
                   heightValue={50}
@@ -116,9 +116,8 @@ export function ModalTotal({
                   type={'submit'}
                   backgroundColor={'orange'}
                   className={classes.signupButton}
-                  onClick={handleRegister}
                 />
-              </div>
+              </form>
             </div>
           </Modal>
         </ModalPotal>
