@@ -16,6 +16,7 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Name"
+                  disabled={true}
                 />
               </form>
               <form>
@@ -24,6 +25,7 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Email"
+                  disabled={true}
                 />
               </form>
             </div>
@@ -34,6 +36,7 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Phone"
+                  disabled={true}
                 />
               </form>
               <form>
@@ -42,17 +45,18 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Address"
+                  disabled={true}
                 />
               </form>
             </div>
           </div>
         </div>
         <div className={classes.userAbleContainer}>
-          <span>회원정보수정</span>
-          <span>|</span>
-          <span>로그아웃</span>
-          <span>|</span>
-          <span>회원탈퇴</span>
+          <ul>
+            <li className={classes.userAbleItem}>회원정보수정</li>
+            <li className={classes.userAbleItem}>로그아웃</li>
+            <li className={classes.userAbleItem}>회원탈퇴</li>
+          </ul>
         </div>
       </div>
     </section>
