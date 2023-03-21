@@ -1,7 +1,7 @@
-import classes from './ChattingInput.module.scss';
+import classes from './SendMessage.module.scss';
 import Img from '/public/assets/chatImagePlaceholder.svg';
 import { BsFillSendFill } from 'react-icons/bs';
-export const ChattingInput = () => {
+export const SendMessage = () => {
   return (
     <form className={classes.input}>
       <div>

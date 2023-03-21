@@ -1,7 +1,7 @@
 import avatar from '/public/assets/chatAvatars.svg';
 import message from '/public/assets/chatMessage.svg';
 import classes from './Chatting.module.scss';
-import { ChattingInput, Messages } from '../index';
+import { SendMessage, Messages } from '../index';
 import { Link } from 'react-router-dom';
 
 export function Chatting() {
@@ -21,7 +21,7 @@ export function Chatting() {
         </div>
       </div>
       <Messages />
-      <ChattingInput />
+      <SendMessage />
     </div>
   );
 }
