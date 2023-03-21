@@ -75,7 +75,7 @@ export function ModalTotal({
             <div className={classes.popupContent}>
               <MapContainer />
 
-              <form onSubmit={handleRegister}>
+              <form onSubmit={handleRegister} className={classes['modalForm']}>
                 <div className={classes['modalSearch']}>
                   <Input
                     maxWidthValue={300}
