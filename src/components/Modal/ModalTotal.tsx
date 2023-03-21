@@ -55,6 +55,7 @@ export function ModalTotal({
 
   const handleOnChangeTown = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setAddress(event.target.value);
+    console.log(event.target);
   };
 
   return (
