@@ -3,7 +3,11 @@ import { Button, ModalPotal, Modal } from '@/components/index';
 import classes from './Modal.module.scss';
 import { useState, useEffect } from 'react';
 import { db } from '@/firebase/firestore/index';
-import { collection, getDocs, orderBy, query } from '@firebase/firestore';
+import { collection, getDocs, query, where } from '@firebase/firestore';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import { Suspense } from 'react';
 
 interface Props {
   openModal: boolean;
@@ -12,12 +16,16 @@ interface Props {
 }
 
 export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
+  const [users, setUsers] = useState([]);
+
   const usersCollectionRef = query(
     collection(db, 'makeMeetings'),
-    orderBy('timestamp', 'asc')
+    where(
+      firebase.firestore.FieldPath.documentId(),
+      '==',
+      localStorage.getItem('Unique ID')
+    )
   );
-
-  const [users, setUsers] = useState([]);
 
   const getUsers = async () => {
     await getDocs(usersCollectionRef).then((data) => {
@@ -38,37 +46,46 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
   };
 
   const showUsers = users.map((value, index) => (
-    <div key={index}>
-      <h1>title: {value.title}</h1>
-      <h1>detail: {value.detail}</h1>
+    <div key={index} className={classes.showUsers}>
+      <span>{value.title}</span>
+      <span>{value.address}</span>
+      <span> {value.detail}</span>
+      <span> {value.cardData.slice(0, 15)}</span>
+      <span className={classes.lastSpan}> {value.cardData.slice(16)}</span>
     </div>
   ));
 
-  console.log(users[0]);
-  console.log(localStorage.getItem('Unique ID'));
-
   return (
     <div>
-      {openModal && (
-        <ModalPotal closePortal={handleClose}>
-          <Modal>
-            <div className={classes.popupContent}>
-              <MapContainer />
-              {localStorage.getItem('Unique ID')}
-              <div>
-                <Button
-                  maxWidthValue={300}
-                  heightValue={50}
-                  text={'탈퇴하기'}
-                  backgroundColor={'red'}
-                  className={classes.signupButton}
-                  onClick={handleRegister}
-                />
+      <Suspense fallback={<div role="alert">LOADING...</div>}>
+        {openModal && (
+          <ModalPotal closePortal={handleClose}>
+            <Modal>
+              <h2 className={classes.popupTitle}>모임 만들기</h2>
+              <div className={classes.popupContent}>
+                <MapContainer />
+
+                <form
+                  onSubmit={handleRegister}
+                  className={classes['modalForm']}
+                >
+                  <div className={classes['modalSearch']}>
+                    {showUsers}
+                    <Button
+                      maxWidthValue={300}
+                      heightValue={50}
+                      text={'탈퇴하기'}
+                      backgroundColor={'red'}
+                      className={classes.signupButton}
+                      onClick={handleRegister}
+                    />
+                  </div>
+                </form>
               </div>
-            </div>
-          </Modal>
-        </ModalPotal>
-      )}
+            </Modal>
+          </ModalPotal>
+        )}
+      </Suspense>
     </div>
   );
 };

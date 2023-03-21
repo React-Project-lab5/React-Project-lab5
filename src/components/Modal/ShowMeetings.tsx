@@ -7,16 +7,18 @@ import { ReadMeetings } from './ReadMeetings';
 export function ShowMeetings({ users }) {
   const [openModal, setOpenModal] = useState(false);
 
-  const toggleBool = () => {
-    setOpenModal(true);
-  };
-
   return (
     <div className={classes['meetingCardContainer']}>
       {/* eslint-disable-next-line react/prop-types  */}
       {users.map((value, index) => (
         <div key={index} className={classes['meetingCard']}>
-          <Card className={classes.mainPageCard} onClick={toggleBool}>
+          <Card
+            className={classes.mainPageCard}
+            onClick={() => {
+              setOpenModal(true);
+              localStorage.setItem('Unique ID', value.id);
+            }}
+          >
             <Meeting
               title={value.title}
               town={value.address}
