@@ -1,26 +1,14 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import classes from './Search.module.scss';
 import { db } from '@/firebase/firestore/index';
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  getDoc,
-  setDoc,
-  doc,
-  updateDoc,
-  serverTimestamp,
-} from '@firebase/firestore';
-import { AuthContext } from '@/context/AuthContext';
+import { collection, query, where, getDocs } from '@firebase/firestore';
 
 export const Search = () => {
   const [username, setUsername] = useState('');
   const [user, setUser] = useState(null);
   const [err, setErr] = useState(false);
 
-  const { currentUser } = useContext(AuthContext);
-
+  //로그인된 사용자 정보 찾기
   const handleSearch = async () => {
     const q = query(
       collection(db, 'users'),
@@ -55,7 +43,10 @@ export const Search = () => {
       {err && <span>사용자를 찾을 수 없습니다</span>}
       {user && (
         <div className={classes.userChat}>
-          <img src={user.photoURL} alt="" />
+          <img
+            src="https://avatars.githubusercontent.com/u/104710243?v=4"
+            alt="로그인된 사용자 프로필"
+          />
           <div className={classes.userChatInfo}>
             <span>{user.displayName}</span>
           </div>

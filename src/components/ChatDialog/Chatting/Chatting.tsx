@@ -1,7 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import avatar from '/public/assets/chatAvatars.svg';
 import message from '/public/assets/chatMessage.svg';
 import classes from './Chatting.module.scss';
-import { SendMessage, Messages } from '../index';
+import { Messages } from '../index';
 import { Link } from 'react-router-dom';
 
 export function Chatting() {
@@ -20,8 +21,8 @@ export function Chatting() {
           <img src={message} alt="메세지 창으로 가기" />
         </div>
       </div>
+
       <Messages />
-      <SendMessage />
     </div>
   );
 }

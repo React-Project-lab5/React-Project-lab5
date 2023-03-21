@@ -50,7 +50,7 @@ export default function SignIn() {
           <Button
             backgroundColor={'orange'}
             isSmall={false}
-            widthValue={'310'}
+            maxWidthValue={'310'}
             heightValue={'50'}
             colorValue={'white'}
             text={'로그인'}
