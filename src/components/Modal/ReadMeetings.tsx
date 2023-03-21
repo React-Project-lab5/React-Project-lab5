@@ -7,7 +7,7 @@ import { collection, getDocs, query, where } from '@firebase/firestore';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import { Suspense } from 'react';
+import { MapReading } from '@/utils/MapReading';
 
 interface Props {
   openModal: boolean;
@@ -47,45 +47,48 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
 
   const showUsers = users.map((value, index) => (
     <div key={index} className={classes.showUsers}>
+      <MapReading mapPosition={value.mapData} />
       <span>{value.title}</span>
       <span>{value.address}</span>
-      <span> {value.detail}</span>
-      <span> {value.cardData.slice(0, 15)}</span>
+      <span>{value.detail}</span>
+      <span>{value.cardData.slice(0, 15)}</span>
       <span className={classes.lastSpan}> {value.cardData.slice(16)}</span>
     </div>
   ));
 
   return (
     <div>
-      <Suspense fallback={<div role="alert">LOADING...</div>}>
-        {openModal && (
-          <ModalPotal closePortal={handleClose}>
-            <Modal>
-              <h2 className={classes.popupTitle}>모임 만들기</h2>
-              <div className={classes.popupContent}>
-                <MapContainer />
+      {openModal && (
+        <ModalPotal closePortal={handleClose}>
+          <Modal>
+            <div className={classes.popupContent}>
+              <MapContainer />
 
-                <form
-                  onSubmit={handleRegister}
-                  className={classes['modalForm']}
-                >
-                  <div className={classes['modalSearch']}>
-                    {showUsers}
-                    <Button
-                      maxWidthValue={300}
-                      heightValue={50}
-                      text={'탈퇴하기'}
-                      backgroundColor={'red'}
-                      className={classes.signupButton}
-                      onClick={handleRegister}
-                    />
-                  </div>
-                </form>
-              </div>
-            </Modal>
-          </ModalPotal>
-        )}
-      </Suspense>
+              <form onSubmit={handleRegister} className={classes['modalForm']}>
+                <div className={classes['modalSearch']}>
+                  {showUsers}
+                  <Button
+                    maxWidthValue={300}
+                    heightValue={50}
+                    text={'탈퇴하기'}
+                    backgroundColor={'red'}
+                    className={classes.signupButton}
+                    onClick={handleRegister}
+                  />
+                  <Button
+                    maxWidthValue={300}
+                    heightValue={50}
+                    text={'삭제하기'}
+                    backgroundColor={'red'}
+                    className={classes.signupButton}
+                    onClick={handleRegister}
+                  />
+                </div>
+              </form>
+            </div>
+          </Modal>
+        </ModalPotal>
+      )}
     </div>
   );
 };

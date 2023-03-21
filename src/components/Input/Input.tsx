@@ -8,7 +8,7 @@ interface Props {
   heightValue: string | number;
   labelText: string;
   placeHolder?: string;
-  isA11yHidden: boolean;
+  isA11yHidden?: boolean;
   className?: string;
   type?: string;
   onChange?: DebouncedFunc<() => void>;
