@@ -28,9 +28,7 @@ export function ShowMeetings({ users }) {
       ))}
       {openModal ? (
         <ReadMeetings openModal={openModal} setOpenModal={setOpenModal} />
-      ) : (
-        console.log('false')
-      )}
+      ) : null}
     </div>
   );
 }

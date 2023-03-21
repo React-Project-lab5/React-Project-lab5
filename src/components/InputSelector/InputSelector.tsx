@@ -108,7 +108,7 @@ export function InputSelector({
     {
       value: '송파구',
       label: '송파구',
-      adrress: '서울특별시 송파구 올림픽로 326',
+      address: '서울특별시 송파구 올림픽로 326',
     },
     {
       value: '양천구',
@@ -135,7 +135,7 @@ export function InputSelector({
       label: '종로구',
       address: '서울특별시 종로구 종로1길 36',
     },
-    { value: '중구', label: '중구', adrress: '서울특별시 중구 창경궁로 17' },
+    { value: '중구', label: '중구', address: '서울특별시 중구 창경궁로 17' },
     {
       value: '중랑구',
       label: '중랑구',
