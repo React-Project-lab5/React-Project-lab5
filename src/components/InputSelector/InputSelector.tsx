@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 import classes from './InputSelector.module.scss';
 import classNames from 'classnames';
+import { addressState } from '@/states/addressState';
+import { useRecoilState } from 'recoil';
 
 interface Props {
   maxWidthValue: number;
@@ -23,6 +25,8 @@ export function InputSelector({
     className: className,
     marginBottom: marginBottom,
   };
+
+  const [address, setAddress] = useRecoilState(addressState);
 
   const location = [
     {
@@ -149,7 +153,8 @@ export function InputSelector({
       onClick={(e) => {
         for (let i = 0; i < location.length; i++) {
           if ((e.target as HTMLButtonElement).value === location[i].value) {
-            console.log(location[i].address);
+            setAddress(location[i].address);
+            console.log(address);
           }
         }
       }}

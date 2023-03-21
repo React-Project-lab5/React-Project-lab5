@@ -14,7 +14,6 @@ import { debounce } from 'lodash';
 import { useSetRecoilState } from 'recoil';
 import { cardDataState } from './../../states/cardDataState';
 import React from 'react';
-//import { Form } from './Form';
 
 export function ModalTotal({
   createUsers,
@@ -32,11 +31,11 @@ export function ModalTotal({
     setModalOpened(true);
   };
 
-  const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleRegister = () => {
     setModalOpened(false);
     createUsers();
     getUsers();
+    alert('모임이 작성되었습니다.');
   };
 
   const handleClose = () => {
