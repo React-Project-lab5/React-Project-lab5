@@ -1,3 +1,25 @@
+@import "@/styles/common/index.scss";
+.homeContainer{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  margin: 0 auto;
+  .homeLeftContent{
+    width: 100%;
+    margin:0 auto;
+    text-align: center;
+    span{
+      font-size: clamp(1rem, 5vw, 2.5rem);
+      font-weight: 700;
+    }
+    @include mobile{
+      display: none;
+    }
+  }
+
+
 .contents {
   background-color: var(--gray-200);
   width: 360px;
@@ -9,6 +31,7 @@
   justify-content: center;
   align-items: center;
   gap: 40px;
+  
 
   .startText {
     font-weight: 700;
@@ -25,4 +48,5 @@
     font-size: 32px;
     margin-top: 40px;
   }
+}
 }
