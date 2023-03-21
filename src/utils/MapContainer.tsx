@@ -1,19 +1,19 @@
-/*global kakao*/
-import React, { useEffect } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from 'react';
 import classes from './MapContainer.module.scss';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { addressState } from '@/states/addressState';
 import { mapState } from '@/states/mapState';
 import { readingMap } from '@/states/readingMap';
-
-const { kakao } = window;
+import { useSetRecoilState } from 'recoil';
 
 export const MapContainer = () => {
+  const kakao = window['kakao'];
   const address = useRecoilValue(addressState);
-  const [mapLocation, setMapLocation] = useRecoilState(mapState);
+  const setMapLocation = useSetRecoilState(mapState);
   const mapData = useRecoilValue(readingMap);
 
-  console.log('mapData', mapData);
+  console.log('mapData', typeof mapData);
   useEffect(() => {
     const mapContainer = document.getElementById('map'); // 지도를 표시할 div
     const mapOption = {

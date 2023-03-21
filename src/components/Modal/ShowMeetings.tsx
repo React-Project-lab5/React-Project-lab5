@@ -3,7 +3,7 @@ import classes from './Modal.module.scss';
 import { useState } from 'react';
 import { ReadMeetings } from './ReadMeetings';
 
-// 띄워줄 데이터 key값에 고유ID를 넣어준다.
+// eslint-disable-next-line react/prop-types
 export function ShowMeetings({ users }) {
   const [openModal, setOpenModal] = useState(false);
 

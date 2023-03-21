@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { MapContainer } from './../../utils/MapContainer';
 import { Button, ModalPotal, Modal } from '@/components/index';
 import classes from './Modal.module.scss';
@@ -37,9 +38,9 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
     getUsers();
   }, []);
 
-  const handleRegister = () => {
-    setOpenModal(false);
-  };
+  // const handleRegister = () => {
+  //   setOpenModal(false);
+  // };
 
   const handleClose = () => {
     setOpenModal(false);
@@ -64,7 +65,7 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
             <div className={classes.popupContent}>
               <MapContainer />
 
-              <form onSubmit={handleRegister} className={classes['modalForm']}>
+              <form onSubmit={handleClose} className={classes['modalForm']}>
                 <div className={classes['modalSearch']}>
                   {showUsers}
                   <Button
@@ -73,7 +74,7 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
                     text={'탈퇴하기'}
                     backgroundColor={'red'}
                     className={classes.signupButton}
-                    onClick={handleRegister}
+                    onClick={handleClose}
                   />
                   <Button
                     maxWidthValue={300}
@@ -81,7 +82,7 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
                     text={'삭제하기'}
                     backgroundColor={'red'}
                     className={classes.signupButton}
-                    onClick={handleRegister}
+                    onClick={handleClose}
                   />
                 </div>
               </form>

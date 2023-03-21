@@ -5,13 +5,7 @@ import { Button } from '../Button';
 import { ModalTotal } from '@/components/index';
 import { useNavigate } from 'react-router-dom';
 
-export function SearchFrom({
-  setTitle,
-  setAddress,
-  setDetail,
-  createUsers,
-  getUsers,
-}: SearchFormProps) {
+export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   const movePage = useNavigate();
 
   const goChatPage = () => {
@@ -43,13 +37,7 @@ export function SearchFrom({
               <img src="/public/assets/search.svg" alt="검색 버튼" />
             </button>
           </div>
-          <ModalTotal
-            setTitle={setTitle}
-            setAddress={setAddress}
-            setDetail={setDetail}
-            createUsers={createUsers}
-            getUsers={getUsers}
-          />
+          <ModalTotal createUsers={createUsers} getUsers={getUsers} />
 
           <Button
             maxWidthValue={'190px'}
