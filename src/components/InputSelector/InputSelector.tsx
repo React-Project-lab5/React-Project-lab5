@@ -2,7 +2,8 @@
 import classes from './InputSelector.module.scss';
 import classNames from 'classnames';
 import { addressState } from '@/states/addressState';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
+import { addressMainState } from '@/states/addressMainState';
 
 interface Props {
   maxWidthValue: number;
@@ -16,7 +17,6 @@ export function InputSelector({
   maxWidthValue,
   heightValue,
   className,
-  onChange,
   marginBottom,
 }: Props) {
   const selectStyle = {
@@ -26,7 +26,8 @@ export function InputSelector({
     marginBottom: marginBottom,
   };
 
-  const [address, setAddress] = useRecoilState(addressState);
+  const setAddress = useSetRecoilState(addressState);
+  const setMainAddress = useSetRecoilState(addressMainState);
 
   const location = [
     {
@@ -149,12 +150,11 @@ export function InputSelector({
 
   return (
     <select
-      onChange={onChange}
-      onClick={(e) => {
+      onChange={(e) => {
+        setMainAddress(e.target.value);
         for (let i = 0; i < location.length; i++) {
-          if ((e.target as HTMLButtonElement).value === location[i].value) {
+          if (e.target.value === location[i].value) {
             setAddress(location[i].address);
-            console.log(address);
           }
         }
       }}

@@ -1,6 +1,10 @@
 import classes from './LogoText.module.scss';
 
-export function LogoText({ small }) {
+interface Props {
+  small?: boolean;
+}
+
+export function LogoText({ small }: Props) {
   const logoTextSmall = small;
   let logoTextClass = null;
 

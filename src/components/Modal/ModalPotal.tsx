@@ -2,7 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import classes from './Modal.module.scss';
 
-export const ModalPotal = ({ children, closePortal }) => {
+interface Props {
+  children?: React.ReactNode;
+  closePortal: () => void;
+}
+
+export const ModalPotal = ({ children, closePortal }: Props) => {
   const [mounted, setMounted] = useState(false);
   const ref = useRef(null);
 

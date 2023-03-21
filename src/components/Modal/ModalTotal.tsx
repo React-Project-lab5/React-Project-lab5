@@ -14,17 +14,15 @@ import { debounce } from 'lodash';
 import { useSetRecoilState } from 'recoil';
 import { cardDataState } from './../../states/cardDataState';
 import React from 'react';
+import { titleMainState } from '@/states/titleMainState';
+import { detailMainState } from '@/states/detailMainState';
 
-export function ModalTotal({
-  createUsers,
-  getUsers,
-  setTitle,
-  setAddress,
-  setDetail,
-}: SearchFormProps) {
+export function ModalTotal({ createUsers, getUsers }: SearchFormProps) {
   const [modalOpened, setModalOpened] = useState(false);
   const [startDate, setStartDate] = useState(null);
 
+  const setTitle = useSetRecoilState(titleMainState);
+  const setDetail = useSetRecoilState(detailMainState);
   const setCardData = useSetRecoilState(cardDataState);
 
   const handleOpen = () => {
@@ -51,11 +49,6 @@ export function ModalTotal({
     setDetail(event.target.value);
     console.log('input onChange 확인', event);
   }, 500);
-
-  const handleOnChangeTown = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setAddress(event.target.value);
-    console.log(event.target);
-  };
 
   return (
     <React.Fragment>
@@ -87,7 +80,6 @@ export function ModalTotal({
                   <InputSelector
                     maxWidthValue={300}
                     className={classes.selector}
-                    onChange={handleOnChangeTown}
                     marginBottom={6}
                   />
                   <Input

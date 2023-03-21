@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Banner, ShowMeetings } from '@/components/index';
 import { SearchFrom } from '@/components/Input/SearchForm';
-import classes from './MainPage.module.scss';
 import { db } from '@/firebase/firestore/index';
 import {
   addDoc,
@@ -12,18 +11,19 @@ import {
   orderBy,
 } from '@firebase/firestore';
 import { useState, useEffect } from 'react';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { cardDataState } from './../../states/cardDataState';
 import { mapState } from '@/states/mapState';
+import { titleMainState } from '@/states/titleMainState';
+import { addressMainState } from '@/states/addressMainState';
+import { detailMainState } from '@/states/detailMainState';
 
 export default function MainPage() {
-  const [title, setTitle] = useState('');
-  const [address, setAddress] = useState('');
-  const [detail, setDetail] = useState('');
-
+  const title = useRecoilValue(titleMainState);
+  const address = useRecoilValue(addressMainState);
+  const detail = useRecoilValue(detailMainState);
   const cardData = useRecoilValue(cardDataState);
-  const [mapData, setMapData] = useRecoilState(mapState);
-  console.log(typeof mapData);
+  const mapData = useRecoilValue(mapState);
 
   const [users, setUsers] = useState([]);
 
@@ -54,9 +54,6 @@ export default function MainPage() {
   };
 
   const searchFormProps = {
-    setTitle: setTitle,
-    setAddress: setAddress,
-    setDetail: setDetail,
     createUsers: createUsers,
     getUsers: getUsers,
   };
