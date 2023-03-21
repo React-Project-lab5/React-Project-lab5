@@ -6,6 +6,7 @@ import {
   Button,
   HomeBanner,
 } from '@/components/index';
+import SignUp from '@/components/SignUP/SignUp';
 
 export default function Home() {
   return (
@@ -23,20 +24,20 @@ export default function Home() {
           <ButtonKakao text="회원가입" widthValue={'330px'} />
           <span className={classes.startText}>또는</span>
           <Button
-            widthValue={'330px'}
+            maxWidthValue={'330px'}
             colorValue={'#634718'}
             text="이메일 회원가입"
             className={classes.joinButton}
           />
           <span className={classes.startText}>회원이신가요?</span>
           <Button
-            widthValue={'330px'}
+            maxWidthValue={'330px'}
             colorValue={'#634718'}
             text="로그인"
             className={classes.loginButton}
           />
           <Button
-            widthValue={'330px'}
+            maxWidthValue={'330px'}
             heightValue={'93px'}
             colorValue={'#634718'}
             text="게스트로 입장"
@@ -44,6 +45,7 @@ export default function Home() {
           />
         </div>
       </div>
+      {/* <SignUp /> */}
     </>
   );
 }

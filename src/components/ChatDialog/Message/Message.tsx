@@ -1,6 +1,10 @@
+/* eslint-disable react/prop-types */
 import classNames from 'classnames';
+import { useRef } from 'react';
 import classes from './Message.module.scss';
-export const Message = () => {
+
+export function Message({ message }) {
+  const scroll = useRef();
   return (
     <div className={classNames(classes.message, classes.owner)}>
       <div className={classes.messageInfo}>
@@ -8,15 +12,11 @@ export const Message = () => {
           src="https://avatars.githubusercontent.com/u/38703262?v=4"
           alt=""
         />
-        <span>지금</span>
       </div>
       <div className={classes.messageContent}>
-        <p>안녕하세요☺️</p>
-        <img
-          src="https://avatars.githubusercontent.com/u/38703262?v=4"
-          alt=""
-        />
+        <p>{message.text}</p>
       </div>
+      <span ref={scroll}></span>
     </div>
   );
-};
+}

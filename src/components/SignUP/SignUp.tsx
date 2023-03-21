@@ -89,7 +89,7 @@ export default function SignUp() {
           <Button
             backgroundColor={'orange'}
             isSmall={false}
-            widthValue={'200'}
+            maxWidthValue={'200'}
             heightValue={'45'}
             colorValue={'black'}
             text={'회원가입'}
