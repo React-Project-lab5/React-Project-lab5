@@ -1,11 +1,5 @@
 @import '@/styles/common/index.scss';
-html {
-  font-size: 16px;
 
-  @include mobile {
-    font-size: 10px;
-  }
-}
 .footer {
   width: auto;
   height: auto;
@@ -48,7 +42,6 @@ html {
   color: #642e09;
   @include mobile {
     color: #1a202c;
-    font-size: 1.6rem;
     grid-column: 2 / 3;
   }
 }
@@ -72,19 +65,26 @@ html {
   @include tablet {
     grid-row: 2 / 3;
   }
+  @include mobile {
+    font-size: 0.625rem;
+  }
 }
 .listTitle {
   font-weight: 600;
   font-size: 20px;
   line-height: 150%;
   @include mobile {
-    font-size: 1.4rem;
+    font-size: 0.875rem;
   }
 }
 
 .footerBottom {
   position: relative;
   font-size: 1rem;
+
+  @include mobile {
+    font-size: 0.625rem;
+  }
 }
 .footerBottom::before {
   position: absolute;
