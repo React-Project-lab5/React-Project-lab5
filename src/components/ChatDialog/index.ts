@@ -1,5 +1,5 @@
 export * from './Chatting/Chatting';
-export * from './ChattingInput/ChattingInput';
+export * from './SendMessage/SendMessage';
 export * from './Chattings/Chattings';
 export * from './Message/Message';
 export * from './Messages/Messages';

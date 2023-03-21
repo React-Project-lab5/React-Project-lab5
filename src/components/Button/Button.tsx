@@ -2,7 +2,7 @@ import classes from './Button.module.scss';
 import classNames from 'classnames';
 
 interface Props {
-  backgroundColor: 'orange' | 'red';
+  backgroundColor?: 'orange' | 'red';
   isSmall?: boolean;
   maxWidthValue?: string | number;
   heightValue?: string | number;
