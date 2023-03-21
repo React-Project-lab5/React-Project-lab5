@@ -186,14 +186,18 @@
     }
 
   }
-
-  .modalSearch{
-    width:100%;
+  .modalForm{
+    width: 100%;
+    .modalSearch{
+      width:100%;
+    }
   }
+
 
   .readMeetingContainer{
     width: 100%;
   }
+
 
   .showUsers {
     font-size: 1.1rem;
@@ -208,3 +212,4 @@
       margin-bottom: -20px;
     }
   }
+
