@@ -6,7 +6,7 @@ export function Footer() {
     <footer className={classes.footer}>
       <div className={classes.footerTop}>
         <div className={classes.logoAndSlogan}>
-          {/* <LogoText(logoText) /> */}
+          <LogoText small={true} />
           <span className={classes.slogan}>Eat, Share, Be Happy</span>
           <SocialIconGroup />
         </div>
