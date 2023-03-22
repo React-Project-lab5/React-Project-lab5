@@ -1,7 +1,25 @@
 import classes from './MyPage.module.scss';
 import { Input, ProfileImage } from '@/components';
+import { useState } from 'react';
 
 export default function MyPage() {
+  const [isEditing, setIsEditing] = useState(true);
+  const [userInfoEdit, setUserInfoEdit] = useState<string>('회원정보수정');
+  const handleEditClick = () => {
+    setIsEditing(!isEditing);
+    if (isEditing) {
+      setUserInfoEdit('수정 완료');
+    } else {
+      setUserInfoEdit('회원정보수정');
+    }
+  };
+
+  // const { displayName, email, phoneNumber } = auth.currentUser;
+  // console.log(displayName, email, phoneNumber);
+  // useEffect(() => {
+  //   const currentUserUid = auth.currentUser
+  // })
+
   return (
     <section className={classes.myPageSection}>
       <div className={classes.myPageContainer}>
@@ -16,7 +34,7 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Name"
-                  disabled={true}
+                  disabled={isEditing}
                 />
               </form>
               <form>
@@ -25,7 +43,7 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Email"
-                  disabled={true}
+                  disabled={isEditing}
                 />
               </form>
             </div>
@@ -36,7 +54,7 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Phone"
-                  disabled={true}
+                  disabled={isEditing}
                 />
               </form>
               <form>
@@ -45,7 +63,7 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Address"
-                  disabled={true}
+                  disabled={isEditing}
                 />
               </form>
             </div>
@@ -53,7 +71,9 @@ export default function MyPage() {
         </div>
         <div className={classes.userAbleContainer}>
           <ul>
-            <li className={classes.userAbleItem}>회원정보수정</li>
+            <li className={classes.userAbleItem} onClick={handleEditClick}>
+              {userInfoEdit}
+            </li>
             <li className={classes.userAbleItem}>로그아웃</li>
             <li className={classes.userAbleItem}>회원탈퇴</li>
           </ul>
