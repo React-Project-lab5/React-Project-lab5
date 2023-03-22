@@ -6,7 +6,7 @@ export default function ShowCard({ cards }) {
     <div key={index} className={classes.showUsers}>
       <MapReading mapPosition={value.mapData} />
       <span>{value.title}</span>
-      <span>{value.addres}</span>
+      <span>{value.address}</span>
       <span>{value.detail}</span>
       <span>{value.cardData.slice(0, 15)}</span>
       <span className={classes.lastSpan}> {value.cardData.slice(16)}</span>

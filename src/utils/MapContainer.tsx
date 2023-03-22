@@ -6,12 +6,13 @@ import { addressState } from '@/states/addressState';
 import { mapState } from '@/states/mapState';
 import { readingMap } from '@/states/readingMap';
 import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 export const MapContainer = () => {
   const kakao = window['kakao'];
   const address = useRecoilValue(addressState);
   const setMapLocation = useSetRecoilState(mapState);
-  const mapData = useRecoilValue(readingMap);
+  const [mapData, setMapData] = useRecoilState(readingMap);
 
   console.log('mapData', typeof mapData);
   useEffect(() => {
@@ -51,6 +52,7 @@ export const MapContainer = () => {
       // 정상적으로 검색이 완료됐으면
       if (status === kakao.maps.services.Status.OK) {
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+        setMapLocation([coords['Ma'], coords['La']]);
 
         kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
           // 클릭한 위도, 경도 정보를 가져옵니다
@@ -63,7 +65,6 @@ export const MapContainer = () => {
           console.log(message);
 
           setMapLocation([latlng.getLat(), latlng.getLng()]);
-          console.log('mapConainer파일안', map);
         });
         // 결과값으로 받은 위치를 마커로 표시합니다
         const marker = new kakao.maps.Marker({
