@@ -2,13 +2,7 @@ import classes from './ProfileImage.module.scss';
 import { useState, useEffect } from 'react';
 import { getDownloadURL, ref, uploadBytes } from '@firebase/storage';
 import { storage } from '@/firebase/storage/index';
-import {
-  getFirestore,
-  doc,
-  collection,
-  getDoc,
-  setDoc,
-} from '@firebase/firestore';
+import { doc, collection, getDoc, setDoc } from '@firebase/firestore';
 import { auth } from '@/firebase/auth';
 import { db } from '@/firebase/app';
 
@@ -21,17 +15,19 @@ export function ProfileImage() {
   const [imageURL, setImageURL] = useState<string>('');
 
   useEffect(() => {
-    const currentUserUid = auth.currentUser?.uid;
-    if (currentUserUid) {
-      const getUserRef = doc(collection(db, 'users'), currentUserUid);
-      getDoc(getUserRef).then((doc) => {
-        if (doc.exists()) {
-          const userData = doc.data();
-          setImageURL(userData.imageUrl);
-        }
-      });
-    }
-  }, []);
+    const unsub = auth.onAuthStateChanged((user) => {
+      if (user) {
+        const getUserRef = doc(collection(db, 'users'), user.uid);
+        getDoc(getUserRef).then((doc) => {
+          if (doc.exists()) {
+            const userData = doc.data();
+            setImageURL(userData.imageUrl);
+          }
+        });
+      }
+    });
+    return unsub;
+  }, [auth]); // auth 객체를 의존성 배열에 추가
 
   const onImageChange = (
     e: React.ChangeEvent<EventTarget & HTMLInputElement>
