@@ -5,13 +5,8 @@ import { useContext, useState } from 'react';
 import { collection, addDoc, serverTimestamp } from '@firebase/firestore';
 import { AuthContext } from '@/context/AuthContext';
 import { db } from '@/firebase/app';
-import { MutableRefObject } from 'react';
 
-interface Props {
-  scroll: MutableRefObject<HTMLDivElement | null>;
-}
-
-export function SendMessage({ scroll }: Props) {
+export function SendMessage() {
   const { currentUser } = useContext(AuthContext);
 
   const [input, setInput] = useState('');
@@ -23,6 +18,7 @@ export function SendMessage({ scroll }: Props) {
       return;
     }
     const { uid, displayName } = currentUser;
+
     await addDoc(collection(db, 'messages'), {
       text: input,
       name: displayName,
@@ -30,7 +26,6 @@ export function SendMessage({ scroll }: Props) {
       createdAt: serverTimestamp(),
     });
     setInput('');
-    scroll.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
