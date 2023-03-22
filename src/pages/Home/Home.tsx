@@ -7,8 +7,15 @@ import {
   HomeBanner,
 } from '@/components/index';
 import SignUp from '@/components/SignUP/SignUp';
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
+  const navigate = useNavigate();
+
+  const navigateToPage = () => {
+    navigate('/mainpage');
+  };
+
   return (
     <>
       <div className={classes['homeContainer']}>
@@ -42,10 +49,11 @@ export default function Home() {
             colorValue={'#634718'}
             text="게스트로 입장"
             className={classes.guestButton}
+            onClick={navigateToPage}
           />
         </div>
       </div>
-      {/* <SignUp /> */}
+      <SignUp />
     </>
   );
 }
