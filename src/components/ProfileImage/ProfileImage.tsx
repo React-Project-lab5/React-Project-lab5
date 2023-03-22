@@ -1,7 +1,16 @@
 import classes from './ProfileImage.module.scss';
-import { getDownloadURL, uploadBytes, ref } from '@firebase/storage';
+import { useState, useEffect } from 'react';
+import { getDownloadURL, ref, uploadBytes } from '@firebase/storage';
 import { storage } from '@/firebase/storage/index';
-import { useState } from 'react';
+import {
+  getFirestore,
+  doc,
+  collection,
+  getDoc,
+  setDoc,
+} from '@firebase/firestore';
+import { auth } from '@/firebase/auth';
+import { db } from '@/firebase/app';
 
 function fileInput() {
   const fileInput = document.getElementById('fileInput');
@@ -9,9 +18,20 @@ function fileInput() {
 }
 
 export function ProfileImage() {
-  const [imageURL, setImageURL] = useState<string>(
-    '/public/assets/defaultImage.svg'
-  );
+  const [imageURL, setImageURL] = useState<string>('');
+
+  useEffect(() => {
+    const currentUserUid = auth.currentUser?.uid;
+    if (currentUserUid) {
+      const getUserRef = doc(collection(db, 'users'), currentUserUid);
+      getDoc(getUserRef).then((doc) => {
+        if (doc.exists()) {
+          const userData = doc.data();
+          setImageURL(userData.imageUrl);
+        }
+      });
+    }
+  }, []);
 
   const onImageChange = (
     e: React.ChangeEvent<EventTarget & HTMLInputElement>
@@ -22,12 +42,17 @@ export function ProfileImage() {
 
     const storageRef = ref(storage, `file/${file[0].name}`);
     const uploadTask = uploadBytes(storageRef, file[0]);
+    const currentUserUid = auth.currentUser?.uid;
 
     uploadTask.then((snapshot) => {
       e.target.value = '';
       getDownloadURL(snapshot.ref).then((downloadURL) => {
         console.log('File availabel at', downloadURL);
         setImageURL(downloadURL);
+
+        // Firestore에 이미지 URL 저장
+        const setUserRef = doc(collection(db, 'users'), currentUserUid);
+        setDoc(setUserRef, { imageUrl: downloadURL }, { merge: true });
       });
     });
   };
@@ -48,7 +73,7 @@ export function ProfileImage() {
       >
         <img
           className={classes.userPicture}
-          src={imageURL}
+          src={imageURL || '/public/assets/defaultImage.svg'}
           alt="프로필사진"
           title="프로필사진 변경하기"
         />
