@@ -69,10 +69,11 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
     setOpenModal(false);
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     setOpenModal(false);
-    deleteCard(localStorage.getItem('Unique ID'));
+    await deleteCard(localStorage.getItem('Unique ID'));
     getAfterDelete();
+    console.log('작동한다');
   };
 
   return (
@@ -88,14 +89,6 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
                   <React.Suspense fallback={<div>로딩 중...</div>}>
                     <ShowCard cards={cards} />
                   </React.Suspense>
-                  <Button
-                    maxWidthValue={300}
-                    heightValue={50}
-                    text={'탈퇴하기'}
-                    backgroundColor={'red'}
-                    className={classes.signupButton}
-                    onClick={handleClose}
-                  />
                   <Button
                     maxWidthValue={300}
                     heightValue={50}
