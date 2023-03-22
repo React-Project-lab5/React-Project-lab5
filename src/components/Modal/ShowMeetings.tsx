@@ -2,9 +2,12 @@ import { Card, Meeting } from '@/components/index';
 import classes from './Modal.module.scss';
 import { useState } from 'react';
 import { ReadMeetings } from './ReadMeetings';
+import { useRecoilState } from 'recoil';
+import { usersState } from '@/states/usersState';
 
 // eslint-disable-next-line react/prop-types
-export function ShowMeetings({ users }) {
+export function ShowMeetings() {
+  const [users, setUsers] = useRecoilState(usersState);
   const [openModal, setOpenModal] = useState(false);
 
   return (
@@ -17,6 +20,7 @@ export function ShowMeetings({ users }) {
             onClick={() => {
               setOpenModal(true);
               localStorage.setItem('Unique ID', value.id);
+              console.log('showmeetings', value);
             }}
           >
             <Meeting

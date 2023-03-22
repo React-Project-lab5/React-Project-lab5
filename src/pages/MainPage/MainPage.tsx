@@ -9,14 +9,17 @@ import {
   query,
   getDocs,
   orderBy,
+  doc,
+  deleteDoc,
 } from '@firebase/firestore';
 import { useState, useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { cardDataState } from './../../states/cardDataState';
 import { mapState } from '@/states/mapState';
 import { titleMainState } from '@/states/titleMainState';
 import { addressMainState } from '@/states/addressMainState';
 import { detailMainState } from '@/states/detailMainState';
+import { usersState } from '@/states/usersState';
 
 export default function MainPage() {
   const title = useRecoilValue(titleMainState);
@@ -24,8 +27,7 @@ export default function MainPage() {
   const detail = useRecoilValue(detailMainState);
   const cardData = useRecoilValue(cardDataState);
   const mapData = useRecoilValue(mapState);
-
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useRecoilState(usersState);
 
   const usersCollectionRef = query(
     collection(db, 'makeMeetings'),
@@ -62,7 +64,7 @@ export default function MainPage() {
     <>
       <Banner />
       <SearchFrom {...searchFormProps} />
-      <ShowMeetings users={users} />
+      <ShowMeetings />
     </>
   );
 }
