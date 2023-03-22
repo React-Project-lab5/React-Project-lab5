@@ -21,7 +21,7 @@ import { usersState } from '@/states/usersState';
 
 const ShowCard = React.lazy(async () => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
-  return import('./showCard');
+  return import('./ShowCard');
 });
 
 interface Props {
