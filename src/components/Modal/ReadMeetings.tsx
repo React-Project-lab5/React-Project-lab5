@@ -3,21 +3,36 @@ import { MapContainer } from './../../utils/MapContainer';
 import { Button, ModalPotal, Modal } from '@/components/index';
 import classes from './Modal.module.scss';
 import { useState, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { deleteUsers } from '@/states/deleteUsers';
 import { db } from '@/firebase/firestore/index';
-import { collection, getDocs, query, where } from '@firebase/firestore';
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  orderBy,
+} from '@firebase/firestore';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import { MapReading } from '@/utils/MapReading';
+import React from 'react';
+import { usersState } from '@/states/usersState';
+
+const ShowCard = React.lazy(async () => {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  return import('./showCard');
+});
 
 interface Props {
   openModal: boolean;
   // eslint-disable-next-line no-unused-vars
   setOpenModal: (p: boolean) => void;
 }
-
 export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useRecoilState(usersState);
+  const [deleteCard, setDeleteCard] = useRecoilState(deleteUsers);
+  const [cards, setCards] = useState([]);
 
   const usersCollectionRef = query(
     collection(db, 'makeMeetings'),
@@ -28,8 +43,20 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
     )
   );
 
+  const usersCollectionRenderRef = query(
+    collection(db, 'makeMeetings'),
+    orderBy('timestamp', 'desc')
+  );
+
   const getUsers = async () => {
     await getDocs(usersCollectionRef).then((data) => {
+      setCards(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    });
+  };
+  console.log('cards', cards);
+
+  const getAfterDelete = async () => {
+    await getDocs(usersCollectionRenderRef).then((data) => {
       setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
   };
@@ -38,24 +65,16 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
     getUsers();
   }, []);
 
-  // const handleRegister = () => {
-  //   setOpenModal(false);
-  // };
-
   const handleClose = () => {
     setOpenModal(false);
   };
 
-  const showUsers = users.map((value, index) => (
-    <div key={index} className={classes.showUsers}>
-      <MapReading mapPosition={value.mapData} />
-      <span>{value.title}</span>
-      <span>{value.address}</span>
-      <span>{value.detail}</span>
-      <span>{value.cardData.slice(0, 15)}</span>
-      <span className={classes.lastSpan}> {value.cardData.slice(16)}</span>
-    </div>
-  ));
+  const handleDelete = async () => {
+    setOpenModal(false);
+    await deleteCard(localStorage.getItem('Unique ID'));
+    getAfterDelete();
+    console.log('작동한다');
+  };
 
   return (
     <div>
@@ -67,22 +86,16 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
 
               <form onSubmit={handleClose} className={classes['modalForm']}>
                 <div className={classes['modalSearch']}>
-                  {showUsers}
-                  <Button
-                    maxWidthValue={300}
-                    heightValue={50}
-                    text={'탈퇴하기'}
-                    backgroundColor={'red'}
-                    className={classes.signupButton}
-                    onClick={handleClose}
-                  />
+                  <React.Suspense fallback={<div>로딩 중...</div>}>
+                    <ShowCard cards={cards} />
+                  </React.Suspense>
                   <Button
                     maxWidthValue={300}
                     heightValue={50}
                     text={'삭제하기'}
                     backgroundColor={'red'}
                     className={classes.signupButton}
-                    onClick={handleClose}
+                    onClick={handleDelete}
                   />
                 </div>
               </form>

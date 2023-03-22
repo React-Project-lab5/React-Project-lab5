@@ -1,7 +1,11 @@
 import { useSetRecoilState } from 'recoil';
 import { readingMap } from '@/states/readingMap';
 
-export function MapReading({ mapPosition }) {
+interface Props {
+  mapPosition: [];
+}
+
+export function MapReading({ mapPosition }: Props) {
   console.log('MapReading파일', mapPosition);
 
   const setMapData = useSetRecoilState(readingMap);
