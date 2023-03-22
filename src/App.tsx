@@ -2,10 +2,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from '@/pages/Home/Home';
 import Chat from '@/pages/Chat/Chat';
 import MyPage from '@/pages/MyPage/MyPage';
-import RootLayout from './pages/Layout/Layout';
 import NotFound from '@/pages/NotFound/NotFound';
 import MainPage from '@/pages/MainPage/MainPage';
 import Recommend from '@/pages/Recommend/Recommend';
+import RootLayout, { BaseLayout } from './pages/Layout/Layout';
 
 const router = createBrowserRouter([
   {
@@ -13,11 +13,39 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <NotFound />,
     children: [
-      { path: '/', element: <Home /> },
-      { path: 'mainPage', element: <MainPage /> },
-      { path: 'recommend', element: <Recommend /> },
-      { path: 'chat', element: <Chat /> },
-      { path: 'myPage', element: <MyPage /> },
+      { index: true, element: <Home /> },
+      {
+        path: 'mainPage',
+        element: (
+          <BaseLayout>
+            <MainPage />
+          </BaseLayout>
+        ),
+      },
+      {
+        path: 'recommend',
+        element: (
+          <BaseLayout>
+            <Recommend />
+          </BaseLayout>
+        ),
+      },
+      {
+        path: 'chat',
+        element: (
+          <BaseLayout>
+            <Chat />
+          </BaseLayout>
+        ),
+      },
+      {
+        path: 'myPage',
+        element: (
+          <BaseLayout>
+            <MyPage />
+          </BaseLayout>
+        ),
+      },
     ],
   },
 ]);

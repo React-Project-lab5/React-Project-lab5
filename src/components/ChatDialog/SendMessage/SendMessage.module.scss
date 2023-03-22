@@ -10,11 +10,11 @@
 
   input {
     width: 100%;
-    color: var(--gray-600);
+    color: var(--black);
     font-size: 18px;
 
     &::placeholder {
-      color: var(--gray-700);
+      color: var(--gray-600);
     }
   }
 

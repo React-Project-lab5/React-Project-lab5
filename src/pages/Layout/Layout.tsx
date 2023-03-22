@@ -4,10 +4,16 @@ import { Outlet } from 'react-router-dom';
 export default function RootLayout() {
   return (
     <>
+      <Outlet />
+    </>
+  );
+}
+
+export function BaseLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <>
       <Header />
-      <main>
-        <Outlet />
-      </main>
+      <main>{children}</main>
       <Footer />
     </>
   );
