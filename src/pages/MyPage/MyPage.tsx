@@ -1,8 +1,12 @@
 import classes from './MyPage.module.scss';
 import { Input, ProfileImage } from '@/components';
 import { useState } from 'react';
+import { signOut } from '@firebase/auth';
+import { auth } from '@/firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 export default function MyPage() {
+  const navigation = useNavigate();
   const [isEditing, setIsEditing] = useState(true);
   const [userInfoEdit, setUserInfoEdit] = useState<string>('회원정보수정');
   const handleEditClick = () => {
@@ -14,11 +18,10 @@ export default function MyPage() {
     }
   };
 
-  // const { displayName, email, phoneNumber } = auth.currentUser;
-  // console.log(displayName, email, phoneNumber);
-  // useEffect(() => {
-  //   const currentUserUid = auth.currentUser
-  // })
+  const handleSignOut = () => {
+    signOut(auth);
+    navigation('/');
+  };
 
   return (
     <section className={classes.myPageSection}>
@@ -74,7 +77,9 @@ export default function MyPage() {
             <li className={classes.userAbleItem} onClick={handleEditClick}>
               {userInfoEdit}
             </li>
-            <li className={classes.userAbleItem}>로그아웃</li>
+            <li className={classes.userAbleItem} onClick={handleSignOut}>
+              로그아웃
+            </li>
             <li className={classes.userAbleItem}>회원탈퇴</li>
           </ul>
         </div>
