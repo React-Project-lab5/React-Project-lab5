@@ -1,24 +1,72 @@
 import classes from './MyPage.module.scss';
 import { Input, ProfileImage } from '@/components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { signOut } from '@firebase/auth';
+import { auth } from '@/firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { doc, getDoc, collection, setDoc } from '@firebase/firestore';
+import { db } from '@/firebase/app';
 
 export default function MyPage() {
-  const [isEditing, setIsEditing] = useState(true);
-  const [userInfoEdit, setUserInfoEdit] = useState<string>('회원정보수정');
+  const navigation = useNavigate();
+  const [isEditing, setIsEditing] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [address, setAddress] = useState('');
+
+  useEffect(() => {
+    const unsub = auth.onAuthStateChanged((user) => {
+      if (user) {
+        const getUserRef = doc(collection(db, 'users'), user.uid);
+        getDoc(getUserRef).then((doc) => {
+          if (doc.exists()) {
+            const userData = doc.data();
+            setName(userData.displayName);
+            setEmail(userData.email);
+            setPhoneNumber(userData.phoneNumber);
+            setAddress(userData.address);
+          }
+        });
+      }
+    });
+    return unsub;
+  }, []);
+
+  useEffect(() => {
+    const userController = document.getElementById('memberController');
+
+    if (isEditing) {
+      userController.style.color = 'red';
+    } else {
+      userController.style.color = 'black';
+    }
+  }, [isEditing]);
+
   const handleEditClick = () => {
     setIsEditing(!isEditing);
-    if (isEditing) {
-      setUserInfoEdit('수정 완료');
-    } else {
-      setUserInfoEdit('회원정보수정');
-    }
   };
 
-  // const { displayName, email, phoneNumber } = auth.currentUser;
-  // console.log(displayName, email, phoneNumber);
-  // useEffect(() => {
-  //   const currentUserUid = auth.currentUser
-  // })
+  const handleSaveClick = () => {
+    const getUserRef = doc(collection(db, 'users'), auth.currentUser.uid);
+    setDoc(
+      getUserRef,
+      {
+        displayName: name,
+        email: email,
+        phoneNumber: phoneNumber,
+        address: address,
+      },
+      { merge: true }
+    ).then(() => {
+      setIsEditing(false);
+    });
+  };
+
+  const handleSignOut = () => {
+    signOut(auth);
+    navigation('/');
+  };
 
   return (
     <section className={classes.myPageSection}>
@@ -34,7 +82,9 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Name"
-                  disabled={isEditing}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  disabled={!isEditing}
                 />
               </form>
               <form>
@@ -43,7 +93,9 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Email"
-                  disabled={isEditing}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={!isEditing}
                 />
               </form>
             </div>
@@ -54,7 +106,9 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Phone"
-                  disabled={isEditing}
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  disabled={!isEditing}
                 />
               </form>
               <form>
@@ -63,20 +117,28 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Address"
-                  disabled={isEditing}
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  disabled={!isEditing}
                 />
               </form>
             </div>
           </div>
         </div>
         <div className={classes.userAbleContainer}>
-          <ul>
-            <li className={classes.userAbleItem} onClick={handleEditClick}>
-              {userInfoEdit}
-            </li>
-            <li className={classes.userAbleItem}>로그아웃</li>
-            <li className={classes.userAbleItem}>회원탈퇴</li>
-          </ul>
+          <button
+            id="memberController"
+            className={classes.userAbleItem}
+            onClick={isEditing ? handleSaveClick : handleEditClick}
+          >
+            {isEditing ? '수정 완료' : '회원정보수정'}
+          </button>
+          <span>|</span>
+          <button className={classes.userAbleItem} onClick={handleSignOut}>
+            로그아웃
+          </button>
+          <span>|</span>
+          <button className={classes.userAbleItem}>회원탈퇴</button>
         </div>
       </div>
     </section>
