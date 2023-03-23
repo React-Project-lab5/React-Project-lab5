@@ -1,21 +1,29 @@
 import classes from './MyPage.module.scss';
 import { Input, ProfileImage } from '@/components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { signOut } from '@firebase/auth';
 import { auth } from '@/firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 export default function MyPage() {
   const navigation = useNavigate();
-  const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
   const [userInfoEdit, setUserInfoEdit] = useState<string>('회원정보수정');
-  const handleEditClick = () => {
-    setIsEditing(!isEditing);
+
+  useEffect(() => {
+    const userController = document.getElementById('memberController');
+
     if (isEditing) {
       setUserInfoEdit('수정 완료');
+      userController.style.color = 'red';
     } else {
       setUserInfoEdit('회원정보수정');
+      userController.style.color = 'black';
     }
+  }, [isEditing]);
+
+  const handleEditClick = () => {
+    setIsEditing(!isEditing);
   };
 
   const handleSignOut = () => {
@@ -37,7 +45,7 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Name"
-                  disabled={isEditing}
+                  disabled={!isEditing}
                 />
               </form>
               <form>
@@ -46,7 +54,7 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Email"
-                  disabled={isEditing}
+                  disabled={!isEditing}
                 />
               </form>
             </div>
@@ -57,7 +65,7 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Phone"
-                  disabled={isEditing}
+                  disabled={!isEditing}
                 />
               </form>
               <form>
@@ -66,22 +74,26 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Address"
-                  disabled={isEditing}
+                  disabled={!isEditing}
                 />
               </form>
             </div>
           </div>
         </div>
         <div className={classes.userAbleContainer}>
-          <ul>
-            <li className={classes.userAbleItem} onClick={handleEditClick}>
-              {userInfoEdit}
-            </li>
-            <li className={classes.userAbleItem} onClick={handleSignOut}>
-              로그아웃
-            </li>
-            <li className={classes.userAbleItem}>회원탈퇴</li>
-          </ul>
+          <button
+            id="memberController"
+            className={classes.userAbleItem}
+            onClick={handleEditClick}
+          >
+            {userInfoEdit}
+          </button>
+          <span>|</span>
+          <button className={classes.userAbleItem} onClick={handleSignOut}>
+            로그아웃
+          </button>
+          <span>|</span>
+          <button className={classes.userAbleItem}>회원탈퇴</button>
         </div>
       </div>
     </section>
