@@ -27,7 +27,7 @@ export function ProfileImage() {
       }
     });
     return unsub;
-  }, [auth]); // auth 객체를 의존성 배열에 추가
+  });
 
   const onImageChange = (
     e: React.ChangeEvent<EventTarget & HTMLInputElement>
