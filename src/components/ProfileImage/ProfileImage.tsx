@@ -5,6 +5,7 @@ import { storage } from '@/firebase/storage/index';
 import { doc, collection, getDoc, setDoc } from '@firebase/firestore';
 import { auth } from '@/firebase/auth';
 import { db } from '@/firebase/app';
+import { updateProfile } from '@firebase/auth';
 
 function fileInput() {
   const fileInput = document.getElementById('fileInput');
@@ -21,7 +22,7 @@ export function ProfileImage() {
         getDoc(getUserRef).then((doc) => {
           if (doc.exists()) {
             const userData = doc.data();
-            setImageURL(userData.imageUrl);
+            setImageURL(userData.photoURL);
           }
         });
       }
@@ -48,7 +49,10 @@ export function ProfileImage() {
 
         // Firestore에 이미지 URL 저장
         const setUserRef = doc(collection(db, 'users'), currentUserUid);
-        setDoc(setUserRef, { imageUrl: downloadURL }, { merge: true });
+        setDoc(setUserRef, { photoURL: downloadURL }, { merge: true });
+
+        // currentUser에 이미지 URL 업데이트
+        updateProfile(auth.currentUser, { photoURL: downloadURL });
       });
     });
   };
