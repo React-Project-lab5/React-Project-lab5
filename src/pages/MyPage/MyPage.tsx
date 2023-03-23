@@ -4,26 +4,63 @@ import { useState, useEffect } from 'react';
 import { signOut } from '@firebase/auth';
 import { auth } from '@/firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { doc, getDoc, collection, setDoc } from '@firebase/firestore';
+import { db } from '@/firebase/app';
 
 export default function MyPage() {
   const navigation = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
-  const [userInfoEdit, setUserInfoEdit] = useState<string>('회원정보수정');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [address, setAddress] = useState('');
+
+  useEffect(() => {
+    const unsub = auth.onAuthStateChanged((user) => {
+      if (user) {
+        const getUserRef = doc(collection(db, 'users'), user.uid);
+        getDoc(getUserRef).then((doc) => {
+          if (doc.exists()) {
+            const userData = doc.data();
+            setName(userData.displayName);
+            setEmail(userData.email);
+            setPhoneNumber(userData.phoneNumber);
+            setAddress(userData.address);
+          }
+        });
+      }
+    });
+    return unsub;
+  }, []);
 
   useEffect(() => {
     const userController = document.getElementById('memberController');
 
     if (isEditing) {
-      setUserInfoEdit('수정 완료');
       userController.style.color = 'red';
     } else {
-      setUserInfoEdit('회원정보수정');
       userController.style.color = 'black';
     }
   }, [isEditing]);
 
   const handleEditClick = () => {
     setIsEditing(!isEditing);
+  };
+
+  const handleSaveClick = () => {
+    const getUserRef = doc(collection(db, 'users'), auth.currentUser.uid);
+    setDoc(
+      getUserRef,
+      {
+        displayName: name,
+        email: email,
+        phoneNumber: phoneNumber,
+        address: address,
+      },
+      { merge: true }
+    ).then(() => {
+      setIsEditing(false);
+    });
   };
 
   const handleSignOut = () => {
@@ -45,6 +82,8 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   disabled={!isEditing}
                 />
               </form>
@@ -54,6 +93,8 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   disabled={!isEditing}
                 />
               </form>
@@ -65,6 +106,8 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Phone"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
                   disabled={!isEditing}
                 />
               </form>
@@ -74,6 +117,8 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Address"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
                   disabled={!isEditing}
                 />
               </form>
@@ -84,9 +129,9 @@ export default function MyPage() {
           <button
             id="memberController"
             className={classes.userAbleItem}
-            onClick={handleEditClick}
+            onClick={isEditing ? handleSaveClick : handleEditClick}
           >
-            {userInfoEdit}
+            {isEditing ? '수정 완료' : '회원정보수정'}
           </button>
           <span>|</span>
           <button className={classes.userAbleItem} onClick={handleSignOut}>
