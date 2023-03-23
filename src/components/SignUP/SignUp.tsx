@@ -25,6 +25,8 @@ export default function SignUp() {
     const email = e.target[1].value;
     const password = e.target[2].value;
     const passwordConfirm = e.target[3].value;
+    const phoneNumber = '';
+    const address = '';
 
     if (!displayName || displayName.trim().length < 2) {
       alert('이름은 2글자 이상 입력해야 해요');
@@ -46,6 +48,8 @@ export default function SignUp() {
         uid: res.user.uid,
         displayName,
         email,
+        phoneNumber,
+        address,
       });
 
       navigate('/mainPage');

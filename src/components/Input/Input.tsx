@@ -13,6 +13,7 @@ interface Props {
   type?: string;
   onChange?: DebouncedFunc<() => void>;
   disabled?: boolean;
+  value?: string;
 }
 
 export function Input({
@@ -25,6 +26,7 @@ export function Input({
   type,
   disabled,
   onChange,
+  value,
 }: Props) {
   const inputStyle = {
     maxWidth: maxWidthValue,
@@ -52,6 +54,7 @@ export function Input({
         onChange={onChange}
         required
         disabled={disabled}
+        value={value}
       />
     </React.Fragment>
   );

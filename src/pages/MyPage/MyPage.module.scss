@@ -102,17 +102,7 @@
 
   .userAbleItem {
     float: left;
-
-    cursor: pointer;
-
-    &::after {
-      content: '|';
-      margin: 0 5px;
-      cursor: default;
-    }
-    &:last-child::after {
-      content: '';
-    }
+    font-weight: 600;
   }
 
   @include tablet {
