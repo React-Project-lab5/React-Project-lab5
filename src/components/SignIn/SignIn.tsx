@@ -1,11 +1,12 @@
-import classes from './SignIn.module.scss';
+import { auth } from '@/firebase/auth';
 import { Input } from '../Input/Input';
-import { LogoIconandText } from '../LogoIconandText/LogoIconandText';
-import { Button, ButtonGoogle, ButtonKakao } from '../Button';
-import { useState } from 'react';
+import classes from './SignIn.module.scss';
+import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from '@firebase/auth';
-import { auth } from '@/firebase/auth';
+import { Button, ButtonGoogle, ButtonKakao } from '../Button';
+import { LogoIconandText } from '../LogoIconandText/LogoIconandText';
+
 export default function SignIn() {
   const inputProps = {
     maxWidthValue: '30',
@@ -16,14 +17,14 @@ export default function SignIn() {
   const [err, setErr] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const email = e.target[0].value;
     const password = e.target[1].value;
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert('성공');
+      alert('로그인 성공!');
       navigate('/mainPage');
     } catch (err) {
       setErr(true);
