@@ -52,7 +52,13 @@ export function ProfileImage() {
         setDoc(setUserRef, { photoURL: downloadURL }, { merge: true });
 
         // currentUser에 이미지 URL 업데이트
-        updateProfile(auth.currentUser, { photoURL: downloadURL });
+        updateProfile(auth.currentUser, { photoURL: downloadURL })
+          .then(() => {
+            console.log('프로필 사진 변경 완료!');
+          })
+          .catch((error) => {
+            console.log('프로필 사진 변경 실패!', error);
+          });
       });
     });
   };
