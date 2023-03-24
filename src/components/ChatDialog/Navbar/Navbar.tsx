@@ -1,13 +1,14 @@
-import classes from './Navbar.module.scss';
-import { signOut } from '@firebase/auth';
-import { auth } from '@/firebase/auth';
-import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '@/context/AuthContext';
-import { useNavigate } from 'react-router-dom';
 import { db } from '@/firebase/app';
-import { doc, getDoc, collection } from '@firebase/firestore';
+import { auth } from '@/firebase/auth';
 import { useRecoilState } from 'recoil';
+import { signOut } from '@firebase/auth';
+import classes from './Navbar.module.scss';
+import { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '@/context/AuthContext';
 import { authImagState } from '@/states/authImgState';
+import defaultAvatar from '/public/assets/defaultAvatars.svg';
+import { doc, getDoc, collection } from '@firebase/firestore';
 
 export function Navbar() {
   const [imageUrl, setImageUrl] = useRecoilState(authImagState);
@@ -39,7 +40,11 @@ export function Navbar() {
     <div className={classes.navbar}>
       <p className={classes.logo}>슬기로운 N밥생활</p>
       <div className={classes.user}>
-        <img src={imageUrl} alt="사용자" />
+        {imageUrl ? (
+          <img src={imageUrl} alt="사용자" />
+        ) : (
+          <img src={defaultAvatar} alt="사용자" />
+        )}
         <p>{currentUser.displayName}</p>
         <button type="button" onClick={handleSignOut}>
           로그아웃
