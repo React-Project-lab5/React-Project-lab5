@@ -19,8 +19,11 @@ import {
   deleteDoc,
 } from '@firebase/firestore';
 import { db } from '@/firebase/app';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
 export default function MyPage() {
+  useDocumentTitle('슬기로운 N밥 생활 | 마이 페이지');
+
   const navigation = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState('');

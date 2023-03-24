@@ -3,7 +3,7 @@
 .sidebar {
   flex: 1;
   background: var(--gray-200);
-
+  border-right: 1px solid var(--gray-500);
   @include mobile {
     display: none;
   }
