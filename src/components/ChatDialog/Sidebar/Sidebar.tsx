@@ -1,5 +1,5 @@
-import { Chattings, Navbar, Search } from '../index';
 import classes from './Sidebar.module.scss';
+import { Chattings, Navbar, Search } from '../index';
 
 export function Sidebar() {
   return (
