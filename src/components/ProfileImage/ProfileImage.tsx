@@ -7,13 +7,9 @@ import { auth } from '@/firebase/auth';
 import { db } from '@/firebase/app';
 import { updateProfile } from '@firebase/auth';
 
-function fileInput() {
-  const fileInput = document.getElementById('fileInput');
-  fileInput.click();
-}
-
 export function ProfileImage() {
-  const [imageURL, setImageURL] = useState<string>('');
+  const [ImageUrl, setImageUrl] = useState<string>('');
+  const user = auth.currentUser;
 
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((user) => {
@@ -22,13 +18,24 @@ export function ProfileImage() {
         getDoc(getUserRef).then((doc) => {
           if (doc.exists()) {
             const userData = doc.data();
-            setImageURL(userData.photoURL);
+            setImageUrl(userData.photoURL);
+          } else {
+            setImageUrl(user.providerData[0].photoURL);
           }
         });
       }
     });
     return unsub;
   });
+
+  function fileInput() {
+    if (user.providerData[0].providerId === 'google.com') {
+      alert('구글 및 카카오 사용자는 회원정보수정이 불가합니다!');
+    } else {
+      const fileInput = document.getElementById('fileInput');
+      fileInput.click();
+    }
+  }
 
   const onImageChange = (
     e: React.ChangeEvent<EventTarget & HTMLInputElement>
@@ -39,20 +46,20 @@ export function ProfileImage() {
 
     const storageRef = ref(storage, `file/${file[0].name}`);
     const uploadTask = uploadBytes(storageRef, file[0]);
-    const currentUserUid = auth.currentUser?.uid;
+    const currentUserUid = user?.uid;
 
     uploadTask.then((snapshot) => {
       e.target.value = '';
       getDownloadURL(snapshot.ref).then((downloadURL) => {
         console.log('File availabel at', downloadURL);
-        setImageURL(downloadURL);
+        setImageUrl(downloadURL);
 
         // Firestore에 이미지 URL 저장
         const setUserRef = doc(collection(db, 'users'), currentUserUid);
         setDoc(setUserRef, { photoURL: downloadURL }, { merge: true });
 
         // currentUser에 이미지 URL 업데이트
-        updateProfile(auth.currentUser, { photoURL: downloadURL })
+        updateProfile(user, { photoURL: downloadURL })
           .then(() => {
             console.log('프로필 사진 변경 완료!');
           })
@@ -79,7 +86,7 @@ export function ProfileImage() {
       >
         <img
           className={classes.userPicture}
-          src={imageURL || '/public/assets/defaultImage.svg'}
+          src={ImageUrl || '/public/assets/defaultImage.svg'}
           alt="프로필사진"
           title="프로필사진 변경하기"
         />
