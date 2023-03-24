@@ -44,28 +44,27 @@
       width: 100%;
       margin: 0 auto;
       cursor: pointer;
-      
+
       &:hover {
         background-color: var(--orange-600);
-        color:var(--white);
+        color: var(--white);
+      }
     }
-
+    p {
+      font-size: 12px;
+      font-weight: 600;
+    }
   }
-  p {
-    font-size: 12px;
+
+  .login {
+    color: var(--accent);
+  }
+
+  .error {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 16px;
     font-weight: 600;
-
-    span {
-      color: var(--accent);
-    }
   }
-}
-
-.error {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  font-size: 16px;
-  font-weight: 600;
-}
 }
