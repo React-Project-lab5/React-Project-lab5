@@ -8,6 +8,7 @@ import { doc, setDoc } from '@firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, updateProfile } from '@firebase/auth';
 import { LogoIconandText } from '../LogoIconandText/LogoIconandText';
+
 export default function SignUp() {
   const [err, setErr] = useState(false);
   const navigate = useNavigate();
@@ -50,6 +51,7 @@ export default function SignUp() {
         email,
         phoneNumber,
         address,
+        password: password,
       });
 
       navigate('/mainPage');
