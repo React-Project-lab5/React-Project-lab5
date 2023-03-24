@@ -89,6 +89,7 @@ export function SendMessage() {
           style={{ display: 'none' }}
           id="file"
           name="file"
+          accept="image/*"
           onChange={(e) => setImg(e.target.files[0])}
         />
         <label htmlFor="file">
