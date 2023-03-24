@@ -94,18 +94,25 @@ export default function MyPage() {
 
     updateEmail(user, email)
       .then(() => {
-        const userProvidedPassword = 'a123456'; // 로그인 된 사용자의 비밀번호를 불러와야함!
-        const credential = EmailAuthProvider.credential(
-          user.email,
-          userProvidedPassword
-        );
-        reauthenticateWithCredential(user, credential)
-          .then(() => {
-            console.log('재인증에 성공하였습니다.');
-          })
-          .catch((error) => {
-            console.log('재인증에 실패하였습니다.', error);
-          });
+        getDoc(getUserRef).then((doc) => {
+          if (doc.exists()) {
+            const userProvidedPassword = doc.data().password;
+            console.log('비밀번호 : ', userProvidedPassword);
+
+            const credential = EmailAuthProvider.credential(
+              user.email,
+              userProvidedPassword
+            );
+            reauthenticateWithCredential(user, credential)
+              .then(() => {
+                console.log('재인증에 성공하였습니다.');
+                alert('회원 정보가 수정되었습니다!');
+              })
+              .catch((error) => {
+                console.log('재인증에 실패하였습니다.', error);
+              });
+          }
+        });
         console.log('사용자 이메일 변경 완료!');
       })
       .catch((error) => {

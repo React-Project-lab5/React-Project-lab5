@@ -28,7 +28,7 @@ export function Navbar() {
         getDoc(getUserRef).then((doc) => {
           if (doc.exists()) {
             const userData = doc.data();
-            setImageUrl(userData.imageUrl);
+            setImageUrl(userData.photoURL);
           }
         });
       }
