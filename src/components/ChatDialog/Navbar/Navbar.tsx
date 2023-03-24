@@ -6,9 +6,12 @@ import { AuthContext } from '@/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { db } from '@/firebase/app';
 import { doc, getDoc, collection } from '@firebase/firestore';
+import { useRecoilState } from 'recoil';
+import { authImagState } from '@/states/authImgState';
 
 export function Navbar() {
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageUrl, setImageUrl] = useRecoilState(authImagState);
+
   const navigation = useNavigate();
   const { currentUser } = useContext(AuthContext);
 
