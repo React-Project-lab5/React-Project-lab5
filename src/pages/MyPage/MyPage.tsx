@@ -30,6 +30,7 @@ export default function MyPage() {
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
+  const user = auth.currentUser;
 
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((user) => {
@@ -42,6 +43,11 @@ export default function MyPage() {
             setEmail(userData.email);
             setPhoneNumber(userData.phoneNumber);
             setAddress(userData.address);
+          } else {
+            user.providerData.forEach((profile) => {
+              setName(profile.displayName);
+              setEmail(profile.email);
+            });
           }
         });
       }
@@ -61,14 +67,16 @@ export default function MyPage() {
 
   /* ------------------------------- '회원정보수정' 클릭 ------------------------------ */
   const handleEditClick = () => {
-    setIsEditing(!isEditing);
+    if (user.providerData[0].providerId === 'google.com') {
+      alert('구글 및 카카오 사용자는 회원정보수정이 불가합니다!');
+    } else {
+      setIsEditing(!isEditing);
+    }
   };
 
   /* -------------------------------- 수정 완료 클릭 -------------------------------- */
   const handleSaveClick = () => {
-    const user = auth.currentUser;
     /* ----- Firestore 업데이트 ----- */
-
     const getUserRef = doc(collection(db, 'users'), user.uid);
     setDoc(
       getUserRef,
@@ -97,7 +105,6 @@ export default function MyPage() {
         getDoc(getUserRef).then((doc) => {
           if (doc.exists()) {
             const userProvidedPassword = doc.data().password;
-            console.log('비밀번호 : ', userProvidedPassword);
 
             const credential = EmailAuthProvider.credential(
               user.email,
