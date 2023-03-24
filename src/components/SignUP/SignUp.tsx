@@ -64,7 +64,7 @@ export default function SignUp() {
     <div className={classes.formContainer}>
       <div className={classes.formWrapper}>
         <LogoIconandText small={false} />
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={classes['signUpForm']}>
           <Input
             type={'name'}
             labelText={'이름'}
@@ -95,7 +95,7 @@ export default function SignUp() {
           <Button
             backgroundColor={'orange'}
             isSmall={false}
-            maxWidthValue={'200'}
+            maxWidthValue={'300px'}
             heightValue={'45'}
             colorValue={'black'}
             text={'회원가입'}

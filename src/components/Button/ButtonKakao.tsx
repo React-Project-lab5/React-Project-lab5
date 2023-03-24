@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import classes from './Button.module.scss';
 import kakao from '/public/assets/kakaoLogo.svg';
 
@@ -6,6 +7,7 @@ interface Props {
   widthValue?: string | number;
   maxWidthValue?: string | number;
   heightValue?: string | number;
+  className?: string;
 }
 
 export function ButtonKakao({
@@ -13,6 +15,7 @@ export function ButtonKakao({
   widthValue,
   maxWidthValue,
   heightValue,
+  className,
 }: Props) {
   const buttonStyle = {
     width: widthValue,
@@ -32,7 +35,7 @@ export function ButtonKakao({
     <button
       type="button"
       aria-label={'Kakao' + text + '버튼'}
-      className={classes.button}
+      className={classNames(classes.button, className)}
       style={buttonStyle}
       onClick={text === '회원가입' ? handleKakaoSignUp : handleKakaoSignIn}
     >
