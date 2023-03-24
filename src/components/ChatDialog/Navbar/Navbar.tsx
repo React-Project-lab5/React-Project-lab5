@@ -29,6 +29,8 @@ export function Navbar() {
           if (doc.exists()) {
             const userData = doc.data();
             setImageUrl(userData.photoURL);
+          } else {
+            setImageUrl(user.providerData[0].photoURL);
           }
         });
       }
