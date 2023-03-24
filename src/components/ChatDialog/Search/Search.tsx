@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import classes from './Search.module.scss';
 import { db } from '@/firebase/firestore/index';
-import { collection, query, where, getDocs } from '@firebase/firestore';
-import { useRecoilValue } from 'recoil';
 import { authImagState } from '@/states/authImgState';
+import defaultAvatar from '/public/assets/defaultAvatars.svg';
+import { collection, query, where, getDocs } from '@firebase/firestore';
 
 export const Search = () => {
   const [username, setUsername] = useState('');
@@ -49,7 +50,11 @@ export const Search = () => {
       {err && <span>사용자를 찾을 수 없습니다</span>}
       {user && (
         <div className={classes.userChat}>
-          <img src={imageUrl} alt="로그인된 사용자 프로필" />
+          {imageUrl ? (
+            <img src={imageUrl} alt="로그인된 사용자 프로필" />
+          ) : (
+            <img src={defaultAvatar} alt="로그인된 사용자 프로필" />
+          )}
           <div className={classes.userChatInfo}>
             <span>{user.displayName}</span>
           </div>
