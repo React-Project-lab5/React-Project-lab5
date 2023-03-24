@@ -14,7 +14,10 @@ export function Nav({ onClick }) {
       >
         <ul>
           <li>
-            <NavLink to="/mainPage">홈</NavLink>
+            <NavLink to="/">홈</NavLink>
+          </li>
+          <li>
+            <NavLink to="/mainPage">모임</NavLink>
           </li>
           <li>
             <NavLink to="/recommend">추천</NavLink>
