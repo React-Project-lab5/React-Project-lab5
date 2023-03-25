@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import classes from './Modal.module.scss';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface Props {
   children?: React.ReactNode;
