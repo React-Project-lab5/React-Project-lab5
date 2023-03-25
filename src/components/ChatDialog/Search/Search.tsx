@@ -1,12 +1,17 @@
 import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import classes from './Search.module.scss';
 import { db } from '@/firebase/firestore/index';
+import { authImagState } from '@/states/authImgState';
+import defaultAvatar from '/public/assets/defaultAvatars.svg';
 import { collection, query, where, getDocs } from '@firebase/firestore';
 
 export const Search = () => {
   const [username, setUsername] = useState('');
   const [user, setUser] = useState(null);
   const [err, setErr] = useState(false);
+
+  const imageUrl = useRecoilValue(authImagState);
 
   //로그인된 사용자 정보 찾기
   const handleSearch = async () => {
@@ -19,6 +24,8 @@ export const Search = () => {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         setUser(doc.data());
+
+        console.log(doc.data().imageUrl);
       });
     } catch (err) {
       setErr(true);
@@ -43,10 +50,11 @@ export const Search = () => {
       {err && <span>사용자를 찾을 수 없습니다</span>}
       {user && (
         <div className={classes.userChat}>
-          <img
-            src="https://avatars.githubusercontent.com/u/104710243?v=4"
-            alt="로그인된 사용자 프로필"
-          />
+          {imageUrl ? (
+            <img src={imageUrl} alt="로그인된 사용자 프로필" />
+          ) : (
+            <img src={defaultAvatar} alt="로그인된 사용자 프로필" />
+          )}
           <div className={classes.userChatInfo}>
             <span>{user.displayName}</span>
           </div>

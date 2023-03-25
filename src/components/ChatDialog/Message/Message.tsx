@@ -1,22 +1,32 @@
-/* eslint-disable react/prop-types */
 import classNames from 'classnames';
-import { useRef } from 'react';
+import { useRecoilValue } from 'recoil';
 import classes from './Message.module.scss';
+import { authImagState } from '@/states/authImgState';
+import defaultAvatar from '/public/assets/defaultAvatars.svg';
 
-export function Message({ message }) {
-  const scroll = useRef();
+interface MessageProps {
+  message: {
+    text: string;
+    photoURL: string;
+  };
+}
+
+export function Message({ message }: MessageProps) {
+  const imageUrl = useRecoilValue(authImagState);
+
   return (
     <div className={classNames(classes.message, classes.owner)}>
       <div className={classes.messageInfo}>
-        <img
-          src="https://avatars.githubusercontent.com/u/38703262?v=4"
-          alt=""
-        />
+        {imageUrl ? (
+          <img src={imageUrl} alt="로그인된 사용자 프로필" />
+        ) : (
+          <img src={defaultAvatar} alt="로그인된 사용자 프로필" />
+        )}
       </div>
       <div className={classes.messageContent}>
+        {message.photoURL && <img src={message.photoURL} alt={'채팅 이미지'} />}
         <p>{message.text}</p>
       </div>
-      <span ref={scroll}></span>
     </div>
   );
 }

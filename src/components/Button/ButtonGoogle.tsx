@@ -3,12 +3,14 @@ import google from '/public/assets/googleLogo.svg';
 import { GoogleAuthProvider, signInWithRedirect } from '@firebase/auth';
 import { auth } from '@/firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import classNames from 'classnames';
 
 interface Props {
   text: '로그인' | '회원가입';
   widthValue?: string | number;
   maxWidthValue?: string | number;
   heightValue?: string | number;
+  className?: string;
 }
 
 export function ButtonGoogle({
@@ -16,6 +18,7 @@ export function ButtonGoogle({
   widthValue,
   maxWidthValue,
   heightValue,
+  className,
 }: Props) {
   const buttonStyle = {
     width: widthValue,
@@ -39,7 +42,7 @@ export function ButtonGoogle({
       <button
         type="button"
         aria-label={'Google ' + text + ' 버튼'}
-        className={classes.button}
+        className={classNames(classes.button, className)}
         style={buttonStyle}
         onClick={text === '회원가입' ? handleGoogleSignUp : handleGoogleSignIn}
       >

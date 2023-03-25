@@ -40,8 +40,14 @@
 
     .messageContent {
       align-items: flex-end;
+
+      img {
+        min-width: 100px;
+        min-height: 100px;
+      }
+
       p {
-        background-color: var(--colar-600);
+        background-color: var(--colar-700);
         color: var(--gray-100);
         border-radius: 10px 0px 10px 10px;
       }

@@ -8,6 +8,7 @@ import { doc, setDoc } from '@firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, updateProfile } from '@firebase/auth';
 import { LogoIconandText } from '../LogoIconandText/LogoIconandText';
+
 export default function SignUp() {
   const [err, setErr] = useState(false);
   const navigate = useNavigate();
@@ -25,6 +26,8 @@ export default function SignUp() {
     const email = e.target[1].value;
     const password = e.target[2].value;
     const passwordConfirm = e.target[3].value;
+    const phoneNumber = '';
+    const address = '';
 
     if (!displayName || displayName.trim().length < 2) {
       alert('이름은 2글자 이상 입력해야 해요');
@@ -46,6 +49,9 @@ export default function SignUp() {
         uid: res.user.uid,
         displayName,
         email,
+        phoneNumber,
+        address,
+        password: password,
       });
 
       navigate('/mainPage');
@@ -58,7 +64,7 @@ export default function SignUp() {
     <div className={classes.formContainer}>
       <div className={classes.formWrapper}>
         <LogoIconandText small={false} />
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={classes['signUpForm']}>
           <Input
             type={'name'}
             labelText={'이름'}
@@ -89,7 +95,7 @@ export default function SignUp() {
           <Button
             backgroundColor={'orange'}
             isSmall={false}
-            maxWidthValue={'200'}
+            maxWidthValue={'300px'}
             heightValue={'45'}
             colorValue={'black'}
             text={'회원가입'}

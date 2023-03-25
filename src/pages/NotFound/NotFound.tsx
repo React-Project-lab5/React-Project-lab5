@@ -1,5 +1,8 @@
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import classes from './NotFound.module.scss';
 export default function NotFound() {
+  useDocumentTitle('404 Page');
+
   return (
     <>
       <div className={classes.container}>

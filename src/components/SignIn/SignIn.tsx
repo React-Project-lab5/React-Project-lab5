@@ -1,14 +1,15 @@
-import classes from './SignIn.module.scss';
+import { auth } from '@/firebase/auth';
 import { Input } from '../Input/Input';
-import { LogoIconandText } from '../LogoIconandText/LogoIconandText';
-import { Button, ButtonGoogle, ButtonKakao } from '../Button';
-import { useState } from 'react';
+import classes from './SignIn.module.scss';
+import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from '@firebase/auth';
-import { auth } from '@/firebase/auth';
+import { Button, ButtonGoogle, ButtonKakao } from '../Button';
+import { LogoIconandText } from '../LogoIconandText/LogoIconandText';
+
 export default function SignIn() {
   const inputProps = {
-    maxWidthValue: '30',
+    maxWidthValue: '400px',
     heightValue: '50',
     isA11yHidden: true,
   };
@@ -16,14 +17,14 @@ export default function SignIn() {
   const [err, setErr] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const email = e.target[0].value;
     const password = e.target[1].value;
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert('성공');
+      alert('로그인 성공!');
       navigate('/mainPage');
     } catch (err) {
       setErr(true);
@@ -34,7 +35,7 @@ export default function SignIn() {
     <div className={classes.formContainer}>
       <div className={classes.formWrapper}>
         <LogoIconandText small={false} />
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={classes['signInForm']}>
           <Input
             type={'email'}
             placeHolder={'이메일을 입력하세요.'}
@@ -50,7 +51,7 @@ export default function SignIn() {
           <Button
             backgroundColor={'orange'}
             isSmall={false}
-            maxWidthValue={'310'}
+            maxWidthValue={400}
             heightValue={'50'}
             colorValue={'white'}
             text={'로그인'}
@@ -60,8 +61,8 @@ export default function SignIn() {
             <span className={classes.error}>🚫 다시 입력해 주세요 🚫</span>
           )}
         </form>
-        <ButtonGoogle text="로그인" />
-        <ButtonKakao text="로그인" />
+        <ButtonGoogle text="로그인" maxWidthValue={400} className={classes['signInButtonGoogle']}/>
+        <ButtonKakao text="로그인" maxWidthValue={400} className={classes['signInButtonKakao']}/>
         <p>
           로그인 계정이 없으신가요?
           <span> 회원가입</span>

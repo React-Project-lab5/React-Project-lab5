@@ -1,8 +1,8 @@
 .logoText {
-   span {
+    span {
     display: block;
     font-weight: 700;
-    font-size: 3rem;
+    font-size: clamp(2rem, 3vw, 3rem);
     text-align: center;
   }
   

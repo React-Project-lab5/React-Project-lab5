@@ -1,52 +1,62 @@
 @import "@/styles/common/index.scss";
-.homeContainer{
-  width: 100%;
+
+
+.divContainer{
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 30px;
-  margin: 0 auto;
-  .homeLeftContent{
-    width: 100%;
-    margin:0 auto;
-    text-align: center;
-    span{
-      font-size: clamp(1rem, 5vw, 2.5rem);
-      font-weight: 700;
-    }
+  width: 100%;
+
+  .homeBanner{
     @include mobile{
       display: none;
     }
   }
 
+  .contents {
+    background-color: var(--gray-200);
+    width: 360px;
+    height: 100vh;
+    padding: 15px 15px;
+    display: flex;
+    margin-left: auto;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    @include mobile {
+      max-width: 360px;
+      width: 100%;
+      gap:10px;
+    }
+    
 
-.contents {
-  background-color: var(--gray-200);
-  width: 360px;
-  height: 1024px;
-  padding: 0 15px;
-  display: flex;
-  margin-left: auto;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  
+    .startText {
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 37px;
+    }
 
-  .startText {
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 37px;
-  }
-
-  .joinButton,
-  .loginButton {
-    font-size: 22px;
-  }
-
-  .guestButton {
-    font-size: 32px;
-    margin-top: 40px;
+    .joinButton,
+    .loginButton {
+      font-size: 22px;
+      color:var(--orange-800);
+    }
+    
+    .guestButton {
+      font-size: 32px;
+      margin-top: 40px;
+      color:var(--orange-800);
+    }
+    .joinButton:hover,
+    .loginButton:hover,
+    .guestButton:hover{
+      color:var(--white);
+    }
   }
 }
+
+
+// ShowLogin Modal
+.showLoginModal{
+  padding:0 !important;
+  height: 100%;
 }
