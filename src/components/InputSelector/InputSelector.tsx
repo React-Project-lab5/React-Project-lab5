@@ -152,6 +152,7 @@ export function InputSelector({
     <select
       onChange={(e) => {
         setMainAddress(e.target.value);
+        console.log(e.target.value);
         for (let i = 0; i < location.length; i++) {
           if (e.target.value === location[i].value) {
             setAddress(location[i].address);

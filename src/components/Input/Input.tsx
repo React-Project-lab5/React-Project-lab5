@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import classes from './Input.module.scss';
 import classNames from 'classnames';
@@ -14,6 +15,8 @@ interface Props {
   onChange?: DebouncedFunc<() => void>;
   disabled?: boolean;
   value?: string;
+  defaultValue?: string;
+  onKeyDown?: (e: unknown) => void;
 }
 
 export function Input({
@@ -27,6 +30,8 @@ export function Input({
   disabled,
   onChange,
   value,
+  defaultValue,
+  onKeyDown,
 }: Props) {
   const inputStyle = {
     maxWidth: maxWidthValue,
@@ -55,6 +60,8 @@ export function Input({
         required
         disabled={disabled}
         value={value}
+        defaultValue={defaultValue}
+        onKeyDown={onKeyDown}
       />
     </React.Fragment>
   );
