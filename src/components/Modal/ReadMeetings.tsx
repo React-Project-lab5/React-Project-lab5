@@ -18,11 +18,9 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import React from 'react';
 import { usersState } from '@/states/usersState';
+import { lazyMinLoadTime } from './lazyMinLoadTime';
 
-const ShowCard = React.lazy(async () => {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  return import('./ShowCard');
-});
+const ShowCard = lazyMinLoadTime(() => import('./ShowCard'), 5000);
 
 interface Props {
   openModal: boolean;
