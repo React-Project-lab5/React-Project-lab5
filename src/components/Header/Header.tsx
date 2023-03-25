@@ -1,4 +1,5 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { LogoIconandText } from '@/components/LogoIconandText/LogoIconandText';
 import { Link } from 'react-router-dom';
 import { Nav } from '@/components/Nav/Nav';
@@ -13,11 +14,13 @@ export function Header() {
     setActive((current) => !current);
   };
 
+  const reload = () => window.location.replace('/mainPage');
+
   return (
     <header className={classes.header}>
-      <Link to="/mainPage">
+      <div onClick={reload} className={classes.headerDiv}>
         <LogoIconandText small={true} />
-      </Link>
+      </div>
       <Nav onClick={clickHamburger} />
     </header>
   );
