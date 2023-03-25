@@ -20,6 +20,7 @@ import {
 } from '@firebase/firestore';
 import { db } from '@/firebase/app';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+import { debounce } from 'lodash';
 
 export default function MyPage() {
   useDocumentTitle('슬기로운 N밥 생활 | 마이 페이지');
@@ -149,6 +150,22 @@ export default function MyPage() {
       });
   };
 
+  const editName = debounce((e) => {
+    setName(e.target.value);
+  }, 500);
+
+  const editEmail = debounce((e) => {
+    setEmail(e.target.value);
+  }, 500);
+
+  const editPhoneNumber = debounce((e) => {
+    setPhoneNumber(e.target.value);
+  }, 500);
+
+  const editAddress = debounce((e) => {
+    setAddress(e.target.value);
+  }, 500);
+
   return (
     <section className={classes.myPageSection}>
       <div className={classes.myPageContainer}>
@@ -164,7 +181,7 @@ export default function MyPage() {
                   heightValue={80}
                   labelText="Name"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={editName}
                   disabled={!isEditing}
                 />
               </form>
@@ -175,7 +192,7 @@ export default function MyPage() {
                   heightValue={80}
                   labelText="Email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={editEmail}
                   disabled={!isEditing}
                 />
               </form>
@@ -188,7 +205,7 @@ export default function MyPage() {
                   heightValue={80}
                   labelText="Phone"
                   value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  onChange={editPhoneNumber}
                   disabled={!isEditing}
                 />
               </form>
@@ -199,7 +216,7 @@ export default function MyPage() {
                   heightValue={80}
                   labelText="Address"
                   value={address}
-                  onChange={(e) => setAddress(e.target.value)}
+                  onChange={editAddress}
                   disabled={!isEditing}
                 />
               </form>
