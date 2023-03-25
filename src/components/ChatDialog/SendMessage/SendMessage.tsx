@@ -26,10 +26,9 @@ export function SendMessage() {
       return;
     }
     const { uid, displayName } = currentUser;
-
     if (img) {
       const uniqueId = img.name;
-      const storageRef = ref(storage, uniqueId);
+      const storageRef = ref(storage, `assets/${uniqueId}`);
       const uploadTask = uploadBytesResumable(storageRef, img);
 
       uploadTask.on(
