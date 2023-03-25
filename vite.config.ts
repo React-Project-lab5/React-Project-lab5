@@ -11,6 +11,7 @@ export default defineConfig({
     'process.env': {},
   },
   plugins: [react(), svgr()],
+  base: '/React-Project-lab5/',
   server: {
     host: 'localhost',
     port: 3000,
