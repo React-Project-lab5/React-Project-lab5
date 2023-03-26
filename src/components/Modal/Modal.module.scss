@@ -217,8 +217,15 @@
     }
   }
 
-// // ShowLogin
-// .showLoginModal{
-//   padding:0;
-//   height: 100%;
-// }
+  .authorContainer{
+    display: flex;
+    align-items: center;
+    gap:0.5rem;
+
+    .authorImg{
+      
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+  }

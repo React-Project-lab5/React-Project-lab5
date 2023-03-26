@@ -1,6 +1,11 @@
 import { atom } from 'recoil';
 
-export const usersState = atom({
+export interface Card {
+  userImg?: string;
+  userName?: string;
+}
+
+export const usersState = atom<Card[]>({
   key: 'usersState',
   default: [],
 });

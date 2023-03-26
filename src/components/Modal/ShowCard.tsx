@@ -1,11 +1,21 @@
-import { MapReading } from '@/utils/MapReading';
 import classes from './Modal.module.scss';
+import { useLayoutEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { readingMap } from '@/@recoil/readingMap';
 
 export default function ShowCard({ cards }) {
+  const setMapData = useSetRecoilState(readingMap);
+
+  useLayoutEffect(() => {
+    async function fetchAndSetCard() {
+      const mapPosition = await cards[0].mapData;
+      setMapData(mapPosition);
+    }
+    fetchAndSetCard();
+  }, [cards, setMapData]);
   return cards.map((value, index: number) => (
     <div key={index} className={classes.showUsers}>
-      <MapReading mapPosition={value.mapData} />
-      <span>{value.title}</span>
+      <span>{value.title.join(' ')}</span>
       <span>{value.address}</span>
       <span>{value.detail}</span>
       <span>{value.cardData.slice(0, 15)}</span>
