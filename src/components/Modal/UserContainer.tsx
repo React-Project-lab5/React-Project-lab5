@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
-import { Card } from '@/states/cardsState';
+
 import classes from './Modal.module.scss';
+import { Card } from '@/@recoil/usersState';
 
 interface Props {
   cards?: Card[];

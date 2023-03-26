@@ -17,7 +17,7 @@ import { mapState } from '@/@recoil/mapState';
 import { titleMainState } from '@/@recoil/titleMainState';
 import { addressMainState } from '@/@recoil/addressMainState';
 import { detailMainState } from '@/@recoil/detailMainState';
-import { usersState } from '@/@recoil/cardsState';
+import { usersState } from '@/@recoil/usersState';
 import { auth } from '@/firebase/auth';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { useState } from 'react';

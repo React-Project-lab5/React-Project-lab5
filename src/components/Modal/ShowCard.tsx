@@ -1,7 +1,7 @@
 import classes from './Modal.module.scss';
 import { useLayoutEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { readingMap } from '@/states/readingMap';
+import { readingMap } from '@/@recoil/readingMap';
 
 export default function ShowCard({ cards }) {
   const setMapData = useSetRecoilState(readingMap);
