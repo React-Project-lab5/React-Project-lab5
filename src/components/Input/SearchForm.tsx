@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import classes from './SearchFrom.module.scss';
 import { ModalTotal } from '@/components/index';
 import { db } from '@/firebase/firestore/index';
+import { usersState } from '@/@recoil/usersState';
+import { addressState } from '@/@recoil/addressState';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { InputSelector } from '../InputSelector/InputSelector';
 import { collection, query, where, getDocs } from '@firebase/firestore';
