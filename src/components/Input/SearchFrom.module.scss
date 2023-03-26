@@ -20,6 +20,7 @@
     gap:14px;
     padding: 2.375rem 3.625rem;
     border-radius: 1rem;
+
     @include tablet{
         flex-direction: column;
     }

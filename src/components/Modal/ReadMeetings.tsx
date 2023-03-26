@@ -18,11 +18,9 @@ import { usersState } from '@/@recoil/usersState';
 import { deleteUsers } from '@/@recoil/deleteUsers';
 import { MapContainer } from './../../utils/MapContainer';
 import { Button, ModalPotal, Modal } from '@/components/index';
+import { lazyMinLoadTime } from './lazyMinLoadTime';
 
-const ShowCard = React.lazy(async () => {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  return import('./ShowCard');
-});
+const ShowCard = lazyMinLoadTime(() => import('./ShowCard'), 5000);
 
 interface Props {
   openModal: boolean;

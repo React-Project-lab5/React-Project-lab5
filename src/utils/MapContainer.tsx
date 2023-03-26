@@ -1,18 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
-import classes from './MapContainer.module.scss';
 import { useRecoilValue } from 'recoil';
-import { addressState } from '@/@recoil/addressState';
-import { mapState } from '@/@recoil/mapState';
-import { readingMap } from '@/@recoil/readingMap';
 import { useSetRecoilState } from 'recoil';
-import { useRecoilState } from 'recoil';
+import { mapState } from '@/@recoil/mapState';
+import classes from './MapContainer.module.scss';
+import { readingMap } from '@/@recoil/readingMap';
+import { addressState } from '@/@recoil/addressState';
 
 export const MapContainer = () => {
   const kakao = window['kakao'];
   const address = useRecoilValue(addressState);
   const setMapLocation = useSetRecoilState(mapState);
-  const [mapData, setMapData] = useRecoilState(readingMap);
+  const mapData = useRecoilValue(readingMap);
 
   console.log('mapData', typeof mapData);
   useEffect(() => {
