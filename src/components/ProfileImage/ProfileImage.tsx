@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { updateProfile } from '@firebase/auth';
 import classes from './ProfileImage.module.scss';
 import { storage } from '@/firebase/storage/index';
+import defaultAvatar from '/public/assets/chatAvatars.svg';
 import { getDownloadURL, ref, uploadBytes } from '@firebase/storage';
 import { doc, collection, getDoc, setDoc } from '@firebase/firestore';
 
@@ -86,7 +87,7 @@ export function ProfileImage() {
       >
         <img
           className={classes.userPicture}
-          src={ImageUrl || '/public/assets/defaultImage.svg'}
+          src={ImageUrl || defaultAvatar}
           alt="프로필사진"
           title="프로필사진 변경하기"
         />

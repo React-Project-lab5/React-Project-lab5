@@ -7,7 +7,7 @@ import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '@/context/AuthContext';
 import { authImagState } from '@/@recoil/authImgState';
-import defaultAvatar from '/public/assets/defaultAvatars.svg';
+import defaultAvatar from '/public/assets/chatAvatars.svg';
 import { doc, getDoc, collection } from '@firebase/firestore';
 
 export function Navbar() {
@@ -42,11 +42,7 @@ export function Navbar() {
     <div className={classes.navbar}>
       <p className={classes.logo}>슬기로운 N밥생활</p>
       <div className={classes.user}>
-        {imageUrl ? (
-          <img src={imageUrl} alt="사용자" />
-        ) : (
-          <img src={defaultAvatar} alt="사용자" />
-        )}
+        <img src={imageUrl || defaultAvatar} alt="사용자" />
         <p>{currentUser.displayName}</p>
         <button type="button" onClick={handleSignOut}>
           로그아웃
