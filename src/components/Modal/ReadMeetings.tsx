@@ -21,6 +21,7 @@ import { Button, ModalPotal, Modal } from '@/components/index';
 import { lazyMinLoadTime } from './lazyMinLoadTime';
 
 const ShowCard = lazyMinLoadTime(() => import('./ShowCard'), 5000);
+import { UserContainer } from './UserContainer';
 
 interface Props {
   openModal: boolean;
@@ -51,7 +52,7 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
       setCards(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
   };
-  console.log('cards', cards);
+  console.log('cards', cards[0]);
 
   const getAfterDelete = async () => {
     await getDocs(usersCollectionRenderRef).then((data) => {
@@ -71,7 +72,6 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
     setOpenModal(false);
     await deleteCard(localStorage.getItem('Unique ID'));
     getAfterDelete();
-    console.log('작동한다');
   };
 
   return (
@@ -80,8 +80,10 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
         <ModalPotal closePortal={handleClose}>
           <Modal>
             <div className={classes.popupContent}>
-              <MapContainer />
-
+              <div>
+                <MapContainer />
+                <UserContainer cards={cards} />
+              </div>
               <form onSubmit={handleClose} className={classes['modalForm']}>
                 <div className={classes['modalSearch']}>
                   <React.Suspense fallback={<div>로딩 중...</div>}>

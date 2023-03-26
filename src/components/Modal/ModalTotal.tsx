@@ -42,12 +42,10 @@ export function ModalTotal({ createUsers, getUsers }: SearchFormProps) {
 
   const handleDebounceTitle = debounce((event) => {
     setTitle(event.target.value);
-    console.log(event.target.value);
   }, 500);
 
   const handleDebounceDetail = debounce((event) => {
     setDetail(event.target.value);
-    console.log('input onChange 확인', event);
   }, 500);
 
   return (

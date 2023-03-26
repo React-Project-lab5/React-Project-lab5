@@ -7,6 +7,7 @@ import { FormEvent, useState } from 'react';
 import { doc, setDoc } from '@firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
 import { isValidEmail, isValidPw } from '../../utils/validation';
+import { getStorage, ref, getDownloadURL } from '@firebase/storage';
 import { LogoIconandText } from '../LogoIconandText/LogoIconandText';
 import { createUserWithEmailAndPassword, updateProfile } from '@firebase/auth';
 
@@ -59,6 +60,9 @@ export default function SignUp() {
       });
 
       //create user on firestore
+      const defaultImageRef = ref(getStorage(), 'chatAvatars.svg');
+      const defaultImageUrl = await getDownloadURL(defaultImageRef);
+
       await setDoc(doc(db, 'users', res.user.uid), {
         uid: res.user.uid,
         displayName,
@@ -66,6 +70,7 @@ export default function SignUp() {
         phoneNumber,
         address,
         password: password,
+        photoURL: defaultImageUrl,
       });
 
       navigate('/mainPage');

@@ -9,7 +9,7 @@
   }
 
   .mainInput{
-    max-width: 1159px;
+    max-width: 1160px;
     width: 100%;
     margin:0 auto;
     background: var(--orange-100);
@@ -20,6 +20,13 @@
     gap:14px;
     padding: 2.375rem 3.625rem;
     border-radius: 1rem;
+
+    .formInput {
+
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
 
     @include tablet{
         flex-direction: column;

@@ -28,6 +28,8 @@ export function ShowMeetings() {
               town={value.address}
               place={value.detail}
               time={value.cardData}
+              userName={value.userName}
+              userImg={value.userImg}
             />
           </Card>
         </div>
