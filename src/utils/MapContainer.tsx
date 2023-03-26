@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
-import classes from './MapContainer.module.scss';
-import { addressState } from '@/states/addressState';
-import { mapState } from '@/states/mapState';
-import { readingMap } from '@/states/readingMap';
-import { useSetRecoilState } from 'recoil';
 import { useRecoilValue } from 'recoil';
+import { useSetRecoilState } from 'recoil';
+import { mapState } from '@/@recoil/mapState';
+import classes from './MapContainer.module.scss';
+import { readingMap } from '@/@recoil/readingMap';
+import { addressState } from '@/@recoil/addressState';
 
 export const MapContainer = () => {
   const kakao = window['kakao'];

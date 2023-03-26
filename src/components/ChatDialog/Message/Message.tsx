@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { useRecoilValue } from 'recoil';
 import classes from './Message.module.scss';
-import { authImagState } from '@/states/authImgState';
+import { authImagState } from '@/@recoil/authImgState';
 import defaultAvatar from '/public/assets/defaultAvatars.svg';
 
 interface MessageProps {

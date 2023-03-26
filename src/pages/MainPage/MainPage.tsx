@@ -1,6 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Banner, ShowMeetings } from '@/components/index';
-import { SearchFrom } from '@/components/Input/SearchForm';
 import { db } from '@/firebase/firestore/index';
 import {
   addDoc,
@@ -9,19 +7,22 @@ import {
   query,
   getDocs,
   orderBy,
-  doc,
-  deleteDoc,
 } from '@firebase/firestore';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { mapState } from '@/@recoil/mapState';
+import { usersState } from '@/@recoil/usersState';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { cardDataState } from './../../states/cardDataState';
-import { mapState } from '@/states/mapState';
-import { titleMainState } from '@/states/titleMainState';
-import { addressMainState } from '@/states/addressMainState';
-import { detailMainState } from '@/states/detailMainState';
-import { usersState } from '@/states/usersState';
+import { titleMainState } from '@/@recoil/titleMainState';
+import { Banner, ShowMeetings } from '@/components/index';
+import { detailMainState } from '@/@recoil/detailMainState';
+import { SearchFrom } from '@/components/Input/SearchForm';
+import { cardDataState } from '../../@recoil/cardDataState';
+import { addressMainState } from '@/@recoil/addressMainState';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
 export default function MainPage() {
+  useDocumentTitle('슬기로운 N밥생활 | 모임');
+
   const title = useRecoilValue(titleMainState);
   const address = useRecoilValue(addressMainState);
   const detail = useRecoilValue(detailMainState);

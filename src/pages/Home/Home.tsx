@@ -1,5 +1,3 @@
-import classes from './Home.module.scss';
-import { useState } from 'react';
 import {
   LogoIconandText,
   ButtonGoogle,
@@ -7,16 +5,19 @@ import {
   Button,
   HomeBanner,
 } from '@/components/index';
-import SignUp from '@/components/SignUP/SignUp';
+import { useRecoilState } from 'recoil';
+import classes from './Home.module.scss';
 import { useNavigate } from 'react-router-dom';
-// import { ShowLogin } from '@/components/Modal/ShowLogin';
+import SignUp from '@/components/SignUP/SignUp';
 import SignIn from '@/components/SignIn/SignIn';
 import { Modal } from '@/components/Modal/Modal';
 import { ModalPotal } from '@/components/Modal/ModalPotal';
-import { useRecoilState } from 'recoil';
-import { siginState, siginUpState } from '@/states/signState';
+import { siginState, siginUpState } from '@/@recoil/signState';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
 export default function Home() {
+  useDocumentTitle('슬기로운 N밥생활 | 홈');
+
   const navigate = useNavigate();
   const [openLogin, setOpenLogin] = useRecoilState(siginState);
   const [openSignUp, setOpenSignUp] = useRecoilState(siginUpState);

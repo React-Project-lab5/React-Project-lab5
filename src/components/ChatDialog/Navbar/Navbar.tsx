@@ -6,7 +6,7 @@ import classes from './Navbar.module.scss';
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '@/context/AuthContext';
-import { authImagState } from '@/states/authImgState';
+import { authImagState } from '@/@recoil/authImgState';
 import defaultAvatar from '/public/assets/defaultAvatars.svg';
 import { doc, getDoc, collection } from '@firebase/firestore';
 

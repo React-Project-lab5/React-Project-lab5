@@ -1,11 +1,11 @@
-import classes from './ProfileImage.module.scss';
-import { useState, useEffect } from 'react';
-import { getDownloadURL, ref, uploadBytes } from '@firebase/storage';
-import { storage } from '@/firebase/storage/index';
-import { doc, collection, getDoc, setDoc } from '@firebase/firestore';
-import { auth } from '@/firebase/auth';
 import { db } from '@/firebase/app';
+import { auth } from '@/firebase/auth';
+import { useState, useEffect } from 'react';
 import { updateProfile } from '@firebase/auth';
+import classes from './ProfileImage.module.scss';
+import { storage } from '@/firebase/storage/index';
+import { getDownloadURL, ref, uploadBytes } from '@firebase/storage';
+import { doc, collection, getDoc, setDoc } from '@firebase/firestore';
 
 export function ProfileImage() {
   const [ImageUrl, setImageUrl] = useState<string>('');

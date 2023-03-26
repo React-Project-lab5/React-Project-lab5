@@ -1,9 +1,13 @@
-import { NavLink } from 'react-router-dom';
 import classes from './Nav.module.scss';
 import { useRecoilState } from 'recoil';
-import { isActive } from '@/states/isActive';
+import { NavLink } from 'react-router-dom';
+import { isActive } from '@/@recoil/isActive';
 
-export function Nav({ onClick }) {
+interface Props {
+  onClick: () => void;
+}
+
+export function Nav({ onClick }: Props): JSX.Element {
   const [active, setActive] = useRecoilState(isActive);
 
   return (

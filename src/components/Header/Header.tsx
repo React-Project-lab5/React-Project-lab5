@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Nav } from '@/components/Nav/Nav';
 import classes from './Header.module.scss';
 import { useSetRecoilState } from 'recoil';
-import { isActive } from '@/states/isActive';
+import { isActive } from '@/@recoil/isActive';
 
 export function Header() {
   const setActive = useSetRecoilState(isActive);

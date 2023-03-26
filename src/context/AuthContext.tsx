@@ -1,8 +1,6 @@
 import { auth } from '@/firebase/auth';
-import { navUserState } from '@/states/navUserState';
 import { onAuthStateChanged } from '@firebase/auth';
 import { createContext, useState, useEffect, ReactNode } from 'react';
-import { useRecoilState } from 'recoil';
 
 export const AuthContext = createContext({
   currentUser: null,
