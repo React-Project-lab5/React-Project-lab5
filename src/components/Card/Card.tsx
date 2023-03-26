@@ -1,5 +1,5 @@
-import classes from './Card.module.scss';
 import classNames from 'classnames';
+import classes from './Card.module.scss';
 
 interface Props {
   className?: string;

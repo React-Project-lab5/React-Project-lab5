@@ -1,9 +1,9 @@
-import classes from './SearchFrom.module.scss';
 import { Input } from './Input';
-import { InputSelector } from '../InputSelector/InputSelector';
 import { Button } from '../Button';
-import { ModalTotal } from '@/components/index';
 import { useNavigate } from 'react-router-dom';
+import classes from './SearchFrom.module.scss';
+import { ModalTotal } from '@/components/index';
+import { InputSelector } from '../InputSelector/InputSelector';
 
 export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   const movePage = useNavigate();

@@ -1,14 +1,14 @@
-import { FormEvent, useState } from 'react';
 import { Button } from '../Button';
 import { db } from '@/firebase/app';
 import { Input } from '../Input/Input';
 import { auth } from '@/firebase/auth';
 import classes from './SignUp.module.scss';
+import { FormEvent, useState } from 'react';
 import { doc, setDoc } from '@firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
+import { isValidEmail, isValidPw } from '../../utils/validation';
 import { LogoIconandText } from '../LogoIconandText/LogoIconandText';
 import { createUserWithEmailAndPassword, updateProfile } from '@firebase/auth';
-import { isValidEmail, isValidPw } from '../../utils/validation';
 
 export default function SignUp() {
   const [err, setErr] = useState(false);

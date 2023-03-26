@@ -1,11 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { MapContainer } from './../../utils/MapContainer';
-import { Button, ModalPotal, Modal } from '@/components/index';
-import classes from './Modal.module.scss';
-import { useState, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-import { deleteUsers } from '@/states/deleteUsers';
-import { db } from '@/firebase/firestore/index';
 import {
   collection,
   getDocs,
@@ -13,11 +6,18 @@ import {
   where,
   orderBy,
 } from '@firebase/firestore';
-import firebase from 'firebase/compat/app';
+import React from 'react';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import React from 'react';
-import { usersState } from '@/states/usersState';
+import { useRecoilState } from 'recoil';
+import classes from './Modal.module.scss';
+import firebase from 'firebase/compat/app';
+import { useState, useEffect } from 'react';
+import { db } from '@/firebase/firestore/index';
+import { usersState } from '@/@recoil/usersState';
+import { deleteUsers } from '@/@recoil/deleteUsers';
+import { MapContainer } from './../../utils/MapContainer';
+import { Button, ModalPotal, Modal } from '@/components/index';
 
 const ShowCard = React.lazy(async () => {
   await new Promise((resolve) => setTimeout(resolve, 1000));

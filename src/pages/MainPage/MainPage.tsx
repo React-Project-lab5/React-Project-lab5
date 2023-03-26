@@ -9,15 +9,15 @@ import {
   orderBy,
 } from '@firebase/firestore';
 import { useEffect } from 'react';
-import { mapState } from '@/states/mapState';
-import { usersState } from '@/states/usersState';
+import { mapState } from '@/@recoil/mapState';
+import { usersState } from '@/@recoil/usersState';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { titleMainState } from '@/states/titleMainState';
+import { titleMainState } from '@/@recoil/titleMainState';
 import { Banner, ShowMeetings } from '@/components/index';
-import { detailMainState } from '@/states/detailMainState';
+import { detailMainState } from '@/@recoil/detailMainState';
 import { SearchFrom } from '@/components/Input/SearchForm';
-import { cardDataState } from './../../states/cardDataState';
-import { addressMainState } from '@/states/addressMainState';
+import { cardDataState } from '../../@recoil/cardDataState';
+import { addressMainState } from '@/@recoil/addressMainState';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
 export default function MainPage() {

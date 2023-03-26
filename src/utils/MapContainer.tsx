@@ -2,9 +2,9 @@
 import { useEffect } from 'react';
 import classes from './MapContainer.module.scss';
 import { useRecoilValue } from 'recoil';
-import { addressState } from '@/states/addressState';
-import { mapState } from '@/states/mapState';
-import { readingMap } from '@/states/readingMap';
+import { addressState } from '@/@recoil/addressState';
+import { mapState } from '@/@recoil/mapState';
+import { readingMap } from '@/@recoil/readingMap';
 import { useSetRecoilState } from 'recoil';
 import { useRecoilState } from 'recoil';
 

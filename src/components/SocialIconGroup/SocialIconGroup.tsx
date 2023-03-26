@@ -1,9 +1,9 @@
-import classes from './SocialIconGroup.module.scss';
 import Blog from '../../../public/assets/blog.svg';
-import Facebook from '../../../public/assets/faceBook.svg';
-import Instargram from '../../../public/assets/instagram.svg';
-import NaverPost from '../../../public/assets/naverPost.svg';
+import classes from './SocialIconGroup.module.scss';
 import Youtube from '../../../public/assets/youtube.svg';
+import Facebook from '../../../public/assets/faceBook.svg';
+import NaverPost from '../../../public/assets/naverPost.svg';
+import Instargram from '../../../public/assets/instagram.svg';
 
 export function SocialIconGroup() {
   return (
