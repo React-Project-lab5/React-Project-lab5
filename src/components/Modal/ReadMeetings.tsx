@@ -14,8 +14,8 @@ import classes from './Modal.module.scss';
 import firebase from 'firebase/compat/app';
 import { useState, useEffect } from 'react';
 import { db } from '@/firebase/firestore/index';
-import { usersState } from '@/states/usersState';
-import { deleteUsers } from '@/states/deleteUsers';
+import { usersState } from '@/@recoil/usersState';
+import { deleteUsers } from '@/@recoil/deleteUsers';
 import { MapContainer } from './../../utils/MapContainer';
 import { Button, ModalPotal, Modal } from '@/components/index';
 

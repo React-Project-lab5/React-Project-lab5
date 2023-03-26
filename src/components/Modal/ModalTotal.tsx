@@ -12,10 +12,10 @@ import classes from './Modal.module.scss';
 import DatePicker from 'react-datepicker';
 import { useSetRecoilState } from 'recoil';
 import 'react-datepicker/dist/react-datepicker.css';
-import { titleMainState } from '@/states/titleMainState';
+import { titleMainState } from '@/@recoil/titleMainState';
 import { MapContainer } from './../../utils/MapContainer';
-import { detailMainState } from '@/states/detailMainState';
-import { cardDataState } from './../../states/cardDataState';
+import { detailMainState } from '@/@recoil/detailMainState';
+import { cardDataState } from '../../@recoil/cardDataState';
 
 export function ModalTotal({ createUsers, getUsers }: SearchFormProps) {
   const [modalOpened, setModalOpened] = useState(false);

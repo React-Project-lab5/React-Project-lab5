@@ -12,7 +12,7 @@ import SignUp from '@/components/SignUP/SignUp';
 import SignIn from '@/components/SignIn/SignIn';
 import { Modal } from '@/components/Modal/Modal';
 import { ModalPotal } from '@/components/Modal/ModalPotal';
-import { siginState, siginUpState } from '@/states/signState';
+import { siginState, siginUpState } from '@/@recoil/signState';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
 export default function Home() {

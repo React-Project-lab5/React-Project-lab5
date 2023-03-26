@@ -2,8 +2,8 @@
 import classNames from 'classnames';
 import { useSetRecoilState } from 'recoil';
 import classes from './InputSelector.module.scss';
-import { addressState } from '@/states/addressState';
-import { addressMainState } from '@/states/addressMainState';
+import { addressState } from '@/@recoil/addressState';
+import { addressMainState } from '@/@recoil/addressMainState';
 
 interface Props {
   maxWidthValue: number;

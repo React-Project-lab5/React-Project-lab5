@@ -1,7 +1,7 @@
 import classes from './Nav.module.scss';
 import { useRecoilState } from 'recoil';
 import { NavLink } from 'react-router-dom';
-import { isActive } from '@/states/isActive';
+import { isActive } from '@/@recoil/isActive';
 
 interface Props {
   onClick: () => void;
