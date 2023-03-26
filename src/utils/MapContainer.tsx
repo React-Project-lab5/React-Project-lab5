@@ -13,7 +13,6 @@ export const MapContainer = () => {
   const setMapLocation = useSetRecoilState(mapState);
   const mapData = useRecoilValue(readingMap);
 
-  console.log('mapData', typeof mapData);
   useEffect(() => {
     const mapContainer = document.getElementById('map'); // 지도를 표시할 div
     const mapOption = {
