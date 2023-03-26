@@ -1,13 +1,15 @@
-import { useState } from 'react';
 import { Button } from '../Button';
 import { db } from '@/firebase/app';
 import { Input } from '../Input/Input';
 import { auth } from '@/firebase/auth';
 import classes from './SignUp.module.scss';
+import { FormEvent, useState } from 'react';
 import { doc, setDoc } from '@firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword, updateProfile } from '@firebase/auth';
+import { isValidEmail, isValidPw } from '../../utils/validation';
+import { getStorage, ref, getDownloadURL } from '@firebase/storage';
 import { LogoIconandText } from '../LogoIconandText/LogoIconandText';
+import { createUserWithEmailAndPassword, updateProfile } from '@firebase/auth';
 
 export default function SignUp() {
   const [err, setErr] = useState(false);
@@ -19,7 +21,7 @@ export default function SignUp() {
     isA11yHidden: true,
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const displayName = e.target[0].value;
@@ -29,12 +31,25 @@ export default function SignUp() {
     const phoneNumber = '';
     const address = '';
 
+    // validation ---------------------------------------------------
     if (!displayName || displayName.trim().length < 2) {
       alert('이름은 2글자 이상 입력해야 해요');
       return;
     }
+
+    if (!isValidEmail(email)) {
+      alert('이메일 형식으로 입력해 주세요.');
+      return;
+    }
+
+    if (!isValidPw(password)) {
+      alert('영문, 숫자 혼합하여 8자리 이상 입력해주세요.');
+      return;
+    }
+
     if (password !== passwordConfirm) {
-      alert('비밀번호가 맞지않습니다.');
+      alert('비밀번호가 같지 않습니다.');
+      return;
     }
 
     try {
@@ -45,6 +60,9 @@ export default function SignUp() {
       });
 
       //create user on firestore
+      const defaultImageRef = ref(getStorage(), 'chatAvatars.svg');
+      const defaultImageUrl = await getDownloadURL(defaultImageRef);
+
       await setDoc(doc(db, 'users', res.user.uid), {
         uid: res.user.uid,
         displayName,
@@ -52,6 +70,7 @@ export default function SignUp() {
         phoneNumber,
         address,
         password: password,
+        photoURL: defaultImageUrl,
       });
 
       navigate('/mainPage');
@@ -107,7 +126,7 @@ export default function SignUp() {
         </form>
         <p>
           <Link to={'/'}>
-            <span>로그인</span>
+            <span className={classes.login}>로그인 {''}</span>
           </Link>
           계정이 있으신가요?
         </p>

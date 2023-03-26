@@ -3,7 +3,7 @@ import classes from './Modal.module.scss';
 import { useState } from 'react';
 import { ReadMeetings } from './ReadMeetings';
 import { useRecoilState } from 'recoil';
-import { usersState } from '@/states/usersState';
+import { usersState } from '@/states/cardsState';
 
 // eslint-disable-next-line react/prop-types
 export function ShowMeetings() {
@@ -28,6 +28,8 @@ export function ShowMeetings() {
               town={value.address}
               place={value.detail}
               time={value.cardData}
+              userName={value.userName}
+              userImg={value.userImg}
             />
           </Card>
         </div>

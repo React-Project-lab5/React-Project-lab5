@@ -8,18 +8,19 @@ import {
   collection,
   query,
   getDocs,
+  getDoc,
   orderBy,
   doc,
-  deleteDoc,
 } from '@firebase/firestore';
 import { useState, useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { cardDataState } from './../../states/cardDataState';
+import { cardDataState } from '@/states/cardDataState';
 import { mapState } from '@/states/mapState';
 import { titleMainState } from '@/states/titleMainState';
 import { addressMainState } from '@/states/addressMainState';
 import { detailMainState } from '@/states/detailMainState';
-import { usersState } from '@/states/usersState';
+import { usersState } from '@/states/cardsState';
+import { auth } from '@/firebase/auth';
 
 export default function MainPage() {
   const title = useRecoilValue(titleMainState);
@@ -28,6 +29,25 @@ export default function MainPage() {
   const cardData = useRecoilValue(cardDataState);
   const mapData = useRecoilValue(mapState);
   const [users, setUsers] = useRecoilState(usersState);
+  const [name, setName] = useState('');
+  const [userImg, setUserImg] = useState('');
+
+  useEffect(() => {
+    const unsub = auth.onAuthStateChanged((user) => {
+      if (user) {
+        const getUserRef = doc(collection(db, 'users'), user.uid);
+        getDoc(getUserRef).then((doc) => {
+          if (doc.exists()) {
+            const userData = doc.data();
+            console.log(userData);
+            setName(userData.displayName);
+            setUserImg(userData.photoURL);
+          }
+        });
+      }
+    });
+    return unsub;
+  }, []);
 
   const usersCollectionRef = query(
     collection(db, 'makeMeetings'),
@@ -46,12 +66,14 @@ export default function MainPage() {
 
   const createUsers = async () => {
     await addDoc(collection(db, 'makeMeetings'), {
-      title: title,
+      title: title.split(' '),
       address: address,
       detail: detail,
       cardData: cardData,
       mapData: mapData,
       timestamp: serverTimestamp(),
+      userName: name,
+      userImg: userImg,
     });
   };
 

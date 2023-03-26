@@ -9,7 +9,7 @@ import { debounce } from 'lodash';
 import { db } from '@/firebase/firestore/index';
 import { collection, query, where, getDocs } from '@firebase/firestore';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { usersState } from '@/states/usersState';
+import { usersState } from '@/states/cardsState';
 import { addressState } from '@/states/addressState';
 
 export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
@@ -23,19 +23,27 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   };
 
   const handleSearch = async () => {
-    const usersCollectionRef = query(
-      collection(db, 'makeMeetings'),
-      where('title', '==', searchTitle),
-      where('address', '==', address.slice(6, 9))
-    );
+    let usersCollectionRef;
+
+    if (address) {
+      usersCollectionRef = query(
+        collection(db, 'makeMeetings'),
+        where('address', '==', address.slice(6, 9)),
+        where('title', 'array-contains-any', searchTitle.split(' '))
+      );
+    } else {
+      usersCollectionRef = query(
+        collection(db, 'makeMeetings'),
+        where('title', 'array-contains', searchTitle)
+      );
+    }
 
     try {
       const querySnapshot = await getDocs(usersCollectionRef);
-      querySnapshot.forEach((doc) => {
-        setUsers([doc.data()]);
-      });
+      const usersData = querySnapshot.docs.map((doc) => doc.data());
+      setUsers(usersData);
     } catch (err) {
-      throw 'Error 404';
+      throw new Error('Error 404');
     }
   };
 
@@ -56,8 +64,12 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   return (
     <>
       <div className={classes['InputContainer']}>
-        <form onSubmit={handleRegister} role="search">
-          <div className={classes['mainInput']}>
+        <div className={classes['mainInput']}>
+          <form
+            className={classes['formInput']}
+            onSubmit={handleRegister}
+            role="search"
+          >
             <InputSelector
               maxWidthValue={200}
               heightValue={75}
@@ -70,7 +82,6 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
                 labelText="검색창"
                 placeHolder="제목을 검색하세요"
                 isA11yHidden
-                type="search"
                 className={classes.searchFormInput}
                 onKeyDown={handleKey}
                 onChange={writeTitle}
@@ -84,18 +95,18 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
                 <img src="/public/assets/search.svg" alt="검색 버튼" />
               </button>
             </div>
-            <ModalTotal createUsers={createUsers} getUsers={getUsers} />
+          </form>
+          <ModalTotal createUsers={createUsers} getUsers={getUsers} />
 
-            <Button
-              maxWidthValue={'190px'}
-              heightValue={'75px'}
-              text="채팅 하기"
-              backgroundColor={'orange'}
-              className={classes.ChatButton}
-              onClick={goChatPage}
-            />
-          </div>
-        </form>
+          <Button
+            maxWidthValue={'190px'}
+            heightValue={'75px'}
+            text="채팅 하기"
+            backgroundColor={'orange'}
+            className={classes.ChatButton}
+            onClick={goChatPage}
+          />
+        </div>
       </div>
     </>
   );
