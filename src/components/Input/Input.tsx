@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import classes from './Input.module.scss';
 import classNames from 'classnames';
+import classes from './Input.module.scss';
 import type { DebouncedFunc } from 'lodash';
 
 interface Props {

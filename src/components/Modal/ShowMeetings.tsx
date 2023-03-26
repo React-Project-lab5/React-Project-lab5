@@ -3,7 +3,7 @@ import classes from './Modal.module.scss';
 import { useState } from 'react';
 import { ReadMeetings } from './ReadMeetings';
 import { useRecoilState } from 'recoil';
-import { usersState } from '@/states/cardsState';
+import { usersState } from '@/@recoil/usersState';
 
 // eslint-disable-next-line react/prop-types
 export function ShowMeetings() {

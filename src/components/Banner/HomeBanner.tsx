@@ -9,7 +9,11 @@ import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper';
 import classes from './Banner.module.scss';
 import classNames from 'classnames';
 
-export function HomeBanner({ className }) {
+interface HomeBannerProps {
+  className?: string;
+}
+
+export function HomeBanner({ className }: HomeBannerProps) {
   const items = [
     {
       src: '../assets/homeBanner_1.svg',

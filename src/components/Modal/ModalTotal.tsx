@@ -5,17 +5,17 @@ import {
   Modal,
   ModalPotal,
 } from '@/components/index';
-import classes from './Modal.module.scss';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import { MapContainer } from './../../utils/MapContainer';
+import React from 'react';
 import { useState } from 'react';
 import { debounce } from 'lodash';
+import classes from './Modal.module.scss';
+import DatePicker from 'react-datepicker';
 import { useSetRecoilState } from 'recoil';
-import { cardDataState } from './../../states/cardDataState';
-import React from 'react';
-import { titleMainState } from '@/states/titleMainState';
-import { detailMainState } from '@/states/detailMainState';
+import 'react-datepicker/dist/react-datepicker.css';
+import { titleMainState } from '@/@recoil/titleMainState';
+import { MapContainer } from './../../utils/MapContainer';
+import { detailMainState } from '@/@recoil/detailMainState';
+import { cardDataState } from '../../@recoil/cardDataState';
 
 export function ModalTotal({ createUsers, getUsers }: SearchFormProps) {
   const [modalOpened, setModalOpened] = useState(false);

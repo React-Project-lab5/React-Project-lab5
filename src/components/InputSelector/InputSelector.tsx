@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
-import classes from './InputSelector.module.scss';
 import classNames from 'classnames';
-import { addressState } from '@/states/addressState';
 import { useSetRecoilState } from 'recoil';
-import { addressMainState } from '@/states/addressMainState';
+import classes from './InputSelector.module.scss';
+import { addressState } from '@/@recoil/addressState';
+import { addressMainState } from '@/@recoil/addressMainState';
 
 interface Props {
   maxWidthValue: number;

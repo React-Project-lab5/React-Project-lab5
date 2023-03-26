@@ -1,5 +1,5 @@
 import { useSetRecoilState } from 'recoil';
-import { readingMap } from '@/states/readingMap';
+import { readingMap } from '@/@recoil/readingMap';
 import { useLayoutEffect } from 'react';
 
 interface Props {
