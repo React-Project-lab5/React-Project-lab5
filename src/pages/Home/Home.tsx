@@ -48,8 +48,8 @@ export default function Home() {
       <div className={classes.contents}>
         <LogoIconandText small={false} />
         <h2 className={classes.startText}>지금 시작하세요!</h2>
-        <ButtonGoogle text="회원가입" widthValue={'330px'} />
-        <ButtonKakao text="회원가입" widthValue={'330px'} />
+        <ButtonGoogle widthValue={'330px'} />
+        <ButtonKakao widthValue={'330px'} />
         <span className={classes.startText}>또는</span>
         <Button
           maxWidthValue={'330px'}

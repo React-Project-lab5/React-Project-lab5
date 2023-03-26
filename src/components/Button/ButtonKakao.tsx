@@ -3,7 +3,6 @@ import classes from './Button.module.scss';
 import kakao from '/public/assets/kakaoLogo.svg';
 
 interface Props {
-  text: '로그인' | '회원가입';
   widthValue?: string | number;
   maxWidthValue?: string | number;
   heightValue?: string | number;
@@ -11,7 +10,6 @@ interface Props {
 }
 
 export function ButtonKakao({
-  text,
   widthValue,
   maxWidthValue,
   heightValue,
@@ -23,10 +21,6 @@ export function ButtonKakao({
     height: heightValue,
   };
 
-  const handleKakaoSignUp = () => {
-    console.log('handleKakaoSignUp');
-  };
-
   const handleKakaoSignIn = () => {
     console.log('handleKakaoSignIn');
   };
@@ -34,13 +28,13 @@ export function ButtonKakao({
   return (
     <button
       type="button"
-      aria-label={'Kakao' + text + '버튼'}
+      aria-label={'Kakao 로그인 버튼'}
       className={classNames(classes.button, className)}
       style={buttonStyle}
-      onClick={text === '회원가입' ? handleKakaoSignUp : handleKakaoSignIn}
+      onClick={handleKakaoSignIn}
     >
       <img src={kakao} alt="Kakao 로고 이미지" />
-      Kakao {text}
+      Kakao 로그인
     </button>
   );
 }

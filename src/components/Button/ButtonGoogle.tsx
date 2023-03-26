@@ -6,7 +6,6 @@ import google from '/public/assets/googleLogo.svg';
 import { GoogleAuthProvider, signInWithRedirect } from '@firebase/auth';
 
 interface Props {
-  text: '로그인' | '회원가입';
   widthValue?: string | number;
   maxWidthValue?: string | number;
   heightValue?: string | number;
@@ -14,7 +13,6 @@ interface Props {
 }
 
 export function ButtonGoogle({
-  text,
   widthValue,
   maxWidthValue,
   heightValue,
@@ -33,21 +31,17 @@ export function ButtonGoogle({
     navigate('/mainpage');
   };
 
-  const handleGoogleSignUp = () => {
-    console.log('handleGoogleSignUp');
-  };
-
   return (
     <>
       <button
         type="button"
-        aria-label={'Google ' + text + ' 버튼'}
+        aria-label={'Google 로그인 버튼'}
         className={classNames(classes.button, className)}
         style={buttonStyle}
-        onClick={text === '회원가입' ? handleGoogleSignUp : handleGoogleSignIn}
+        onClick={handleGoogleSignIn}
       >
         <img src={google} alt="Google 로고 이미지" />
-        Google {text}
+        Google 로그인
       </button>
     </>
   );
