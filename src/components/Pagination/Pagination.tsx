@@ -37,9 +37,9 @@ export const Pagination: FC<PaginationProps> = ({
   };
 
   return (
-    <nav>
-      <ul className={classes.pagination}>
-        <button type="button" onClick={handlePrev}>
+    <nav className={classes.pagination}>
+      <ul>
+        <button type="button" onClick={handlePrev} tabIndex={0}>
           <IoIosArrowBack />
         </button>
         {pageNumbers.map((number) => (
@@ -52,12 +52,14 @@ export const Pagination: FC<PaginationProps> = ({
               }}
               href="/recommend/#"
               role="button"
+              className={currentPage === number ? classes.selected : ''}
+              tabIndex={0}
             >
               {number}
             </a>
           </li>
         ))}
-        <button type="button" onClick={handleNext}>
+        <button type="button" onClick={handleNext} tabIndex={0}>
           <IoIosArrowForward />
         </button>
       </ul>

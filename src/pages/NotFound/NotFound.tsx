@@ -6,9 +6,9 @@ export default function NotFound() {
   return (
     <>
       <div className={classes.container}>
-        <span className={classes.span}>🚫 404 Error 🚫</span>
-        <h1 className={classes.title}>404</h1>
-        <p className={classes.content}>존재 하지 않는 페이지 입니다..</p>
+        <span>🚫 404 Error 🚫</span>
+        <h1>404</h1>
+        <p>존재 하지 않는 페이지 입니다..</p>
       </div>
     </>
   );

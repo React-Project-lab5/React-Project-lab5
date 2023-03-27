@@ -16,7 +16,7 @@
       width: 30px;
       height: 30px;
       border-radius: 50%;
-      background-color: var(--colar-600);
+      background-color: var(--primary);
       color: #fff;
       display: flex;
       align-items: center;
@@ -25,13 +25,19 @@
       line-height: 30px;
 
       &:hover {
-        background: var(--colar-700);
+        background: var(--colar-600);
       }
       &:focus {
         color: var(--accent);
       }
       &:active {
         color: var(--accent);
+      }
+
+      a {
+        display: block;
+        width: 30px;
+        height: 30px;
       }
     }
 
@@ -40,13 +46,18 @@
       height: 30px;
       font-size: 24px;
 
+      &[tabIndex='0']:focus {
+        outline: 2px solid var(--accent);
+      }
+
       &:hover {
         color: var(--positive);
       }
     }
   }
 }
+
 .selected {
   font-weight: 700;
-  color: var(--accent);
+  color: var(--black);
 }
