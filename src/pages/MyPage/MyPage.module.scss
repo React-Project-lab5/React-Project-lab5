@@ -101,6 +101,9 @@
       .userAbleItem {
         float: left;
         font-weight: 600;
+        &:focus {
+          border: 2px solid black;
+        }
       }
 
       @include tablet {
