@@ -62,6 +62,7 @@
   &:hover .closeTooltip {
     visibility: visible;
   }
+  
 }
 .closeTooltip {
   padding: 5px 7px;
@@ -138,6 +139,10 @@
   color: red;
   vertical-align: middle;
   cursor: pointer;
+
+  &:focus {
+    border: 2px solid black;
+  }
 }
 
 .signupButton {

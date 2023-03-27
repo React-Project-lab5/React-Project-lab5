@@ -22,6 +22,13 @@ export function ShowMeetings() {
               localStorage.setItem('Unique ID', value.id);
               console.log('showmeetings', value);
             }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                setOpenModal(true);
+                localStorage.setItem('Unique ID', value.id);
+                console.log('showmeetings', value);
+              }
+            }}
           >
             <Meeting
               title={value.title}
