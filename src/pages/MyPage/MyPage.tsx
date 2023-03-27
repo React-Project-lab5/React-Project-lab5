@@ -1,26 +1,26 @@
-import classes from './MyPage.module.scss';
-import { Input, ProfileImage } from '@/components';
-import { useState, useEffect, useCallback } from 'react';
-import {
-  signOut,
-  deleteUser,
-  updateProfile,
-  updateEmail,
-  EmailAuthProvider,
-  reauthenticateWithCredential,
-} from '@firebase/auth';
+import { debounce } from 'lodash';
+import { db } from '@/firebase/app';
 import { auth } from '@/firebase/auth';
+import classes from './MyPage.module.scss';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Input, ProfileImage } from '@/components';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import {
   doc,
-  collection,
   getDoc,
   setDoc,
   deleteDoc,
+  collection,
 } from '@firebase/firestore';
-import { db } from '@/firebase/app';
-import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { debounce } from 'lodash';
+import {
+  signOut,
+  deleteUser,
+  updateEmail,
+  updateProfile,
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+} from '@firebase/auth';
 
 export default function MyPage() {
   useDocumentTitle('슬기로운 N밥 생활 | 마이 페이지');
@@ -31,6 +31,7 @@ export default function MyPage() {
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
+
   const user = auth.currentUser;
 
   const [isLoading, setIsLoading] = useState(true);
@@ -64,6 +65,18 @@ export default function MyPage() {
     return unsub;
   }, []);
 
+  /* ------------------------------- '회원정보수정' 클릭 ------------------------------ */
+  const handleEditClick = () => {
+    if (
+      user.providerData[0].providerId === 'google.com' ||
+      user.providerData[0].photoURL.includes('kakao')
+    ) {
+      alert('구글 및 카카오 사용자는 회원정보수정이 불가합니다!');
+    } else {
+      setIsEditing(!isEditing);
+    }
+  };
+
   useEffect(() => {
     const userController = document.getElementById('memberController');
 
@@ -71,21 +84,12 @@ export default function MyPage() {
       return;
     }
 
-    if (userController) {
+    if (isEditing) {
       userController.style.color = 'red';
     } else {
       userController.style.color = 'black';
     }
   }, [isEditing]);
-
-  /* ------------------------------- '회원정보수정' 클릭 ------------------------------ */
-  const handleEditClick = () => {
-    if (user.providerData[0].providerId === 'google.com') {
-      alert('구글 및 카카오 사용자는 회원정보수정이 불가합니다!');
-    } else {
-      setIsEditing(!isEditing);
-    }
-  };
 
   /* -------------------------------- 수정 완료 클릭 -------------------------------- */
   const handleSaveClick = () => {
@@ -140,26 +144,32 @@ export default function MyPage() {
       });
   };
 
-  /* ---------------------------------- 로그아웃 ---------------------------------- */
-  const handleSignOut = () => {
-    signOut(auth);
-    alert('로그아웃이 되었습니다.');
-    navigation('/');
-  };
-  /* ---------------------------------- 회원탈퇴 ---------------------------------- */
-  const handleSignDropOut = () => {
+  const deleteDocument = (member: string) => {
     const user = auth.currentUser;
-
     deleteDoc(doc(db, 'users', user.uid));
-
     deleteUser(user)
       .then(() => {
-        alert('회원 탈퇴 성공!');
+        alert(`${member} 되었습니다.`);
         navigation('/');
       })
       .catch((error) => {
-        console.log('회원 탈퇴 실패!', error);
+        console.log(`${member} 실패!`, error);
       });
+  };
+
+  /* ---------------------------------- 로그아웃 ---------------------------------- */
+  const handleSignOut = () => {
+    if (user.providerData[0].photoURL.includes('kakao')) {
+      deleteDocument('로그아웃');
+    } else {
+      signOut(auth);
+      alert('로그아웃이 되었습니다.');
+      navigation('/');
+    }
+  };
+  /* ---------------------------------- 회원탈퇴 ---------------------------------- */
+  const handleSignDropOut = () => {
+    deleteDocument('회원 탈퇴');
   };
 
   /* -------------------------------- debounce -------------------------------- */
@@ -225,7 +235,7 @@ export default function MyPage() {
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Phone"
-                  defaultValue={user.phoneNumber}
+                  defaultValue={phoneNumber}
                   onChange={editPhoneNumber}
                   disabled={!isEditing}
                 />
@@ -248,6 +258,7 @@ export default function MyPage() {
           <button
             id="memberController"
             className={classes.userAbleItem}
+            style={isEditing ? { color: 'red' } : { color: 'black' }}
             onClick={isEditing ? handleSaveClick : handleEditClick}
           >
             {isEditing ? '수정 완료' : '회원정보수정'}
