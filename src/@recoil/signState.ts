@@ -1,11 +1,11 @@
 import { atom } from 'recoil';
 
-export const siginState = atom({
-  key: 'siginState',
+export const signState = atom({
+  key: 'signState',
   default: false,
 });
 
-export const siginUpState = atom({
-  key: 'siginUpState',
+export const signUpState = atom({
+  key: 'signUpState',
   default: false,
 });

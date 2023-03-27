@@ -12,15 +12,15 @@ import SignUp from '@/components/SignUP/SignUp';
 import SignIn from '@/components/SignIn/SignIn';
 import { Modal } from '@/components/Modal/Modal';
 import { ModalPotal } from '@/components/Modal/ModalPotal';
-import { siginState, siginUpState } from '@/@recoil/signState';
+import { signState, signUpState } from '@/@recoil/signState';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
 export default function Home() {
   useDocumentTitle('슬기로운 N밥생활 | 홈');
 
   const navigate = useNavigate();
-  const [openLogin, setOpenLogin] = useRecoilState(siginState);
-  const [openSignUp, setOpenSignUp] = useRecoilState(siginUpState);
+  const [openLogin, setOpenLogin] = useRecoilState(signState);
+  const [openSignUp, setOpenSignUp] = useRecoilState(signUpState);
 
   const navigateToPage = () => {
     navigate('/mainpage');
