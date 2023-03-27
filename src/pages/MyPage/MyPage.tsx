@@ -77,20 +77,6 @@ export default function MyPage() {
     }
   };
 
-  useEffect(() => {
-    const userController = document.getElementById('memberController');
-
-    if (!userController) {
-      return;
-    }
-
-    if (isEditing) {
-      userController.style.color = 'red';
-    } else {
-      userController.style.color = 'black';
-    }
-  }, [isEditing]);
-
   /* -------------------------------- 수정 완료 클릭 -------------------------------- */
   const handleSaveClick = () => {
     /* ----- Firestore 업데이트 ----- */
@@ -256,19 +242,27 @@ export default function MyPage() {
         </div>
         <div className={classes.userAbleContainer}>
           <button
-            id="memberController"
             className={classes.userAbleItem}
             style={isEditing ? { color: 'red' } : { color: 'black' }}
             onClick={isEditing ? handleSaveClick : handleEditClick}
+            tabIndex={0}
           >
             {isEditing ? '수정 완료' : '회원정보수정'}
           </button>
           <span>|</span>
-          <button className={classes.userAbleItem} onClick={handleSignOut}>
+          <button
+            className={classes.userAbleItem}
+            onClick={handleSignOut}
+            tabIndex={0}
+          >
             로그아웃
           </button>
           <span>|</span>
-          <button className={classes.userAbleItem} onClick={handleSignDropOut}>
+          <button
+            className={classes.userAbleItem}
+            onClick={handleSignDropOut}
+            tabIndex={0}
+          >
             회원탈퇴
           </button>
         </div>

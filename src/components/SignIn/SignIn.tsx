@@ -61,8 +61,14 @@ export default function SignIn() {
             <span className={classes.error}>🚫 다시 입력해 주세요 🚫</span>
           )}
         </form>
-        <ButtonGoogle text="로그인" maxWidthValue={400} className={classes['signInButtonGoogle']}/>
-        <ButtonKakao text="로그인" maxWidthValue={400} className={classes['signInButtonKakao']}/>
+        <ButtonGoogle
+          maxWidthValue={400}
+          className={classes['signInButtonGoogle']}
+        />
+        <ButtonKakao
+          maxWidthValue={400}
+          className={classes['signInButtonKakao']}
+        />
         <p>
           로그인 계정이 없으신가요?
           <span> 회원가입</span>

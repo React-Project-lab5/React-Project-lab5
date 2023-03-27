@@ -84,6 +84,7 @@ export function ProfileImage() {
         className={classes.userPictureButton}
         type="button"
         onClick={fileInput}
+        tabIndex={0}
       >
         <img
           className={classes.userPicture}
