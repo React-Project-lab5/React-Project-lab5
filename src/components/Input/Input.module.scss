@@ -22,4 +22,7 @@
   &::placeholder {
     font-size: 1rem;
   }
+  &:focus {
+    border: 2px solid black;
+  }
 }

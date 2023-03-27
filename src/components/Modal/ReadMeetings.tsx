@@ -91,7 +91,7 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
     <div>
       {openModal && (
         <ModalPotal closePortal={handleClose}>
-          <Modal>
+          <Modal role="popup" aria-labelledby="modal-reading">
             <div className={classes.popupContent}>
               <div>
                 <MapContainer />

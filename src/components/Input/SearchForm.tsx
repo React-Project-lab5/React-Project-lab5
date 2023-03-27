@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import { Input } from './Input';
 import { useState } from 'react';
 import { debounce } from 'lodash';
@@ -91,8 +92,13 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
                 className={classes['searchButton']}
                 type="submit"
                 aria-label="검색 버튼"
+                tabIndex={0}
               >
-                <img src="/public/assets/search.svg" alt="검색 버튼" />
+                <img
+                  src="/public/assets/search.svg"
+                  alt="검색 버튼"
+                  tabIndex={0}
+                />
               </button>
             </div>
           </form>

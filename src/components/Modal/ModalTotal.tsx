@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/aria-role */
 import {
   Button,
   Input,
@@ -60,8 +61,10 @@ export function ModalTotal({ createUsers, getUsers }: SearchFormProps) {
       />
       {modalOpened && (
         <ModalPotal closePortal={handleClose}>
-          <Modal>
-            <h2 className={classes.popupTitle}>모임 만들기</h2>
+          <Modal role="popup" aria-labelledby="modal-pop">
+            <h2 className={classes.popupTitle} id="modal-pop">
+              모임 만들기
+            </h2>
             <div className={classes.popupContent}>
               <MapContainer />
 
