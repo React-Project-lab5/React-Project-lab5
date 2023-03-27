@@ -25,13 +25,7 @@ import { useNavigate } from 'react-router-dom';
 import { lazyMinLoadTime } from './lazyMinLoadTime';
 import React from 'react';
 
-const ShowCard = lazyMinLoadTime(
-  () =>
-    import('./ShowCard').then(() => ({
-      default: ShowCard,
-    })),
-  1000
-);
+const ShowCard = lazyMinLoadTime(() => import('./ShowCard'), 1000);
 
 interface Props {
   openModal: boolean;
