@@ -3,7 +3,6 @@ import { Banner } from '@/components';
 import { useRecoilState } from 'recoil';
 import { useEffect, useState } from 'react';
 import classes from './Recommend.module.scss';
-import { IoIosArrowUp } from 'react-icons/io';
 import { FoodList } from '@/components/FoodList/FoodList';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { Pagination } from '@/components/Pagination/Pagination';
@@ -72,7 +71,7 @@ export default function Recommend() {
           onClick={handleScrollToTop}
           tabIndex={0}
         >
-          <IoIosArrowUp size={30} />
+          Top
         </button>
       </div>
     </>
