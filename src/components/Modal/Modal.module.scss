@@ -19,6 +19,9 @@
   width: 100%;
   .modalSearch{
   width:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   }
   }
 
@@ -140,6 +143,7 @@
 .signupButton {
   margin-top: 35px;
 
+
 .mainPageCard{
   @include mobile{
     margin:0px 0px 10px 10px ;
@@ -228,4 +232,10 @@
       height: 30px;
       border-radius: 50%;
     }
+  }
+
+  .userConatiner {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
   }

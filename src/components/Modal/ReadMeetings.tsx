@@ -19,9 +19,11 @@ import { deleteUsers } from '@/@recoil/deleteUsers';
 import { MapContainer } from './../../utils/MapContainer';
 import { Button, ModalPotal, Modal } from '@/components/index';
 import { lazyMinLoadTime } from './lazyMinLoadTime';
-
-const ShowCard = lazyMinLoadTime(() => import('./ShowCard'), 5000);
 import { UserContainer } from './UserContainer';
+import { Card } from '@/@recoil/usersState';
+import { useNavigate } from 'react-router-dom';
+
+const ShowCard = lazyMinLoadTime(() => import('./ShowCard'), 1000);
 
 interface Props {
   openModal: boolean;
@@ -74,6 +76,17 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
     getAfterDelete();
   };
 
+  const movePage = useNavigate();
+
+  const goChatPage = () => {
+    movePage('/chat');
+  };
+
+  const handleJoin = async () => {
+    setOpenModal(false);
+    goChatPage();
+  };
+
   return (
     <div>
       {openModal && (
@@ -90,7 +103,15 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
                     <ShowCard cards={cards} />
                   </React.Suspense>
                   <Button
-                    maxWidthValue={300}
+                    maxWidthValue={250}
+                    heightValue={50}
+                    text={'참여하기'}
+                    backgroundColor={'orange'}
+                    className={classes.signupButton}
+                    onClick={handleJoin}
+                  />
+                  <Button
+                    maxWidthValue={250}
                     heightValue={50}
                     text={'삭제하기'}
                     backgroundColor={'red'}
