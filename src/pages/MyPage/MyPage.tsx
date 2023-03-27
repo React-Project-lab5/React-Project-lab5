@@ -162,7 +162,7 @@ export default function MyPage() {
       });
   };
 
-  /* -------------------------- debounce 함수 직접 제작 코드 -------------------------- */
+  /* -------------------------------- debounce -------------------------------- */
   const editName = debounce((e) => {
     console.log(e.target.value);
     setName(e.target.value);
