@@ -11,7 +11,7 @@ import {
   doc,
 } from '@firebase/firestore';
 import { useEffect } from 'react';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { cardDataState } from '@/@recoil/cardDataState';
 import { mapState } from '@/@recoil/mapState';
 import { titleMainState } from '@/@recoil/titleMainState';
@@ -33,7 +33,7 @@ export default function MainPage() {
   const detail = useRecoilValue(detailMainState);
   const cardData = useRecoilValue(cardDataState);
   const mapData = useRecoilValue(mapState);
-  const [users, setUsers] = useRecoilState(usersState);
+  const setUsers = useSetRecoilState(usersState);
   const [name, setName] = useState('');
   const [userImg, setUserImg] = useState('');
 

@@ -2,6 +2,7 @@
 
 import classes from './Modal.module.scss';
 import { Card } from '@/@recoil/usersState';
+import classNames from 'classnames';
 
 interface Props {
   cards?: Card[];
@@ -9,7 +10,7 @@ interface Props {
 
 export function UserContainer({ cards }: Props) {
   return (
-    <div className={classes['authorContainer']}>
+    <div className={classNames(classes.authorContainer, classes.userConatiner)}>
       <img
         src={cards[0]?.userImg}
         alt="프로필 사진"
