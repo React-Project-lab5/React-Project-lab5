@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
 import classes from './Pagination.module.scss';
 import { IoIosArrowBack } from 'react-icons/io';
+import { FC, MouseEvent, useState } from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
 
 interface PaginationProps {
@@ -10,7 +10,7 @@ interface PaginationProps {
   paginate: (pageNumber: number) => void;
 }
 
-export const Pagination: React.FC<PaginationProps> = ({
+export const Pagination: FC<PaginationProps> = ({
   postsPerPage,
   totalPosts,
   paginate,
@@ -22,39 +22,44 @@ export const Pagination: React.FC<PaginationProps> = ({
     pageNumbers.push(i);
   }
 
-  const handlePrev = () => {
+  const handlePrev = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     const previousPage = currentPage - 1;
     setCurrentPage(previousPage);
     paginate(previousPage);
   };
 
-  const handleNext = () => {
+  const handleNext = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     const nextPage = currentPage + 1;
     setCurrentPage(nextPage);
     paginate(nextPage);
   };
 
   return (
-    <nav>
-      <ul className={classes.pagination}>
-        <button type="button" onClick={handlePrev}>
+    <nav className={classes.pagination}>
+      <ul>
+        <button type="button" onClick={handlePrev} tabIndex={0}>
           <IoIosArrowBack />
         </button>
         {pageNumbers.map((number) => (
           <li key={number} className={classes.pageItem}>
             <a
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 setCurrentPage(number);
                 paginate(number);
               }}
               href="/recommend/#"
               role="button"
+              className={currentPage === number ? classes.selected : ''}
+              tabIndex={0}
             >
               {number}
             </a>
           </li>
         ))}
-        <button type="button" onClick={handleNext}>
+        <button type="button" onClick={handleNext} tabIndex={0}>
           <IoIosArrowForward />
         </button>
       </ul>

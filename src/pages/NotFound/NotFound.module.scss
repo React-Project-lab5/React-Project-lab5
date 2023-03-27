@@ -5,23 +5,23 @@
   align-items: center;
   min-height: 100vh;
   text-align: center;
-}
 
-.span {
-  font-size: 2vw;
-  font-weight: 700;
-}
+  span {
+    font-size: 2vw;
+    font-weight: 700;
+  }
 
-.title {
-  font-size: 10vw;
-  font-weight: 700;
-  color: var(--primary);
-}
+  h1 {
+    font-size: 10vw;
+    font-weight: 700;
+    color: var(--primary);
+  }
 
-.content {
-  font-weight: 300;
-  font-size: 4vw;
-  margin-bottom: 30px;
-  font-weight: 600;
-  color: var(--colar-700);
+  p {
+    font-weight: 300;
+    font-size: 4vw;
+    margin-bottom: 30px;
+    font-weight: 600;
+    color: var(--colar-700);
+  }
 }

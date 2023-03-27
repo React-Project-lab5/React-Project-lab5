@@ -9,22 +9,27 @@
   border-radius: 8px;
   border: 2px solid var(--gray-500);
 
+  .sendInput {
+    width: 100%;
+  }
+
   input {
     width: 100%;
     padding: 0.8rem;
     margin-left: -10px;
     color: var(--black);
     font-size: 18px;
+
     &:focus {
-      border-radius: 16px;
-      border: 1px solid var(--accent);
+      border-radius: 12px;
+      border: 2px solid var(--accent);
     }
     &::placeholder {
       color: var(--gray-600);
     }
   }
 
-  .send {
+  .sendBtn {
     display: flex;
     align-items: flex-start;
     gap: 10px;
