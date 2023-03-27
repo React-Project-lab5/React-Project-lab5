@@ -1,3 +1,6 @@
+/* eslint-disable no-empty-pattern */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable jsx-a11y/aria-role */
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
   collection,
@@ -6,10 +9,9 @@ import {
   where,
   orderBy,
 } from '@firebase/firestore';
-import React from 'react';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import classes from './Modal.module.scss';
 import firebase from 'firebase/compat/app';
 import { useState, useEffect } from 'react';
@@ -18,12 +20,18 @@ import { usersState } from '@/@recoil/usersState';
 import { deleteUsers } from '@/@recoil/deleteUsers';
 import { MapContainer } from './../../utils/MapContainer';
 import { Button, ModalPotal, Modal } from '@/components/index';
-import { lazyMinLoadTime } from './lazyMinLoadTime';
 import { UserContainer } from './UserContainer';
-import { Card } from '@/@recoil/usersState';
 import { useNavigate } from 'react-router-dom';
+import { lazyMinLoadTime } from './lazyMinLoadTime';
+import React from 'react';
 
-const ShowCard = lazyMinLoadTime(() => import('./ShowCard'), 1000);
+const ShowCard = lazyMinLoadTime(
+  () =>
+    import('./ShowCard').then(() => ({
+      default: ShowCard,
+    })),
+  1000
+);
 
 interface Props {
   openModal: boolean;
@@ -31,8 +39,8 @@ interface Props {
   setOpenModal: (p: boolean) => void;
 }
 export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
-  const [users, setUsers] = useRecoilState(usersState);
-  const [deleteCard, setDeleteCard] = useRecoilState(deleteUsers);
+  const setUsers = useSetRecoilState(usersState);
+  const deleteCard = useRecoilValue(deleteUsers);
   const [cards, setCards] = useState([]);
 
   const usersCollectionRef = query(
@@ -54,7 +62,6 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
       setCards(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
   };
-  console.log('cards', cards[0]);
 
   const getAfterDelete = async () => {
     await getDocs(usersCollectionRenderRef).then((data) => {

@@ -12,6 +12,14 @@ export const ModalPotal = ({ children, closePortal }: Props) => {
   const [mounted, setMounted] = useState(false);
   const ref = useRef(null);
 
+  const modalContentRef = useRef(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      modalContentRef.current.focus();
+    }, 10);
+  }, []);
+
   useEffect(() => {
     setMounted(true);
 
@@ -32,7 +40,11 @@ export const ModalPotal = ({ children, closePortal }: Props) => {
           role="presentation"
           onClick={closePortal}
         />
-        <div className={classes.modalContent}>
+        <div
+          tabIndex={-1}
+          className={classes.modalContent}
+          ref={modalContentRef}
+        >
           <div className={classes.modalContentClose}>
             <button onClick={closePortal} type="button" aria-label="닫기버튼">
               <img

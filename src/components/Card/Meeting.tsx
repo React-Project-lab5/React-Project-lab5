@@ -19,7 +19,6 @@ export function Meeting({
 }: Props) {
   return (
     <>
-      {/* <div className={classes['cardContainer']}> */}
       <div className={classes['cardWrap']}>
         <div className={classes['dateContainer']}>
           <div>{time}</div>
@@ -40,7 +39,6 @@ export function Meeting({
           <div className={classes['nicName']}>{userName}</div>
         </div>
       </div>
-      {/* </div> */}
     </>
   );
 }

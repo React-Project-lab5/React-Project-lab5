@@ -18,11 +18,11 @@ export function Banner() {
     <div className={classes.banner}>
       <Swiper
         coverflowEffect={{
-          rotate: 10, // 회전각도
+          rotate: 10,
           stretch: 0,
-          depth: 100, // 깊이감도
-          modifier: 2, //
-          slideShadows: true, //선택한 부분 밝게 나머지는 그늘지게 해준다.
+          depth: 100,
+          modifier: 2,
+          slideShadows: true,
         }}
         autoplay={{
           delay: 3000,
