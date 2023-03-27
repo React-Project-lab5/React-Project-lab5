@@ -26,6 +26,7 @@ import { lazyMinLoadTime } from './lazyMinLoadTime';
 import React from 'react';
 
 const ShowCard = lazyMinLoadTime(() => import('./ShowCard'), 1000);
+
 interface Props {
   openModal: boolean;
   // eslint-disable-next-line no-unused-vars
