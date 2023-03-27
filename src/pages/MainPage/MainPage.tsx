@@ -70,6 +70,8 @@ export default function MainPage() {
   }, [mapData]);
 
   const createUsers = async () => {
+    const user = auth.currentUser;
+
     await addDoc(collection(db, 'makeMeetings'), {
       title: title.split(' '),
       address: address,
@@ -77,8 +79,8 @@ export default function MainPage() {
       cardData: cardData,
       mapData: mapData,
       timestamp: serverTimestamp(),
-      userName: name,
-      userImg: userImg,
+      userName: name || user.providerData[0].displayName,
+      userImg: userImg || user.providerData[0].photoURL,
     });
   };
 
