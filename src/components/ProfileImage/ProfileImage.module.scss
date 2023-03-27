@@ -1,9 +1,11 @@
 @import '../../styles/common/mediaQuery.scss';
 
 .userPictureButton {
-  width: 300px;
-  height: 300px;
   cursor: pointer;
+  &:focus {
+    border: 2px solid black;
+    border-radius: 25px;
+  }
   .userPicture {
     border-radius: 25px;
     width: 300px;
