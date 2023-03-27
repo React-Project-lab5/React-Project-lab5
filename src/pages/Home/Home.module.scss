@@ -6,6 +6,9 @@
   width: 100%;
 
   .homeBanner{
+    @include tablet{
+      display: none;
+    }
     @include mobile{
       display: none;
     }
@@ -22,6 +25,10 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
+    @include tablet {
+      max-width: 100%;
+      width: 100%;
+    }
     @include mobile {
       max-width: 360px;
       width: 100%;
