@@ -1,6 +1,6 @@
 import classes from './MyPage.module.scss';
 import { Input, ProfileImage } from '@/components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
   signOut,
   deleteUser,
@@ -20,7 +20,6 @@ import {
 } from '@firebase/firestore';
 import { db } from '@/firebase/app';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { debounce } from 'lodash';
 
 export default function MyPage() {
   useDocumentTitle('슬기로운 N밥 생활 | 마이 페이지');
@@ -150,21 +149,41 @@ export default function MyPage() {
       });
   };
 
-  const editName = debounce((e) => {
+  /* -------------------------- debounce 함수 직접 제작 코드 -------------------------- */
+  const debounceFunction = (callback, delay) => {
+    let timer;
+    return (...args) => {
+      // 실행한 함수(setTimeout())를 취소
+      clearTimeout(timer);
+      // delay가 지나면 callback 함수를 실행
+      timer = setTimeout(() => callback(...args), delay);
+    };
+  };
+
+  const printValue = useCallback(
+    debounceFunction((value) => console.log(value), 500),
+    []
+  );
+
+  const editName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    printValue(e.target.value);
     setName(e.target.value);
-  }, 500);
+  };
 
-  const editEmail = debounce((e) => {
+  const editEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    printValue(e.target.value);
     setEmail(e.target.value);
-  }, 500);
+  };
 
-  const editPhoneNumber = debounce((e) => {
+  const editPhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+    printValue(e.target.value);
     setPhoneNumber(e.target.value);
-  }, 500);
+  };
 
-  const editAddress = debounce((e) => {
+  const editAddress = (e: React.ChangeEvent<HTMLInputElement>) => {
+    printValue(e.target.value);
     setAddress(e.target.value);
-  }, 500);
+  };
 
   return (
     <section className={classes.myPageSection}>
