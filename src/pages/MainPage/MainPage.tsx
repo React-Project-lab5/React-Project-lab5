@@ -11,7 +11,7 @@ import {
   doc,
 } from '@firebase/firestore';
 import { useEffect } from 'react';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { cardDataState } from '@/@recoil/cardDataState';
 import { mapState } from '@/@recoil/mapState';
 import { titleMainState } from '@/@recoil/titleMainState';
@@ -33,7 +33,7 @@ export default function MainPage() {
   const detail = useRecoilValue(detailMainState);
   const cardData = useRecoilValue(cardDataState);
   const mapData = useRecoilValue(mapState);
-  const [users, setUsers] = useRecoilState(usersState);
+  const setUsers = useSetRecoilState(usersState);
   const [name, setName] = useState('');
   const [userImg, setUserImg] = useState('');
 
@@ -70,6 +70,8 @@ export default function MainPage() {
   }, [mapData]);
 
   const createUsers = async () => {
+    const user = auth.currentUser;
+
     await addDoc(collection(db, 'makeMeetings'), {
       title: title.split(' '),
       address: address,
@@ -77,8 +79,8 @@ export default function MainPage() {
       cardData: cardData,
       mapData: mapData,
       timestamp: serverTimestamp(),
-      userName: name,
-      userImg: userImg,
+      userName: name || user.providerData[0].displayName,
+      userImg: userImg || user.providerData[0].photoURL,
     });
   };
 

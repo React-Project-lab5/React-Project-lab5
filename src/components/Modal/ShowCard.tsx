@@ -1,14 +1,19 @@
 import classes from './Modal.module.scss';
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { readingMap } from '@/@recoil/readingMap';
+import { Card } from '@/@recoil/usersState';
+
+//interface Props {
+//  cards: Card[];
+//}
 
 export default function ShowCard({ cards }) {
   const setMapData = useSetRecoilState(readingMap);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     async function fetchAndSetCard() {
-      const mapPosition = await cards[0].mapData;
+      const mapPosition = cards[0].mapData;
       setMapData(mapPosition);
     }
     fetchAndSetCard();
