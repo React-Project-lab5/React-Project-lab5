@@ -1,8 +1,6 @@
 /* eslint-disable no-unused-vars */
 import classes from './Pagination.module.scss';
-import { IoIosArrowBack } from 'react-icons/io';
 import { FC, MouseEvent, useState } from 'react';
-import { IoIosArrowForward } from 'react-icons/io';
 
 interface PaginationProps {
   postsPerPage: number;
@@ -40,7 +38,7 @@ export const Pagination: FC<PaginationProps> = ({
     <nav className={classes.pagination}>
       <ul>
         <button type="button" onClick={handlePrev} tabIndex={0}>
-          <IoIosArrowBack />
+          〈
         </button>
         {pageNumbers.map((number) => (
           <li key={number} className={classes.pageItem}>
@@ -60,7 +58,7 @@ export const Pagination: FC<PaginationProps> = ({
           </li>
         ))}
         <button type="button" onClick={handleNext} tabIndex={0}>
-          <IoIosArrowForward />
+          〉
         </button>
       </ul>
     </nav>

@@ -1,4 +1,3 @@
-[MyPage.tsx]
 import { debounce } from 'lodash';
 import { db } from '@/firebase/app';
 import { auth } from '@/firebase/auth';
