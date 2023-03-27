@@ -68,8 +68,7 @@ export function SendMessage() {
 
   return (
     <form className={classes.input} onSubmit={handleSendMessage}>
-      <div>
-        <img src={img} alt="" />
+      <div className={classes.sendInput}>
         <label htmlFor="message" className="a11yHidden">
           메세지 입력
         </label>
@@ -82,7 +81,7 @@ export function SendMessage() {
           onChange={(e) => setInput(e.target.value)}
         />
       </div>
-      <div className={classes.send}>
+      <div className={classes.sendBtn}>
         <input
           type="file"
           style={{ display: 'none' }}
