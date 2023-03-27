@@ -1,41 +1,52 @@
 .pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 30px;
-  margin: 50px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  width: 100vw;
 
-  .pageItem {
-    min-width: 30px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #5cd453;
-    color: #fff;
+  ul {
     display: flex;
-    align-items: center;
     justify-content: center;
-    text-align: center;
-    line-height: 30px;
+    align-items: center;
+    gap: 30px;
 
-    &:hover {
-      background: #44a03e;
+    .pageItem {
+      min-width: 30px;
+      font-size: 20px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: var(--colar-600);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 30px;
+
+      &:hover {
+        background: var(--colar-700);
+      }
+      &:focus {
+        color: var(--accent);
+      }
+      &:active {
+        color: var(--accent);
+      }
     }
-    &:focus {
-      color: var(--accent);
-    }
-    &:active {
-      color: var(--accent);
+
+    button {
+      width: 30px;
+      height: 30px;
+      font-size: 24px;
+
+      &:hover {
+        color: var(--positive);
+      }
     }
   }
-
-  button {
-    width: 30px;
-    height: 30px;
-    font-size: 24px;
-
-    &:hover {
-      color: #44a03e;
-    }
-  }
+}
+.selected {
+  font-weight: 700;
+  color: var(--accent);
 }
