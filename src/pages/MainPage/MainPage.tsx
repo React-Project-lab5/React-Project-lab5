@@ -15,7 +15,6 @@ import { useEffect } from 'react';
 import { auth } from '@/firebase/auth';
 import { Banner } from '@/components/index';
 import { mapState } from '@/@recoil/mapState';
-import { IoIosArrowUp } from 'react-icons/io';
 import { ShowMeetings } from '@/components/index';
 import { usersState } from '@/@recoil/usersState';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -26,7 +25,6 @@ import { SearchFrom } from '@/components/Input/SearchForm';
 import { detailMainState } from '@/@recoil/detailMainState';
 import { addressMainState } from '@/@recoil/addressMainState';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { Pagination } from '@/components/Pagination/Pagination';
 
 export default function MainPage() {
   useDocumentTitle('슬기로운 N밥생활 | 모임');
@@ -41,9 +39,6 @@ export default function MainPage() {
   const [userImg, setUserImg] = useState('');
 
   const [users, setUsers] = useRecoilState(usersState);
-  const [currentPost, setCurrentPost] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
-  const postsPerPage = 6; // 페이지당 게시물 수
 
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((user) => {
@@ -75,7 +70,7 @@ export default function MainPage() {
 
   useEffect(() => {
     getUsers();
-  }, [mapData]);
+  }, [getUsers, mapData]);
 
   const createUsers = async () => {
     const user = auth.currentUser;
@@ -101,17 +96,6 @@ export default function MainPage() {
     getUsers();
   }, []);
 
-  // Get current posts
-  useEffect(() => {
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = users.slice(indexOfFirstPost, indexOfLastPost);
-    setCurrentPost(currentPosts);
-  }, [currentPage, users, postsPerPage]);
-
-  // Change page
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
-
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -120,11 +104,7 @@ export default function MainPage() {
       <Banner />
       <SearchFrom {...searchFormProps} />
       <ShowMeetings />
-      <Pagination
-        postsPerPage={postsPerPage}
-        totalPosts={users.length}
-        paginate={paginate}
-      />
+
       <div className={classes.container}>
         <button
           type="button"
@@ -132,7 +112,7 @@ export default function MainPage() {
           onClick={handleScrollToTop}
           tabIndex={0}
         >
-          <IoIosArrowUp size={30} />
+          top
         </button>
       </div>
     </>

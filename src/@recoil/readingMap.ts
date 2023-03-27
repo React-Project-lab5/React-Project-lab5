@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-export const readingMap = atom({
+export const readingMap = atom<number[]>({
   key: 'readingMap',
   default: [33.450701, 126.570667],
   effects: [

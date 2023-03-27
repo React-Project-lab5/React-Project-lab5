@@ -1,14 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import classes from './Modal.module.scss';
 import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { readingMap } from '@/@recoil/readingMap';
 import { Card } from '@/@recoil/usersState';
 
-//interface Props {
-//  cards: Card[];
-//}
+interface Props {
+  cards?: Card[];
+}
 
-export default function ShowCard({ cards }) {
+export default function ShowCard({ cards }: Props) {
   const setMapData = useSetRecoilState(readingMap);
 
   useEffect(() => {

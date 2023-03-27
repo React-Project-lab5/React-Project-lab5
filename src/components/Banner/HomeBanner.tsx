@@ -42,7 +42,6 @@ export function HomeBanner({ className }: HomeBannerProps) {
         return (
           <SwiperSlide key={idx} className={classes.swiperSlide}>
             <div className={classes['swiperContainer']}>
-              {/* <span className={classes['swiperText']}>{item.text}</span> */}
               <img src={item.src} alt="배너광고" />
             </div>
           </SwiperSlide>

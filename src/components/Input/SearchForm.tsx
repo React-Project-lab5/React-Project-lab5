@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import { Input } from './Input';
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { debounce } from 'lodash';
 import { Button } from '../Button';
 import { useNavigate } from 'react-router-dom';
@@ -24,7 +24,7 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   };
 
   const handleSearch = async () => {
-    let usersCollectionRef;
+    let usersCollectionRef = null;
 
     if (address) {
       usersCollectionRef = query(
@@ -48,15 +48,17 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
     }
   };
 
-  const handleKey = (e: { code: string }) => {
-    e.code === 'Enter' && handleSearch();
+  const handleKey = (e: KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
   };
 
-  const writeTitle = debounce((e) => {
+  const writeTitle = debounce((e: ChangeEvent<HTMLInputElement>) => {
     setSearchTitle(e.target.value);
   }, 500);
 
-  const handleRegister = (e: { preventDefault: () => void }) => {
+  const handleRegister = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('제목 검색');
     handleSearch();
@@ -92,13 +94,8 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
                 className={classes['searchButton']}
                 type="submit"
                 aria-label="검색 버튼"
-                tabIndex={0}
               >
-                <img
-                  src="/public/assets/search.svg"
-                  alt="검색 버튼"
-                  tabIndex={0}
-                />
+                <img src="/public/assets/search.svg" alt="검색 버튼" />
               </button>
             </div>
           </form>

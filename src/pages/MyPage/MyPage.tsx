@@ -1,6 +1,6 @@
 import classes from './MyPage.module.scss';
 import { Input, ProfileImage } from '@/components';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import {
   signOut,
   deleteUser,

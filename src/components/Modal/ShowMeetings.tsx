@@ -2,17 +2,15 @@ import { Card, Meeting } from '@/components/index';
 import classes from './Modal.module.scss';
 import { useState } from 'react';
 import { ReadMeetings } from './ReadMeetings';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { usersState } from '@/@recoil/usersState';
 
-// eslint-disable-next-line react/prop-types
 export function ShowMeetings() {
-  const [users, setUsers] = useRecoilState(usersState);
+  const users = useRecoilValue(usersState);
   const [openModal, setOpenModal] = useState(false);
 
   return (
     <div className={classes['meetingCardContainer']}>
-      {/* eslint-disable-next-line react/prop-types  */}
       {users.map((value, index) => (
         <div key={index} className={classes['meetingCard']}>
           <Card

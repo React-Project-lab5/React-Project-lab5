@@ -6,7 +6,7 @@ import {
   Modal,
   ModalPotal,
 } from '@/components/index';
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { useState } from 'react';
 import { debounce } from 'lodash';
 import classes from './Modal.module.scss';
@@ -41,13 +41,19 @@ export function ModalTotal({ createUsers, getUsers }: SearchFormProps) {
     setModalOpened(false);
   };
 
-  const handleDebounceTitle = debounce((event) => {
-    setTitle(event.target.value);
-  }, 500);
+  const handleDebounceTitle = debounce(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setTitle(event.target.value);
+    },
+    500
+  );
 
-  const handleDebounceDetail = debounce((event) => {
-    setDetail(event.target.value);
-  }, 500);
+  const handleDebounceDetail = debounce(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setDetail(event.target.value);
+    },
+    500
+  );
 
   return (
     <React.Fragment>

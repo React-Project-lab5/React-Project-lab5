@@ -1,5 +1,4 @@
-/* eslint-disable react/prop-types */
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import classes from './Modal.module.scss';
 import { Card } from '@/@recoil/usersState';
 import classNames from 'classnames';
