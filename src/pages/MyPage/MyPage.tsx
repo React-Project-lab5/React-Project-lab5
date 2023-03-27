@@ -20,6 +20,7 @@ import {
 } from '@firebase/firestore';
 import { db } from '@/firebase/app';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+import { debounce } from 'lodash';
 
 export default function MyPage() {
   useDocumentTitle('슬기로운 N밥 생활 | 마이 페이지');
@@ -31,6 +32,14 @@ export default function MyPage() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
   const user = auth.currentUser;
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (user) {
+      setIsLoading(false);
+    }
+  }, [user]);
 
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((user) => {
@@ -58,7 +67,11 @@ export default function MyPage() {
   useEffect(() => {
     const userController = document.getElementById('memberController');
 
-    if (isEditing) {
+    if (!userController) {
+      return;
+    }
+
+    if (userController) {
       userController.style.color = 'red';
     } else {
       userController.style.color = 'black';
@@ -149,41 +162,30 @@ export default function MyPage() {
       });
   };
 
-  /* -------------------------- debounce 함수 직접 제작 코드 -------------------------- */
-  const debounceFunction = (callback, delay) => {
-    let timer;
-    return (...args) => {
-      // 실행한 함수(setTimeout())를 취소
-      clearTimeout(timer);
-      // delay가 지나면 callback 함수를 실행
-      timer = setTimeout(() => callback(...args), delay);
-    };
-  };
-
-  const printValue = useCallback(
-    debounceFunction((value) => console.log(value), 500),
-    []
-  );
-
-  const editName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    printValue(e.target.value);
+  /* -------------------------------- debounce -------------------------------- */
+  const editName = debounce((e) => {
+    console.log(e.target.value);
     setName(e.target.value);
-  };
+  }, 500);
 
-  const editEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    printValue(e.target.value);
+  const editEmail = debounce((e) => {
+    console.log(e.target.value);
     setEmail(e.target.value);
-  };
+  }, 500);
 
-  const editPhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-    printValue(e.target.value);
+  const editPhoneNumber = debounce((e) => {
+    console.log(e.target.value);
     setPhoneNumber(e.target.value);
-  };
+  }, 500);
 
-  const editAddress = (e: React.ChangeEvent<HTMLInputElement>) => {
-    printValue(e.target.value);
+  const editAddress = debounce((e) => {
+    console.log(e.target.value);
     setAddress(e.target.value);
-  };
+  }, 500);
+
+  if (isLoading) {
+    return <div role="alert"> 사용자 정보 로딩 중... </div>;
+  }
 
   return (
     <section className={classes.myPageSection}>
@@ -193,52 +195,52 @@ export default function MyPage() {
           <ProfileImage />
           <div className={classes.inputContainer}>
             <div className={classes.userInfoContainer}>
-              <form>
+              <div>
                 <Input
                   className={classes.inputMobile}
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Name"
-                  value={name}
+                  defaultValue={user.displayName || undefined}
                   onChange={editName}
                   disabled={!isEditing}
                 />
-              </form>
-              <form>
+              </div>
+              <div>
                 <Input
                   className={classes.inputMobile}
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Email"
-                  value={email}
+                  defaultValue={user.email}
                   onChange={editEmail}
                   disabled={!isEditing}
                 />
-              </form>
+              </div>
             </div>
             <div className={classes.userInfoContainer}>
-              <form>
+              <div>
                 <Input
                   className={classes.inputMobile}
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Phone"
-                  value={phoneNumber}
+                  defaultValue={user.phoneNumber}
                   onChange={editPhoneNumber}
                   disabled={!isEditing}
                 />
-              </form>
-              <form>
+              </div>
+              <div>
                 <Input
                   className={classes.inputMobile}
                   maxWidthValue={290}
                   heightValue={80}
                   labelText="Address"
-                  value={address}
+                  defaultValue={address}
                   onChange={editAddress}
                   disabled={!isEditing}
                 />
-              </form>
+              </div>
             </div>
           </div>
         </div>
