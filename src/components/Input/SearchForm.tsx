@@ -5,13 +5,14 @@ import { debounce } from 'lodash';
 import { Button } from '../Button';
 import { useNavigate } from 'react-router-dom';
 import classes from './SearchFrom.module.scss';
+import search from '/public/assets/search.svg';
 import { ModalTotal } from '@/components/index';
 import { db } from '@/firebase/firestore/index';
+import { usersState } from '@/@recoil/usersState';
 import { addressState } from '@/@recoil/addressState';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { InputSelector } from '../InputSelector/InputSelector';
 import { collection, query, where, getDocs } from '@firebase/firestore';
-import { usersState } from '@/@recoil/usersState';
 
 export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   const [searchTitle, setSearchTitle] = useState('');
@@ -96,11 +97,7 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
                 aria-label="검색 버튼"
                 tabIndex={0}
               >
-                <img
-                  src="/public/assets/search.svg"
-                  alt="검색 버튼"
-                  tabIndex={0}
-                />
+                <img src={search} alt="검색 버튼" tabIndex={0} />
               </button>
             </div>
           </form>
