@@ -11,7 +11,7 @@ https://calkolab5.web.app
 |김서현 ( 조장 ) |김대웅|변혜빈|빈운기|원다함|
 |------|---|---|---|---|
 |<a href="https://github.com/seoohyeon"><img src="https://avatars.githubusercontent.com/u/38703262?v=4" width="150"/></a>|<a href="https://github.com/CALKO9611"><img src="https://avatars.githubusercontent.com/u/89835647?v=4" width="150"/></a>|<a href="https://github.com/HYBEN09"><img src="https://avatars.githubusercontent.com/u/104710243?v=4" width="150"/></a>|<a href="https://github.com/binwoonki"><img src="https://avatars.githubusercontent.com/u/119389337?v=4" width="150"/></a>|<a href="https://github.com/DahamWeon"><img src="https://avatars.githubusercontent.com/u/78182200?v=4" width="150"/></a>
-|-모임카드 생성,삭제|-개인정보 수정,삭제|-로그인,회원가입 기능|-지도 API 연동|-소셜로그인 연동|
+|-모임카드 생성,삭제|-개인정보 수정,삭제|-로그인,회원가입|-지도 API 연동|-소셜로그인 연동|
 |-제목 검색 기능  |-이미지 업로드 |-채팅 일부 구현|-UI 및 반응형 구현|-UI 및 반응형 구현|
 
 ## 프로젝트 기간
@@ -20,7 +20,7 @@ https://calkolab5.web.app
 
 ## 서비스 주제
 
-하나의 음식점에서 같이 음식을 시킬 사람들을 모집하여,
+하나의 음식점에서 같이 음식을 시킬 사람들을 모집하여,  
 각자 원하는 음식만큼만 시켜먹을 수 있는 “장”을 만들어주는 앱 개발
 
 ## 서비스 목적 및 필요한 이유
@@ -88,7 +88,8 @@ https://calkolab5.web.app
 
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 
-(해당 스택을 선택하신 이유도 자세히 써주시면 더 좋을 것 같아요. 간혹가다 왜 썼는지 물어보시는 경우도 있고 스택도 본인이 고민해서 선정햇다는걸 어필하면 좋으니까!)
+- 스택 선정 이유 : TypeSrcipt를 통해 타입을 명시해주어 타입오류를 최소화 하고자 하였고, SASS를 통해 간편한 문법을 사용하고자 하였습니다.  
+                  recoil을 통해 전체적인 상태를 쉽게 관리할 수 있었습니다.
 
 ## 프로젝트 구조도
 
