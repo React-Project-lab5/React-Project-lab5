@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { debounce } from 'lodash';
 import { Button } from '../Button';
 import { useNavigate } from 'react-router-dom';
-import classes from './SearchFrom.module.scss';
+import classes from './SearchForm.module.scss';
 import { ModalTotal } from '@/components/index';
 import { db } from '@/firebase/firestore/index';
 import { addressState } from '@/@recoil/addressState';
