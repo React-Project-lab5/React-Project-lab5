@@ -21,6 +21,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Input, ProfileImage } from '@/components';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+import { isValidEmail, isValidTel } from './../../utils/validation';
 
 export default function MyPage() {
   useDocumentTitle('슬기로운 N밥 생활 | 마이 페이지');
@@ -81,6 +82,22 @@ export default function MyPage() {
 
   /* -------------------------------- 수정 완료 클릭 -------------------------------- */
   const handleSaveClick = () => {
+    /* ----- validation ----- */
+    if (!name || name.trim().length < 2) {
+      alert('이름은 2글자 이상 입력해야 해요');
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      alert('이메일 형식으로 입력해 주세요.');
+      return;
+    }
+
+    if (!isValidTel(phoneNumber)) {
+      alert('휴대폰 번호 01012345678 형식으로 입력해 주세요.');
+      return;
+    }
+
     /* ----- Firestore 업데이트 ----- */
     const getUserRef = doc(collection(db, 'users'), user.uid);
     setDoc(
