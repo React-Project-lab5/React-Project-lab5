@@ -1,0 +1,47 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding: 10px;
+  border-bottom: 1px solid var(--gray-700);
+
+  .logo {
+    font-weight: bold;
+    font-size: 18px;
+    @media screen and (max-width: 930px) {
+      display: none;
+    }
+  }
+
+  .user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    img {
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    button {
+      background-color: var(--secondary);
+      color: var(--black);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 10px;
+      border-radius: 16px;
+      cursor: pointer;
+
+      &:hover {
+        background: var(--primary);
+      }
+
+      &:focus {
+        border: 2px solid var(--accent);
+      }
+    }
+  }
+}

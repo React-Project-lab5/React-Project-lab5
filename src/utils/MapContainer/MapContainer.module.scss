@@ -1,0 +1,16 @@
+@import '@/styles/common/index.scss';
+
+.mapContainer {
+  max-width: 300px;
+  min-width: 200px;
+  width: 100%;
+
+  @include mobile {
+    width: 100%;
+    margin: 0;
+  }
+  .map {
+    width: 100%;
+    height: 250px;
+  }
+}

@@ -1,0 +1,62 @@
+.formContainer {
+  background: var(--white);
+  height: 100%;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:30px 0px 20px 0px;
+
+
+.formWrapper {
+  background: var(--white);
+  min-width: 330px;
+  width: 450px;
+  // min-height: 700px;
+  // padding: 60px;
+  border-radius: 16px;
+  display: flex;
+  flex-flow: column;
+  gap: 30px;
+  align-items: center;
+
+  .signInForm{
+    width: 100%;
+    align-items: center;
+  }
+
+  form {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 15px;
+  }
+  p {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    span {
+      color: var(--accent);
+    }
+  }
+
+  .signInButtonGoogle{
+  
+    border-top:0.1px solid rgba(0, 0, 0, 0.15);
+
+    &:hover{
+      background-color: var(--black);
+    }
+  }
+  .signInButtonKakao{
+    background-color: var(--yellow-500);
+
+
+    &:hover{
+      
+      background-color: var(--white);
+      color:var(--black);
+    }
+  }
+}
+
+}

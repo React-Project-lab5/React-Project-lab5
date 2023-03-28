@@ -1,0 +1,41 @@
+@import "@/styles/common/index.scss";
+.swiperSlide {
+  width: 100%;
+
+  img {
+    width: 100%;
+  }
+}
+
+.swiperHomeBannerContainer{
+  margin: 0 auto;
+  max-width:100%;
+  width: 100%;  
+
+  .swiperContainer{
+    .swiperText{
+      font-size: clamp(1rem, 3vw, 2.4rem);
+      
+      
+      position: absolute;
+      top:13%;
+      left: 42%;
+      transform: translate(-30%,-45%);
+      z-index:10;
+      @include tablet{
+        display: none;
+      }
+    }
+    img{
+      width: 50%;
+      margin:0 auto;
+      position:absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+  
+  }
+  
+  
+}

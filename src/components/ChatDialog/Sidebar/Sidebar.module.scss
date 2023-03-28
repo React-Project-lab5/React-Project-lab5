@@ -1,0 +1,11 @@
+@import '../../../styles/common/mediaQuery.scss';
+
+.sidebar {
+  flex: 1;
+  background: var(--gray-200);
+  border-right: 1px solid var(--gray-500);
+
+  @media screen and (max-width: 420px) {
+    display: none;
+  }
+}

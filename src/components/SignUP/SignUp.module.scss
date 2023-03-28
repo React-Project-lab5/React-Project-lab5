@@ -1,0 +1,70 @@
+.formContainer {
+  background: var(--white);
+  height: 100%;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formWrapper {
+  background: var(--white);
+  min-width: 330px;
+  width: 450px;
+  height: 100%;
+  padding: 60px;
+  border-radius: 16px;
+  display: flex;
+  flex-flow: column;
+  gap: 40px;
+  align-items: center;
+
+  .signUpForm {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+
+    input {
+      padding: 15px;
+      border-radius: 16px;
+      border: 1px solid var(--gray-700);
+
+      &::placeholder {
+        color: var(--gray-400);
+        font-size: 14px;
+      }
+    }
+
+    button {
+      background: var(--secondary);
+      border-radius: 16px;
+      height: 45px;
+      width: 100%;
+      margin: 0 auto;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--orange-600);
+        color: var(--white);
+      }
+    }
+    p {
+      font-size: 12px;
+      font-weight: 600;
+    }
+  }
+
+  .login {
+    color: var(--accent);
+  }
+
+  .error {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+}

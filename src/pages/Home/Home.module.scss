@@ -1,0 +1,69 @@
+@import "@/styles/common/index.scss";
+
+
+.divContainer{
+  display: flex;
+  width: 100%;
+
+  .homeBanner{
+    @include tablet{
+      display: none;
+    }
+    @include mobile{
+      display: none;
+    }
+  }
+
+  .contents {
+    background-color: var(--gray-200);
+    width: 360px;
+    height: 100vh;
+    padding: 15px 15px;
+    display: flex;
+    margin-left: auto;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    @include tablet {
+      max-width: 100%;
+      width: 100%;
+    }
+    @include mobile {
+      max-width: 360px;
+      width: 100%;
+      gap:10px;
+    }
+    
+
+    .startText {
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 37px;
+    }
+
+    .joinButton,
+    .loginButton {
+      font-size: 22px;
+      color:var(--orange-800);
+    }
+    
+    .guestButton {
+      font-size: 32px;
+      margin-top: 40px;
+      color:var(--orange-800);
+    }
+    .joinButton:hover,
+    .loginButton:hover,
+    .guestButton:hover{
+      color:var(--white);
+    }
+  }
+}
+
+
+// ShowLogin Modal
+.showLoginModal{
+  padding:0 !important;
+  height: 100%;
+}

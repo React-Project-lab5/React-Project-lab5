@@ -1,0 +1,135 @@
+@import '@/styles/common/index.scss';
+
+.isLoading {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--negative);
+  padding-top: 350px;
+  padding-bottom: 350px;
+
+  @include tablet {
+    padding-top: 250px;
+    padding-bottom: 250px;
+  }
+  @include mobile {
+    padding-top: 150px;
+    padding-bottom: 150px;
+  }
+}
+
+.myPageSection {
+  background-color: #e6e6e6;
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  .myPageContainer {
+    background-color: white;
+    margin: 4.25rem 2rem;
+    width: 100%;
+    border-radius: 16px;
+    @include tablet {
+      display: block;
+      margin: auto;
+      border-radius: 0;
+    }
+    @include mobile {
+      border-top: 1px solid #2e3032;
+    }
+
+    .myPageTitle {
+      margin-top: 26px;
+      margin-left: 28px;
+      margin-bottom: 67px;
+      font-weight: 700;
+      font-size: 32px;
+      @include tablet {
+        margin-bottom: 16px;
+      }
+      @include mobile {
+        font-size: 18px;
+      }
+    }
+
+    .userContainer {
+      display: flex;
+      justify-content: center;
+      gap: 5.4375rem;
+      @include tablet {
+        display: block;
+      }
+      @include mobile {
+        max-width: 360px;
+      }
+
+      .inputContainer {
+        display: flex;
+        gap: 2.5625rem;
+        max-width: 621px;
+        width: 100%;
+        @include tablet {
+          margin: auto;
+          justify-content: center;
+          margin-top: 3rem;
+          width: 100%;
+        }
+        @include mobile {
+          display: block;
+          margin: 13px auto 24px;
+        }
+
+        .userInfoContainer {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          width: 100%;
+          @include tablet {
+            height: 300px;
+          }
+          @include mobile {
+            max-width: 245px;
+            padding-top: 7px;
+            gap: 7px;
+            height: 100%;
+            margin: 0 auto;
+          }
+
+          .inputMobile {
+            @include mobile {
+              max-width: 245px;
+              max-height: 40px;
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+
+    .userAbleContainer {
+      display: flex;
+      justify-content: center;
+      margin-top: 160px;
+      margin-bottom: 44px;
+      gap: 4px;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 24px;
+
+      .userAbleItem {
+        float: left;
+        font-weight: 600;
+        &:focus {
+          border: 2px solid black;
+        }
+      }
+
+      @include tablet {
+        margin-top: 24px;
+      }
+      @include mobile {
+        font-size: 16px;
+      }
+    }
+  }
+}
