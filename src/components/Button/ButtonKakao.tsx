@@ -4,7 +4,6 @@ import KakaoLogin from 'react-kakao-login';
 import classes from './Button.module.scss';
 import { useNavigate } from 'react-router-dom';
 import kakao from '/public/assets/kakaoLogo.svg';
-import { LoginResponse, UserProfile } from 'kakao-sdk';
 import { createUserWithEmailAndPassword, updateProfile } from '@firebase/auth';
 
 interface Props {
@@ -27,10 +26,7 @@ export function ButtonKakao({
   };
   const navigate = useNavigate();
 
-  const handleKakaoLogin = (response: {
-    response: LoginResponse;
-    profile?: UserProfile;
-  }) => {
+  const handleKakaoLogin = (response: KakaoLoginResponse) => {
     if (response === undefined) {
       return; // 로그인 실패
     }
@@ -38,7 +34,7 @@ export function ButtonKakao({
     const displayName = response.profile.properties.nickname;
     const email = response.profile.kakao_account.email;
     const password = response.profile.id.toString();
-    const photoURL = response.profile.kakao_account.profile.profile_image_url;
+    const photoURL = response.profile.kakao_account.profile.profile_image;
 
     auth.onAuthStateChanged((user) => {
       if (user) {

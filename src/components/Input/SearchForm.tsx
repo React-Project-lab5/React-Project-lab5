@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import { Input } from './Input';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { useState } from 'react';
 import { debounce } from 'lodash';
 import { Button } from '../Button';
 import { useNavigate } from 'react-router-dom';
@@ -32,11 +32,13 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
         where('address', '==', address.slice(6, 9)),
         where('title', 'array-contains-any', searchTitle.split(' '))
       );
+      console.log('된다');
     } else {
       usersCollectionRef = query(
         collection(db, 'makeMeetings'),
         where('title', 'array-contains', searchTitle)
       );
+      console.log('안된다');
     }
 
     try {
@@ -48,17 +50,15 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
     }
   };
 
-  const handleKey = (e: KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
+  const handleKey = (e: { code: string }) => {
+    e.code === 'Enter' && handleSearch();
   };
 
-  const writeTitle = debounce((e: ChangeEvent<HTMLInputElement>) => {
+  const writeTitle = debounce((e) => {
     setSearchTitle(e.target.value);
   }, 500);
 
-  const handleRegister = (e: FormEvent<HTMLFormElement>) => {
+  const handleRegister = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     console.log('제목 검색');
     handleSearch();
@@ -94,8 +94,13 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
                 className={classes['searchButton']}
                 type="submit"
                 aria-label="검색 버튼"
+                tabIndex={0}
               >
-                <img src="/public/assets/search.svg" alt="검색 버튼" />
+                <img
+                  src="/public/assets/search.svg"
+                  alt="검색 버튼"
+                  tabIndex={0}
+                />
               </button>
             </div>
           </form>

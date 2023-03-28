@@ -9,7 +9,7 @@ interface Props {
   cards?: Card[];
 }
 
-export default function ShowCard({ cards }: Props) {
+export default function ShowCard({ cards }: Props): JSX.Element {
   const setMapData = useSetRecoilState(readingMap);
 
   useEffect(() => {
