@@ -141,6 +141,7 @@ https://www.figma.com/file/78ArGQnn3tfp7cCzDlBA1j/%EB%B0%A5%EC%A1%B0?node-id=2%3
 
 
 ### [추천 페이지]  
+![Mar-29-2023_01-57-50](https://user-images.githubusercontent.com/38703262/228313706-7b1a3def-fe63-48cf-bb24-e36b08a96d24.gif)
 
 
 ### [채팅 페이지]  
