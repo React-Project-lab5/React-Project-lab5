@@ -28,8 +28,8 @@ export default function SignUp() {
     const email = e.target[1].value;
     const password = e.target[2].value;
     const passwordConfirm = e.target[3].value;
-    const phoneNumber = '';
-    const address = '';
+    const phoneNumber = ' ';
+    const address = ' ';
 
     // validation ---------------------------------------------------
     if (!displayName || displayName.trim().length < 2) {
@@ -54,15 +54,14 @@ export default function SignUp() {
 
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
-
+      const defaultImageRef = ref(getStorage(), 'chatAvatars.svg');
+      const defaultImageUrl = await getDownloadURL(defaultImageRef);
       await updateProfile(res.user, {
         displayName,
+        photoURL: defaultImageUrl,
       });
 
       //create user on firestore
-      const defaultImageRef = ref(getStorage(), 'chatAvatars.svg');
-      const defaultImageUrl = await getDownloadURL(defaultImageRef);
-
       await setDoc(doc(db, 'users', res.user.uid), {
         uid: res.user.uid,
         displayName,
@@ -72,6 +71,8 @@ export default function SignUp() {
         password: password,
         photoURL: defaultImageUrl,
       });
+
+      alert('회원가입이 완료되었습니다.');
 
       navigate('/mainPage');
     } catch (err) {
