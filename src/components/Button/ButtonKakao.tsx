@@ -34,8 +34,7 @@ export function ButtonKakao({
     const displayName = response.profile.properties.nickname;
     const email = response.profile.kakao_account.email;
     const password = response.profile.id.toString();
-    const photoURL = response.profile.kakao_account.profile.profile_image;
-
+    const photoURL = response.profile.kakao_account.profile.profile_image_url;
     auth.onAuthStateChanged((user) => {
       if (user) {
         navigate('/mainpage');
