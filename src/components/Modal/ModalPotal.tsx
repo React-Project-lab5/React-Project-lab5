@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import { createPortal } from 'react-dom';
 import classes from './Modal.module.scss';
+import close from '/public/assets/close.svg';
 import React, { useEffect, useRef, useState } from 'react';
 
 interface Props {
@@ -47,11 +48,7 @@ export const ModalPotal = ({ children, closePortal }: Props) => {
         >
           <div className={classes.modalContentClose}>
             <button onClick={closePortal} type="button" aria-label="닫기버튼">
-              <img
-                src="/public/assets/close.svg"
-                alt="닫기 버튼"
-                tabIndex={0}
-              />
+              <img src={close} alt="닫기 버튼" tabIndex={0} />
               <div className={classes.closeTooltip}>닫기</div>
             </button>
           </div>

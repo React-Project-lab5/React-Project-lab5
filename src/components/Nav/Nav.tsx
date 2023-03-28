@@ -1,8 +1,9 @@
 import classes from './Nav.module.scss';
 import { useRecoilState } from 'recoil';
 import { NavLink } from 'react-router-dom';
+import close from '/public/assets/close.svg';
 import { isActive } from '@/@recoil/isActive';
-
+import hamburgerBtn from '/public/assets/hamburger.svg';
 interface Props {
   onClick: () => void;
 }
@@ -37,16 +38,12 @@ export function Nav({ onClick }: Props): JSX.Element {
           className={active ? null : classes.closeHidden}
           onClick={() => setActive(false)}
         >
-          <img
-            className={classes.closeImg}
-            src="/public/assets/close.svg"
-            alt="메뉴닫기"
-          />
+          <img className={classes.closeImg} src={close} alt="메뉴닫기" />
         </button>
       </nav>
       <div className={active ? classes.nav : classes.hamburger}>
         <button type="button" onClick={onClick}>
-          <img src="/public/assets/hamburger.svg" alt="메뉴" />
+          <img src={hamburgerBtn} alt="메뉴" />
         </button>
       </div>
     </div>
