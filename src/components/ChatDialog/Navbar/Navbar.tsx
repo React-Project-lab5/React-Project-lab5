@@ -36,7 +36,7 @@ export function Navbar() {
       }
     });
     return unsub;
-  });
+  }, [setImageUrl]);
 
   return (
     <div className={classes.navbar}>

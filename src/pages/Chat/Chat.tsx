@@ -1,9 +1,9 @@
+import { useEffect } from 'react';
 import classes from './Chat.module.scss';
+import { useLocation } from 'react-router-dom';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { Sidebar } from '@/components/ChatDialog/Sidebar/Sidebar';
 import { Chatting } from '@/components/ChatDialog/Chatting/Chatting';
-import { useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
 
 export default function Chat() {
   useDocumentTitle('슬기로운 N밥 생활 | 채팅');

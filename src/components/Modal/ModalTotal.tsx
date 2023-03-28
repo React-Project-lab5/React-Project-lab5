@@ -14,7 +14,7 @@ import DatePicker from 'react-datepicker';
 import { useSetRecoilState } from 'recoil';
 import 'react-datepicker/dist/react-datepicker.css';
 import { titleMainState } from '@/@recoil/titleMainState';
-import { MapContainer } from './../../utils/MapContainer';
+import { MapContainer } from '../../utils/MapContainer/MapContainer';
 import { detailMainState } from '@/@recoil/detailMainState';
 import { cardDataState } from '../../@recoil/cardDataState';
 

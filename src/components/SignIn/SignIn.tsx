@@ -24,7 +24,7 @@ export default function SignIn() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert('로그인 성공!');
+      alert('로그인 완료되었습니다.');
       navigate('/mainPage');
     } catch (err) {
       setErr(true);

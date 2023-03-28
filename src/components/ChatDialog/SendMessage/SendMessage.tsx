@@ -99,7 +99,9 @@ export function SendMessage() {
           <img src={Img} alt="이미지 업로드 버튼" />
         </label>
 
-        <button type="submit" aria-label="메세지 보내기 버튼"></button>
+        <button type="submit" aria-label="메세지 보내기 버튼">
+          ⌲
+        </button>
       </div>
     </form>
   );

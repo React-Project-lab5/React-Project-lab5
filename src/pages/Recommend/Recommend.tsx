@@ -1,45 +1,38 @@
 import axios from 'axios';
 import { Banner } from '@/components';
-import { useRecoilState } from 'recoil';
 import { useEffect, useState } from 'react';
 import classes from './Recommend.module.scss';
 import { FoodList } from '@/components/FoodList/FoodList';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { Pagination } from '@/components/Pagination/Pagination';
-import { currentPageState, postsState } from '@/@recoil/pageState';
 
 export default function Recommend() {
   useDocumentTitle('슬기로운 N밥 생활 | 추천');
 
   const postsPerPage = 28;
 
+  const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
-  const [posts, setPosts] = useRecoilState(postsState);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const url = `https://api.odcloud.kr/api/15097008/v1/uddi:1e5a6f2e-3f79-49bd-819b-d17541e6df78?page=4&perPage=112&serviceKey=${
+  const API_URL = `https://api.odcloud.kr/api/15097008/v1/uddi:1e5a6f2e-3f79-49bd-819b-d17541e6df78?page=4&perPage=112&serviceKey=${
     import.meta.env.VITE_SERVICE_KEY
   }`;
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
-        setLoading(true);
-        const { data } = await axios.get(url);
+        const { data } = await axios.get(API_URL);
         setPosts(data.data);
-        setLoading(false);
       } catch (error) {
-        if (error.response) {
-          console.log(error.data);
-          console.log(error.status);
-        } else {
-          console.error(error.message);
-        }
+        console.error(error);
       }
+      setLoading(false);
     };
 
     fetchData();
-  }, [setPosts, url]);
+  }, [API_URL]);
 
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

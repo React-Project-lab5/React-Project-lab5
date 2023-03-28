@@ -42,11 +42,12 @@
     button {
       width: 36px;
       height: 36px;
-      padding: 10px 10px;
+      padding: 2px 10px;
       color: white;
       background-color: var(--primary);
       cursor: pointer;
       border-radius: 50%;
+      font-size: 30px;
 
       &:focus {
         border: 2px solid var(--accent);
