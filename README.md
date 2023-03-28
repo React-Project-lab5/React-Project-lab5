@@ -100,17 +100,6 @@ https://calkolab5.web.app
 ![wire-frame](https://user-images.githubusercontent.com/38703262/228298919-ab738c9f-075a-42b4-8995-4fd31711e729.png)
 
 
-## 📌 피그마 시안
-https://www.figma.com/file/78ArGQnn3tfp7cCzDlBA1j/%EB%B0%A5%EC%A1%B0?node-id=2%3A11993&t=dyXzkIauGbbrnTfe-1]
-![홈](https://user-images.githubusercontent.com/38703262/228294447-5dc39fc2-22c3-401c-af61-a9fed24fb229.png)
-![Group 39507](https://user-images.githubusercontent.com/38703262/228295423-d1c8161b-d522-42e7-ae22-ac283b29a661.png)
-![Group 39506](https://user-images.githubusercontent.com/38703262/228294956-daed9f95-c6bd-47fc-8300-9a1ffc14cef6.png)
-![채팅](https://user-images.githubusercontent.com/38703262/228294598-83c4d108-4fcb-40a9-a7e2-c1e2cc3d6c71.png)
-![마이페이지](https://user-images.githubusercontent.com/38703262/228294661-e51afdbd-5eab-45b5-acc3-17b5d61ea502.png)
-![Group 39505](https://user-images.githubusercontent.com/38703262/228294692-4f4b5f0a-96d5-434d-8c67-8ff2e678ef35.png)
-![Group 39508](https://user-images.githubusercontent.com/38703262/228295495-e3d75716-d453-4721-bdf2-8641ff849eb1.png)
-
-
 ## 📌 페이지별 화면
 
 ### [로그인 페이지]  
@@ -158,3 +147,12 @@ https://www.figma.com/file/78ArGQnn3tfp7cCzDlBA1j/%EB%B0%A5%EC%A1%B0?node-id=2%3
 ![마이페이지-회원탈퇴-로그인-실패](https://user-images.githubusercontent.com/38703262/228312565-fea1f348-8714-4337-aef2-0f04ec962c2e.gif)
 
 
+## 📌 피그마 시안
+https://www.figma.com/file/78ArGQnn3tfp7cCzDlBA1j/%EB%B0%A5%EC%A1%B0?node-id=2%3A11993&t=dyXzkIauGbbrnTfe-1]
+![홈](https://user-images.githubusercontent.com/38703262/228294447-5dc39fc2-22c3-401c-af61-a9fed24fb229.png)
+![Group 39507](https://user-images.githubusercontent.com/38703262/228295423-d1c8161b-d522-42e7-ae22-ac283b29a661.png)
+![Group 39506](https://user-images.githubusercontent.com/38703262/228294956-daed9f95-c6bd-47fc-8300-9a1ffc14cef6.png)
+![채팅](https://user-images.githubusercontent.com/38703262/228294598-83c4d108-4fcb-40a9-a7e2-c1e2cc3d6c71.png)
+![마이페이지](https://user-images.githubusercontent.com/38703262/228294661-e51afdbd-5eab-45b5-acc3-17b5d61ea502.png)
+![Group 39505](https://user-images.githubusercontent.com/38703262/228294692-4f4b5f0a-96d5-434d-8c67-8ff2e678ef35.png)
+![Group 39508](https://user-images.githubusercontent.com/38703262/228295495-e3d75716-d453-4721-bdf2-8641ff849eb1.png)
