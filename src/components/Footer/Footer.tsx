@@ -77,7 +77,6 @@ export function Footer() {
           </li>
         </ul>
       </div>
-      <div className={classes.contents}>{/* <h1>푸더</h1> */}</div>
     </footer>
   );
 }

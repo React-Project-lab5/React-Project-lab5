@@ -29,7 +29,7 @@
   grid-template-rows: 1fr 1fr;
   align-items: center;
   @include tablet {
-    grid-column: 1 / 4;
+    grid-column: 1 / 6;
   }
 }
 .slogan {
