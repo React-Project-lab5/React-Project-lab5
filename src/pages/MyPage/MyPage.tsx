@@ -199,7 +199,11 @@ export default function MyPage() {
   }, 500);
 
   if (isLoading) {
-    return <div role="alert"> 사용자 정보 로딩 중... </div>;
+    return (
+      <div role="alert" className={classes.isLoading}>
+        사용자 정보 로딩 중...
+      </div>
+    );
   }
 
   return (

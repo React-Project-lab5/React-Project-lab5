@@ -13,6 +13,7 @@ interface LoginResponse {
 }
 
 interface Profile {
+  [x: string]: string;
   nickname: string;
   profile_image: string;
   thumbnail_image_url: string;
