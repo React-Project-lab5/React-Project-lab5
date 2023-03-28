@@ -27,6 +27,31 @@ https://calkolab5.web.app
 
 음식물 낭비를 막고, 과소비를 지양하는 현대인들의 니즈를 담음.
 
+## 📌 기술 스택
+
+<div><img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white">
+
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+
+<img src="https://img.shields.io/badge/Recoil-764ABC?style=for-the-badge&logo=recoil&logoColor=white%22%3E">
+</div>
+<div>
+<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+<img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white">
+<img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white">
+</div>
+
+<div>
+<img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
+<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
+</div>
+
+### 기술 선정 이유
+- TypeSrcipt를 통해 타입을 명시해주어 타입오류를 최소화함. 
+- SASS를 통해 간편한 문법을 사용.
+- recoil을 통해 전체적인 상태를 쉽게 관리함.
+
 
 ## 📌 기능
 ** 로그인 되어야 서비스를 이용할 수 있는 형태의 앱 **
@@ -67,28 +92,6 @@ https://calkolab5.web.app
 - 로그아웃 기능 -> Firebase에서 제공해주는 signOut() 호출하여 계정 로그아웃.  
 - 회원탈퇴 기능 -> Firebase Authentication, fireStore에 저장되었던 계정이 삭제됨.  
 
-## 📌 기술 스택
-
-<div><img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white">
-
-<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
-
-<img src="https://img.shields.io/badge/Recoil-764ABC?style=for-the-badge&logo=recoil&logoColor=white%22%3E">
-</div>
-<div>
-<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
-<img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white">
-<img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white">
-</div>
-
-<div>
-<img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
-<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
-<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
-</div>
-- 기술 선정 이유 : TypeSrcipt를 통해 타입을 명시해주어 타입오류를 최소화함.  
-                  SASS를 통해 간편한 문법을 사용.   
-                  recoil을 통해 전체적인 상태를 쉽게 관리함.
 
 ## 📌 프로젝트 구조도
 ### Wireframe
