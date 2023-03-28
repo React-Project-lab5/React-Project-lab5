@@ -1,18 +1,3 @@
-import { debounce } from 'lodash';
-import { db } from '@/firebase/app';
-import { auth } from '@/firebase/auth';
-import classes from './MyPage.module.scss';
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Input, ProfileImage } from '@/components';
-import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import {
-  doc,
-  getDoc,
-  setDoc,
-  deleteDoc,
-  collection,
-} from '@firebase/firestore';
 import {
   signOut,
   deleteUser,
@@ -21,26 +6,41 @@ import {
   EmailAuthProvider,
   reauthenticateWithCredential,
 } from '@firebase/auth';
+import {
+  doc,
+  getDoc,
+  setDoc,
+  deleteDoc,
+  collection,
+} from '@firebase/firestore';
+import { debounce } from 'lodash';
+import { db } from '@/firebase/app';
+import { auth } from '@/firebase/auth';
+import classes from './MyPage.module.scss';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Input, ProfileImage } from '@/components';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 
 export default function MyPage() {
   useDocumentTitle('슬기로운 N밥 생활 | 마이 페이지');
 
   const navigation = useNavigate();
-  const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   const user = auth.currentUser;
 
-  const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
-    if (user) {
+    // 사용자 정보, 전화번호 또는 주소가 존재할 경우, 로딩 상태 false로 설정
+    if (user && (phoneNumber || address)) {
       setIsLoading(false);
     }
-  }, [user]);
+  }, [address, phoneNumber, user]);
 
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((user) => {
@@ -58,6 +58,8 @@ export default function MyPage() {
               setName(profile.displayName);
               setEmail(profile.email);
             });
+            // Firestore 문서 정보가 없다면? ➡️ 로딩 상태 false로 설정
+            setIsLoading(false);
           }
         });
       }
