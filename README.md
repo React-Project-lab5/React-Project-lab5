@@ -11,7 +11,7 @@ https://calkolab5.web.app
 |김서현 ( 조장 ) |김대웅|변혜빈|빈운기|원다함|
 |------|---|---|---|---|
 |<a href="https://github.com/seoohyeon"><img src="https://avatars.githubusercontent.com/u/38703262?v=4" width="150"/></a>|<a href="https://github.com/CALKO9611"><img src="https://avatars.githubusercontent.com/u/89835647?v=4" width="150"/></a>|<a href="https://github.com/HYBEN09"><img src="https://avatars.githubusercontent.com/u/104710243?v=4" width="150"/></a>|<a href="https://github.com/binwoonki"><img src="https://avatars.githubusercontent.com/u/119389337?v=4" width="150"/></a>|<a href="https://github.com/DahamWeon"><img src="https://avatars.githubusercontent.com/u/78182200?v=4" width="150"/></a>
-|-모임만들기 생성,삭제|-개인정보 수정,삭제|-로그인,회원가입 기능|-지도 API 연동|-소셜로그인 연동|
+|-모임카드 생성,삭제|-개인정보 수정,삭제|-로그인,회원가입 기능|-지도 API 연동|-소셜로그인 연동|
 |-제목 검색 기능  |-이미지 업로드 |-채팅 일부 구현|-UI 및 반응형 구현|-UI 및 반응형 구현|
 
 ## 프로젝트 기간
