@@ -5,14 +5,15 @@ import { debounce } from 'lodash';
 import { Button } from '../Button';
 import { useNavigate } from 'react-router-dom';
 import classes from './SearchFrom.module.scss';
-import search from '/public/assets/search.svg';
 import { ModalTotal } from '@/components/index';
 import { db } from '@/firebase/firestore/index';
-import { usersState } from '@/@recoil/usersState';
 import { addressState } from '@/@recoil/addressState';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { InputSelector } from '../InputSelector/InputSelector';
 import { collection, query, where, getDocs } from '@firebase/firestore';
+import { usersState } from '@/@recoil/usersState';
+import { Card } from '@/@recoil/usersState';
+import search from '/public/assets/search.svg';
 
 export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   const [searchTitle, setSearchTitle] = useState('');
@@ -44,7 +45,7 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
 
     try {
       const querySnapshot = await getDocs(usersCollectionRef);
-      const usersData = querySnapshot.docs.map((doc) => doc.data());
+      const usersData = querySnapshot.docs.map((doc) => doc.data()) as Card[];
       setUsers(usersData);
     } catch (err) {
       throw new Error('Error 404');

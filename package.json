@@ -12,7 +12,7 @@
     "start": "npm run dev -- --open",
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview --port 8080"
+    "preview": "vite preview --port 3000"
   },
   "dependencies": {
     "@types/react-responsive": "^8.0.5",

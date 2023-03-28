@@ -26,6 +26,7 @@ import { lazyMinLoadTime } from './lazyMinLoadTime';
 import React from 'react';
 
 const ShowCard = lazyMinLoadTime(() => import('./ShowCard'), 1000);
+import { Card } from '@/@recoil/usersState';
 
 interface Props {
   openModal: boolean;
@@ -59,7 +60,9 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
 
   const getAfterDelete = async () => {
     await getDocs(usersCollectionRenderRef).then((data) => {
-      setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setUsers(
+        data.docs.map((doc) => ({ ...doc.data(), id: doc.id })) as Card[]
+      );
     });
   };
 
