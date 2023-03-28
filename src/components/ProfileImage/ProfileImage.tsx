@@ -30,7 +30,10 @@ export function ProfileImage() {
   });
 
   function fileInput() {
-    if (user.providerData[0].providerId === 'google.com') {
+    if (
+      user.providerData[0].providerId === 'google.com' ||
+      user.providerData[0].photoURL.includes('kakao')
+    ) {
       alert('구글 및 카카오 사용자는 회원정보수정이 불가합니다!');
     } else {
       const fileInput = document.getElementById('fileInput');
