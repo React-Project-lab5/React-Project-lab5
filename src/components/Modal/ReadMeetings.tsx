@@ -18,7 +18,7 @@ import { useState, useEffect } from 'react';
 import { db } from '@/firebase/firestore/index';
 import { usersState } from '@/@recoil/usersState';
 import { deleteUsers } from '@/@recoil/deleteUsers';
-import { MapContainer } from './../../utils/MapContainer';
+import { MapContainer } from '../../utils/MapContainer/MapContainer';
 import { Button, ModalPotal, Modal } from '@/components/index';
 import { UserContainer } from './UserContainer';
 import { useNavigate } from 'react-router-dom';
