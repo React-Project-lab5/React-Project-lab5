@@ -17,7 +17,7 @@ import { Banner } from '@/components/index';
 import { mapState } from '@/@recoil/mapState';
 import { ShowMeetings } from '@/components/index';
 import { usersState } from '@/@recoil/usersState';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { cardDataState } from '@/@recoil/cardDataState';
 import classes from '../Recommend/Recommend.module.scss';
 import { titleMainState } from '@/@recoil/titleMainState';
@@ -25,6 +25,7 @@ import { SearchFrom } from '@/components/Input/SearchForm';
 import { detailMainState } from '@/@recoil/detailMainState';
 import { addressMainState } from '@/@recoil/addressMainState';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+import { Card } from '@/@recoil/usersState';
 
 export default function MainPage() {
   useDocumentTitle('슬기로운 N밥생활 | 모임');
@@ -34,11 +35,9 @@ export default function MainPage() {
   const detail = useRecoilValue(detailMainState);
   const cardData = useRecoilValue(cardDataState);
   const mapData = useRecoilValue(mapState);
-  // const setUsers = useSetRecoilState(usersState);
+  const setUsers = useSetRecoilState(usersState);
   const [name, setName] = useState('');
   const [userImg, setUserImg] = useState('');
-
-  const [users, setUsers] = useRecoilState(usersState);
 
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((user) => {
@@ -64,7 +63,9 @@ export default function MainPage() {
 
   const getUsers = async () => {
     await getDocs(usersCollectionRef).then((data) => {
-      setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setUsers(
+        data.docs.map((doc) => ({ ...doc.data(), id: doc.id })) as Card[]
+      );
     });
   };
 
