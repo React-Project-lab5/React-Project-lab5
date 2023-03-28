@@ -29,7 +29,7 @@ https://calkolab5.web.app
 
 
 ## 📌 기능
-* 로그인 되어야 서비스를 이용할 수 있는 형태의 앱  
+** 로그인 되어야 서비스를 이용할 수 있는 형태의 앱 **
   
   
 ### [로그인 페이지]  
@@ -87,9 +87,10 @@ https://calkolab5.web.app
 
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 
-- 기술 선정 이유 : TypeSrcipt를 통해 타입을 명시해주어 타입오류를 최소화 하고자 하였고,  
-                  SASS를 통해 간편한 문법을 사용하고자 하였습니다.  
-                  recoil을 통해 전체적인 상태를 쉽게 관리할 수 있었습니다.
+- 기술 선정 이유 
+  TypeSrcipt를 통해 타입을 명시해주어 타입오류를 최소화함.
+  SASS를 통해 간편한 문법을 사용. 
+  recoil을 통해 전체적인 상태를 쉽게 관리함.
 
 ## 📌 프로젝트 구조도
 ### Wireframe
