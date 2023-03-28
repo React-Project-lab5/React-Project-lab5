@@ -9,13 +9,13 @@ import { Pagination } from '@/components/Pagination/Pagination';
 export default function Recommend() {
   useDocumentTitle('슬기로운 N밥 생활 | 추천');
 
-  const postsPerPage = 28;
+  const postsPerPage = 20;
 
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const API_URL = `https://api.odcloud.kr/api/15097008/v1/uddi:1e5a6f2e-3f79-49bd-819b-d17541e6df78?page=4&perPage=112&serviceKey=${
+  const API_URL = `https://api.odcloud.kr/api/15097008/v1/uddi:1e5a6f2e-3f79-49bd-819b-d17541e6df78?page=3&perPage=80&serviceKey=${
     import.meta.env.VITE_SERVICE_KEY
   }`;
 

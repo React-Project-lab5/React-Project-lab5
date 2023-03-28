@@ -1,0 +1,80 @@
+@import '@/styles/common/index.scss';
+
+.InputContainer {
+  width: 100%;
+  margin: 3rem auto;
+  @include mobile {
+    padding: 0 10px;
+  }
+
+  .mainInput {
+    max-width: 1160px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--orange-100);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    vertical-align: middle;
+    gap: 14px;
+    padding: 2.375rem 3.625rem;
+    border-radius: 1rem;
+
+    .formInput {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    @include tablet {
+      flex-direction: column;
+    }
+
+    @include mobile {
+      gap: 10px;
+      flex-direction: row;
+      padding: 0 8% 0 5%;
+      background: none;
+    }
+    .searchFormInputSelector,
+    .searchFormInput {
+      @include mobile {
+        display: none;
+      }
+    }
+
+    .searchFormInput {
+      position: relative;
+    }
+    .ChatButton {
+      display: none;
+      @include mobile {
+        display: flex;
+      }
+    }
+  }
+}
+
+.inputSearchButton {
+  position: relative;
+  max-width: 35rem;
+  width: 100%;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.searchButton {
+  width: 32px;
+  height: 32px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(-50%, -50%);
+  margin-right: -48%;
+}
