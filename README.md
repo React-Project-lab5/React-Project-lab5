@@ -30,10 +30,9 @@ https://calkolab5.web.app
 
 ## 기능
 *로그인 되어야 서비스를 이용할 수 있는 형태의 앱  
-
-
-
-[로그인 페이지] 
+  
+  
+### [로그인 페이지]  
 - 로그인 후 Firebase Authentication, fireStore에 계정이 등록됨  
 1.구글 로그인  
 2.카카오 로그인  
@@ -41,7 +40,7 @@ https://calkolab5.web.app
 4.게스트 로그인(Read only)  
 
 
-[메인 페이지]   
+### [메인 페이지]   
 - 검색 기능 : 지역 선택 후 제목 검색 OR 제목만 검색 가능.  
 - 모임 만들기(Create) : Firebase fireStore에 title, address, detail-address, mapData, date 정보 저장됨. 
                        로그인 한 사용자 정보 출력됨.
@@ -50,19 +49,19 @@ https://calkolab5.web.app
 - 채팅하기 버튼 : 채팅페이지로 navigate됨.  
 
 
-[추천 페이지]  
+### [추천 페이지]  
 - Open API를 이용한 음식점 추천 정보 카드형식으로 랜더링  
 - 페이지네이션 기능  
 - top 버튼  
 
 
-[채팅 페이지]  
+### [채팅 페이지]  
 - 텍스트 입력 및 이미지 업로드 가능 -> Firebase fireStore에 대화내용 저장됨.
 - 로그인 사용자의 정보가 뜸.
 - 대화하는 사용자(가입된 사용자) 검색 가능.  
 
 
-[마이페이지]  
+### [마이페이지]  
 - 프로필 이미지 변경하기 및 정보 저장
 - '회원정보수정' 버튼 클릭 후 정보 수정(Update) -> Firebase fireStore에 저장.
 - 로그아웃 기능 -> Firebase에서 제공해주는 signOut() 호출하여 계정 로그아웃.  
@@ -92,6 +91,11 @@ https://calkolab5.web.app
                   recoil을 통해 전체적인 상태를 쉽게 관리할 수 있었습니다.
 
 ## 프로젝트 구조도
+### Wireframe
+![스크린샷 2023-03-09 오후 4 50 1](https://user-images.githubusercontent.com/38703262/228298987-b22c2831-096e-4f8a-a9fc-30ae4d94609e.svg)
+### User-flow
+![wire-frame](https://user-images.githubusercontent.com/38703262/228298919-ab738c9f-075a-42b4-8995-4fd31711e729.png)
+
 
 ## 피그마
 https://www.figma.com/file/78ArGQnn3tfp7cCzDlBA1j/%EB%B0%A5%EC%A1%B0?node-id=2%3A11993&t=dyXzkIauGbbrnTfe-1]
