@@ -6,7 +6,6 @@ import {
 } from '@firebase/storage';
 import { db } from '@/firebase/app';
 import { storage } from '@/firebase/storage';
-import { BsFillSendFill } from 'react-icons/bs';
 import classes from './SendMessage.module.scss';
 import { AuthContext } from '@/context/AuthContext';
 import { FormEvent, useContext, useState } from 'react';
@@ -101,7 +100,7 @@ export function SendMessage() {
         </label>
 
         <button type="submit" aria-label="메세지 보내기 버튼">
-          <BsFillSendFill />
+          ⌲
         </button>
       </div>
     </form>
