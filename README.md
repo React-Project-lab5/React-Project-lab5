@@ -49,7 +49,7 @@ https://calkolab5.web.app
 
 ### 기술 선정 이유
 - TypeSrcipt를 통해 타입을 명시해주어 타입오류를 최소화함. 
-- SASS를 통해 간편한 문법을 사용.
+- SASS를 통해 간편한 css문법 사용.
 - recoil을 통해 전체적인 상태를 쉽게 관리함.
 
 
