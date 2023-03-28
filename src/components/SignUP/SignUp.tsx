@@ -28,8 +28,8 @@ export default function SignUp() {
     const email = e.target[1].value;
     const password = e.target[2].value;
     const passwordConfirm = e.target[3].value;
-    const phoneNumber = ' ';
-    const address = ' ';
+    const phoneNumber = '* 전화번호를 입력하세요.';
+    const address = '* 주소를 입력하세요.';
 
     // validation ---------------------------------------------------
     if (!displayName || displayName.trim().length < 2) {
