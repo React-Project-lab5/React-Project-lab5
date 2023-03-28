@@ -1,5 +1,6 @@
 import classes from './Footer.module.scss';
 import { LogoText, SocialIconGroup } from '../index';
+import { Link } from 'react-router-dom';
 
 export function Footer() {
   return (
@@ -13,26 +14,54 @@ export function Footer() {
         <div className={classes.infoGroup}>
           <dl className={classes.infoList}>
             <dt className={classes.listTitle}>회사소개</dt>
-            <dd>투자 정보</dd>
-            <dd>브랜드 가이드라인</dd>
-            <dd>혼밥 비즈니스</dd>
-            <dd>광고 문의</dd>
+            <dd>
+              <Link to="#">투자 정보</Link>
+            </dd>
+            <dd>
+              <Link to="#">브랜드 가이드라인</Link>
+            </dd>
+            <dd>
+              <Link to="#">혼밥 비즈니스</Link>
+            </dd>
+            <dd>
+              <Link to="#">광고 문의</Link>
+            </dd>
           </dl>
           <dl className={classes.infoList}>
             <dt className={classes.listTitle}>공지사항</dt>
-            <dd>이용약관</dd>
-            <dd>개인정보처리방침</dd>
-            <dd>위치기반서비스 이용약관</dd>
-            <dd>커뮤니티 가이드라인</dd>
-            <dd>청소년보호정책</dd>
-            <dd>문의하기</dd>
+            <dd>
+              <Link to="#">이용약관</Link>
+            </dd>
+            <dd>
+              <Link to="#">개인정보처리방침</Link>
+            </dd>
+            <dd>
+              <Link to="#">위치기반서비스 이용약관</Link>
+            </dd>
+            <dd>
+              <Link to="#">커뮤니티 가이드라인</Link>
+            </dd>
+            <dd>
+              <Link to="#">청소년보호정책</Link>
+            </dd>
+            <dd>
+              <Link to="#">문의하기</Link>
+            </dd>
           </dl>
           <dl className={classes.infoList}>
             <dt className={classes.listTitle}>SNS</dt>
-            <dd>Discord</dd>
-            <dd>Instagram</dd>
-            <dd>Twitter</dd>
-            <dd>Facebook</dd>
+            <dd>
+              <Link to="#">Discord</Link>
+            </dd>
+            <dd>
+              <Link to="#">Instagram</Link>
+            </dd>
+            <dd>
+              <Link to="#">Twitter</Link>
+            </dd>
+            <dd>
+              <Link to="#">Facebook</Link>
+            </dd>
           </dl>
         </div>
       </div>
