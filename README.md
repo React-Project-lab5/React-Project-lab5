@@ -3,7 +3,7 @@
 ## 📌 프로젝트명 : 슬기로운 N밥생활
 
 ## 📌 프로젝트 관리  
-https://www.notion.so/LAB5-React-0c3615d1991544c1bfb3f3c45fff5e88
+https://uncovered-power-5e2.notion.site/LAB5-React-0c3615d1991544c1bfb3f3c45fff5e88
 
 ## 📌 프로젝트 발표 자료  
 https://docs.google.com/presentation/d/1Dl5YEi4h9hueUgTIufx8OlWW3Kn6gF8yXMurp2JxGXg/edit#slide=id.g2103abe4dad_0_54
