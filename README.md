@@ -2,9 +2,19 @@
 
 ## 📌 프로젝트명 : 슬기로운 N밥생활
 
+## 📌 프로젝트 관리  
+https://www.notion.so/LAB5-React-0c3615d1991544c1bfb3f3c45fff5e88
+
+## 📌 프로젝트 발표 자료  
+https://docs.google.com/presentation/d/1Dl5YEi4h9hueUgTIufx8OlWW3Kn6gF8yXMurp2JxGXg/edit#slide=id.g2103abe4dad_0_54
+
 ## 📌 배포 링크
 
 https://calkolab5.web.app
+
+## 📌 프로젝트 성능 및 접근성
+![image](https://user-images.githubusercontent.com/38703262/228428408-8c4027dd-20d4-4bda-a947-2265f8f2a091.png)
+
 
 ## 📌 팀원 소개
 
