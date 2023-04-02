@@ -16,16 +16,7 @@ interface Props {
 export function FoodList({ posts, loading }: Props) {
   if (loading) {
     return (
-      <div
-        role="alert"
-        className={classes.loading}
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          minHeight: '100vh',
-        }}
-      >
+      <div role="alert" className={classes.loading}>
         <img src={spinner} alt="로딩 이미지" />
       </div>
     );
