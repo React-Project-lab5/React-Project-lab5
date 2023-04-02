@@ -1,5 +1,6 @@
 import { Card } from '../Card';
 import classes from './FoodList.module.scss';
+import spinner from '/public/assets/loading.svg';
 
 interface Food {
   지역명: string;
@@ -14,7 +15,20 @@ interface Props {
 
 export function FoodList({ posts, loading }: Props) {
   if (loading) {
-    return <h2>Loading...</h2>;
+    return (
+      <div
+        role="alert"
+        className={classes.loading}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '100vh',
+        }}
+      >
+        <img src={spinner} alt="로딩 이미지" />
+      </div>
+    );
   }
 
   return (
