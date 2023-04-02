@@ -33,7 +33,7 @@ export default function Recommend() {
     };
 
     fetchData();
-  }, [API_URL]);
+  }, [API_URL, currentPage]);
 
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;

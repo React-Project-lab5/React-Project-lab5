@@ -79,7 +79,7 @@ export function SendMessage() {
     <form className={classes.input} onSubmit={handleSendMessage}>
       <div className={classes.sendInput}>
         <label htmlFor="message" className="a11yHidden">
-          메세지 입력
+          메시지를 입력하세요.
         </label>
         <input
           type="text"
