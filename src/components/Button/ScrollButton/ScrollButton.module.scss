@@ -1,0 +1,26 @@
+.scroll {
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  z-index: 1;
+
+  .button {
+    font-weight: bold;
+    font-size: 24px;
+    padding: 25px 20px;
+    background: var(--gray-200);
+    color: var(--black);
+    border: 1px solid var(--gray-600);
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--accent);
+    }
+
+    &[tabIndex='0']:focus {
+      outline: 2px solid var(--accent);
+    }
+  }
+}

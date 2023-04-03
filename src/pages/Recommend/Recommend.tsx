@@ -5,6 +5,7 @@ import classes from './Recommend.module.scss';
 import { FoodList } from '@/components/FoodList/FoodList';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { Pagination } from '@/components/Pagination/Pagination';
+import { ScrollButton } from '@/components/Button/ScrollButton/ScrollButton';
 
 export default function Recommend() {
   useDocumentTitle('슬기로운 N밥 생활 | 추천');
@@ -32,11 +33,7 @@ export default function Recommend() {
     };
 
     fetchData();
-  }, [API_URL]);
-
-  const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  }, [API_URL, currentPage]);
 
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
@@ -49,7 +46,6 @@ export default function Recommend() {
   return (
     <>
       <Banner />
-
       <h1 className={classes.title}> 서울 맛집 추천</h1>
       <FoodList posts={currentPosts} loading={loading} />
       <Pagination
@@ -57,16 +53,7 @@ export default function Recommend() {
         totalPosts={posts.length}
         paginate={paginate}
       />
-      <div className={classes.container}>
-        <button
-          type="button"
-          className={classes.button}
-          onClick={handleScrollToTop}
-          tabIndex={0}
-        >
-          Top
-        </button>
-      </div>
+      <ScrollButton />
     </>
   );
 }

@@ -18,7 +18,7 @@
   }
 
   .card {
-    background: white;
+    background: var(--white);
     width: 90%;
     height: 90%;
     margin: 1rem auto;
@@ -32,7 +32,7 @@
     }
 
     p {
-      color: #000;
+      color: var(--black);
       margin: 10px;
       font-size: 20px;
       font-weight: 600;
@@ -42,4 +42,13 @@
       border-radius: 16px;
     }
   }
+}
+
+// 로딩 스피너
+.loading {
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
