@@ -11,6 +11,7 @@ interface Food {
 
 interface Props {
   posts: Food[];
+  loading: boolean;
 }
 
 export function FoodList({ posts, loading }: Props) {
@@ -33,7 +34,6 @@ export function FoodList({ posts, loading }: Props) {
     );
   }
 
-export function FoodList({ posts }: Props) {
   return (
     <div className={classes.store}>
       {showCards &&

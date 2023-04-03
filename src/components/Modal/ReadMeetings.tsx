@@ -106,22 +106,24 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
                   <React.Suspense fallback={<div>로딩 중...</div>}>
                     <ShowCard cards={cards} />
                   </React.Suspense>
-                  <Button
-                    maxWidthValue={250}
-                    heightValue={50}
-                    text={'참여하기'}
-                    backgroundColor={'orange'}
-                    className={classes.signupButton}
-                    onClick={handleJoin}
-                  />
-                  <Button
-                    maxWidthValue={250}
-                    heightValue={50}
-                    text={'삭제하기'}
-                    backgroundColor={'red'}
-                    className={classes.signupButton}
-                    onClick={handleDelete}
-                  />
+                  <div className={classes.buttonContainer}>
+                    <Button
+                      maxWidthValue={250}
+                      heightValue={50}
+                      text={'참여하기'}
+                      backgroundColor={'orange'}
+                      className={classes.signupButton}
+                      onClick={handleJoin}
+                    />
+                    <Button
+                      maxWidthValue={250}
+                      heightValue={50}
+                      text={'삭제하기'}
+                      backgroundColor={'red'}
+                      className={classes.deleteButton}
+                      onClick={handleDelete}
+                    />
+                  </div>
                 </div>
               </form>
             </div>

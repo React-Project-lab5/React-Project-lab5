@@ -145,8 +145,23 @@
   }
 }
 
+.buttonContainer {
+  max-width: 300px;
+  width: 100%;
+
+  
+  @include mobile {
+    margin-top: 7px;
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+}
+
 .signupButton {
   margin-top: 35px;
+  max-width: 300px;
+  width: 100%;
 
 
 .mainPageCard{
@@ -155,10 +170,19 @@
   }
 }
   @include mobile {
-    width: 100%;
-    margin: 16px 0px ;
+    width: 30px;
+    margin: 16px 0px;
   }
 }
+.deleteButton {
+  margin-top: 35px;
+  @include mobile {
+    width: 30px;
+    margin: 0px;
+  }
+}
+
+
 #map{
   @include mobile {
     margin:0 auto;
@@ -198,12 +222,6 @@
       width: 100%;
     }
 
-  }
-  .modalForm{
-    width: 100%;
-    .modalSearch{
-      width:100%;
-    }
   }
 
 
