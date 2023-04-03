@@ -11,9 +11,9 @@ interface Food {
 
 interface Props {
   posts: Food[];
-  loading: boolean;
 }
 
+<<<<<<< Updated upstream
 export function FoodList({ posts, loading }: Props) {
   const [showCards, setShowCards] = useState<boolean>(false);
 
@@ -33,9 +33,14 @@ export function FoodList({ posts, loading }: Props) {
       </div>
     );
   }
+=======
+const FoodItems = lazyMinLoadTime(() => import('./FoodItems'), 5000);
+>>>>>>> Stashed changes
 
+export function FoodList({ posts }: Props) {
   return (
     <div className={classes.store}>
+<<<<<<< Updated upstream
       {showCards &&
         posts.map((food: Food, index: number) => (
           <Card key={index} className={classes.card}>
@@ -51,6 +56,11 @@ export function FoodList({ posts, loading }: Props) {
             </div>
           </Card>
         ))}
+=======
+      <React.Suspense fallback={<div>로딩 중...</div>}>
+        <FoodItems posts={posts} />
+      </React.Suspense>
+>>>>>>> Stashed changes
     </div>
   );
 }
