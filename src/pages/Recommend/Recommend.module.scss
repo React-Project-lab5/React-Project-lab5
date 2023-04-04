@@ -1,3 +1,5 @@
+@import '../../styles/common/index.scss';
+
 .title {
   text-align: center;
   width: 70%;
@@ -6,8 +8,82 @@
   padding-bottom: 20px;
   margin: 2rem auto;
   background: var(--white);
-  border: 3px solid var(--primary);
+  border: 3px solid var(--gray-400);
   border-radius: 16px;
+  color: var(--colar-700);
   box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.09),
     0 0.5rem 1.125rem rgba(75, 0, 0, 0.09);
+}
+
+.InputContainer {
+  width: 100%;
+  margin: 3rem auto;
+
+  @include mobile {
+    padding: 0 10px;
+  }
+
+  .mainInput {
+    max-width: 1160px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--orange-100);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    vertical-align: middle;
+    gap: 14px;
+    padding: 2.375rem 3.625rem;
+    border-radius: 1rem;
+    box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.09),
+      0 0.5rem 1.125rem rgba(75, 0, 0, 0.09);
+  }
+}
+
+.formInput {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+
+  @include tablet {
+    flex-direction: column;
+  }
+
+  @include mobile {
+    gap: 10px;
+    flex-direction: row;
+    padding: 0 8% 0 5%;
+    background: none;
+  }
+
+  .searchFormInput {
+    &::placeholder {
+      font-size: 24px;
+    }
+    @include mobile {
+      &::placeholder {
+        font-size: 15px;
+      }
+    }
+  }
+
+  .inputSearchButton {
+    position: relative;
+    max-width: 35rem;
+    width: 100%;
+  }
+
+  .searchButton {
+    width: 32px;
+    height: 32px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    margin-right: -48%;
+  }
 }
