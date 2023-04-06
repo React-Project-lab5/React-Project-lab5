@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
 import ReactPaginate from 'react-paginate';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { Banner, Input } from '@/components';
 import classes from './Recommend.module.scss';
 import search from '/public/assets/search.svg';
@@ -20,12 +20,14 @@ export default function Recommend() {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useRecoilState(loadingState);
+  //검색어를 입력하면 searchTerm 상태 변수에 저장
   const [searchTerm, setSearchTerm] = useRecoilState(searchTermState);
 
   const API_URL = `https://api.odcloud.kr/api/15097008/v1/uddi:1e5a6f2e-3f79-49bd-819b-d17541e6df78?page=1&perPage=160&serviceKey=${
     import.meta.env.VITE_SERVICE_KEY
   }`;
 
+  //API 데이터를 가져와서 posts 상태 변수에 저장
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -48,10 +50,10 @@ export default function Recommend() {
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
   // 페이지 변경
-  const handlePageClick = ({ selected }) => setCurrentPage(selected);
+  const handlePageClick = ({ selected }): void => setCurrentPage(selected);
 
   // 검색어를 상태에 업데이트
-  const handlerSearchTerm = (e) => {
+  const handlerSearchTerm = (e: ChangeEvent<HTMLInputElement>): void => {
     setSearchTerm(e.target.value);
   };
 
