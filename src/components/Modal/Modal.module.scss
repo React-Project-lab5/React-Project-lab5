@@ -87,7 +87,7 @@
   opacity: 0.5;
 }
 .modalRealContent {
-  padding: 2.1875rem 3.125rem;
+  padding: 2.1875rem 3rem;
   width: 100%;
 
 
@@ -243,6 +243,10 @@
     span {
       display:block;
       padding: 6px 0;
+
+      @include tablet {
+        font-size: 1rem;
+      }
     }
     .lastSpan {
       margin-bottom: -10px;
@@ -263,8 +267,15 @@
   }
 
   .userConatiner {
-    margin-top: -10px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
+    margin-top: 10px;
+    margin-left: 4.375rem;
+    
+
+    @include mobile {
+      margin-top: -10px;
+      margin-bottom: 10px;
+      margin-left: 0;
+      display: flex;
+      justify-content: center;
+    }
   }

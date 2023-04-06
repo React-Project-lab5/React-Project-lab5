@@ -1,3 +1,5 @@
+@import "@/styles/common/index.scss";
+
 .button {
   display: flex;
   flex-direction: row;
@@ -6,7 +8,7 @@
   padding: 9px 13px;
 
   width: 100%;
-  min-width: 100px;
+  min-width: 90px;
   height: 51px;
   font-size: clamp(0.5rem, 5vw , 1.125rem);
 
@@ -18,6 +20,10 @@
   color: var(--black);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 16px;
+
+  @include tablet {
+    font-size: 1rem;
+  }
 
 
 
