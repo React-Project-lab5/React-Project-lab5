@@ -3,7 +3,7 @@ import { onAuthStateChanged } from '@firebase/auth';
 import { createContext, useState, useEffect, ReactNode } from 'react';
 
 export const AuthContext = createContext({
-  currentUser: null,
+  currentUser: {},
 });
 
 type Props = {
