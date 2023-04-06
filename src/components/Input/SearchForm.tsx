@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import { Input } from './Input';
 import { SetStateAction, useState } from 'react';
-import { debounce } from 'lodash';
 import { Button } from '../Button';
 import { useNavigate } from 'react-router-dom';
 import classes from './SearchForm.module.scss';
@@ -31,13 +30,17 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
     if (address) {
       usersCollectionRef = query(
         collection(db, 'makeMeetings'),
-        where('address', '==', address.slice(6, 9)),
+        where('address', 'in', [
+          address.slice(6, 8),
+          address.slice(6, 9),
+          address.slice(6, 10),
+        ]),
         where('title', 'array-contains-any', searchTitle.split(' '))
       );
     } else {
       usersCollectionRef = query(
         collection(db, 'makeMeetings'),
-        where('title', 'array-contains', searchTitle)
+        where('title', 'array-contains-any', searchTitle.split(' '))
       );
     }
 
@@ -54,7 +57,7 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
     e.code === 'Enter' && handleSearch();
   };
 
-  const writeTitle = (e: { target: { value: SetStateAction<string> } }) => {
+  const writeTitle = (e) => {
     setSearchTitle(e.target.value);
   };
 
