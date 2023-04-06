@@ -120,7 +120,9 @@
         float: left;
         font-weight: 600;
         &:focus {
-          border: 2px solid black;
+          border: 2px solid var(--accent);
+          border-radius: 16px;
+          padding: 3px;
         }
       }
 
