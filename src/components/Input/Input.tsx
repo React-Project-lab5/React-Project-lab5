@@ -54,6 +54,7 @@ export function Input({
         id={labelText}
         aria-label={labelText + ' 입력'}
         className={classNames(classes['inputList'], className)}
+        autoComplete="off"
         style={inputStyle}
         placeholder={placeHolder}
         onChange={onChange}
