@@ -62,7 +62,7 @@ export function ModalTotal({ createUsers, getUsers }: SearchFormProps) {
         heightValue={'75px'}
         text="모임 만들기"
         backgroundColor={'orange'}
-        className={classes.MeetingButton}
+        className={classes.meetingButton}
         onClick={handleOpen}
       />
       {modalOpened && (

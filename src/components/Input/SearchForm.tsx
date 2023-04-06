@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import { Input } from './Input';
-import { SetStateAction, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import { Button } from '../Button';
 import { useNavigate } from 'react-router-dom';
 import classes from './SearchForm.module.scss';
@@ -12,7 +12,8 @@ import { InputSelector } from '../InputSelector/InputSelector';
 import { collection, query, where, getDocs } from '@firebase/firestore';
 import { usersState } from '@/@recoil/usersState';
 import { Card } from '@/@recoil/usersState';
-import search from '/public/assets/search.svg';
+import searchButton from '/public/assets/search.svg';
+import closeButton from '/public/assets/close.svg';
 
 export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   const [searchTitle, setSearchTitle] = useState('');
@@ -20,6 +21,11 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   const address = useRecoilValue(addressState);
   const movePage = useNavigate();
   const [arrayTitle, setArraytitle] = useState([]);
+  const [inputFlag, setInputFlag] = useState(false);
+
+  useEffect(() => {
+    searchTitle ? setInputFlag(true) : setInputFlag(false);
+  }, [searchTitle]);
 
   const goChatPage = () => {
     movePage('/chat');
@@ -58,15 +64,19 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
     e.code === 'Enter' && handleSearch();
   };
 
-  const writeTitle = (e) => {
+  const writeTitle = (e: { target: { value: SetStateAction<string> } }) => {
     setSearchTitle(e.target.value);
-    console.log(searchTitle.split(' '));
     setArraytitle([...searchTitle]);
   };
 
   const handleRegister = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     handleSearch();
+  };
+
+  const resetButton = () => {
+    setSearchTitle('');
+    getUsers();
   };
 
   return (
@@ -95,17 +105,31 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
                 onChange={writeTitle}
                 defaultValue={searchTitle}
               />
-              <button
-                className={classes['searchButton']}
-                type="submit"
-                aria-label="검색 버튼"
-                tabIndex={0}
-              >
-                <img src={search} alt="검색 버튼" tabIndex={0} />
+              {inputFlag && (
+                <button
+                  type="reset"
+                  aria-label="초기화 버튼"
+                  onClick={resetButton}
+                >
+                  <img
+                    className={classes.closeButton}
+                    src={closeButton}
+                    alt="초기화 버튼"
+                    tabIndex={0}
+                  />
+                </button>
+              )}
+              <button type="submit" aria-label="검색 버튼">
+                <img
+                  className={classes.searchButton}
+                  src={searchButton}
+                  alt="검색 버튼"
+                  tabIndex={0}
+                />
               </button>
             </div>
+            <ModalTotal createUsers={createUsers} getUsers={getUsers} />
           </form>
-          <ModalTotal createUsers={createUsers} getUsers={getUsers} />
 
           <Button
             maxWidthValue={'190px'}
