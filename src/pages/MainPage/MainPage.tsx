@@ -71,13 +71,13 @@ export default function MainPage() {
 
   useEffect(() => {
     getUsers();
-  }, [getUsers, mapData]);
+  }, [getUsers, mapData, title, address, detail]);
 
   const createUsers = async () => {
     const user = auth.currentUser;
 
     await addDoc(collection(db, 'makeMeetings'), {
-      title: title.split(' '),
+      title: [...title],
       address: address,
       detail: detail,
       cardData: cardData,

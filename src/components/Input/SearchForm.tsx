@@ -19,6 +19,7 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   const setUsers = useSetRecoilState(usersState);
   const address = useRecoilValue(addressState);
   const movePage = useNavigate();
+  const [arrayTitle, setArraytitle] = useState([]);
 
   const goChatPage = () => {
     movePage('/chat');
@@ -35,12 +36,12 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
           address.slice(6, 9),
           address.slice(6, 10),
         ]),
-        where('title', 'array-contains-any', searchTitle.split(' '))
+        where('title', 'array-contains-any', arrayTitle)
       );
     } else {
       usersCollectionRef = query(
         collection(db, 'makeMeetings'),
-        where('title', 'array-contains-any', searchTitle.split(' '))
+        where('title', 'array-contains-any', arrayTitle)
       );
     }
 
@@ -59,6 +60,8 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
 
   const writeTitle = (e) => {
     setSearchTitle(e.target.value);
+    console.log(searchTitle.split(' '));
+    setArraytitle([...searchTitle]);
   };
 
   const handleRegister = (e: { preventDefault: () => void }) => {
