@@ -14,12 +14,11 @@ const ShowCard: FC<Props> = ({ cards }) => {
   const setMapData = useSetRecoilState(readingMap);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    async function fetchAndSetCard() {
       const mapPosition = cards[0].mapData;
-      console.log(cards);
       setMapData(mapPosition);
-    }, 1000);
-    return () => clearTimeout(timer);
+    }
+    fetchAndSetCard();
   }, [cards, setMapData]);
   return (
     <>
