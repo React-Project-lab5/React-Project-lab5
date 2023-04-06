@@ -12,7 +12,7 @@ interface Props {
   isA11yHidden?: boolean;
   className?: string;
   type?: string;
-  onChange?: DebouncedFunc<() => void>;
+  onChange?: DebouncedFunc<() => void> | ((e: unknown) => void);
   disabled?: boolean;
   value?: string;
   defaultValue?: string;
