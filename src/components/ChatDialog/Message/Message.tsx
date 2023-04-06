@@ -18,9 +18,11 @@ interface MessageProps {
 
 export function Message({ message }: MessageProps) {
   const [photoURL, setPhotoURL] = useState<string>(defaultAvatar);
+  const user = auth.currentUser;
 
   //authImagState는 현재 로그인한 사용자의 프로필 이미지
   const imageUrl = useRecoilValue(authImagState);
+  const [displayName, setDisplayName] = useState<string>('');
 
   useEffect(() => {
     if (!message.uid) {
@@ -38,6 +40,7 @@ export function Message({ message }: MessageProps) {
       if (docSnap.exists()) {
         const userData = docSnap.data();
         setPhotoURL(userData.photoURL || defaultAvatar);
+        setDisplayName(userData.displayName || '');
       }
     }
 
@@ -45,8 +48,8 @@ export function Message({ message }: MessageProps) {
       unsubscribe = onSnapshot(userRef, (docSnap) => {
         const userData = docSnap.data();
 
-        if (userData?.photoURL) {
-          setPhotoURL(userData.photoURL);
+        if (userData?.displayName) {
+          setDisplayName(userData.displayName);
         }
       });
     });
@@ -74,6 +77,7 @@ export function Message({ message }: MessageProps) {
   return (
     <div className={classNames(classes.message, classes.owner)}>
       <div className={classes.messageInfo}>
+        <p>{displayName}</p>
         <img
           src={getImageUrl()}
           alt={
