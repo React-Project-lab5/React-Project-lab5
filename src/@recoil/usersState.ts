@@ -5,7 +5,7 @@ export interface Card {
   id: string;
   address: string;
   detail: string;
-  mapData: [number, number];
+  mapData?: [number, number];
   cardData: string;
   userImg?: string;
   userName?: string;
