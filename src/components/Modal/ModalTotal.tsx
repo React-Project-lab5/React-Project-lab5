@@ -112,7 +112,7 @@ export function ModalTotal({ createUsers, getUsers }: SearchFormProps) {
                     showDisabledMonthNavigation
                   />
                   <Button
-                    maxWidthValue={300}
+                    maxWidthValue={'18.75rem'}
                     heightValue={50}
                     text={'모임 만들기'}
                     type={'submit'}

@@ -90,8 +90,12 @@
   padding: 2.1875rem 3.125rem;
   width: 100%;
 
+
   @include mobile {
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -107,7 +111,6 @@
 .popupContent {
   display: flex;
   justify-content: space-around;
-  gap:1rem;
 
   .popupSelector{
     max-width: 300px;
@@ -139,6 +142,8 @@
   color: red;
   vertical-align: middle;
   cursor: pointer;
+
+  
 
   &:focus {
     border: 2px solid black;
@@ -240,7 +245,7 @@
       padding: 6px 0;
     }
     .lastSpan {
-      margin-bottom: -20px;
+      margin-bottom: -10px;
     }
   }
 
@@ -258,7 +263,8 @@
   }
 
   .userConatiner {
-    margin-top: 25px;
+    margin-top: -10px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: center;
   }

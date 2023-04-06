@@ -11,7 +11,13 @@
     margin: 0;
   }
   .map {
-    width: 100%;
+    width: 14.2rem;
     height: 250px;
+
+    @include mobile {
+      width: 14.2rem;
+      height: 200px;
+      margin: 20px 0;
+    }
   }
 }

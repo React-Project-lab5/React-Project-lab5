@@ -25,7 +25,7 @@ const ShowCard: FC<Props> = ({ cards }) => {
     <>
       {cards.map((value, index: number) => (
         <div key={index} className={classes.showUsers}>
-          <span>{value.title.join(' ')}</span>
+          <span>{value.title}</span>
           <span>{value.address}</span>
           <span>{value.detail}</span>
           <span>{value.cardData.slice(0, 15)}</span>
