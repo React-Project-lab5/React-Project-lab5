@@ -18,7 +18,6 @@ interface MessageProps {
 
 export function Message({ message }: MessageProps) {
   const [photoURL, setPhotoURL] = useState<string>(defaultAvatar);
-  const user = auth.currentUser;
 
   //authImagState는 현재 로그인한 사용자의 프로필 이미지
   const imageUrl = useRecoilValue(authImagState);
