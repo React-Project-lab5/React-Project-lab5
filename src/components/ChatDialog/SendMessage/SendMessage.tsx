@@ -9,8 +9,8 @@ import { db } from '@/firebase/app';
 import { storage } from '@/firebase/storage';
 import classes from './SendMessage.module.scss';
 import { AuthContext } from '@/context/AuthContext';
-import { FormEvent, KeyboardEvent, useContext, useState } from 'react';
 import Img from '/public/assets/chatImagePlaceholder.svg';
+import { FormEvent, KeyboardEvent, useContext, useState } from 'react';
 import { collection, addDoc, serverTimestamp } from '@firebase/firestore';
 
 export function SendMessage() {
@@ -28,6 +28,7 @@ export function SendMessage() {
     }
 
     const { uid, displayName } = currentUser;
+
     if (img) {
       const uniqueId = img.name;
       const storageRef = ref(storage, `assets/${uniqueId}`);
@@ -79,7 +80,7 @@ export function SendMessage() {
     <form className={classes.input} onSubmit={handleSendMessage}>
       <div className={classes.sendInput}>
         <label htmlFor="message" className="a11yHidden">
-          메시지를 입력하세요.
+          메세지 입력
         </label>
         <input
           type="text"
