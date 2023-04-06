@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Button } from '../Button';
 import { db } from '@/firebase/app';
 import { Input } from '../Input/Input';

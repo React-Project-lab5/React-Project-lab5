@@ -3,7 +3,7 @@
 .userPictureButton {
   cursor: pointer;
   &:focus {
-    border: 2px solid black;
+    border: 3px solid var(--accent);
     border-radius: 25px;
   }
   .userPicture {

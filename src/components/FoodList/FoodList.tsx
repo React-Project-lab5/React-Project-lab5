@@ -1,10 +1,10 @@
-import { loadingState } from '@/@recoil/loadingState';
-import { searchTermState } from '@/@recoil/searchTermState';
-import { useEffect, useMemo, useState } from 'react';
-import { useRecoilValue } from 'recoil';
 import { Card } from '../Card';
+import { useRecoilValue } from 'recoil';
 import classes from './FoodList.module.scss';
 import spinner from '/public/assets/loading.svg';
+import { useEffect, useMemo, useState } from 'react';
+import { loadingState } from '@/@recoil/loadingState';
+import { searchTermState } from '@/@recoil/searchTermState';
 
 interface Food {
   지역명: string;
