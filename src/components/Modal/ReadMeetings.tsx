@@ -11,10 +11,10 @@ import {
 } from '@firebase/firestore';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import classes from './Modal.module.scss';
 import firebase from 'firebase/compat/app';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { db } from '@/firebase/firestore/index';
 import { usersState } from '@/@recoil/usersState';
 import { deleteUsers } from '@/@recoil/deleteUsers';
@@ -27,6 +27,7 @@ import React from 'react';
 
 const ShowCard = lazyMinLoadTime(() => import('./ShowCard'), 1000);
 import { Card } from '@/@recoil/usersState';
+import { readingCardState } from '@/@recoil/readingCardState';
 
 interface Props {
   openModal: boolean;
@@ -36,7 +37,7 @@ interface Props {
 export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
   const setUsers = useSetRecoilState(usersState);
   const deleteCard = useRecoilValue(deleteUsers);
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useRecoilState(readingCardState);
 
   const usersCollectionRef = query(
     collection(db, 'makeMeetings'),
@@ -54,7 +55,9 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
 
   const getUsers = async () => {
     await getDocs(usersCollectionRef).then((data) => {
-      setCards(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setCards(
+        data.docs.map((doc) => ({ ...doc.data(), id: doc.id })) as Card[]
+      );
     });
   };
 
@@ -99,12 +102,12 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
             <div className={classes.popupContent}>
               <div>
                 <MapContainer />
-                <UserContainer cards={cards} />
+                <UserContainer />
               </div>
               <form onSubmit={handleClose} className={classes['modalForm']}>
                 <div className={classes['modalSearch']}>
                   <React.Suspense fallback={<div>로딩 중...</div>}>
-                    <ShowCard cards={cards} />
+                    <ShowCard />
                   </React.Suspense>
                   <div className={classes.buttonContainer}>
                     <Button

@@ -93,10 +93,10 @@ export default function MyPage() {
       return;
     }
 
-    if (!isValidTel(phoneNumber)) {
-      alert('휴대폰 번호 01012345678 형식으로 입력해 주세요.');
-      return;
-    }
+    //if (!isValidTel(phoneNumber)) {
+    //  alert('휴대폰 번호 01012345678 형식으로 입력해 주세요.');
+    //  return;
+    //}
 
     /* ----- Firestore 업데이트 ----- */
     const getUserRef = doc(collection(db, 'users'), user.uid);
@@ -175,6 +175,14 @@ export default function MyPage() {
   /* ---------------------------------- 회원탈퇴 ---------------------------------- */
   const handleSignDropOut = () => {
     deleteDocument('회원 탈퇴');
+    Kakao.Auth.logout()
+      .then(function () {
+        alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
+        deleteCookie();
+      })
+      .catch(function () {
+        alert('Not logged in');
+      });
   };
 
   /* -------------------------------- debounce -------------------------------- */

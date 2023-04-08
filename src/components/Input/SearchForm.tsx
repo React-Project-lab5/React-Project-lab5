@@ -7,9 +7,15 @@ import classes from './SearchForm.module.scss';
 import { ModalTotal } from '@/components/index';
 import { db } from '@/firebase/firestore/index';
 import { addressState } from '@/@recoil/addressState';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { InputSelector } from '../InputSelector/InputSelector';
-import { collection, query, where, getDocs } from '@firebase/firestore';
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  orderBy,
+} from '@firebase/firestore';
 import { usersState } from '@/@recoil/usersState';
 import { Card } from '@/@recoil/usersState';
 import searchButton from '/public/assets/search.svg';
@@ -18,7 +24,7 @@ import closeButton from '/public/assets/close.svg';
 export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   const [searchTitle, setSearchTitle] = useState('');
   const setUsers = useSetRecoilState(usersState);
-  const address = useRecoilValue(addressState);
+  const [address, setAddress] = useRecoilState(addressState);
   const movePage = useNavigate();
   const [arrayTitle, setArraytitle] = useState([]);
   const [inputFlag, setInputFlag] = useState(false);
@@ -54,7 +60,13 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
     try {
       const querySnapshot = await getDocs(usersCollectionRef);
       const usersData = querySnapshot.docs.map((doc) => doc.data()) as Card[];
-      setUsers(usersData);
+      setUsers(
+        usersData.sort((a, b) => {
+          if (a.timestamp.seconds < b.timestamp.seconds) return 1;
+          if (a.timestamp.seconds > b.timestamp.seconds) return -1;
+          return 0;
+        })
+      );
     } catch (err) {
       throw new Error('Error 404');
     }
@@ -77,6 +89,7 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   const resetButton = () => {
     setSearchTitle('');
     getUsers();
+    setAddress(null);
   };
 
   return (
