@@ -127,7 +127,7 @@ export default function SignUp() {
           )}
         </form>
         <p>
-          <Link to={'/'}>
+          <Link to={'/'} aria-label="홈 페이지로 이동">
             <span className={classes.login}>로그인 {''}</span>
           </Link>
           계정이 있으신가요?
