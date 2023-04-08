@@ -54,12 +54,12 @@ export default function MyPage() {
             setEmail(userData.email);
             setPhoneNumber(userData.phoneNumber);
             setAddress(userData.address);
+            setIsLoading(false); // Firestore 문서 정보가 있으면 로딩 상태 false로 설정
           } else {
             user.providerData.forEach((profile) => {
               setName(profile.displayName);
               setEmail(profile.email);
             });
-            // Firestore 문서 정보가 없다면? ➡️ 로딩 상태 false로 설정
             setIsLoading(false);
           }
         });

@@ -43,6 +43,8 @@ export function Message({ message }: MessageProps) {
       }
     }
 
+    // Firestore에서 실시간으로 유저 데이터를 가져와서 displayName 필드를 업데이트,
+    // 변경 사항이 발생할 때마다 콜백 함수를 실행.
     getUserDoc().then(() => {
       unsubscribe = onSnapshot(userRef, (docSnap) => {
         const userData = docSnap.data();
@@ -64,10 +66,11 @@ export function Message({ message }: MessageProps) {
   function getImageUrl() {
     if (imageUrl) {
       return isCurrentUser() ? imageUrl : photoURL;
+    } else {
+      return defaultAvatar;
     }
-
-    return photoURL;
   }
+
   // 현재 사용자가 메시지 작성자인지 확인
   function isCurrentUser() {
     return auth.currentUser?.uid === message.uid;
@@ -77,6 +80,7 @@ export function Message({ message }: MessageProps) {
     <div className={classNames(classes.message, classes.owner)}>
       <div className={classes.messageInfo}>
         <p>{displayName}</p>
+
         <img
           src={getImageUrl()}
           alt={
