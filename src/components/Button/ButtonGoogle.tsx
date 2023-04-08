@@ -1,9 +1,11 @@
 import classNames from 'classnames';
 import { auth } from '@/firebase/auth';
+import { db } from '@/firebase/firestore';
 import classes from './Button.module.scss';
 import { useNavigate } from 'react-router-dom';
 import google from '/public/assets/googleLogo.svg';
-import { GoogleAuthProvider, signInWithRedirect } from '@firebase/auth';
+import { GoogleAuthProvider, signInWithPopup } from '@firebase/auth';
+import { collection, doc, setDoc } from '@firebase/firestore';
 
 interface Props {
   widthValue?: string | number;
@@ -25,10 +27,27 @@ export function ButtonGoogle({
   };
   const navigate = useNavigate();
 
-  const handleGoogleSignIn = () => {
+  const handleGoogleSignIn = async () => {
     const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider);
-    navigate('/mainpage');
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      if (user) {
+        const { uid, displayName, photoURL } = user;
+        const userData = {
+          uid,
+          displayName,
+          photoURL,
+        };
+        const userRef = doc(collection(db, 'users'), uid);
+        await setDoc(userRef, userData, { merge: true });
+      }
+
+      navigate('/mainpage');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
