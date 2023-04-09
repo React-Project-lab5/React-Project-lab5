@@ -175,14 +175,6 @@ export default function MyPage() {
   /* ---------------------------------- 회원탈퇴 ---------------------------------- */
   const handleSignDropOut = () => {
     deleteDocument('회원 탈퇴');
-    Kakao.Auth.logout()
-      .then(function () {
-        alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
-        deleteCookie();
-      })
-      .catch(function () {
-        alert('Not logged in');
-      });
   };
 
   /* -------------------------------- debounce -------------------------------- */
