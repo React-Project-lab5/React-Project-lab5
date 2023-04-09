@@ -1,25 +1,19 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import { Input } from './Input';
-import { SetStateAction, useEffect, useState } from 'react';
 import { Button } from '../Button';
+import { Card } from '@/@recoil/usersState';
 import { useNavigate } from 'react-router-dom';
 import classes from './SearchForm.module.scss';
 import { ModalTotal } from '@/components/index';
 import { db } from '@/firebase/firestore/index';
+import { usersState } from '@/@recoil/usersState';
+import closeButton from '/public/assets/close.svg';
+import searchButton from '/public/assets/search.svg';
 import { addressState } from '@/@recoil/addressState';
 import { useRecoilState, useSetRecoilState } from 'recoil';
+import { SetStateAction, useEffect, useState } from 'react';
 import { InputSelector } from '../InputSelector/InputSelector';
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  orderBy,
-} from '@firebase/firestore';
-import { usersState } from '@/@recoil/usersState';
-import { Card } from '@/@recoil/usersState';
-import searchButton from '/public/assets/search.svg';
-import closeButton from '/public/assets/close.svg';
+import { collection, query, where, getDocs } from '@firebase/firestore';
 
 export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   const [searchTitle, setSearchTitle] = useState('');
