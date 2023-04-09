@@ -22,7 +22,8 @@ const ShowCard: FC<Props> = () => {
   const [cards, setCards] = useRecoilState(readingCardState);
 
   useEffect(() => {
-    if (localStorage.getItem('Unique ID') === '1') {
+    //무한루프.랜더링 예방 -> cards가 [] 빈배열 일때에만 실행되도록 함.
+    if (localStorage.getItem('Unique ID') === '1' && cards.length === 0) {
       const usersCollectionRef = query(
         collection(db, 'makeMeetings'),
         where('detail', '==', searchCardDetail),
@@ -40,12 +41,12 @@ const ShowCard: FC<Props> = () => {
     }
 
     async function fetchAndSetCard() {
-      console.log('cards[0]', cards[0]);
       if (cards[0]) {
         const mapPosition = cards[0].mapData;
         setMapData(mapPosition);
       }
     }
+
     fetchAndSetCard();
   }, [cards, searchAddress, searchCardDetail, setCards, setMapData]);
   return (
