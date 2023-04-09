@@ -18,7 +18,7 @@ import { Card } from '@/@recoil/usersState';
 import { mapState } from '@/@recoil/mapState';
 import { ShowMeetings } from '@/components/index';
 import { usersState } from '@/@recoil/usersState';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { cardDataState } from '@/@recoil/cardDataState';
 import { titleMainState } from '@/@recoil/titleMainState';
 import { SearchFrom } from '@/components/Input/SearchForm';
@@ -35,7 +35,7 @@ export default function MainPage() {
   const detail = useRecoilValue(detailMainState);
   const cardData = useRecoilValue(cardDataState);
   const mapData = useRecoilValue(mapState);
-  const [users, setUsers] = useRecoilState(usersState);
+  const setUsers = useSetRecoilState(usersState);
   const [name, setName] = useState('');
   const [userImg, setUserImg] = useState('');
 
@@ -46,7 +46,6 @@ export default function MainPage() {
         getDoc(getUserRef).then((doc) => {
           if (doc.exists()) {
             const userData = doc.data();
-            console.log(userData);
             setName(userData.displayName);
             setUserImg(userData.photoURL);
           }
@@ -70,7 +69,6 @@ export default function MainPage() {
   };
 
   useEffect(() => {
-    console.log(users);
     getUsers();
   }, [title, detail, cardData, name, userImg]);
 
