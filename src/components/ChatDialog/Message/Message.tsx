@@ -23,6 +23,25 @@ export function Message({ message }: MessageProps) {
   const imageUrl = useRecoilValue(authImagState);
   const [displayName, setDisplayName] = useState<string>('익명');
 
+  const [name, setName] = useState('');
+  const [userImg, setUserImg] = useState('');
+
+  useEffect(() => {
+    const unsub = auth.onAuthStateChanged((user) => {
+      if (user) {
+        const getUserRef = doc(collection(db, 'users'), user.uid);
+        getDoc(getUserRef).then((doc) => {
+          if (doc.exists()) {
+            const userData = doc.data();
+            setName(userData.displayName);
+            setUserImg(userData.photoURL);
+          }
+        });
+      }
+    });
+    return unsub;
+  }, []);
+
   useEffect(() => {
     if (!message.uid) {
       return;
@@ -77,12 +96,12 @@ export function Message({ message }: MessageProps) {
   };
 
   // 작성자에 따라 오른쪽 또는 왼쪽 정렬 클래스를 반환
-  const getMessageAlignmentClass = () => {
+  const getMessageAlignment = () => {
     return isCurrentUser() ? classes.owner : classes.guest;
   };
 
   return (
-    <div className={classNames(classes.message, getMessageAlignmentClass())}>
+    <div className={classNames(classes.message, getMessageAlignment())}>
       <div className={classes.messageInfo}>
         <p>{displayName}</p>
 

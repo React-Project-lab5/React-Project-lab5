@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '@/context/AuthContext';
 import { authImagState } from '@/@recoil/authImgState';
 import defaultAvatar from '/public/assets/chatAvatars.svg';
-import { doc, getDoc, collection, deleteDoc } from '@firebase/firestore';
+import { doc, getDoc, collection, updateDoc } from '@firebase/firestore';
 
 export function Navbar() {
   const [imageUrl, setImageUrl] = useRecoilState(authImagState);
@@ -17,9 +17,11 @@ export function Navbar() {
   const { currentUser } = useContext(AuthContext);
   const user = auth.currentUser;
 
-  const deleteDocument = (member: string) => {
-    deleteDoc(doc(db, 'users', user.uid));
-    deleteUser(user)
+  const updateDocument = (member: string) => {
+    const userRef = doc(db, 'users', user.uid);
+    updateDoc(userRef, {
+      isLoggedOut: true,
+    })
       .then(() => {
         alert(`${member} 되었습니다.`);
         navigation('/');
@@ -32,7 +34,7 @@ export function Navbar() {
   const handleSignOut = () => {
     signOut(auth);
     if (user.providerData[0].photoURL.includes('kakao')) {
-      deleteDocument('로그아웃');
+      updateDocument('로그아웃');
     }
     navigation('/');
   };
