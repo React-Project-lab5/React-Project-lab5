@@ -8,11 +8,12 @@
   .messageInfo {
     display: flex;
     flex-direction: column;
+
     color: var(--gray-700);
     font-weight: 300;
-
+    gap: 3px;
     p {
-      color: var(--gray-700);
+      color: var(--gray-800);
       font-size: 14px;
       font-weight: 600;
     }
@@ -30,6 +31,7 @@
     display: flex;
     flex-flow: column nowrap;
     gap: 10px;
+    margin-top: 25px;
 
     p {
       background-color: white;
@@ -55,9 +57,24 @@
       }
 
       p {
-        background-color: var(--colar-700);
-        color: var(--gray-100);
+        background-color: var(--secondary);
+        color: var(--black);
         border-radius: 10px 0px 10px 10px;
+      }
+    }
+  }
+
+  &.guest {
+    .messageContent {
+      img {
+        min-width: 100px;
+        min-height: 100px;
+      }
+
+      p {
+        background-color: var(--gray-500);
+        color: var(--black);
+        border-radius: 0px 10px 10px 10px;
       }
     }
   }

@@ -21,7 +21,7 @@ export function Message({ message }: MessageProps) {
 
   //authImagState는 현재 로그인한 사용자의 프로필 이미지
   const imageUrl = useRecoilValue(authImagState);
-  const [displayName, setDisplayName] = useState<string>('');
+  const [displayName, setDisplayName] = useState<string>('카카오');
 
   useEffect(() => {
     if (!message.uid) {
@@ -76,8 +76,13 @@ export function Message({ message }: MessageProps) {
     return auth.currentUser?.uid === message.uid;
   }
 
+  // 작성자에 따라 오른쪽 또는 왼쪽 정렬 클래스를 반환
+  function getMessageAlignmentClass() {
+    return isCurrentUser() ? classes.owner : classes.guest;
+  }
+
   return (
-    <div className={classNames(classes.message, classes.owner)}>
+    <div className={classNames(classes.message, getMessageAlignmentClass())}>
       <div className={classes.messageInfo}>
         <p>{displayName}</p>
 
