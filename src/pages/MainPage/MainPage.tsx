@@ -77,6 +77,7 @@ export default function MainPage() {
 
     await addDoc(collection(db, 'makeMeetings'), {
       title: [...title],
+      email: auth.currentUser.email,
       address: address,
       detail: detail,
       cardData: cardData,

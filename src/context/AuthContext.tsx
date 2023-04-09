@@ -22,7 +22,7 @@ export const AuthContextProvider = ({ children }: Props) => {
 
       if (user) {
         localStorage.setItem('navUid', user.uid);
-        // console.log(user);
+        console.log(user);
       }
     });
 
