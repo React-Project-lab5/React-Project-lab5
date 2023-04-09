@@ -79,6 +79,10 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   const writeTitle = (e: { target: { value: SetStateAction<string> } }) => {
     setSearchTitle(e.target.value);
     setArraytitle([...searchTitle]);
+
+    if (e.target.value === '') {
+      getUsers();
+    }
   };
 
   const handleRegister = (e: { preventDefault: () => void }) => {
