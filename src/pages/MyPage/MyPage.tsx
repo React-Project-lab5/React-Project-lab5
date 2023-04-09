@@ -21,6 +21,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Input, ProfileImage } from '@/components';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+import { isValidEmail } from '@/utils/validation';
 
 export default function MyPage() {
   useDocumentTitle('슬기로운 N밥 생활 | 마이 페이지');
