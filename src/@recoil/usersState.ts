@@ -1,6 +1,7 @@
 import { atom } from 'recoil';
 
 export interface Card {
+  email: string;
   timestamp: { seconds: number; nanoseconds: number };
   title: [];
   id: string;
