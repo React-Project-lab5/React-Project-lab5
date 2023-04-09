@@ -18,7 +18,7 @@ import { Card } from '@/@recoil/usersState';
 import { mapState } from '@/@recoil/mapState';
 import { ShowMeetings } from '@/components/index';
 import { usersState } from '@/@recoil/usersState';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
 import { cardDataState } from '@/@recoil/cardDataState';
 import { titleMainState } from '@/@recoil/titleMainState';
 import { SearchFrom } from '@/components/Input/SearchForm';
@@ -35,7 +35,7 @@ export default function MainPage() {
   const detail = useRecoilValue(detailMainState);
   const cardData = useRecoilValue(cardDataState);
   const mapData = useRecoilValue(mapState);
-  const setUsers = useSetRecoilState(usersState);
+  const [users, setUsers] = useRecoilState(usersState);
   const [name, setName] = useState('');
   const [userImg, setUserImg] = useState('');
 
@@ -70,8 +70,9 @@ export default function MainPage() {
   };
 
   useEffect(() => {
+    console.log(users);
     getUsers();
-  }, [getUsers, mapData, title, address, detail]);
+  }, [title, detail, cardData, name, userImg]);
 
   const createUsers = async () => {
     const user = auth.currentUser;

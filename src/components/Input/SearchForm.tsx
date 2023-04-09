@@ -37,12 +37,12 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
     if (address) {
       usersCollectionRef = query(
         collection(db, 'makeMeetings'),
+        where('title', 'array-contains-any', arrayTitle),
         where('address', 'in', [
           address.slice(6, 8),
           address.slice(6, 9),
           address.slice(6, 10),
-        ]),
-        where('title', 'array-contains-any', arrayTitle)
+        ])
       );
     } else {
       usersCollectionRef = query(
@@ -73,6 +73,7 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   const writeTitle = (e: { target: { value: SetStateAction<string> } }) => {
     setSearchTitle(e.target.value);
     setArraytitle([...searchTitle]);
+    console.log(e.target.value);
 
     if (e.target.value === '') {
       getUsers();
