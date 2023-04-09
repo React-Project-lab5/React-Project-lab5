@@ -15,9 +15,9 @@ export function Navbar() {
 
   const navigation = useNavigate();
   const { currentUser } = useContext(AuthContext);
+  const user = auth.currentUser;
 
   const deleteDocument = (member: string) => {
-    const user = auth.currentUser;
     deleteDoc(doc(db, 'users', user.uid));
     deleteUser(user)
       .then(() => {
@@ -31,7 +31,9 @@ export function Navbar() {
 
   const handleSignOut = () => {
     signOut(auth);
-    deleteDocument('로그아웃');
+    if (user.providerData[0].photoURL.includes('kakao')) {
+      deleteDocument('로그아웃');
+    }
     navigation('/');
   };
 
