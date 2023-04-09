@@ -18,7 +18,7 @@ import { Card } from '@/@recoil/usersState';
 import { mapState } from '@/@recoil/mapState';
 import { ShowMeetings } from '@/components/index';
 import { usersState } from '@/@recoil/usersState';
-import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { cardDataState } from '@/@recoil/cardDataState';
 import { titleMainState } from '@/@recoil/titleMainState';
 import { SearchFrom } from '@/components/Input/SearchForm';
