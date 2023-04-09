@@ -21,7 +21,7 @@ export function Message({ message }: MessageProps) {
 
   //authImagState는 현재 로그인한 사용자의 프로필 이미지
   const imageUrl = useRecoilValue(authImagState);
-  const [displayName, setDisplayName] = useState<string>('');
+  const [displayName, setDisplayName] = useState<string>('익명');
 
   useEffect(() => {
     if (!message.uid) {
@@ -33,7 +33,7 @@ export function Message({ message }: MessageProps) {
     //해당 데이터를 필요로 하지 않는 경우, unsubscribe()를 호출하여 해당 데이터의 수신을 중단
     let unsubscribe: (() => void) | undefined;
 
-    async function getUserDoc() {
+    const getUserDoc = async () => {
       const docSnap = await getDoc(userRef);
 
       if (docSnap.exists()) {
@@ -41,7 +41,7 @@ export function Message({ message }: MessageProps) {
         setPhotoURL(userData.photoURL || defaultAvatar);
         setDisplayName(userData.displayName || '');
       }
-    }
+    };
 
     // Firestore에서 실시간으로 유저 데이터를 가져와서 displayName 필드를 업데이트,
     // 변경 사항이 발생할 때마다 콜백 함수를 실행.
@@ -63,23 +63,23 @@ export function Message({ message }: MessageProps) {
   }, [message.uid]);
 
   // 현재 메시지의 프로필 이미지 URL을 반환
-  function getImageUrl() {
+  const getImageUrl = () => {
     if (imageUrl) {
       return isCurrentUser() ? imageUrl : photoURL;
     } else {
       return defaultAvatar;
     }
-  }
+  };
 
   // 현재 사용자가 메시지 작성자인지 확인
-  function isCurrentUser() {
+  const isCurrentUser = () => {
     return auth.currentUser?.uid === message.uid;
-  }
+  };
 
   // 작성자에 따라 오른쪽 또는 왼쪽 정렬 클래스를 반환
-  function getMessageAlignmentClass() {
+  const getMessageAlignmentClass = () => {
     return isCurrentUser() ? classes.owner : classes.guest;
-  }
+  };
 
   return (
     <div className={classNames(classes.message, getMessageAlignmentClass())}>
