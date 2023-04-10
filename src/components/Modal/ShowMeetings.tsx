@@ -1,11 +1,11 @@
-import { Card, Meeting } from '@/components/index';
-import classes from './Modal.module.scss';
 import { useState } from 'react';
+import classes from './Modal.module.scss';
 import { ReadMeetings } from './ReadMeetings';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { usersState } from '@/@recoil/usersState';
-import { searchDetailCardState } from '@/@recoil/searchDetailCardState';
+import { Card, Meeting } from '@/components/index';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { searchAddressState } from '@/@recoil/searchAddressState';
+import { searchDetailCardState } from '@/@recoil/searchDetailCardState';
 
 export function ShowMeetings() {
   const users = useRecoilValue(usersState);

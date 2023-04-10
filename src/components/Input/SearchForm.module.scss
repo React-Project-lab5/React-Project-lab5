@@ -31,7 +31,6 @@
       }
     }
 
-
     @include mobile {
       gap: 10px;
       flex-direction: row;
@@ -40,8 +39,12 @@
     }
 
     .searchFormInput {
-      @include tablet{
+      @include tablet {
         margin-left: 0.5rem;
+      }
+
+      &:focus-visible {
+        outline: 1px solid var(--accent);
       }
     }
 
@@ -49,6 +52,9 @@
     .searchFormInput {
       @include mobile {
         display: none;
+      }
+      &:focus-visible {
+        outline: 1px solid var(--accent);
       }
     }
 
@@ -67,11 +73,15 @@
   width: 100%;
   margin-right: 15px;
 
- 
- 
-
   @include mobile {
     display: none;
+  }
+
+  input {
+    font-size: 18px;
+    &::placeholder {
+      font-size: 18px;
+    }
   }
 }
 
@@ -87,6 +97,11 @@
   right: 47%;
   transform: translate(-50%, -50%);
   margin-right: -48%;
+
+  &:focus-visible {
+    border-radius: 4px;
+    outline: 2px solid var(--accent);
+  }
 }
 
 .closeButton {
@@ -96,7 +111,6 @@
   right: 10%;
   opacity: 0.5;
   margin-right: 1.5rem;
-
 
   &:hover {
     opacity: 1;

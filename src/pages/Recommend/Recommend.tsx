@@ -90,9 +90,8 @@ export default function Recommend() {
               className={classes['searchButton']}
               type="submit"
               aria-label="검색 버튼"
-              tabIndex={0}
             >
-              <img src={search} alt="검색 버튼" tabIndex={0} />
+              <img src={search} alt="검색 버튼" />
             </button>
           </div>
         </form>

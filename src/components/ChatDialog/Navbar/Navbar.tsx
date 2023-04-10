@@ -3,16 +3,37 @@ import { auth } from '@/firebase/auth';
 import { useRecoilState } from 'recoil';
 import classes from './Navbar.module.scss';
 import { useContext, useEffect } from 'react';
-import { handleSignOut } from '@/utils/signOut';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '@/context/AuthContext';
+import { signOut, deleteUser } from '@firebase/auth';
 import { authImagState } from '@/@recoil/authImgState';
 import defaultAvatar from '/public/assets/chatAvatars.svg';
-import { doc, getDoc, collection } from '@firebase/firestore';
+import { doc, getDoc, collection, deleteDoc } from '@firebase/firestore';
 
 export function Navbar() {
   const [imageUrl, setImageUrl] = useRecoilState(authImagState);
 
+  const navigation = useNavigate();
   const { currentUser } = useContext(AuthContext);
+
+  const deleteDocument = (member: string) => {
+    const user = auth.currentUser;
+    deleteDoc(doc(db, 'users', user.uid));
+    deleteUser(user)
+      .then(() => {
+        alert(`${member} 되었습니다.`);
+        navigation('/');
+      })
+      .catch((error) => {
+        console.log(`${member} 실패!`, error);
+      });
+  };
+
+  const handleSignOut = () => {
+    signOut(auth);
+    deleteDocument('로그아웃');
+    navigation('/');
+  };
 
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((user) => {
@@ -31,7 +52,6 @@ export function Navbar() {
     return unsub;
   }, [setImageUrl]);
 
-  console.log(imageUrl);
   return (
     <div className={classes.navbar}>
       <p className={classes.logo}>슬기로운 N밥생활</p>

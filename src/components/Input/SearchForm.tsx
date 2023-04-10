@@ -1,4 +1,11 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  QueryDocumentSnapshot,
+} from '@firebase/firestore';
 import { Input } from './Input';
 import { Button } from '../Button';
 import { Card } from '@/@recoil/usersState';
@@ -13,20 +20,13 @@ import { addressState } from '@/@recoil/addressState';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { SetStateAction, useEffect, useState } from 'react';
 import { InputSelector } from '../InputSelector/InputSelector';
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  QueryDocumentSnapshot,
-} from '@firebase/firestore';
 
 export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
+  const movePage = useNavigate();
   const [searchTitle, setSearchTitle] = useState('');
   const setUsers = useSetRecoilState(usersState);
   const [address, setAddress] = useRecoilState(addressState);
-  const movePage = useNavigate();
-  const [arrayTitle, setArraytitle] = useState([]);
+  const [arrayTitle, setArrayTitle] = useState([]);
   const [inputFlag, setInputFlag] = useState(false);
 
   useEffect(() => {
@@ -87,7 +87,7 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
 
   const writeTitle = (e: { target: { value: SetStateAction<string> } }) => {
     setSearchTitle(e.target.value);
-    setArraytitle([...searchTitle]);
+    setArrayTitle([...searchTitle]);
     console.log(e.target.value);
 
     if (e.target.value === '') {
@@ -124,7 +124,7 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
                 maxWidthValue={'35rem'}
                 heightValue={'75px'}
                 labelText="검색창"
-                placeHolder="제목을 검색하세요"
+                placeHolder="모임을 검색하세요"
                 isA11yHidden
                 className={classes.searchFormInput}
                 onKeyDown={handleKey}
