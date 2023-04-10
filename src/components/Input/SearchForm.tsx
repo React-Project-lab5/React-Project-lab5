@@ -124,7 +124,7 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
                 maxWidthValue={'35rem'}
                 heightValue={'75px'}
                 labelText="검색창"
-                placeHolder="제목을 검색하세요"
+                placeHolder="모임을 검색하세요"
                 isA11yHidden
                 className={classes.searchFormInput}
                 onKeyDown={handleKey}
