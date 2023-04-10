@@ -36,7 +36,6 @@ export default defineConfig({
           },
           {
             name: 'removeEmptyAttrs',
-            active: false,
           },
         ],
       },
@@ -48,5 +47,8 @@ export default defineConfig({
   },
   css: {
     devSourcemap: true,
+  },
+  build: {
+    outDir: 'build/dist',
   },
 });
