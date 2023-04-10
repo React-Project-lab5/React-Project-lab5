@@ -93,10 +93,6 @@ export default function MainPage() {
     getUsers: getUsers,
   };
 
-  useEffect(() => {
-    getUsers();
-  }, []);
-
   return (
     <>
       <Banner />

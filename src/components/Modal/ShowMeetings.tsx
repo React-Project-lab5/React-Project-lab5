@@ -22,6 +22,7 @@ export function ShowMeetings() {
             onClick={() => {
               setOpenModal(true);
               localStorage.setItem('Unique ID', value.id || '1');
+              console.log(value);
               setSearchCard(value.detail);
               setSearchTitle(value.address);
               console.log('showmeetings', value);

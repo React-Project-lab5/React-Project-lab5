@@ -31,6 +31,10 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
     movePage('/chat');
   };
 
+  useEffect(() => {
+    getUsers();
+  }, [getUsers]);
+
   const handleSearch = async () => {
     let usersCollectionRef = null;
 
@@ -53,7 +57,10 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
 
     try {
       const querySnapshot = await getDocs(usersCollectionRef);
-      const usersData = querySnapshot.docs.map((doc) => doc.data()) as Card[];
+      const usersData = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      })) as Card[];
       setUsers(
         usersData.sort((a, b) => {
           if (a.timestamp.seconds < b.timestamp.seconds) return 1;
@@ -86,9 +93,8 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   };
 
   const resetButton = () => {
-    setSearchTitle('');
-    getUsers();
     setAddress(null);
+    getUsers();
   };
 
   return (
