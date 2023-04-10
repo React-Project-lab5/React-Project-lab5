@@ -1,4 +1,4 @@
-@import "@/styles/common/index.scss";
+@import '@/styles/common/index.scss';
 
 .button {
   display: flex;
@@ -10,7 +10,7 @@
   width: 100%;
   min-width: 90px;
   height: 51px;
-  font-size: clamp(0.5rem, 5vw , 1.125rem);
+  font-size: clamp(0.5rem, 5vw, 1.125rem);
 
   font-weight: 700;
   line-height: 16px;
@@ -25,7 +25,9 @@
     font-size: 1rem;
   }
 
-
+  &:focus-visible {
+    outline: 3px solid var(--accent);
+  }
 
   &:hover {
     background-color: var(--black);

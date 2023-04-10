@@ -31,6 +31,7 @@ export function Navbar() {
     return unsub;
   }, [setImageUrl]);
 
+  console.log(imageUrl);
   return (
     <div className={classes.navbar}>
       <p className={classes.logo}>슬기로운 N밥생활</p>
