@@ -23,9 +23,12 @@ export default function Recommend() {
   //검색어를 입력하면 searchTerm 상태 변수에 저장
   const [searchTerm, setSearchTerm] = useRecoilState(searchTermState);
 
-  const API_URL = `https://api.odcloud.kr/api/15097008/v1/uddi:1e5a6f2e-3f79-49bd-819b-d17541e6df78?page=1&perPage=168&serviceKey=${
-    import.meta.env.VITE_SERVICE_KEY
-  }`;
+  const API_BASE_URL =
+    'https://api.odcloud.kr/api/15097008/v1/uddi:1e5a6f2e-3f79-49bd-819b-d17541e6df78';
+  const API_KEY = import.meta.env.VITE_SERVICE_KEY;
+  const PER_PAGE = 168;
+
+  const API_URL = `${API_BASE_URL}?page=1&perPage=${PER_PAGE}&serviceKey=${API_KEY}`;
 
   //API 데이터를 가져와서 posts 상태 변수에 저장
   useEffect(() => {

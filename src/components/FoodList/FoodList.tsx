@@ -41,6 +41,15 @@ export function FoodList({ posts }: Props) {
     );
   }, [posts, searchTerm]);
 
+  // 검색 결과가 없다면 해당 메시지를 보여줍니다.
+  if (!filteredPosts.length) {
+    return (
+      <div className={classes.loading}>
+        <p>검색 결과가 없습니다.🥲</p>
+      </div>
+    );
+  }
+
   // 로딩 중이거나 카드를 보여줄 준비가 되지 않았다면 로딩 이미지를 보여줍니다.
   if (loading || !showCards) {
     return (
