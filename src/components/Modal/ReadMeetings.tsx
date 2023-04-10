@@ -19,15 +19,13 @@ import { MapContainer } from '../../utils/MapContainer/MapContainer';
 import { Button, ModalPotal, Modal } from '@/components/index';
 import { UserContainer } from './UserContainer';
 import { useNavigate } from 'react-router-dom';
-import { lazyMinLoadTime } from './lazyMinLoadTime';
 import { auth } from '@/firebase/auth';
 import React from 'react';
 import { Card } from '@/@recoil/usersState';
 import { readingCardState } from '@/@recoil/readingCardState';
 import classNames from 'classnames';
 import { searchEmailState } from '@/@recoil/searchEmailState';
-
-const ShowCard = lazyMinLoadTime(() => import('./ShowCard'), 1000);
+import ShowCard from './ShowCard';
 
 interface Props {
   openModal: boolean;

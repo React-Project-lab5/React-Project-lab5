@@ -9,7 +9,6 @@ import { db } from '@/firebase/app';
 import { storage } from '@/firebase/storage';
 import classes from './SendMessage.module.scss';
 import { AuthContext } from '@/context/AuthContext';
-import Img from '/public/assets/chatImagePlaceholder.svg';
 import { FormEvent, KeyboardEvent, useContext, useState } from 'react';
 import { collection, addDoc, serverTimestamp } from '@firebase/firestore';
 
@@ -111,7 +110,10 @@ export function SendMessage() {
           role="button"
           aria-label="이미지 업로드 버튼"
         >
-          <img src={Img} alt="이미지 업로드 버튼" />
+          <img
+            src="../assets/chatImagePlaceholder.svg"
+            alt="이미지 업로드 버튼"
+          />
         </label>
         <button type="submit" aria-label="메세지 보내기 버튼">
           ⌲
