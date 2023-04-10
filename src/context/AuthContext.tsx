@@ -20,13 +20,13 @@ export const AuthContextProvider = ({ children }: Props) => {
       // 사용자가 로그인 상태가 아니라면 currentUser 값이 null입니다.
       setCurrentUser(user);
 
-      localStorage.setItem('navUid', user.uid);
-      console.log(user);
+      if (user) {
+        localStorage.setItem('navUid', user.uid);
+        console.log(user);
+      }
     });
 
-    return () => {
-      unSub();
-    };
+    return unSub;
   }, []);
 
   return (

@@ -34,25 +34,47 @@
     align-items: flex-start;
     gap: 10px;
 
-    img {
-      height: 36px;
-      cursor: pointer;
+    input[type='file'] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
     }
 
-    button {
+    label {
+      display: inline-block;
       width: 36px;
       height: 36px;
-      padding: 2px 10px;
+      cursor: pointer;
+
+      &:focus-visible {
+        border-radius: 50%;
+        outline: 3px solid var(--accent);
+      }
+    }
+
+    img {
+      height: 36px;
+    }
+
+    button[type='submit'] {
+      width: 36px;
+      height: 36px;
+      padding: 0 10px;
       color: white;
       background-color: var(--primary);
       cursor: pointer;
       border-radius: 50%;
       font-size: 30px;
 
-      &:focus {
-        border: 2px solid var(--accent);
+      &:focus-visible {
+        border-radius: 50%;
+        outline: 3px solid var(--accent);
       }
-
       img {
         width: 24px;
         height: 24px;

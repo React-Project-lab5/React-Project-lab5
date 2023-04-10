@@ -4,13 +4,29 @@
   max-width: 300px;
   min-width: 200px;
   width: 100%;
+  margin-right: 3.125rem;
+
+  @include tablet {
+    margin-right: 1.875rem;
+  }
 
   @include mobile {
     width: 100%;
     margin: 0;
   }
   .map {
-    width: 100%;
+    width: 15rem;
     height: 250px;
+
+    @include tablet {
+      width: 14.2rem;
+      height: 230px;
+    }
+
+    @include mobile {
+      width: 14.2rem;
+      height: 170px;
+      margin: 20px 0;
+    }
   }
 }

@@ -35,6 +35,10 @@
         color: var(--gray-400);
         font-size: 14px;
       }
+
+      &:focus-visible {
+        outline: 3px solid var(--accent);
+      }
     }
 
     button {
@@ -48,6 +52,9 @@
       &:hover {
         background-color: var(--orange-600);
         color: var(--white);
+      }
+      &:focus-visible {
+        outline: 3px solid var(--accent);
       }
     }
     p {

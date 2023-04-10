@@ -1,29 +1,45 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  QueryDocumentSnapshot,
+} from '@firebase/firestore';
 import { Input } from './Input';
-import { useState } from 'react';
-import { debounce } from 'lodash';
 import { Button } from '../Button';
+import { Card } from '@/@recoil/usersState';
 import { useNavigate } from 'react-router-dom';
 import classes from './SearchForm.module.scss';
 import { ModalTotal } from '@/components/index';
 import { db } from '@/firebase/firestore/index';
-import { addressState } from '@/@recoil/addressState';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { InputSelector } from '../InputSelector/InputSelector';
-import { collection, query, where, getDocs } from '@firebase/firestore';
 import { usersState } from '@/@recoil/usersState';
-import { Card } from '@/@recoil/usersState';
-import search from '/public/assets/search.svg';
+import closeButton from '/public/assets/close.svg';
+import searchButton from '/public/assets/search.svg';
+import { addressState } from '@/@recoil/addressState';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { SetStateAction, useEffect, useState } from 'react';
+import { InputSelector } from '../InputSelector/InputSelector';
 
 export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
+  const movePage = useNavigate();
   const [searchTitle, setSearchTitle] = useState('');
   const setUsers = useSetRecoilState(usersState);
-  const address = useRecoilValue(addressState);
-  const movePage = useNavigate();
+  const [address, setAddress] = useRecoilState(addressState);
+  const [arrayTitle, setArrayTitle] = useState([]);
+  const [inputFlag, setInputFlag] = useState(false);
+
+  useEffect(() => {
+    searchTitle ? setInputFlag(true) : setInputFlag(false);
+  }, [searchTitle]);
 
   const goChatPage = () => {
     movePage('/chat');
   };
+
+  useEffect(() => {
+    getUsers();
+  }, [getUsers]);
 
   const handleSearch = async () => {
     let usersCollectionRef = null;
@@ -31,22 +47,35 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
     if (address) {
       usersCollectionRef = query(
         collection(db, 'makeMeetings'),
-        where('address', '==', address.slice(6, 9)),
-        where('title', 'array-contains-any', searchTitle.split(' '))
+        where('title', 'array-contains-any', arrayTitle),
+        where('address', 'in', [
+          address.slice(6, 8),
+          address.slice(6, 9),
+          address.slice(6, 10),
+        ])
       );
-      console.log('된다');
     } else {
       usersCollectionRef = query(
         collection(db, 'makeMeetings'),
-        where('title', 'array-contains', searchTitle)
+        where('title', 'array-contains-any', arrayTitle)
       );
-      console.log('안된다');
     }
 
     try {
       const querySnapshot = await getDocs(usersCollectionRef);
-      const usersData = querySnapshot.docs.map((doc) => doc.data()) as Card[];
-      setUsers(usersData);
+      const usersData = querySnapshot.docs.map(
+        (doc: QueryDocumentSnapshot<Card>) => ({
+          ...doc.data(),
+          id: doc.id,
+        })
+      ) as Card[];
+      setUsers(
+        usersData.sort((a, b) => {
+          if (a.timestamp.seconds < b.timestamp.seconds) return 1;
+          if (a.timestamp.seconds > b.timestamp.seconds) return -1;
+          return 0;
+        })
+      );
     } catch (err) {
       throw new Error('Error 404');
     }
@@ -56,14 +85,24 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
     e.code === 'Enter' && handleSearch();
   };
 
-  const writeTitle = debounce((e) => {
+  const writeTitle = (e: { target: { value: SetStateAction<string> } }) => {
     setSearchTitle(e.target.value);
-  }, 500);
+    setArrayTitle([...searchTitle]);
+    console.log(e.target.value);
+
+    if (e.target.value === '') {
+      getUsers();
+    }
+  };
 
   const handleRegister = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    console.log('제목 검색');
     handleSearch();
+  };
+
+  const resetButton = () => {
+    setAddress(null);
+    getUsers();
   };
 
   return (
@@ -85,24 +124,38 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
                 maxWidthValue={'35rem'}
                 heightValue={'75px'}
                 labelText="검색창"
-                placeHolder="제목을 검색하세요"
+                placeHolder="모임을 검색하세요"
                 isA11yHidden
                 className={classes.searchFormInput}
                 onKeyDown={handleKey}
                 onChange={writeTitle}
                 defaultValue={searchTitle}
               />
-              <button
-                className={classes['searchButton']}
-                type="submit"
-                aria-label="검색 버튼"
-                tabIndex={0}
-              >
-                <img src={search} alt="검색 버튼" tabIndex={0} />
+              {inputFlag && (
+                <button
+                  type="reset"
+                  aria-label="초기화 버튼"
+                  onClick={resetButton}
+                >
+                  <img
+                    className={classes.closeButton}
+                    src={closeButton}
+                    alt="초기화 버튼"
+                    tabIndex={0}
+                  />
+                </button>
+              )}
+              <button type="submit" aria-label="검색 버튼">
+                <img
+                  className={classes.searchButton}
+                  src={searchButton}
+                  alt="검색 버튼"
+                  tabIndex={0}
+                />
               </button>
             </div>
+            <ModalTotal createUsers={createUsers} getUsers={getUsers} />
           </form>
-          <ModalTotal createUsers={createUsers} getUsers={getUsers} />
 
           <Button
             maxWidthValue={'190px'}

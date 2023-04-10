@@ -54,12 +54,12 @@ export default function MyPage() {
             setEmail(userData.email);
             setPhoneNumber(userData.phoneNumber);
             setAddress(userData.address);
+            setIsLoading(false); // Firestore 문서 정보가 있으면 로딩 상태 false로 설정
           } else {
             user.providerData.forEach((profile) => {
               setName(profile.displayName);
               setEmail(profile.email);
             });
-            // Firestore 문서 정보가 없다면? ➡️ 로딩 상태 false로 설정
             setIsLoading(false);
           }
         });
@@ -93,10 +93,10 @@ export default function MyPage() {
       return;
     }
 
-    if (!isValidTel(phoneNumber)) {
-      alert('휴대폰 번호 01012345678 형식으로 입력해 주세요.');
-      return;
-    }
+    //if (!isValidTel(phoneNumber)) {
+    //  alert('휴대폰 번호 01012345678 형식으로 입력해 주세요.');
+    //  return;
+    //}
 
     /* ----- Firestore 업데이트 ----- */
     const getUserRef = doc(collection(db, 'users'), user.uid);

@@ -1,3 +1,5 @@
+@import '@/styles/common/index.scss';
+
 .button {
   display: flex;
   flex-direction: row;
@@ -6,9 +8,9 @@
   padding: 9px 13px;
 
   width: 100%;
-  min-width: 140px;
+  min-width: 90px;
   height: 51px;
-  font-size: clamp(0.5rem, 5vw , 18px);
+  font-size: clamp(0.5rem, 5vw, 1.125rem);
 
   font-weight: 700;
   line-height: 16px;
@@ -19,12 +21,17 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 16px;
 
+  @include tablet {
+    font-size: 1rem;
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--accent);
+  }
+
   &:hover {
     background-color: var(--black);
     color: var(--white);
-  }
-  &:focus {
-    border: 2px solid black;
   }
 }
 

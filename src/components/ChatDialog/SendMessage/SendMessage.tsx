@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 import {
   getDownloadURL,
   ref,
@@ -8,8 +9,8 @@ import { db } from '@/firebase/app';
 import { storage } from '@/firebase/storage';
 import classes from './SendMessage.module.scss';
 import { AuthContext } from '@/context/AuthContext';
-import { FormEvent, useContext, useState } from 'react';
 import Img from '/public/assets/chatImagePlaceholder.svg';
+import { FormEvent, KeyboardEvent, useContext, useState } from 'react';
 import { collection, addDoc, serverTimestamp } from '@firebase/firestore';
 
 export function SendMessage() {
@@ -27,6 +28,7 @@ export function SendMessage() {
     }
 
     const { uid, displayName } = currentUser;
+
     if (img) {
       const uniqueId = img.name;
       const storageRef = ref(storage, `assets/${uniqueId}`);
@@ -67,6 +69,13 @@ export function SendMessage() {
     setImg(null);
   };
 
+  const handleKeyDown = (e: KeyboardEvent<HTMLLabelElement>) => {
+    if (e.key === 'Enter') {
+      const fileInput = document.getElementById('file') as HTMLInputElement;
+      fileInput.click();
+    }
+  };
+
   return (
     <form className={classes.input} onSubmit={handleSendMessage}>
       <div className={classes.sendInput}>
@@ -88,17 +97,22 @@ export function SendMessage() {
       <div className={classes.sendBtn}>
         <input
           type="file"
-          style={{ display: 'none' }}
           id="file"
           name="file"
           accept="image/*"
           onChange={(e) => setImg(e.target.files[0])}
           aria-label="이미지 업로드 버튼"
+          tabIndex={-1}
         />
-        <label htmlFor="file">
+        <label
+          htmlFor="file"
+          tabIndex={0}
+          onKeyDown={handleKeyDown}
+          role="button"
+          aria-label="이미지 업로드 버튼"
+        >
           <img src={Img} alt="이미지 업로드 버튼" />
         </label>
-
         <button type="submit" aria-label="메세지 보내기 버튼">
           ⌲
         </button>

@@ -6,25 +6,31 @@ import {
   Modal,
   ModalPotal,
 } from '@/components/index';
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useEffect } from 'react';
 import { useState } from 'react';
 import { debounce } from 'lodash';
 import classes from './Modal.module.scss';
 import DatePicker from 'react-datepicker';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import 'react-datepicker/dist/react-datepicker.css';
 import { titleMainState } from '@/@recoil/titleMainState';
 import { MapContainer } from '../../utils/MapContainer/MapContainer';
 import { detailMainState } from '@/@recoil/detailMainState';
 import { cardDataState } from '../../@recoil/cardDataState';
+import { addressState } from '@/@recoil/addressState';
 
 export function ModalTotal({ createUsers, getUsers }: SearchFormProps) {
   const [modalOpened, setModalOpened] = useState(false);
   const [startDate, setStartDate] = useState(null);
+  const [address, setAddress] = useRecoilState(addressState);
 
   const setTitle = useSetRecoilState(titleMainState);
   const setDetail = useSetRecoilState(detailMainState);
   const setCardData = useSetRecoilState(cardDataState);
+
+  useEffect(() => {
+    getUsers();
+  }, [getUsers, address]);
 
   const handleOpen = () => {
     setModalOpened(true);
@@ -32,9 +38,11 @@ export function ModalTotal({ createUsers, getUsers }: SearchFormProps) {
 
   const handleRegister = () => {
     setModalOpened(false);
-    createUsers();
     getUsers();
+    setAddress(null);
+    createUsers();
     alert('모임이 작성되었습니다.');
+    console.log('작성완');
   };
 
   const handleClose = () => {
@@ -62,7 +70,7 @@ export function ModalTotal({ createUsers, getUsers }: SearchFormProps) {
         heightValue={'75px'}
         text="모임 만들기"
         backgroundColor={'orange'}
-        className={classes.MeetingButton}
+        className={classes.meetingButton}
         onClick={handleOpen}
       />
       {modalOpened && (
@@ -112,7 +120,7 @@ export function ModalTotal({ createUsers, getUsers }: SearchFormProps) {
                     showDisabledMonthNavigation
                   />
                   <Button
-                    maxWidthValue={300}
+                    maxWidthValue={'18.75rem'}
                     heightValue={50}
                     text={'모임 만들기'}
                     type={'submit'}

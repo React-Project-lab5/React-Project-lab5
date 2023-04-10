@@ -12,7 +12,7 @@ interface Props {
   isA11yHidden?: boolean;
   className?: string;
   type?: string;
-  onChange?: DebouncedFunc<() => void>;
+  onChange?: DebouncedFunc<() => void> | ((e: unknown) => void);
   disabled?: boolean;
   value?: string;
   defaultValue?: string;
@@ -54,6 +54,7 @@ export function Input({
         id={labelText}
         aria-label={labelText + ' 입력'}
         className={classNames(classes['inputList'], className)}
+        autoComplete="off"
         style={inputStyle}
         placeholder={placeHolder}
         onChange={onChange}

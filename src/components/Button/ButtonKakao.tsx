@@ -5,6 +5,7 @@ import classes from './Button.module.scss';
 import { useNavigate } from 'react-router-dom';
 import kakao from '/public/assets/kakaoLogo.svg';
 import { createUserWithEmailAndPassword, updateProfile } from '@firebase/auth';
+import { getFirestore, doc, setDoc } from '@firebase/firestore';
 
 interface Props {
   widthValue?: string | number;
@@ -48,6 +49,15 @@ export function ButtonKakao({
           displayName: displayName,
           photoURL: photoURL,
         });
+
+        const db = getFirestore();
+        const userDocRef = doc(db, 'users', user.uid);
+        const userData = {
+          displayName: displayName,
+          email: email,
+          photoURL: photoURL,
+        };
+        setDoc(userDocRef, userData);
       })
       .catch((error) => {
         console.error(error);

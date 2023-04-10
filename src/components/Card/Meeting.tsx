@@ -27,7 +27,7 @@ export function Meeting({
         <div className={classes['meetingContainer']}>
           <div className={classes['town']}>{town}</div>
           <div className={classes['place']}>{place}</div>
-          <div className={classes['title']}>{title.join(' ')}</div>
+          <div className={classes['title']}>{title}</div>
         </div>
 
         <div className={classes['authorContainer']}>

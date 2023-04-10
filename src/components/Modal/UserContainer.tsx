@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { readingCardState } from '@/@recoil/readingCardState';
 import classes from './Modal.module.scss';
-import { Card } from '@/@recoil/usersState';
 import classNames from 'classnames';
+import { useRecoilValue } from 'recoil';
 
-interface Props {
-  cards?: Card[];
-}
-
-export function UserContainer({ cards }: Props) {
+export function UserContainer() {
+  const cards = useRecoilValue(readingCardState);
   return (
     <div className={classNames(classes.authorContainer, classes.userConatiner)}>
       <img

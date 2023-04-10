@@ -14,18 +14,18 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { auth } from '@/firebase/auth';
 import { Banner } from '@/components/index';
+import { Card } from '@/@recoil/usersState';
 import { mapState } from '@/@recoil/mapState';
 import { ShowMeetings } from '@/components/index';
 import { usersState } from '@/@recoil/usersState';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { cardDataState } from '@/@recoil/cardDataState';
-import classes from '../Recommend/Recommend.module.scss';
 import { titleMainState } from '@/@recoil/titleMainState';
 import { SearchFrom } from '@/components/Input/SearchForm';
 import { detailMainState } from '@/@recoil/detailMainState';
 import { addressMainState } from '@/@recoil/addressMainState';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { Card } from '@/@recoil/usersState';
+import { ScrollButton } from '@/components/Button/ScrollButton/ScrollButton';
 
 export default function MainPage() {
   useDocumentTitle('슬기로운 N밥생활 | 모임');
@@ -46,7 +46,6 @@ export default function MainPage() {
         getDoc(getUserRef).then((doc) => {
           if (doc.exists()) {
             const userData = doc.data();
-            console.log(userData);
             setName(userData.displayName);
             setUserImg(userData.photoURL);
           }
@@ -71,13 +70,14 @@ export default function MainPage() {
 
   useEffect(() => {
     getUsers();
-  }, [getUsers, mapData]);
+  }, [title, detail, cardData, name, userImg]);
 
   const createUsers = async () => {
     const user = auth.currentUser;
 
     await addDoc(collection(db, 'makeMeetings'), {
-      title: title.split(' '),
+      title: [...title],
+      email: auth.currentUser.email,
       address: address,
       detail: detail,
       cardData: cardData,
@@ -93,29 +93,13 @@ export default function MainPage() {
     getUsers: getUsers,
   };
 
-  useEffect(() => {
-    getUsers();
-  }, []);
-
-  const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
   return (
     <>
       <Banner />
       <SearchFrom {...searchFormProps} />
       <ShowMeetings />
 
-      <div className={classes.container}>
-        <button
-          type="button"
-          className={classes.button}
-          onClick={handleScrollToTop}
-          tabIndex={0}
-        >
-          top
-        </button>
-      </div>
+      <ScrollButton />
     </>
   );
 }

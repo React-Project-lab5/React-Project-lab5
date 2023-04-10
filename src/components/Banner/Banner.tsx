@@ -10,9 +10,15 @@ import classes from './Banner.module.scss';
 
 export function Banner() {
   const items = [
-    { src: '../assets/banner_1.svg' },
-    { src: '../assets/banner_2.svg' },
-    { src: '../assets/banner_3.svg' },
+    { src: '../assets/banner_1.svg', link: 'https://www.baemin.com/' },
+    {
+      src: '../assets/banner_2.svg',
+      link: 'https://www.ivips.co.kr:7002/intro/230330/intro.asp',
+    },
+    {
+      src: '../assets/banner_3.svg',
+      link: 'https://www.burgerking.co.kr/#/home',
+    },
   ];
   return (
     <div className={classes.banner}>
@@ -38,7 +44,9 @@ export function Banner() {
         {items.map((item, idx) => {
           return (
             <SwiperSlide key={idx} className={classes.swiperSlide}>
-              <img src={item.src} alt="배너광고" />
+              <a href={item.link} target="_blank" rel="noreferrer">
+                <img src={item.src} alt="배너광고" />
+              </a>
             </SwiperSlide>
           );
         })}

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import classes from './Footer.module.scss';
 import { LogoText, SocialIconGroup } from '../index';
 import { Link } from 'react-router-dom';
