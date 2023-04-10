@@ -23,25 +23,6 @@ export function Message({ message }: MessageProps) {
   const imageUrl = useRecoilValue(authImagState);
   const [displayName, setDisplayName] = useState<string>('익명');
 
-  const [name, setName] = useState('');
-  const [userImg, setUserImg] = useState('');
-
-  useEffect(() => {
-    const unsub = auth.onAuthStateChanged((user) => {
-      if (user) {
-        const getUserRef = doc(collection(db, 'users'), user.uid);
-        getDoc(getUserRef).then((doc) => {
-          if (doc.exists()) {
-            const userData = doc.data();
-            setName(userData.displayName);
-            setUserImg(userData.photoURL);
-          }
-        });
-      }
-    });
-    return unsub;
-  }, []);
-
   useEffect(() => {
     if (!message.uid) {
       return;
