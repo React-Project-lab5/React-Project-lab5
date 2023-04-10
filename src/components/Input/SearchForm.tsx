@@ -13,7 +13,13 @@ import { addressState } from '@/@recoil/addressState';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { SetStateAction, useEffect, useState } from 'react';
 import { InputSelector } from '../InputSelector/InputSelector';
-import { collection, query, where, getDocs } from '@firebase/firestore';
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  QueryDocumentSnapshot,
+} from '@firebase/firestore';
 
 export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   const [searchTitle, setSearchTitle] = useState('');
@@ -57,10 +63,12 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
 
     try {
       const querySnapshot = await getDocs(usersCollectionRef);
-      const usersData = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      })) as Card[];
+      const usersData = querySnapshot.docs.map(
+        (doc: QueryDocumentSnapshot<Card>) => ({
+          ...doc.data(),
+          id: doc.id,
+        })
+      ) as Card[];
       setUsers(
         usersData.sort((a, b) => {
           if (a.timestamp.seconds < b.timestamp.seconds) return 1;
