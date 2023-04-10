@@ -1,5 +1,4 @@
 import {
-  signOut,
   deleteUser,
   updateEmail,
   updateProfile,
@@ -19,9 +18,10 @@ import { auth } from '@/firebase/auth';
 import classes from './MyPage.module.scss';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { handleSignOut } from '@/utils/signOut';
+import { isValidEmail } from '@/utils/validation';
 import { Input, ProfileImage } from '@/components';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { isValidEmail, isValidTel } from './../../utils/validation';
 
 export default function MyPage() {
   useDocumentTitle('슬기로운 N밥 생활 | 마이 페이지');
@@ -60,6 +60,7 @@ export default function MyPage() {
               setName(profile.displayName);
               setEmail(profile.email);
             });
+            // Firestore 문서 정보가 없다면? ➡️ 로딩 상태 false로 설정
             setIsLoading(false);
           }
         });
@@ -162,16 +163,6 @@ export default function MyPage() {
       });
   };
 
-  /* ---------------------------------- 로그아웃 ---------------------------------- */
-  const handleSignOut = () => {
-    if (user.providerData[0].photoURL.includes('kakao')) {
-      deleteDocument('로그아웃');
-    } else {
-      signOut(auth);
-      alert('로그아웃이 되었습니다.');
-      navigation('/');
-    }
-  };
   /* ---------------------------------- 회원탈퇴 ---------------------------------- */
   const handleSignDropOut = () => {
     deleteDocument('회원 탈퇴');
