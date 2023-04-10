@@ -50,6 +50,11 @@
       width: 36px;
       height: 36px;
       cursor: pointer;
+
+      &:focus-visible {
+        border-radius: 50%;
+        outline: 3px solid var(--accent);
+      }
     }
 
     img {
@@ -66,10 +71,10 @@
       border-radius: 50%;
       font-size: 30px;
 
-      &:focus {
-        border: 2px solid var(--accent);
+      &:focus-visible {
+        border-radius: 50%;
+        outline: 3px solid var(--accent);
       }
-
       img {
         width: 24px;
         height: 24px;

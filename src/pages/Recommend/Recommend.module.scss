@@ -22,22 +22,6 @@
   @include mobile {
     padding: 0 10px;
   }
-
-  .mainInput {
-    max-width: 1160px;
-    width: 100%;
-    margin: 0 auto;
-    background: var(--orange-100);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    vertical-align: middle;
-    gap: 14px;
-    padding: 2.375rem 3.625rem;
-    border-radius: 1rem;
-    box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.09),
-      0 0.5rem 1.125rem rgba(75, 0, 0, 0.09);
-  }
 }
 
 .formInput {
@@ -71,6 +55,14 @@
     position: relative;
     max-width: 35rem;
     width: 100%;
+
+    .searchFormInput {
+      border: 2px solid var(--gray-400);
+
+      &:focus-visible {
+        outline: 3px solid var(--accent);
+      }
+    }
   }
 
   .searchButton {
@@ -85,6 +77,11 @@
     right: 50%;
     transform: translate(-50%, -50%);
     margin-right: -48%;
+
+    &:focus-visible {
+      border-radius: 12px;
+      outline: 3px solid var(--accent);
+    }
   }
 }
 

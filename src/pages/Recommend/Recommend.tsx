@@ -15,17 +15,20 @@ import { ScrollButton } from '@/components/Button/ScrollButton/ScrollButton';
 export default function Recommend() {
   useDocumentTitle('슬기로운 N밥 생활 | 추천');
 
-  const postsPerPage = 20;
+  const postsPerPage = 24;
 
   const [posts, setPosts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useRecoilState(loadingState);
   //검색어를 입력하면 searchTerm 상태 변수에 저장
   const [searchTerm, setSearchTerm] = useRecoilState(searchTermState);
 
-  const API_URL = `https://api.odcloud.kr/api/15097008/v1/uddi:1e5a6f2e-3f79-49bd-819b-d17541e6df78?page=1&perPage=160&serviceKey=${
-    import.meta.env.VITE_SERVICE_KEY
-  }`;
+  const API_BASE_URL =
+    'https://api.odcloud.kr/api/15097008/v1/uddi:1e5a6f2e-3f79-49bd-819b-d17541e6df78';
+  const API_KEY = import.meta.env.VITE_SERVICE_KEY;
+  const PER_PAGE = 168;
+
+  const API_URL = `${API_BASE_URL}?page=1&perPage=${PER_PAGE}&serviceKey=${API_KEY}`;
 
   //API 데이터를 가져와서 posts 상태 변수에 저장
   useEffect(() => {
@@ -59,43 +62,40 @@ export default function Recommend() {
 
   // 총 페이지 수
   const totalPageNum = Math.ceil(posts.length / postsPerPage);
-
   return (
     <>
       <Banner />
       <h1 className={classes.title}> 서울 맛집 추천</h1>
       <div className={classes['InputContainer']}>
-        <div className={classes['mainInput']}>
-          <form
-            className={classes['formInput']}
-            role="search"
-            onSubmit={(e) => {
-              e.preventDefault();
-              setCurrentPage(1);
-            }}
-          >
-            <div className={classes['inputSearchButton']}>
-              <Input
-                maxWidthValue={'35rem'}
-                heightValue={'75px'}
-                labelText="검색창"
-                placeHolder="제목을 검색하세요."
-                isA11yHidden
-                className={classes.searchFormInput}
-                value={searchTerm} // 검색어 상태를 value 속성에 전달
-                onChange={handlerSearchTerm}
-              />
-              <button
-                className={classes['searchButton']}
-                type="submit"
-                aria-label="검색 버튼"
-                tabIndex={0}
-              >
-                <img src={search} alt="검색 버튼" tabIndex={0} />
-              </button>
-            </div>
-          </form>
-        </div>
+        <form
+          className={classes['formInput']}
+          role="search"
+          onSubmit={(e) => {
+            e.preventDefault();
+            setCurrentPage(1);
+          }}
+        >
+          <div className={classes['inputSearchButton']}>
+            <Input
+              maxWidthValue={'35rem'}
+              heightValue={'75px'}
+              labelText="검색창"
+              placeHolder="음식점을 검색하세요."
+              isA11yHidden
+              className={classes.searchFormInput}
+              value={searchTerm} // 검색어 상태를 value 속성에 전달
+              onChange={handlerSearchTerm}
+            />
+            <button
+              className={classes['searchButton']}
+              type="submit"
+              aria-label="검색 버튼"
+              tabIndex={0}
+            >
+              <img src={search} alt="검색 버튼" tabIndex={0} />
+            </button>
+          </div>
+        </form>
       </div>
       <FoodList posts={currentPosts} loading={loading} />
       <ReactPaginate

@@ -41,8 +41,8 @@
         background: var(--primary);
       }
 
-      &:focus {
-        border: 2px solid var(--accent);
+      &:focus-visible {
+        outline: 3px solid var(--accent);
       }
     }
   }
