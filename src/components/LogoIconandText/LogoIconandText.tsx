@@ -18,7 +18,7 @@ export function LogoIconandText({ small }: Props) {
 
   return (
     <div className={logoTextClass} tabIndex={0}>
-      <img src="../assets/logo.svg" alt="logo" />
+      <img src="../assets/logo.svg" alt=" " />
       <LogoText small={logoTextSmall} />
     </div>
   );

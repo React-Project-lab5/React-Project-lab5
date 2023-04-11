@@ -46,7 +46,10 @@ export default function Home() {
       <HomeBanner className={classes['homeBanner']} />
 
       <div className={classes.contents}>
-        <LogoIconandText small={false} />
+        <h1>
+          <LogoIconandText small={false} />
+        </h1>
+
         <h2 className={classes.startText}>지금 시작하세요!</h2>
         <ButtonGoogle widthValue={'330px'} />
         <ButtonKakao widthValue={'330px'} />

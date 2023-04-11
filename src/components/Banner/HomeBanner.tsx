@@ -42,7 +42,7 @@ export function HomeBanner({ className }: HomeBannerProps) {
         return (
           <SwiperSlide key={idx} className={classes.swiperSlide}>
             <div className={classes['swiperContainer']}>
-              <img src={item.src} alt="배너광고" />
+              <img src={item.src} alt={item.text} />
             </div>
           </SwiperSlide>
         );
