@@ -184,8 +184,24 @@ export default function MyPage() {
     }
   };
   /* ---------------------------------- 회원탈퇴 ---------------------------------- */
-  const handleSignDropOut = () => {
+  const handleSignDropOut = async () => {
     deleteDocument('회원 탈퇴');
+
+    if (user.providerData[0].photoURL.includes('kakao')) {
+      const { Kakao, location } = window;
+      const CLIENT_ID = import.meta.env.VITE_KAKAO_API_KEY;
+      const LOGOUT_REDIRECT_URI = 'http://localhost:3000';
+
+      // Kakao API 토큰 만료 설정
+      await Kakao.Auth.logout();
+
+      // Kakao 계정 로그아웃 설정
+      location.replace(
+        `https://kauth.kakao.com/oauth/logout?client_id=${CLIENT_ID}&logout_redirect_uri=${LOGOUT_REDIRECT_URI}`
+      );
+    } else {
+      navigation('/');
+    }
   };
 
   /* -------------------------------- debounce -------------------------------- */
