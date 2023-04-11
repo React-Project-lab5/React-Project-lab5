@@ -11,6 +11,7 @@ import classes from './SendMessage.module.scss';
 import { AuthContext } from '@/context/AuthContext';
 import { FormEvent, KeyboardEvent, useContext, useState } from 'react';
 import { collection, addDoc, serverTimestamp } from '@firebase/firestore';
+import paperPlane from '/public/assets/paperPlane.svg';
 
 export function SendMessage() {
   const { currentUser } = useContext(AuthContext);
@@ -116,7 +117,7 @@ export function SendMessage() {
           />
         </label>
         <button type="submit" aria-label="메세지 보내기 버튼">
-          ⌲
+          <img src={paperPlane} alt="" />
         </button>
       </div>
     </form>
