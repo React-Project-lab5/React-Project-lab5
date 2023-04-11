@@ -95,6 +95,7 @@ export default function MainPage() {
 
   return (
     <>
+      <h2 className="a11yHidden">메인 페이지</h2>
       <Banner />
       <SearchFrom {...searchFormProps} />
       <ShowMeetings />

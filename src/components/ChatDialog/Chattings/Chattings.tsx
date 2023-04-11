@@ -6,7 +6,7 @@ export const Chattings = () => {
       <div role={'region'} className={classes.userChat} tabIndex={0}>
         <img
           src="https://avatars.githubusercontent.com/u/38703262?v=4"
-          alt="프로필 이미지"
+          alt=" "
         />
         <div className={classes.userChatInfo}>
           <span>김서현</span>
@@ -17,7 +17,7 @@ export const Chattings = () => {
       <div role={'region'} className={classes.userChat} tabIndex={0}>
         <img
           src="https://avatars.githubusercontent.com/u/89835647?v=4"
-          alt="프로필 이미지"
+          alt=" "
         />
         <div className={classes.userChatInfo}>
           <span>김대웅</span>
@@ -28,7 +28,7 @@ export const Chattings = () => {
       <div role={'region'} className={classes.userChat} tabIndex={0}>
         <img
           src="https://avatars.githubusercontent.com/u/119389337?v=4"
-          alt="프로필 이미지"
+          alt=" "
         />
         <div className={classes.userChatInfo}>
           <span>빈운기</span>
@@ -39,7 +39,7 @@ export const Chattings = () => {
       <div role={'region'} className={classes.userChat} tabIndex={0}>
         <img
           src="https://avatars.githubusercontent.com/u/78182200?v=4"
-          alt="프로필 이미지"
+          alt=" "
         />
         <div className={classes.userChatInfo}>
           <span>원다함</span>

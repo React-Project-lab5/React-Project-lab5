@@ -101,7 +101,6 @@ export function SendMessage() {
           name="file"
           accept="image/*"
           onChange={(e) => setImg(e.target.files[0])}
-          aria-label="이미지 업로드 버튼"
           tabIndex={-1}
         />
         <label
@@ -109,15 +108,11 @@ export function SendMessage() {
           tabIndex={0}
           onKeyDown={handleKeyDown}
           role="button"
-          aria-label="이미지 업로드 버튼"
         >
-          <img
-            src="../assets/chatImagePlaceholder.svg"
-            alt="이미지 업로드 버튼"
-          />
+          <img src="../assets/chatImagePlaceholder.svg" alt="이미지 업로드" />
         </label>
-        <button type="submit" aria-label="메세지 보내기 버튼">
-          <img src={paperPlane} alt="" />
+        <button type="submit">
+          <img src={paperPlane} alt="메세지 보내기" />
         </button>
       </div>
     </form>

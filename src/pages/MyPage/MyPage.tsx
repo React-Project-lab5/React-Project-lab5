@@ -234,89 +234,92 @@ export default function MyPage() {
   }
 
   return (
-    <section className={classes.myPageSection}>
-      <div className={classes.myPageContainer}>
-        <h1 className={classes.myPageTitle}>마이페이지</h1>
-        <div className={classes.userContainer}>
-          <ProfileImage />
-          <div className={classes.inputContainer}>
-            <div className={classes.userInfoContainer}>
-              <div>
-                <Input
-                  className={classes.inputMobile}
-                  maxWidthValue={290}
-                  heightValue={80}
-                  labelText="Name"
-                  defaultValue={user.displayName || undefined}
-                  onChange={editName}
-                  disabled={!isEditing}
-                />
+    <>
+      <h2 className="a11yHidden">마이 페이지</h2>
+      <section className={classes.myPageSection}>
+        <div className={classes.myPageContainer}>
+          <h3 className={classes.myPageTitle}>내 정보 관리</h3>
+          <div className={classes.userContainer}>
+            <ProfileImage />
+            <div className={classes.inputContainer}>
+              <div className={classes.userInfoContainer}>
+                <div>
+                  <Input
+                    className={classes.inputMobile}
+                    maxWidthValue={290}
+                    heightValue={80}
+                    labelText="Name"
+                    defaultValue={user.displayName || undefined}
+                    onChange={editName}
+                    disabled={!isEditing}
+                  />
+                </div>
+                <div>
+                  <Input
+                    className={classes.inputMobile}
+                    maxWidthValue={290}
+                    heightValue={80}
+                    labelText="Email"
+                    defaultValue={user.email}
+                    onChange={editEmail}
+                    disabled={!isEditing}
+                  />
+                </div>
               </div>
-              <div>
-                <Input
-                  className={classes.inputMobile}
-                  maxWidthValue={290}
-                  heightValue={80}
-                  labelText="Email"
-                  defaultValue={user.email}
-                  onChange={editEmail}
-                  disabled={!isEditing}
-                />
-              </div>
-            </div>
-            <div className={classes.userInfoContainer}>
-              <div>
-                <Input
-                  className={classes.inputMobile}
-                  maxWidthValue={290}
-                  heightValue={80}
-                  labelText="Phone"
-                  defaultValue={phoneNumber}
-                  onChange={editPhoneNumber}
-                  disabled={!isEditing}
-                />
-              </div>
-              <div>
-                <Input
-                  className={classes.inputMobile}
-                  maxWidthValue={290}
-                  heightValue={80}
-                  labelText="Address"
-                  defaultValue={address}
-                  onChange={editAddress}
-                  disabled={!isEditing}
-                />
+              <div className={classes.userInfoContainer}>
+                <div>
+                  <Input
+                    className={classes.inputMobile}
+                    maxWidthValue={290}
+                    heightValue={80}
+                    labelText="Phone"
+                    defaultValue={phoneNumber}
+                    onChange={editPhoneNumber}
+                    disabled={!isEditing}
+                  />
+                </div>
+                <div>
+                  <Input
+                    className={classes.inputMobile}
+                    maxWidthValue={290}
+                    heightValue={80}
+                    labelText="Address"
+                    defaultValue={address}
+                    onChange={editAddress}
+                    disabled={!isEditing}
+                  />
+                </div>
               </div>
             </div>
           </div>
+          <div className={classes.userAbleContainer}>
+            <button
+              className={classes.userAbleItem}
+              style={isEditing ? { color: 'red' } : { color: 'black' }}
+              onClick={isEditing ? handleSaveClick : handleEditClick}
+              tabIndex={0}
+            >
+              {isEditing ? '수정 완료' : '회원정보수정'}
+            </button>
+            <span>|</span>
+            <button
+              className={classes.userAbleItem}
+              onClick={handleSignOut}
+              tabIndex={0}
+            >
+              로그아웃
+            </button>
+            <span>|</span>
+            <button
+              className={classes.userAbleItem}
+              onClick={handleSignDropOut}
+              tabIndex={0}
+            >
+              회원탈퇴
+            </button>
+          </div>
         </div>
-        <div className={classes.userAbleContainer}>
-          <button
-            className={classes.userAbleItem}
-            style={isEditing ? { color: 'red' } : { color: 'black' }}
-            onClick={isEditing ? handleSaveClick : handleEditClick}
-            tabIndex={0}
-          >
-            {isEditing ? '수정 완료' : '회원정보수정'}
-          </button>
-          <span>|</span>
-          <button
-            className={classes.userAbleItem}
-            onClick={handleSignOut}
-            tabIndex={0}
-          >
-            로그아웃
-          </button>
-          <span>|</span>
-          <button
-            className={classes.userAbleItem}
-            onClick={handleSignDropOut}
-            tabIndex={0}
-          >
-            회원탈퇴
-          </button>
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

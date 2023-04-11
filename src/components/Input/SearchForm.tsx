@@ -81,7 +81,7 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   };
 
   const searchSelectorOnly = async () => {
-    if (address) {
+    if (address !== null) {
       usersCollectionRef = query(
         collection(db, 'makeMeetings'),
         where('address', 'in', [

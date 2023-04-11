@@ -90,8 +90,8 @@ export function Message({ message }: MessageProps) {
           src={getImageUrl()}
           alt={
             isCurrentUser()
-              ? '로그인된 사용자의 프로필 이미지'
-              : '메시지를 작성한 사용자의 프로필 이미지'
+              ? '로그인된 사용자의 프로필'
+              : '메시지를 작성한 사용자의 프로필'
           }
         />
       </div>

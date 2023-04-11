@@ -7,13 +7,13 @@ export function Chatting() {
   return (
     <div className={classes.chatting}>
       <div className={classes.chattingInfo}>
-        <img src="../assets/logo.svg" alt="사용자 프로필" />
+        <img src="../assets/logo.svg" alt=" " />
         <p>밥조</p>
         <div className={classes.chatIcons}>
           <Link to={'/myPage'}>
             <img src="../assets/chatAvatars.svg" alt="마이 페이지로 가기" />
           </Link>
-          <img src="../assets/chatMessage.svg" alt="메세지 창으로 가기" />
+          <img src="../assets/chatMessage.svg" alt=" " />
         </div>
       </div>
 

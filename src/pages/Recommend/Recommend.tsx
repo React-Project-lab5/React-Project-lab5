@@ -2,11 +2,11 @@
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
 import ReactPaginate from 'react-paginate';
-import { ChangeEvent, useEffect, useState } from 'react';
 import { Banner, Input } from '@/components';
 import classes from './Recommend.module.scss';
 import search from '/public/assets/search.svg';
 import { loadingState } from '@/@recoil/loadingState';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { FoodList } from '@/components/FoodList/FoodList';
 import { searchTermState } from '@/@recoil/searchTermState';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
@@ -53,7 +53,10 @@ export default function Recommend() {
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
   // 페이지 변경
-  const handlePageClick = ({ selected }): void => setCurrentPage(selected);
+  const handlePageClick = ({ selected }): void => {
+    setCurrentPage(selected);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // 검색어를 상태에 업데이트
   const handlerSearchTerm = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -62,10 +65,12 @@ export default function Recommend() {
 
   // 총 페이지 수
   const totalPageNum = Math.ceil(posts.length / postsPerPage);
+
   return (
     <>
       <Banner />
-      <h1 className={classes.title}> 서울 맛집 추천</h1>
+      <h2 className="a11yHidden">추천</h2>
+      <h3 className={classes.title}> 서울 맛집 추천</h3>
       <div className={classes['InputContainer']}>
         <form
           className={classes['formInput']}

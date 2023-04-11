@@ -15,9 +15,12 @@ export default function Chat() {
   }, [pathname]);
 
   return (
-    <div className={classes.chat}>
-      <Sidebar />
-      <Chatting />
-    </div>
+    <>
+      <h2 className="a11yHidden">채팅</h2>
+      <div className={classes.chat}>
+        <Sidebar />
+        <Chatting />
+      </div>
+    </>
   );
 }
