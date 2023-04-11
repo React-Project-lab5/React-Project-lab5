@@ -14,41 +14,44 @@ export function ShowMeetings() {
   const setSearchTitle = useSetRecoilState(searchAddressState);
 
   return (
-    <div className={classes['meetingCardContainer']}>
-      {users.map((value, index) => (
-        <div key={index} className={classes['meetingCard']}>
-          <Card
-            className={classes.mainPageCard}
-            onClick={() => {
-              setOpenModal(true);
-              localStorage.setItem('Unique ID', value.id || '1');
-              console.log(value);
-              setSearchCard(value.detail);
-              setSearchTitle(value.address);
-              console.log('showmeetings', value);
-            }}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
+    <>
+      <h3 className="a11yHidden">모임 목록</h3>
+      <div className={classes['meetingCardContainer']}>
+        {users.map((value, index) => (
+          <div key={index} className={classes['meetingCard']}>
+            <Card
+              className={classes.mainPageCard}
+              onClick={() => {
                 setOpenModal(true);
-                localStorage.setItem('Unique ID', value.id);
+                localStorage.setItem('Unique ID', value.id || '1');
+                console.log(value);
+                setSearchCard(value.detail);
+                setSearchTitle(value.address);
                 console.log('showmeetings', value);
-              }
-            }}
-          >
-            <Meeting
-              title={value.title}
-              town={value.address}
-              place={value.detail}
-              time={value.cardData}
-              userName={value.userName}
-              userImg={value.userImg}
-            />
-          </Card>
-        </div>
-      ))}
-      {openModal ? (
-        <ReadMeetings openModal={openModal} setOpenModal={setOpenModal} />
-      ) : null}
-    </div>
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  setOpenModal(true);
+                  localStorage.setItem('Unique ID', value.id);
+                  console.log('showmeetings', value);
+                }
+              }}
+            >
+              <Meeting
+                title={value.title}
+                town={value.address}
+                place={value.detail}
+                time={value.cardData}
+                userName={value.userName}
+                userImg={value.userImg}
+              />
+            </Card>
+          </div>
+        ))}
+        {openModal ? (
+          <ReadMeetings openModal={openModal} setOpenModal={setOpenModal} />
+        ) : null}
+      </div>
+    </>
   );
 }

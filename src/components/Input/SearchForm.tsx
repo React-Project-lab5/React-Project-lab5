@@ -142,6 +142,7 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
 
   return (
     <>
+      <h3 className="a11yHidden">모임 검색</h3>
       <div className={classes['InputContainer']}>
         <div className={classes['mainInput']}>
           <form
