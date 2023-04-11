@@ -159,7 +159,7 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
               <Input
                 maxWidthValue={'35rem'}
                 heightValue={'75px'}
-                labelText="검색창"
+                labelText="검색"
                 placeHolder="모임을 검색하세요"
                 isA11yHidden
                 className={classes.searchFormInput}
@@ -185,7 +185,7 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
                 <img
                   className={classes.searchButton}
                   src={searchButton}
-                  alt=""
+                  alt="검색"
                   tabIndex={0}
                 />
               </button>

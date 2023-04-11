@@ -13,7 +13,7 @@ import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { ScrollButton } from '@/components/Button/ScrollButton/ScrollButton';
 
 export default function Recommend() {
-  useDocumentTitle('슬기로운 N밥 생활 | 추천');
+  useDocumentTitle('슬기로운 N밥생활 | 추천');
 
   const postsPerPage = 24;
 
@@ -65,7 +65,7 @@ export default function Recommend() {
   return (
     <>
       <Banner />
-      <h1 className={classes.title}> 서울 맛집 추천</h1>
+      <h3 className={classes.title}> 서울 맛집 추천</h3>
       <div className={classes['InputContainer']}>
         <form
           className={classes['formInput']}

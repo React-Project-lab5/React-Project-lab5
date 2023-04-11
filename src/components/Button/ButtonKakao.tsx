@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import classNames from 'classnames';
 import { auth } from '@/firebase/auth';
 import KakaoLogin from 'react-kakao-login';
@@ -93,7 +94,7 @@ export function ButtonKakao({
           style={buttonStyle}
           onClick={onClick}
         >
-          <img src={kakao} alt="" />
+          <img src={kakao} alt=" " />
           Kakao 로그인
         </button>
       )}

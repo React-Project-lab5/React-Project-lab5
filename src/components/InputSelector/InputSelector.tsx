@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable no-unused-vars */
 import classNames from 'classnames';
@@ -157,24 +158,28 @@ export function InputSelector({
   ];
 
   return (
-    <select
-      onClick={onClick}
-      onChange={(e) => {
-        setMainAddress(e.target.value);
-        console.log(e.target.value);
-        for (let i = 0; i < location.length; i++) {
-          if (e.target.value === location[i].value) {
-            setAddress(location[i].address);
-          }
-        }
-      }}
-      className={classNames(classes['selectBox'], className)}
-      style={selectStyle}
-      required
-    >
-      {location.map((item) => (
-        <option key={item.value}>{item.value}</option>
-      ))}
-    </select>
+    <>
+      <label htmlFor="지역선택">
+        <select
+          onClick={onClick}
+          onChange={(e) => {
+            setMainAddress(e.target.value);
+            console.log(e.target.value);
+            for (let i = 0; i < location.length; i++) {
+              if (e.target.value === location[i].value) {
+                setAddress(location[i].address);
+              }
+            }
+          }}
+          className={classNames(classes['selectBox'], className)}
+          style={selectStyle}
+          required
+        >
+          {location.map((item) => (
+            <option key={item.value}>{item.value}</option>
+          ))}
+        </select>
+      </label>
+    </>
   );
 }
