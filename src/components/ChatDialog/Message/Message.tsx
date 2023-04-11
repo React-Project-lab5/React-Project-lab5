@@ -21,7 +21,7 @@ export function Message({ message }: MessageProps) {
 
   //authImagState는 현재 로그인한 사용자의 프로필 이미지
   const imageUrl = useRecoilValue(authImagState);
-  const [displayName, setDisplayName] = useState<string>('탈퇴회원');
+  const [displayName, setDisplayName] = useState<string>('탈퇴한 회원');
 
   useEffect(() => {
     if (!message.uid) {
