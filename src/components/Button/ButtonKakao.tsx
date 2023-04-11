@@ -95,7 +95,7 @@ export function ButtonKakao({
           style={buttonStyle}
           onClick={onClick}
         >
-          <img src={kakao} alt="Kakao 로고 이미지" />
+          <img src={kakao} alt=" " />
           Kakao 로그인
         </button>
       )}

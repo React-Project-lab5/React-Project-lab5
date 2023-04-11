@@ -59,7 +59,7 @@ export function ButtonGoogle({
         style={buttonStyle}
         onClick={handleGoogleSignIn}
       >
-        <img src={google} alt="Google 로고 이미지" />
+        <img src={google} alt=" " />
         Google 로그인
       </button>
     </>
