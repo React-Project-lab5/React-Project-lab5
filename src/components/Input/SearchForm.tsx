@@ -145,11 +145,11 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
                   />
                 </button>
               )}
-              <button type="submit" aria-label="검색 버튼">
+              <button type="submit" aria-label="검색">
                 <img
                   className={classes.searchButton}
                   src={searchButton}
-                  alt="검색 버튼"
+                  alt=""
                   tabIndex={0}
                 />
               </button>
