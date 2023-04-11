@@ -5,10 +5,10 @@ import classes from './Navbar.module.scss';
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '@/context/AuthContext';
-import { signOut, deleteUser } from '@firebase/auth';
+import { signOut } from '@firebase/auth';
 import { authImagState } from '@/@recoil/authImgState';
 import defaultAvatar from '/public/assets/chatAvatars.svg';
-import { doc, getDoc, collection, deleteDoc } from '@firebase/firestore';
+import { doc, getDoc, collection } from '@firebase/firestore';
 
 export function Navbar() {
   const [imageUrl, setImageUrl] = useRecoilState(authImagState);
