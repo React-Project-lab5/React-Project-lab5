@@ -41,9 +41,8 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
     getUsers();
   }, [getUsers]);
 
+  let usersCollectionRef = null;
   const handleSearch = async () => {
-    let usersCollectionRef = null;
-
     if (address) {
       usersCollectionRef = query(
         collection(db, 'makeMeetings'),
@@ -81,6 +80,40 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
     }
   };
 
+  const searchSelectorOnly = async () => {
+    if (address) {
+      usersCollectionRef = query(
+        collection(db, 'makeMeetings'),
+        where('address', 'in', [
+          address.slice(6, 8),
+          address.slice(6, 9),
+          address.slice(6, 10),
+        ])
+      );
+    } else {
+      getUsers();
+    }
+
+    try {
+      const querySnapshot = await getDocs(usersCollectionRef);
+      const usersData = querySnapshot.docs.map(
+        (doc: QueryDocumentSnapshot<Card>) => ({
+          ...doc.data(),
+          id: doc.id,
+        })
+      ) as Card[];
+      setUsers(
+        usersData.sort((a, b) => {
+          if (a.timestamp.seconds < b.timestamp.seconds) return 1;
+          if (a.timestamp.seconds > b.timestamp.seconds) return -1;
+          return 0;
+        })
+      );
+    } catch (err) {
+      throw new Error('Error 404');
+    }
+  };
+
   const handleKey = (e: { code: string }) => {
     e.code === 'Enter' && handleSearch();
   };
@@ -90,8 +123,10 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
     setArrayTitle([...searchTitle]);
     console.log(e.target.value);
 
-    if (e.target.value === '') {
+    if (e.target.value === '' && address === '') {
       getUsers();
+    } else {
+      searchSelectorOnly();
     }
   };
 
@@ -118,6 +153,7 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
               maxWidthValue={200}
               heightValue={75}
               className={classes.searchFormInputSelector}
+              onClick={searchSelectorOnly}
             />
             <div className={classes['inputSearchButton']}>
               <Input

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable no-unused-vars */
 import classNames from 'classnames';
 import { useSetRecoilState } from 'recoil';
@@ -11,6 +12,7 @@ interface Props {
   className: string;
   onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   marginBottom?: number;
+  onClick?: () => void;
 }
 
 export function InputSelector({
@@ -18,6 +20,7 @@ export function InputSelector({
   heightValue,
   className,
   marginBottom,
+  onClick,
 }: Props) {
   const selectStyle = {
     maxWidth: maxWidthValue,
@@ -30,6 +33,11 @@ export function InputSelector({
   const setMainAddress = useSetRecoilState(addressMainState);
 
   const location = [
+    {
+      value: '지역을 선택하세요',
+      label: 'default',
+      address: '',
+    },
     {
       value: '강남구',
       label: '강남구',
@@ -150,6 +158,7 @@ export function InputSelector({
 
   return (
     <select
+      onClick={onClick}
       onChange={(e) => {
         setMainAddress(e.target.value);
         console.log(e.target.value);
@@ -163,7 +172,6 @@ export function InputSelector({
       style={selectStyle}
       required
     >
-      <option value="default">지역을 선택하세요</option>
       {location.map((item) => (
         <option key={item.value}>{item.value}</option>
       ))}
