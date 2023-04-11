@@ -24,7 +24,7 @@ import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { isValidEmail, isValidTel } from './../../utils/validation';
 
 export default function MyPage() {
-  useDocumentTitle('슬기로운 N밥 생활 | 마이 페이지');
+  useDocumentTitle('슬기로운 N밥생활 | 마이 페이지');
 
   const navigation = useNavigate();
   const [name, setName] = useState('');

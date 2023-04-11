@@ -28,7 +28,7 @@ import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { ScrollButton } from '@/components/Button/ScrollButton/ScrollButton';
 
 export default function MainPage() {
-  useDocumentTitle('슬기로운 N밥생활 | 모임');
+  useDocumentTitle('슬기로운 N밥생활 | 메인');
 
   const title = useRecoilValue(titleMainState);
   const address = useRecoilValue(addressMainState);
