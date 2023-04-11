@@ -159,27 +159,29 @@ export function InputSelector({
 
   return (
     <>
-      <label htmlFor="지역선택">
-        <select
-          onClick={onClick}
-          onChange={(e) => {
-            setMainAddress(e.target.value);
-            console.log(e.target.value);
-            for (let i = 0; i < location.length; i++) {
-              if (e.target.value === location[i].value) {
-                setAddress(location[i].address);
-              }
-            }
-          }}
-          className={classNames(classes['selectBox'], className)}
-          style={selectStyle}
-          required
-        >
-          {location.map((item) => (
-            <option key={item.value}>{item.value}</option>
-          ))}
-        </select>
+      <label htmlFor="select" className="a11yHidden">
+        지역선택
       </label>
+      <select
+        id="select"
+        onClick={onClick}
+        onChange={(e) => {
+          setMainAddress(e.target.value);
+          console.log(e.target.value);
+          for (let i = 0; i < location.length; i++) {
+            if (e.target.value === location[i].value) {
+              setAddress(location[i].address);
+            }
+          }
+        }}
+        className={classNames(classes['selectBox'], className)}
+        style={selectStyle}
+        required
+      >
+        {location.map((item) => (
+          <option key={item.value}>{item.value}</option>
+        ))}
+      </select>
     </>
   );
 }
