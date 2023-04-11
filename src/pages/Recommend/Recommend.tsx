@@ -72,6 +72,7 @@ export default function Recommend() {
       <h2 className="a11yHidden">추천</h2>
       <h3 className={classes.title}> 서울 맛집 추천</h3>
       <div className={classes['InputContainer']}>
+        <h3 className="a11yHidden"> 음식점 검색</h3>
         <form
           className={classes['formInput']}
           role="search"

@@ -60,22 +60,25 @@ export function FoodList({ posts }: Props) {
   }
 
   return (
-    <div className={classes.store}>
-      {showCards &&
-        filteredPosts.map((food: Food, index: number) => (
-          <Card key={index} className={classes.card}>
-            <div className={classes.storeBox}>
-              <p className={classes.LocalName}>{food['지역명']}</p>
-              <p className={classes.storeName}>{food['식당명']}</p>
-              <img
-                src={food['음식이미지(URL)']}
-                alt={'음식이미지'}
-                width={150}
-                height={150}
-              />
-            </div>
-          </Card>
-        ))}
-    </div>
+    <>
+      <h3 className="a11yHidden"> 음식점 리스트</h3>
+      <div className={classes.store}>
+        {showCards &&
+          filteredPosts.map((food: Food, index: number) => (
+            <Card key={index} className={classes.card}>
+              <div className={classes.storeBox}>
+                <p className={classes.LocalName}>{food['지역명']}</p>
+                <p className={classes.storeName}>{food['식당명']}</p>
+                <img
+                  src={food['음식이미지(URL)']}
+                  alt={'음식이미지'}
+                  width={150}
+                  height={150}
+                />
+              </div>
+            </Card>
+          ))}
+      </div>
+    </>
   );
 }
