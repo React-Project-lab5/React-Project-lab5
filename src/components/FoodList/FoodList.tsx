@@ -5,7 +5,6 @@ import spinner from '/public/assets/loading.svg';
 import { useEffect, useMemo, useState } from 'react';
 import { loadingState } from '@/@recoil/loadingState';
 import { searchTermState } from '@/@recoil/searchTermState';
-import FoodItems from './FoodItems';
 
 interface Food {
   지역명: string;
@@ -24,11 +23,11 @@ export function FoodList({ posts }: Props) {
   const loading = useRecoilValue(loadingState);
 
   useEffect(() => {
-    // 페이지가 바뀔 때마다 0.2초 뒤에 카드 보이기
+    // 페이지가 바뀔 때마다 0.1초 뒤에 카드 보이기
     setShowCards(false);
     const timer = setTimeout(() => {
       setShowCards(true);
-    }, 200);
+    }, 100);
     return () => clearTimeout(timer);
   }, [posts]);
 
@@ -64,7 +63,21 @@ export function FoodList({ posts }: Props) {
     <>
       <h3 className="a11yHidden"> 음식점 리스트</h3>
       <div className={classes.store}>
-        {showCards && <FoodItems posts={posts} />}
+        {showCards &&
+          filteredPosts.map((food: Food, index: number) => (
+            <Card key={index} className={classes.card}>
+              <div className={classes.storeBox}>
+                <p className={classes.LocalName}>{food['지역명']}</p>
+                <p className={classes.storeName}>{food['식당명']}</p>
+                <img
+                  src={food['음식이미지(URL)']}
+                  alt={'음식이미지'}
+                  width={150}
+                  height={150}
+                />
+              </div>
+            </Card>
+          ))}
       </div>
     </>
   );
