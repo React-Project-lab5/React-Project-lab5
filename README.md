@@ -12,7 +12,7 @@ https://docs.google.com/presentation/d/1Dl5YEi4h9hueUgTIufx8OlWW3Kn6gF8yXMurp2Jx
 
 ## 📌 배포 링크
 
-https://calkolab5.web.app
+https://babjo-life.web.app/
 
 ## 📌 프로젝트 성능 및 접근성
 
