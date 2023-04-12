@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import {
   collection,
@@ -103,7 +104,7 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   };
 
   const resetButton = () => {
-    setAddress(null);
+    setAddress('');
     getUsers();
   };
 
@@ -113,7 +114,6 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
     }
 
     if (address.trim().length > 0) {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
       usersCollectionRef = query(
         collection(db, 'makeMeetings'),
         where('address', 'in', [

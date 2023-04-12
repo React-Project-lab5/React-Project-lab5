@@ -1,5 +1,5 @@
 import { Card } from '../Card';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import classes from './FoodList.module.scss';
 import spinner from '/public/assets/loading.svg';
 import { useEffect, useMemo, useState } from 'react';
@@ -15,14 +15,17 @@ interface Food {
 
 interface Props {
   posts: Food[];
-  loading: boolean;
   totalPosts: Food[];
 }
 
 export function FoodList({ posts, totalPosts }: Props) {
-  const [showCards, setShowCards] = useState<boolean>(false);
+  const postsPerPage = 24;
   const searchTerm = useRecoilValue(searchTermState);
   const loading = useRecoilValue(loadingState);
+  const currentPage = useRecoilValue(currentPageState);
+  const indexOfLastPost = (currentPage + 1) * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const [showCards, setShowCards] = useState<boolean>(false);
 
   useEffect(() => {
     // 페이지가 바뀔 때마다 0.1초 뒤에 카드 보이기
@@ -43,14 +46,7 @@ export function FoodList({ posts, totalPosts }: Props) {
     );
   }, [totalPosts, searchTerm]);
 
-  const postsPerPage = 24;
-  const currentPage = useRecoilValue(currentPageState);
-  // 현재 게시물 가져오기
-  const indexOfLastPost = (currentPage + 1) * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
-
-  console.log(currentPosts);
 
   // 검색 결과가 없다면 해당 메시지를 보여줍니다.
   if (!filteredPosts.length) {
@@ -69,8 +65,6 @@ export function FoodList({ posts, totalPosts }: Props) {
       </div>
     );
   }
-
-  console.log(currentPage);
 
   return (
     <>

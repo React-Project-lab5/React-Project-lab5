@@ -14,7 +14,7 @@ import DatePicker from 'react-datepicker';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import 'react-datepicker/dist/react-datepicker.css';
 import { titleMainState } from '@/@recoil/titleMainState';
-import { MapContainer } from '../../utils/MapContainer/MapContainer';
+import { MapContainer } from '../MapContainer/MapContainer';
 import { detailMainState } from '@/@recoil/detailMainState';
 import { cardDataState } from '../../@recoil/cardDataState';
 import { addressState } from '@/@recoil/addressState';
@@ -42,7 +42,6 @@ export function ModalTotal({ createUsers, getUsers }: SearchFormProps) {
     setAddress(null);
     createUsers();
     alert('모임이 작성되었습니다.');
-    console.log('작성완');
   };
 
   const handleClose = () => {

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import axios from 'axios';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import ReactPaginate from 'react-paginate';
 import { Banner, Input } from '@/components';
 import classes from './Recommend.module.scss';
@@ -12,7 +12,6 @@ import { searchTermState } from '@/@recoil/searchTermState';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { ScrollButton } from '@/components/Button/ScrollButton/ScrollButton';
 import { currentPageState } from '@/@recoil/currentPageState';
-import { totalPageNumState } from '@/@recoil/totalPageNumState';
 
 export default function Recommend() {
   useDocumentTitle('슬기로운 N밥생활 | 추천');
@@ -21,11 +20,9 @@ export default function Recommend() {
 
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
-  const [loading, setLoading] = useRecoilState(loadingState);
+  const setLoading = useSetRecoilState(loadingState);
   //검색어를 입력하면 searchTerm 상태 변수에 저장
   const [searchTerm, setSearchTerm] = useRecoilState(searchTermState);
-  const [totalPageNumber, setTotalPageNumber] =
-    useRecoilState(totalPageNumState);
 
   const API_BASE_URL =
     'https://api.odcloud.kr/api/15097008/v1/uddi:1e5a6f2e-3f79-49bd-819b-d17541e6df78';
@@ -68,12 +65,7 @@ export default function Recommend() {
   };
 
   // 총 페이지 수
-
   const totalPageNum = Math.ceil(posts.length / 24);
-
-  // const totalPageNum = () => {
-  //   setTotalPageNumber(posts);
-  // };
 
   return (
     <>
@@ -111,7 +103,7 @@ export default function Recommend() {
           </div>
         </form>
       </div>
-      <FoodList posts={currentPosts} loading={loading} totalPosts={posts} />
+      <FoodList posts={currentPosts} totalPosts={posts} />
       <ReactPaginate
         previousLabel={'<'}
         nextLabel={'>'}

@@ -1,13 +1,11 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
-import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper';
 import classes from './Banner.module.scss';
 import classNames from 'classnames';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper';
 
 interface HomeBannerProps {
   className?: string;

@@ -6,7 +6,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable jsx-a11y/aria-role */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { collection, getDocs, query, where } from '@firebase/firestore';
+import { collection, query, where } from '@firebase/firestore';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -15,17 +15,17 @@ import firebase from 'firebase/compat/app';
 import { useEffect, useState } from 'react';
 import { db } from '@/firebase/firestore/index';
 import { deleteUsers } from '@/@recoil/deleteUsers';
-import { MapContainer } from '../../utils/MapContainer/MapContainer';
+import { MapContainer } from '../MapContainer/MapContainer';
 import { Button, ModalPotal, Modal } from '@/components/index';
 import { UserContainer } from './UserContainer';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '@/firebase/auth';
 import React from 'react';
-import { Card } from '@/@recoil/usersState';
 import { readingCardState } from '@/@recoil/readingCardState';
 import classNames from 'classnames';
 import { searchEmailState } from '@/@recoil/searchEmailState';
 import ShowCard from './ShowCard';
+import { getUsers } from '@/utils/getUsers';
 
 interface Props {
   openModal: boolean;
@@ -46,16 +46,8 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
     )
   );
 
-  const getUsers = async () => {
-    await getDocs(usersCollectionRef).then((data) => {
-      setCards(
-        data.docs.map((doc) => ({ ...doc.data(), id: doc.id })) as Card[]
-      );
-    });
-  };
-
   useEffect(() => {
-    getUsers();
+    getUsers(usersCollectionRef, setCards);
   }, []);
 
   const handleClose = () => {

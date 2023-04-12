@@ -6,11 +6,12 @@ import { readingMap } from '@/@recoil/readingMap';
 import { Card } from '@/@recoil/usersState';
 import { FC } from 'react';
 import { searchDetailCardState } from '@/@recoil/searchDetailCardState';
-import { collection, getDocs, query, where } from '@firebase/firestore';
+import { collection, query, where } from '@firebase/firestore';
 import { db } from '@/firebase/firestore/index';
 import { readingCardState } from '@/@recoil/readingCardState';
 import { searchAddressState } from '@/@recoil/searchAddressState';
 import { searchEmailState } from '@/@recoil/searchEmailState';
+import { getUsers } from '@/utils/getUsers';
 
 interface Props {
   cards?: Card[];
@@ -32,14 +33,7 @@ const ShowCard: FC<Props> = () => {
         where('address', '==', searchAddress)
       );
 
-      const getUsers = async () => {
-        await getDocs(usersCollectionRef).then((data) => {
-          setCards(
-            data.docs.map((doc) => ({ ...doc.data(), id: doc.id })) as Card[]
-          );
-        });
-      };
-      getUsers();
+      getUsers(usersCollectionRef, setCards);
     }
 
     async function fetchAndSetCard() {

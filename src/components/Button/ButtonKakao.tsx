@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import classNames from 'classnames';
+import { useEffect } from 'react';
 import { auth } from '@/firebase/auth';
 import KakaoLogin from 'react-kakao-login';
 import classes from './Button.module.scss';
@@ -11,7 +12,6 @@ import {
   signInWithEmailAndPassword,
 } from '@firebase/auth';
 import { getFirestore, doc, setDoc } from '@firebase/firestore';
-import { useEffect } from 'react';
 
 interface Props {
   widthValue?: string | number;
