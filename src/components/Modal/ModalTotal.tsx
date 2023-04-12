@@ -46,6 +46,7 @@ export function ModalTotal({ createUsers, getUsers }: SearchFormProps) {
 
   const handleClose = () => {
     setModalOpened(false);
+    getUsers();
   };
 
   const handleDebounceTitle = debounce(

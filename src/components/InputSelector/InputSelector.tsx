@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
-/* eslint-disable no-unused-vars */
 import classNames from 'classnames';
 import { useSetRecoilState } from 'recoil';
 import classes from './InputSelector.module.scss';
@@ -39,11 +36,14 @@ export function InputSelector({
       <select
         id="select"
         onChange={(e) => {
-          setMainAddress(e.target.value);
-          for (let i = 0; i < locationData.length; i++) {
-            if (e.target.value === locationData[i].value) {
-              setAddress(locationData[i].address);
-            }
+          const selectedValue = e.target.value;
+          const selectedLocation = locationData.find(
+            (item) => item.value === selectedValue
+          );
+
+          if (selectedLocation) {
+            setAddress(selectedLocation.address);
+            setMainAddress(selectedValue);
           }
         }}
         className={classNames(classes['selectBox'], className)}
