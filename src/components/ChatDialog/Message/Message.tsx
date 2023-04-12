@@ -86,14 +86,7 @@ export function Message({ message }: MessageProps) {
       <div className={classes.messageInfo}>
         <p>{displayName}</p>
 
-        <img
-          src={getImageUrl()}
-          alt={
-            isCurrentUser()
-              ? '로그인된 사용자의 프로필'
-              : '메시지를 작성한 사용자의 프로필'
-          }
-        />
+        <img src={getImageUrl()} alt={'로그인된 사용자의 프로필'} />
       </div>
       <div className={classes.messageContent}>
         {message.photoURL && <img src={message.photoURL} alt={'채팅 이미지'} />}
