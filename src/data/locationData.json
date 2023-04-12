@@ -15,7 +15,7 @@
     "id": "qeqeasd3",
     "value": "강동구",
     "label": "강동구",
-    "address": "서울특별시 강북구 도봉로89길 3"
+    "address": "서울특별시 강북구 도봉로89길 13"
   },
   {
     "id": "qeqeasz4",
@@ -27,13 +27,13 @@
     "id": "qeqezx5",
     "value": "관악구",
     "label": "관악구",
-    "address": "서울특별시 관악구 관악로 45"
+    "address": "서울특별시 관악구 관악로 145"
   },
   {
     "id": "qeqezxc6",
     "value": "광진구",
     "label": "광진구",
-    "address": "서울특별시 광진구 자양로 7"
+    "address": "서울특별시 광진구 자양로 117"
   },
   {
     "id": "qeqeqwe7",
@@ -61,27 +61,27 @@
   },
   {
     "id": "qedfg11",
-    "value": "서대문구",
-    "label": "서대문구",
-    "address": "서울특별시 서대문구 천호대로 45"
+    "value": "동대문구",
+    "label": "동대문구",
+    "address": "서울특별시 동대문구 천호대로 145"
   },
   {
     "id": "qehjk12",
     "value": "동작구",
     "label": "동작구",
-    "address": "서울특별시 동작구 장승배기로 6"
+    "address": "서울특별시 동작구 장승배기로 161"
   },
   {
     "id": "qehtk13",
     "value": "마포구",
     "label": "마포구",
-    "address": "서울특별시 마포구 월드컵로 22"
+    "address": "서울특별시 마포구 월드컵로 212"
   },
   {
     "id": "qertye14",
-    "value": "대문구",
-    "label": "대문구",
-    "address": "서울특별시  대문구 연희로 248"
+    "value": "서대문구",
+    "label": "서대문구",
+    "address": "서울특별시  서대문구 연희로 248"
   },
   {
     "id": "qeqtyue15",
@@ -99,7 +99,7 @@
     "id": "qerrqe17",
     "value": "성북구",
     "label": "성북구",
-    "address": "서울특별시 성북구 보문로 68"
+    "address": "서울특별시 성북구 보문로 168"
   },
   {
     "id": "qejga18",
@@ -111,42 +111,36 @@
     "id": "qekhj19",
     "value": "양천구",
     "label": "양천구",
-    "address": "서울특별시 양천구 목동동로 05"
+    "address": "서울특별시 양천구 목동동로 105"
   },
   {
     "id": "qqwete20",
-    "value": "등포구",
-    "label": "등포구",
-    "address": "서울특별시 등포구 당산동3가 당산로 23"
+    "value": "영등포구",
+    "label": "영등포구",
+    "address": "서울특별시 영등포구 당산동3가 당산로 123"
   },
   {
     "id": "qsdfe21",
     "value": "용산구",
     "label": "용산구",
-    "address": "서울특별시 용산구 녹사평대로 50"
+    "address": "서울특별시 용산구 녹사평대로 150"
   },
   {
     "id": "qengfge22",
     "value": "은평구",
     "label": "은평구",
-    "address": "서울특별시 은평구 은평로 95"
+    "address": "서울특별시 은평구 은평로 195"
   },
   {
     "id": "qsdfe23",
     "value": "종로구",
     "label": "종로구",
-    "address": "서울특별시 종로구 종로길 36"
-  },
-  {
-    "id": "qafsqe24",
-    "value": "중구",
-    "label": "중구",
-    "address": "서울특별시 중구 창경궁로 7"
+    "address": "서울특별시 종로구 종로1길 36"
   },
   {
     "id": "qesdfe25",
     "value": "중랑구",
     "label": "중랑구",
-    "address": "서울특별시 중랑구 봉화산로 79"
+    "address": "서울특별시 중랑구 봉화산로 179"
   }
 ]
