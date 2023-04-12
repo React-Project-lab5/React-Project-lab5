@@ -4,11 +4,11 @@ import { useRecoilState } from 'recoil';
 import classes from './Navbar.module.scss';
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { handleSignOut } from '@/utils/signOut';
 import { AuthContext } from '@/context/AuthContext';
-import { signOut, deleteUser } from '@firebase/auth';
 import { authImagState } from '@/@recoil/authImgState';
 import defaultAvatar from '/public/assets/chatAvatars.svg';
-import { doc, getDoc, collection, deleteDoc } from '@firebase/firestore';
+import { doc, getDoc, collection } from '@firebase/firestore';
 
 export function Navbar() {
   const [imageUrl, setImageUrl] = useRecoilState(authImagState);
@@ -16,23 +16,10 @@ export function Navbar() {
   const navigation = useNavigate();
   const { currentUser } = useContext(AuthContext);
 
-  const deleteDocument = (member: string) => {
-    const user = auth.currentUser;
-    deleteDoc(doc(db, 'users', user.uid));
-    deleteUser(user)
-      .then(() => {
-        alert(`${member} 되었습니다.`);
-        navigation('/');
-      })
-      .catch((error) => {
-        console.log(`${member} 실패!`, error);
-      });
-  };
+  const user = auth.currentUser;
 
-  const handleSignOut = () => {
-    signOut(auth);
-    deleteDocument('로그아웃');
-    navigation('/');
+  const handlerSignOut = async () => {
+    await handleSignOut(auth, user, navigation);
   };
 
   useEffect(() => {
@@ -58,7 +45,7 @@ export function Navbar() {
       <div className={classes.user}>
         <img src={imageUrl || defaultAvatar} alt="사용자" />
         <p>{currentUser.displayName}</p>
-        <button type="button" onClick={handleSignOut}>
+        <button type="button" onClick={handlerSignOut}>
           로그아웃
         </button>
       </div>

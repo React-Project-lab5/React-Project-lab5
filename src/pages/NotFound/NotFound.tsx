@@ -5,6 +5,7 @@ export default function NotFound() {
 
   return (
     <>
+      <h2 className="a11yHidden">존재 하지 않는 페이지</h2>
       <div className={classes.container}>
         <span>🚫 404 Error 🚫</span>
         <h1>404</h1>

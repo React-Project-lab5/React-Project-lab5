@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { db } from '@/firebase/firestore/index';
 import {
   addDoc,
   serverTimestamp,
@@ -16,28 +15,29 @@ import { auth } from '@/firebase/auth';
 import { Banner } from '@/components/index';
 import { Card } from '@/@recoil/usersState';
 import { mapState } from '@/@recoil/mapState';
+import { db } from '@/firebase/firestore/index';
 import { ShowMeetings } from '@/components/index';
 import { usersState } from '@/@recoil/usersState';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { cardDataState } from '@/@recoil/cardDataState';
 import { titleMainState } from '@/@recoil/titleMainState';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { SearchFrom } from '@/components/Input/SearchForm';
 import { detailMainState } from '@/@recoil/detailMainState';
-import { addressMainState } from '@/@recoil/addressMainState';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+import { addressMainState } from '@/@recoil/addressMainState';
 import { ScrollButton } from '@/components/Button/ScrollButton/ScrollButton';
 
 export default function MainPage() {
-  useDocumentTitle('슬기로운 N밥생활 | 모임');
+  useDocumentTitle('슬기로운 N밥생활 | 메인');
 
+  const [name, setName] = useState('');
+  const [userImg, setUserImg] = useState('');
   const title = useRecoilValue(titleMainState);
   const address = useRecoilValue(addressMainState);
   const detail = useRecoilValue(detailMainState);
   const cardData = useRecoilValue(cardDataState);
   const mapData = useRecoilValue(mapState);
   const setUsers = useSetRecoilState(usersState);
-  const [name, setName] = useState('');
-  const [userImg, setUserImg] = useState('');
 
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((user) => {
@@ -95,6 +95,7 @@ export default function MainPage() {
 
   return (
     <>
+      <h2 className="a11yHidden">메인 페이지</h2>
       <Banner />
       <SearchFrom {...searchFormProps} />
       <ShowMeetings />

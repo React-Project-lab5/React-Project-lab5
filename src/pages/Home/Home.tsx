@@ -42,51 +42,57 @@ export default function Home() {
   };
 
   return (
-    <div className={classes['divContainer']}>
-      <HomeBanner className={classes['homeBanner']} />
+    <>
+      <h2 className="a11yHidden">홈</h2>
+      <div className={classes['divContainer']}>
+        <HomeBanner className={classes['homeBanner']} />
 
-      <div className={classes.contents}>
-        <LogoIconandText small={false} />
-        <h2 className={classes.startText}>지금 시작하세요!</h2>
-        <ButtonGoogle widthValue={'330px'} />
-        <ButtonKakao widthValue={'330px'} />
-        <span className={classes.startText}>또는</span>
-        <Button
-          maxWidthValue={'330px'}
-          text="이메일 회원가입"
-          className={classes.joinButton}
-          onClick={handleOpenSignupModal}
-        />
-        <span className={classes.startText}>회원이신가요?</span>
-        <Button
-          maxWidthValue={'330px'}
-          text="로그인"
-          className={classes.loginButton}
-          onClick={handleOpenModal}
-        />
-        <Button
-          maxWidthValue={'330px'}
-          heightValue={'93px'}
-          text="게스트로 입장"
-          className={classes.guestButton}
-          onClick={navigateToPage}
-        />
+        <div className={classes.contents}>
+          <h1>
+            <LogoIconandText small={false} />
+          </h1>
+
+          <h2 className={classes.startText}>지금 시작하세요!</h2>
+          <ButtonGoogle widthValue={'330px'} />
+          <ButtonKakao widthValue={'330px'} />
+          <span className={classes.startText}>또는</span>
+          <Button
+            maxWidthValue={'330px'}
+            text="이메일 회원가입"
+            className={classes.joinButton}
+            onClick={handleOpenSignupModal}
+          />
+          <span className={classes.startText}>회원이신가요?</span>
+          <Button
+            maxWidthValue={'330px'}
+            text="로그인"
+            className={classes.loginButton}
+            onClick={handleOpenModal}
+          />
+          <Button
+            maxWidthValue={'330px'}
+            heightValue={'93px'}
+            text="게스트로 입장"
+            className={classes.guestButton}
+            onClick={navigateToPage}
+          />
+        </div>
+        {openLogin && (
+          <ModalPotal closePortal={handleClose}>
+            <Modal className={classes['showLoginModal']}>
+              <SignIn />
+            </Modal>
+          </ModalPotal>
+        )}
+
+        {openSignUp && (
+          <ModalPotal closePortal={handleCloseSignUp}>
+            <Modal className={classes['showLoginModal']}>
+              <SignUp />
+            </Modal>
+          </ModalPotal>
+        )}
       </div>
-      {openLogin && (
-        <ModalPotal closePortal={handleClose}>
-          <Modal className={classes['showLoginModal']}>
-            <SignIn />
-          </Modal>
-        </ModalPotal>
-      )}
-
-      {openSignUp && (
-        <ModalPotal closePortal={handleCloseSignUp}>
-          <Modal className={classes['showLoginModal']}>
-            <SignUp />
-          </Modal>
-        </ModalPotal>
-      )}
-    </div>
+    </>
   );
 }

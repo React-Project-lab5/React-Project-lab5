@@ -1,40 +1,34 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable no-inner-declarations */
-/* eslint-disable no-empty-pattern */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable jsx-a11y/aria-role */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { collection, getDocs, query, where } from '@firebase/firestore';
+import React from 'react';
 import 'firebase/compat/auth';
+import ShowCard from './ShowCard';
 import 'firebase/compat/firestore';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import classNames from 'classnames';
+import { auth } from '@/firebase/auth';
 import classes from './Modal.module.scss';
 import firebase from 'firebase/compat/app';
 import { useEffect, useState } from 'react';
+import { getUsers } from '@/utils/getUsers';
+import { useNavigate } from 'react-router-dom';
+import { UserContainer } from './UserContainer';
 import { db } from '@/firebase/firestore/index';
 import { deleteUsers } from '@/@recoil/deleteUsers';
-import { MapContainer } from '../../utils/MapContainer/MapContainer';
-import { Button, ModalPotal, Modal } from '@/components/index';
-import { UserContainer } from './UserContainer';
-import { useNavigate } from 'react-router-dom';
-import { auth } from '@/firebase/auth';
-import React from 'react';
-import { Card } from '@/@recoil/usersState';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { MapContainer } from '../MapContainer/MapContainer';
 import { readingCardState } from '@/@recoil/readingCardState';
-import classNames from 'classnames';
 import { searchEmailState } from '@/@recoil/searchEmailState';
-import ShowCard from './ShowCard';
+import { Button, ModalPotal, Modal } from '@/components/index';
+import { collection, query, where } from '@firebase/firestore';
 
 interface Props {
   openModal: boolean;
-  setOpenModal: (p: boolean) => void;
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
-  const deleteCard = useRecoilValue(deleteUsers);
-  const [cards, setCards] = useRecoilState(readingCardState);
   const [userState, setUserState] = useState(false);
+  const [cards, setCards] = useRecoilState(readingCardState);
+  const deleteCard = useRecoilValue(deleteUsers);
   const searchEmail = useRecoilValue(searchEmailState);
 
   const usersCollectionRef = query(
@@ -46,16 +40,8 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
     )
   );
 
-  const getUsers = async () => {
-    await getDocs(usersCollectionRef).then((data) => {
-      setCards(
-        data.docs.map((doc) => ({ ...doc.data(), id: doc.id })) as Card[]
-      );
-    });
-  };
-
   useEffect(() => {
-    getUsers();
+    getUsers(usersCollectionRef, setCards);
   }, []);
 
   const handleClose = () => {
@@ -80,14 +66,16 @@ export const ReadMeetings = ({ openModal, setOpenModal }: Props) => {
     goChatPage();
   };
 
+  function isCurrentUser() {
+    return searchEmail
+      ? auth.currentUser?.email === searchEmail
+      : auth.currentUser?.email === cards[0].email;
+  }
+
   useEffect(() => {
     if (cards[0]) {
       // 현재 사용자가 메시지 작성자인지 확인
-      function isCurrentUser() {
-        return searchEmail
-          ? auth.currentUser?.email === searchEmail
-          : auth.currentUser?.email === cards[0].email;
-      }
+
       setUserState(isCurrentUser());
       console.log(auth.currentUser?.email === searchEmail);
     }

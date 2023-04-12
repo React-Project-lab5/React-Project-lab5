@@ -5,6 +5,7 @@ import spinner from '/public/assets/loading.svg';
 import { useEffect, useMemo, useState } from 'react';
 import { loadingState } from '@/@recoil/loadingState';
 import { searchTermState } from '@/@recoil/searchTermState';
+import { currentPageState } from '@/@recoil/currentPageState';
 
 interface Food {
   지역명: string;
@@ -14,13 +15,17 @@ interface Food {
 
 interface Props {
   posts: Food[];
-  loading: boolean;
+  totalPosts: Food[];
 }
 
-export function FoodList({ posts }: Props) {
-  const [showCards, setShowCards] = useState<boolean>(false);
+export function FoodList({ posts, totalPosts }: Props) {
+  const postsPerPage = 24;
   const searchTerm = useRecoilValue(searchTermState);
   const loading = useRecoilValue(loadingState);
+  const currentPage = useRecoilValue(currentPageState);
+  const indexOfLastPost = (currentPage + 1) * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const [showCards, setShowCards] = useState<boolean>(false);
 
   useEffect(() => {
     // 페이지가 바뀔 때마다 0.1초 뒤에 카드 보이기
@@ -34,12 +39,14 @@ export function FoodList({ posts }: Props) {
   // 검색어와 일치하는 포스트만 필터링하여 보여줍니다.
   const filteredPosts = useMemo(() => {
     const lowerCaseSearchTerm = searchTerm.toLowerCase();
-    return posts.filter(
+    return totalPosts.filter(
       (post) =>
         post['지역명'].toLowerCase().includes(lowerCaseSearchTerm) ||
         post['식당명'].toLowerCase().includes(lowerCaseSearchTerm)
     );
-  }, [posts, searchTerm]);
+  }, [totalPosts, searchTerm]);
+
+  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
 
   // 검색 결과가 없다면 해당 메시지를 보여줍니다.
   if (!filteredPosts.length) {
@@ -60,22 +67,25 @@ export function FoodList({ posts }: Props) {
   }
 
   return (
-    <div className={classes.store}>
-      {showCards &&
-        filteredPosts.map((food: Food, index: number) => (
-          <Card key={index} className={classes.card}>
-            <div className={classes.storeBox}>
-              <p className={classes.LocalName}>{food['지역명']}</p>
-              <p className={classes.storeName}>{food['식당명']}</p>
-              <img
-                src={food['음식이미지(URL)']}
-                alt={'음식이미지'}
-                width={150}
-                height={150}
-              />
-            </div>
-          </Card>
-        ))}
-    </div>
+    <>
+      <h3 className="a11yHidden"> 음식점 리스트</h3>
+      <div className={classes.store}>
+        {showCards &&
+          currentPosts.map((food: Food, index: number) => (
+            <Card key={index} className={classes.card}>
+              <div className={classes.storeBox}>
+                <p className={classes.LocalName}>{food['지역명']}</p>
+                <p className={classes.storeName}>{food['식당명']}</p>
+                <img
+                  src={food['음식이미지(URL)']}
+                  alt={'음식이미지'}
+                  width={150}
+                  height={150}
+                />
+              </div>
+            </Card>
+          ))}
+      </div>
+    </>
   );
 }

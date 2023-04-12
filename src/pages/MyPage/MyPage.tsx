@@ -22,9 +22,10 @@ import { useNavigate } from 'react-router-dom';
 import { Input, ProfileImage } from '@/components';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { isValidEmail, isValidTel } from './../../utils/validation';
+import { handleSignOut } from '@/utils/signOut';
 
 export default function MyPage() {
-  useDocumentTitle('슬기로운 N밥 생활 | 마이 페이지');
+  useDocumentTitle('슬기로운 N밥생활 | 마이 페이지');
 
   const navigation = useNavigate();
   const [name, setName] = useState('');
@@ -93,10 +94,10 @@ export default function MyPage() {
       return;
     }
 
-    //if (!isValidTel(phoneNumber)) {
-    //  alert('휴대폰 번호 01012345678 형식으로 입력해 주세요.');
-    //  return;
-    //}
+    if (!isValidTel(phoneNumber)) {
+      alert('휴대폰 번호 01012345678 형식으로 입력해 주세요.');
+      return;
+    }
 
     /* ----- Firestore 업데이트 ----- */
     const getUserRef = doc(collection(db, 'users'), user.uid);
@@ -163,18 +164,28 @@ export default function MyPage() {
   };
 
   /* ---------------------------------- 로그아웃 ---------------------------------- */
-  const handleSignOut = () => {
-    if (user.providerData[0].photoURL.includes('kakao')) {
-      deleteDocument('로그아웃');
-    } else {
-      signOut(auth);
-      alert('로그아웃이 되었습니다.');
-      navigation('/');
-    }
+  const handlerSignOut = async () => {
+    await handleSignOut(auth, user, navigation);
   };
   /* ---------------------------------- 회원탈퇴 ---------------------------------- */
-  const handleSignDropOut = () => {
+  const handleSignDropOut = async () => {
     deleteDocument('회원 탈퇴');
+
+    if (user.providerData[0].photoURL.includes('kakao')) {
+      const { Kakao, location } = window;
+      const CLIENT_ID = import.meta.env.VITE_KAKAO_API_KEY;
+      const LOGOUT_REDIRECT_URI = 'http://localhost:3000';
+
+      // Kakao API 토큰 만료 설정
+      await Kakao.Auth.logout();
+
+      // Kakao 계정 로그아웃 설정
+      location.replace(
+        `https://kauth.kakao.com/oauth/logout?client_id=${CLIENT_ID}&logout_redirect_uri=${LOGOUT_REDIRECT_URI}`
+      );
+    } else {
+      navigation('/');
+    }
   };
 
   /* -------------------------------- debounce -------------------------------- */
@@ -207,89 +218,92 @@ export default function MyPage() {
   }
 
   return (
-    <section className={classes.myPageSection}>
-      <div className={classes.myPageContainer}>
-        <h1 className={classes.myPageTitle}>마이페이지</h1>
-        <div className={classes.userContainer}>
-          <ProfileImage />
-          <div className={classes.inputContainer}>
-            <div className={classes.userInfoContainer}>
-              <div>
-                <Input
-                  className={classes.inputMobile}
-                  maxWidthValue={290}
-                  heightValue={80}
-                  labelText="Name"
-                  defaultValue={user.displayName || undefined}
-                  onChange={editName}
-                  disabled={!isEditing}
-                />
+    <>
+      <h2 className="a11yHidden">마이 페이지</h2>
+      <section className={classes.myPageSection}>
+        <div className={classes.myPageContainer}>
+          <h3 className={classes.myPageTitle}>내 정보 관리</h3>
+          <div className={classes.userContainer}>
+            <ProfileImage />
+            <div className={classes.inputContainer}>
+              <div className={classes.userInfoContainer}>
+                <div>
+                  <Input
+                    className={classes.inputMobile}
+                    maxWidthValue={290}
+                    heightValue={80}
+                    labelText="Name"
+                    defaultValue={user.displayName || undefined}
+                    onChange={editName}
+                    disabled={!isEditing}
+                  />
+                </div>
+                <div>
+                  <Input
+                    className={classes.inputMobile}
+                    maxWidthValue={290}
+                    heightValue={80}
+                    labelText="Email"
+                    defaultValue={user.email}
+                    onChange={editEmail}
+                    disabled={!isEditing}
+                  />
+                </div>
               </div>
-              <div>
-                <Input
-                  className={classes.inputMobile}
-                  maxWidthValue={290}
-                  heightValue={80}
-                  labelText="Email"
-                  defaultValue={user.email}
-                  onChange={editEmail}
-                  disabled={!isEditing}
-                />
-              </div>
-            </div>
-            <div className={classes.userInfoContainer}>
-              <div>
-                <Input
-                  className={classes.inputMobile}
-                  maxWidthValue={290}
-                  heightValue={80}
-                  labelText="Phone"
-                  defaultValue={phoneNumber}
-                  onChange={editPhoneNumber}
-                  disabled={!isEditing}
-                />
-              </div>
-              <div>
-                <Input
-                  className={classes.inputMobile}
-                  maxWidthValue={290}
-                  heightValue={80}
-                  labelText="Address"
-                  defaultValue={address}
-                  onChange={editAddress}
-                  disabled={!isEditing}
-                />
+              <div className={classes.userInfoContainer}>
+                <div>
+                  <Input
+                    className={classes.inputMobile}
+                    maxWidthValue={290}
+                    heightValue={80}
+                    labelText="Phone"
+                    defaultValue={phoneNumber}
+                    onChange={editPhoneNumber}
+                    disabled={!isEditing}
+                  />
+                </div>
+                <div>
+                  <Input
+                    className={classes.inputMobile}
+                    maxWidthValue={290}
+                    heightValue={80}
+                    labelText="Address"
+                    defaultValue={address}
+                    onChange={editAddress}
+                    disabled={!isEditing}
+                  />
+                </div>
               </div>
             </div>
           </div>
+          <div className={classes.userAbleContainer}>
+            <button
+              className={classes.userAbleItem}
+              style={isEditing ? { color: 'red' } : { color: 'black' }}
+              onClick={isEditing ? handleSaveClick : handleEditClick}
+              tabIndex={0}
+            >
+              {isEditing ? '수정 완료' : '회원정보수정'}
+            </button>
+            <span>|</span>
+            <button
+              className={classes.userAbleItem}
+              onClick={handlerSignOut}
+              tabIndex={0}
+            >
+              로그아웃
+            </button>
+            <span>|</span>
+            <button
+              className={classes.userAbleItem}
+              onClick={handleSignDropOut}
+              tabIndex={0}
+            >
+              회원탈퇴
+            </button>
+          </div>
         </div>
-        <div className={classes.userAbleContainer}>
-          <button
-            className={classes.userAbleItem}
-            style={isEditing ? { color: 'red' } : { color: 'black' }}
-            onClick={isEditing ? handleSaveClick : handleEditClick}
-            tabIndex={0}
-          >
-            {isEditing ? '수정 완료' : '회원정보수정'}
-          </button>
-          <span>|</span>
-          <button
-            className={classes.userAbleItem}
-            onClick={handleSignOut}
-            tabIndex={0}
-          >
-            로그아웃
-          </button>
-          <span>|</span>
-          <button
-            className={classes.userAbleItem}
-            onClick={handleSignDropOut}
-            tabIndex={0}
-          >
-            회원탈퇴
-          </button>
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

@@ -43,3 +43,12 @@ interface KakaoLoginResponse {
   response: LoginResponse;
   profile?: UserProfile;
 }
+
+interface Window {
+  Kakao: {
+    Auth: {
+      logout: () => Promise<unknown>;
+      getAccessToken: () => string | null;
+    };
+  };
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "qwer1",
+    "name": "김서현",
+    "address": "서울 강서구",
+    "message": "모집중입니다~!",
+    "image": "https://avatars.githubusercontent.com/u/38703262?v=4"
+  },
+  {
+    "id": "asdf2",
+    "name": "김대웅",
+    "address": "서울 송파구",
+    "message": "모집중입니다~!",
+    "image": "https://avatars.githubusercontent.com/u/89835647?v=4"
+  },
+  {
+    "id": "zxcv3",
+    "name": "빈운기",
+    "address": "서울 금천구",
+    "message": "모집중입니다~!",
+    "image": "https://avatars.githubusercontent.com/u/119389337?v=4"
+  },
+  {
+    "id": "fghj4",
+    "name": "원다함",
+    "address": "서울 성동구",
+    "message": "모집중입니다~!",
+    "image": "https://avatars.githubusercontent.com/u/78182200?v=4"
+  }
+]

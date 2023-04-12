@@ -4,8 +4,8 @@ import { db } from '@/firebase/firestore';
 import classes from './Button.module.scss';
 import { useNavigate } from 'react-router-dom';
 import google from '/public/assets/googleLogo.svg';
-import { GoogleAuthProvider, signInWithPopup } from '@firebase/auth';
 import { collection, doc, setDoc } from '@firebase/firestore';
+import { GoogleAuthProvider, signInWithPopup } from '@firebase/auth';
 
 interface Props {
   widthValue?: string | number;
@@ -59,7 +59,7 @@ export function ButtonGoogle({
         style={buttonStyle}
         onClick={handleGoogleSignIn}
       >
-        <img src={google} alt="Google 로고 이미지" />
+        <img src={google} alt=" " />
         Google 로그인
       </button>
     </>

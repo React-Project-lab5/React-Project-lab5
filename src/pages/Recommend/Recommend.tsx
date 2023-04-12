@@ -1,25 +1,26 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import axios from 'axios';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import ReactPaginate from 'react-paginate';
-import { ChangeEvent, useEffect, useState } from 'react';
 import { Banner, Input } from '@/components';
 import classes from './Recommend.module.scss';
 import search from '/public/assets/search.svg';
 import { loadingState } from '@/@recoil/loadingState';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { FoodList } from '@/components/FoodList/FoodList';
 import { searchTermState } from '@/@recoil/searchTermState';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { ScrollButton } from '@/components/Button/ScrollButton/ScrollButton';
+import { currentPageState } from '@/@recoil/currentPageState';
 
 export default function Recommend() {
-  useDocumentTitle('슬기로운 N밥 생활 | 추천');
+  useDocumentTitle('슬기로운 N밥생활 | 추천');
 
   const postsPerPage = 24;
 
   const [posts, setPosts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [loading, setLoading] = useRecoilState(loadingState);
+  const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
+  const setLoading = useSetRecoilState(loadingState);
   //검색어를 입력하면 searchTerm 상태 변수에 저장
   const [searchTerm, setSearchTerm] = useRecoilState(searchTermState);
 
@@ -53,7 +54,10 @@ export default function Recommend() {
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
   // 페이지 변경
-  const handlePageClick = ({ selected }): void => setCurrentPage(selected);
+  const handlePageClick = ({ selected }): void => {
+    setCurrentPage(selected);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // 검색어를 상태에 업데이트
   const handlerSearchTerm = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -61,18 +65,21 @@ export default function Recommend() {
   };
 
   // 총 페이지 수
-  const totalPageNum = Math.ceil(posts.length / postsPerPage);
+  const totalPageNum = Math.ceil(posts.length / 24);
+
   return (
     <>
       <Banner />
-      <h1 className={classes.title}> 서울 맛집 추천</h1>
+      <h2 className="a11yHidden">추천</h2>
+      <h3 className={classes.title}> 서울 맛집 추천</h3>
       <div className={classes['InputContainer']}>
+        <h3 className="a11yHidden"> 음식점 검색</h3>
         <form
           className={classes['formInput']}
           role="search"
           onSubmit={(e) => {
             e.preventDefault();
-            setCurrentPage(1);
+            setCurrentPage(0);
           }}
         >
           <div className={classes['inputSearchButton']}>
@@ -96,7 +103,7 @@ export default function Recommend() {
           </div>
         </form>
       </div>
-      <FoodList posts={currentPosts} loading={loading} />
+      <FoodList posts={currentPosts} totalPosts={posts} />
       <ReactPaginate
         previousLabel={'<'}
         nextLabel={'>'}

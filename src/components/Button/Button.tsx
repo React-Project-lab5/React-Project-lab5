@@ -1,5 +1,5 @@
-import classes from './Button.module.scss';
 import classNames from 'classnames';
+import classes from './Button.module.scss';
 
 interface Props {
   backgroundColor?: 'orange' | 'red';

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import {
   collection,
@@ -18,7 +19,7 @@ import closeButton from '/public/assets/close.svg';
 import searchButton from '/public/assets/search.svg';
 import { addressState } from '@/@recoil/addressState';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { SetStateAction, useEffect, useState } from 'react';
+import { SetStateAction, useCallback, useEffect, useState } from 'react';
 import { InputSelector } from '../InputSelector/InputSelector';
 
 export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
@@ -41,9 +42,9 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
     getUsers();
   }, [getUsers]);
 
-  const handleSearch = async () => {
-    let usersCollectionRef = null;
+  let usersCollectionRef = null;
 
+  const handleSearch = async () => {
     if (address) {
       usersCollectionRef = query(
         collection(db, 'makeMeetings'),
@@ -90,8 +91,10 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
     setArrayTitle([...searchTitle]);
     console.log(e.target.value);
 
-    if (e.target.value === '') {
+    if (e.target.value === '' && address === '') {
       getUsers();
+    } else {
+      searchSelectorOnly();
     }
   };
 
@@ -101,12 +104,55 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   };
 
   const resetButton = () => {
-    setAddress(null);
+    setAddress('');
     getUsers();
   };
 
+  const searchSelectorOnly = useCallback(async () => {
+    if (address.trim().length === 0) {
+      return;
+    }
+
+    if (address.trim().length > 0) {
+      usersCollectionRef = query(
+        collection(db, 'makeMeetings'),
+        where('address', 'in', [
+          address.slice(6, 8),
+          address.slice(6, 9),
+          address.slice(6, 10),
+        ])
+      );
+    } else {
+      getUsers();
+    }
+
+    try {
+      const querySnapshot = await getDocs(usersCollectionRef);
+      const usersData = querySnapshot.docs.map(
+        (doc: QueryDocumentSnapshot<Card>) => ({
+          ...doc.data(),
+          id: doc.id,
+        })
+      ) as Card[];
+      setUsers(
+        usersData.sort((a, b) => {
+          if (a.timestamp.seconds < b.timestamp.seconds) return 1;
+          if (a.timestamp.seconds > b.timestamp.seconds) return -1;
+          return 0;
+        })
+      );
+    } catch (err) {
+      throw new Error('Error 404');
+    }
+  }, [address]);
+
+  useEffect(() => {
+    searchSelectorOnly();
+  }, [address, searchSelectorOnly]);
+
   return (
     <>
+      <h3 className="a11yHidden">모임 검색</h3>
       <div className={classes['InputContainer']}>
         <div className={classes['mainInput']}>
           <form
@@ -123,7 +169,7 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
               <Input
                 maxWidthValue={'35rem'}
                 heightValue={'75px'}
-                labelText="검색창"
+                labelText="검색"
                 placeHolder="모임을 검색하세요"
                 isA11yHidden
                 className={classes.searchFormInput}
@@ -145,11 +191,11 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
                   />
                 </button>
               )}
-              <button type="submit" aria-label="검색 버튼">
+              <button type="submit" aria-label="검색">
                 <img
                   className={classes.searchButton}
                   src={searchButton}
-                  alt="검색 버튼"
+                  alt="검색"
                   tabIndex={0}
                 />
               </button>
