@@ -18,7 +18,7 @@ import closeButton from '/public/assets/close.svg';
 import searchButton from '/public/assets/search.svg';
 import { addressState } from '@/@recoil/addressState';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { SetStateAction, useEffect, useState } from 'react';
+import { SetStateAction, useCallback, useEffect, useState } from 'react';
 import { InputSelector } from '../InputSelector/InputSelector';
 
 export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
@@ -42,6 +42,7 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
   }, [getUsers]);
 
   let usersCollectionRef = null;
+
   const handleSearch = async () => {
     if (address) {
       usersCollectionRef = query(
@@ -58,40 +59,6 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
         collection(db, 'makeMeetings'),
         where('title', 'array-contains-any', arrayTitle)
       );
-    }
-
-    try {
-      const querySnapshot = await getDocs(usersCollectionRef);
-      const usersData = querySnapshot.docs.map(
-        (doc: QueryDocumentSnapshot<Card>) => ({
-          ...doc.data(),
-          id: doc.id,
-        })
-      ) as Card[];
-      setUsers(
-        usersData.sort((a, b) => {
-          if (a.timestamp.seconds < b.timestamp.seconds) return 1;
-          if (a.timestamp.seconds > b.timestamp.seconds) return -1;
-          return 0;
-        })
-      );
-    } catch (err) {
-      throw new Error('Error 404');
-    }
-  };
-
-  const searchSelectorOnly = async () => {
-    if (address !== null) {
-      usersCollectionRef = query(
-        collection(db, 'makeMeetings'),
-        where('address', 'in', [
-          address.slice(6, 8),
-          address.slice(6, 9),
-          address.slice(6, 10),
-        ])
-      );
-    } else {
-      getUsers();
     }
 
     try {
@@ -140,6 +107,49 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
     getUsers();
   };
 
+  const searchSelectorOnly = useCallback(async () => {
+    if (address.trim().length === 0) {
+      return;
+    }
+
+    if (address.trim().length > 0) {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      usersCollectionRef = query(
+        collection(db, 'makeMeetings'),
+        where('address', 'in', [
+          address.slice(6, 8),
+          address.slice(6, 9),
+          address.slice(6, 10),
+        ])
+      );
+    } else {
+      getUsers();
+    }
+
+    try {
+      const querySnapshot = await getDocs(usersCollectionRef);
+      const usersData = querySnapshot.docs.map(
+        (doc: QueryDocumentSnapshot<Card>) => ({
+          ...doc.data(),
+          id: doc.id,
+        })
+      ) as Card[];
+      setUsers(
+        usersData.sort((a, b) => {
+          if (a.timestamp.seconds < b.timestamp.seconds) return 1;
+          if (a.timestamp.seconds > b.timestamp.seconds) return -1;
+          return 0;
+        })
+      );
+    } catch (err) {
+      throw new Error('Error 404');
+    }
+  }, [address]);
+
+  useEffect(() => {
+    searchSelectorOnly();
+  }, [address, searchSelectorOnly]);
+
   return (
     <>
       <h3 className="a11yHidden">모임 검색</h3>
@@ -154,7 +164,6 @@ export function SearchFrom({ createUsers, getUsers }: SearchFormProps) {
               maxWidthValue={200}
               heightValue={75}
               className={classes.searchFormInputSelector}
-              onClick={searchSelectorOnly}
             />
             <div className={classes['inputSearchButton']}>
               <Input

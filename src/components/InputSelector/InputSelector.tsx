@@ -11,9 +11,7 @@ interface Props {
   maxWidthValue: number;
   heightValue?: number;
   className: string;
-  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   marginBottom?: number;
-  onClick?: () => void;
 }
 
 export function InputSelector({
@@ -21,7 +19,6 @@ export function InputSelector({
   heightValue,
   className,
   marginBottom,
-  onClick,
 }: Props) {
   const selectStyle = {
     maxWidth: maxWidthValue,
@@ -164,10 +161,8 @@ export function InputSelector({
       </label>
       <select
         id="select"
-        onClick={onClick}
         onChange={(e) => {
           setMainAddress(e.target.value);
-          console.log(e.target.value);
           for (let i = 0; i < location.length; i++) {
             if (e.target.value === location[i].value) {
               setAddress(location[i].address);
