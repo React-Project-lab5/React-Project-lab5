@@ -1,6 +1,12 @@
 import { signOut } from '@firebase/auth';
+import { Auth, User } from '@firebase/auth';
+import { NavigateFunction } from 'react-router-dom';
 
-export const handleSignOut = async (auth, user, navigation) => {
+export const handleSignOut = async (
+  auth: Auth,
+  user: User,
+  navigation: NavigateFunction
+): Promise<void> => {
   await signOut(auth);
 
   if (user.providerData[0].photoURL.includes('kakao')) {
