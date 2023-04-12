@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { readingCardState } from '@/@recoil/readingCardState';
-import classes from './Modal.module.scss';
 import classNames from 'classnames';
 import { useRecoilValue } from 'recoil';
+import classes from './Modal.module.scss';
+import { readingCardState } from '@/@recoil/readingCardState';
 
 export function UserContainer() {
   const cards = useRecoilValue(readingCardState);
