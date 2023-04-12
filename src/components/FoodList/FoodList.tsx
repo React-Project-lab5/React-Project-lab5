@@ -44,7 +44,7 @@ export function FoodList({ posts, totalPosts }: Props) {
   }, [totalPosts, searchTerm]);
 
   const postsPerPage = 24;
-  const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
+  const currentPage = useRecoilValue(currentPageState);
   // 현재 게시물 가져오기
   const indexOfLastPost = (currentPage + 1) * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -71,6 +71,7 @@ export function FoodList({ posts, totalPosts }: Props) {
   }
 
   console.log(currentPage);
+
   return (
     <>
       <h3 className="a11yHidden"> 음식점 리스트</h3>

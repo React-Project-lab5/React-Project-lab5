@@ -87,7 +87,7 @@ export default function Recommend() {
           role="search"
           onSubmit={(e) => {
             e.preventDefault();
-            setCurrentPage(1);
+            setCurrentPage(0);
           }}
         >
           <div className={classes['inputSearchButton']}>
