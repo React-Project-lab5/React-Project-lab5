@@ -1,0 +1,152 @@
+[
+  {
+    "id": "qeqe1",
+    "value": "지역을 선택하세요",
+    "label": "default",
+    "address": ""
+  },
+  {
+    "id": "qeqewa2",
+    "value": "강남구",
+    "label": "강남구",
+    "address": "서울특별시 강남구 학동로 426"
+  },
+  {
+    "id": "qeqeasd3",
+    "value": "강동구",
+    "label": "강동구",
+    "address": "서울특별시 강북구 도봉로89길 3"
+  },
+  {
+    "id": "qeqeasz4",
+    "value": "강서구",
+    "label": "강서구",
+    "address": "서울특별시 강서구 화곡로 302"
+  },
+  {
+    "id": "qeqezx5",
+    "value": "관악구",
+    "label": "관악구",
+    "address": "서울특별시 관악구 관악로 45"
+  },
+  {
+    "id": "qeqezxc6",
+    "value": "광진구",
+    "label": "광진구",
+    "address": "서울특별시 광진구 자양로 7"
+  },
+  {
+    "id": "qeqeqwe7",
+    "value": "구로구",
+    "label": "구로구",
+    "address": "서울특별시 가마산로 245"
+  },
+  {
+    "id": "qeqezxc8",
+    "value": "금천구",
+    "label": "금천구",
+    "address": "서울특별시 금천구 시흥대로73길 70"
+  },
+  {
+    "id": "qeqzvzx9",
+    "value": "노원구",
+    "label": "노원구",
+    "address": "서울특별시 노원구 노해로 437"
+  },
+  {
+    "id": "qesdf10",
+    "value": "도봉구",
+    "label": "도봉구",
+    "address": "서울특별시 도봉구 마들로 656"
+  },
+  {
+    "id": "qedfg11",
+    "value": "대문구",
+    "label": "대문구",
+    "address": "서울특별시 대문구 천호대로 45"
+  },
+  {
+    "id": "qehjk12",
+    "value": "동작구",
+    "label": "동작구",
+    "address": "서울특별시 동작구 장승배기로 6"
+  },
+  {
+    "id": "qehtk13",
+    "value": "마포구",
+    "label": "마포구",
+    "address": "서울특별시 마포구 월드컵로 22"
+  },
+  {
+    "id": "qertye14",
+    "value": "대문구",
+    "label": "대문구",
+    "address": "서울특별시  대문구 연희로 248"
+  },
+  {
+    "id": "qeqtyue15",
+    "value": "서초구",
+    "label": "서초구",
+    "address": "서울특별시 서초구 남부순환로 2584"
+  },
+  {
+    "id": "qeloe16",
+    "value": "성동구",
+    "label": "성동구",
+    "address": "서울특별시 성동구 고산자로 270"
+  },
+  {
+    "id": "qerrqe17",
+    "value": "성북구",
+    "label": "성북구",
+    "address": "서울특별시 성북구 보문로 68"
+  },
+  {
+    "id": "qejga18",
+    "value": "송파구",
+    "label": "송파구",
+    "address": "서울특별시 송파구 올림픽로 326"
+  },
+  {
+    "id": "qekhj19",
+    "value": "양천구",
+    "label": "양천구",
+    "address": "서울특별시 양천구 목동동로 05"
+  },
+  {
+    "id": "qqwete20",
+    "value": "등포구",
+    "label": "등포구",
+    "address": "서울특별시 등포구 당산동3가 당산로 23"
+  },
+  {
+    "id": "qsdfe21",
+    "value": "용산구",
+    "label": "용산구",
+    "address": "서울특별시 용산구 녹사평대로 50"
+  },
+  {
+    "id": "qengfge22",
+    "value": "은평구",
+    "label": "은평구",
+    "address": "서울특별시 은평구 은평로 95"
+  },
+  {
+    "id": "qsdfe23",
+    "value": "종로구",
+    "label": "종로구",
+    "address": "서울특별시 종로구 종로길 36"
+  },
+  {
+    "id": "qafsqe24",
+    "value": "중구",
+    "label": "중구",
+    "address": "서울특별시 중구 창경궁로 7"
+  },
+  {
+    "id": "qesdfe25",
+    "value": "중랑구",
+    "label": "중랑구",
+    "address": "서울특별시 중랑구 봉화산로 79"
+  }
+]
