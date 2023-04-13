@@ -1,4 +1,6 @@
+/* eslint-disable jsx-a11y/alt-text */
 import classNames from 'classnames';
+import { useEffect } from 'react';
 import { auth } from '@/firebase/auth';
 import KakaoLogin from 'react-kakao-login';
 import classes from './Button.module.scss';
@@ -10,7 +12,6 @@ import {
   signInWithEmailAndPassword,
 } from '@firebase/auth';
 import { getFirestore, doc, setDoc } from '@firebase/firestore';
-import { useEffect } from 'react';
 
 interface Props {
   widthValue?: string | number;
@@ -38,7 +39,7 @@ export function ButtonKakao({
     }
 
     const displayName = response.profile.properties.nickname;
-    const email = response.profile.kakao_account.email || 'yamoo9@naver.com';
+    const email = response.profile.kakao_account.email || 'babjo@naver.com';
     const password = response.profile.id.toString();
     const photoURL = response.profile.kakao_account.profile.profile_image_url;
 
@@ -47,8 +48,6 @@ export function ButtonKakao({
         console.log(userCredential);
       })
       .catch((error) => console.log(error.message));
-
-    return;
 
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -95,7 +94,7 @@ export function ButtonKakao({
           style={buttonStyle}
           onClick={onClick}
         >
-          <img src={kakao} alt="Kakao 로고 이미지" />
+          <img src={kakao} alt=" " />
           Kakao 로그인
         </button>
       )}

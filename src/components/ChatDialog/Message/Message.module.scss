@@ -8,7 +8,8 @@
   .messageInfo {
     display: flex;
     flex-direction: column;
-
+    justify-content: center;
+    align-items: center;
     color: var(--gray-700);
     font-weight: 300;
     gap: 3px;

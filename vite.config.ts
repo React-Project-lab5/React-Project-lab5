@@ -1,8 +1,13 @@
 import path from 'path';
-import svgr from 'vite-plugin-svgr';
 import { defineConfig } from 'vite';
-import viteImagemin from 'vite-plugin-imagemin';
+import svgr from 'vite-plugin-svgr';
+import imageminSvgo from 'imagemin-svgo';
+import imageminWebp from 'imagemin-webp';
 import react from '@vitejs/plugin-react-swc';
+import imageminMozjpeg from 'imagemin-mozjpeg';
+import imageminPngQuant from 'imagemin-pngquant';
+import imageminGifSicle from 'imagemin-gifsicle';
+import viteImagemin from '@vheemstra/vite-plugin-imagemin';
 
 export default defineConfig({
   resolve: {
@@ -15,29 +20,17 @@ export default defineConfig({
     react(),
     svgr(),
     viteImagemin({
-      gifsicle: {
-        optimizationLevel: 7,
-        interlaced: false,
+      plugins: {
+        jpg: imageminMozjpeg(),
+        png: imageminPngQuant(),
+        gif: imageminGifSicle(),
+        svg: imageminSvgo(),
       },
-      optipng: {
-        optimizationLevel: 7,
-      },
-      mozjpeg: {
-        quality: 20,
-      },
-      pngquant: {
-        quality: [0.8, 0.9],
-        speed: 4,
-      },
-      svgo: {
-        plugins: [
-          {
-            name: 'removeViewBox',
-          },
-          {
-            name: 'removeEmptyAttrs',
-          },
-        ],
+      makeWebp: {
+        plugins: {
+          jpg: imageminWebp(),
+          png: imageminWebp(),
+        },
       },
     }),
   ],
@@ -47,5 +40,22 @@ export default defineConfig({
   },
   css: {
     devSourcemap: true,
+  },
+
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ['react', 'react-dom'],
+          reactRouter: ['react-router-dom'],
+          axios: ['axios'],
+          fbApp: ['@firebase/app'],
+          fbAuth: ['@firebase/auth'],
+          fbStore: ['@firebase/firestore'],
+          fbStorage: ['@firebase/storage'],
+          swiper: ['swiper'],
+        },
+      },
+    },
   },
 });

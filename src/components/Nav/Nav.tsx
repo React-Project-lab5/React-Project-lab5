@@ -43,7 +43,7 @@ export function Nav({ onClick }: Props): JSX.Element {
       </nav>
       <div className={active ? classes.nav : classes.hamburger}>
         <button type="button" onClick={onClick}>
-          <img src={hamburgerBtn} alt="메뉴" />
+          <img src={hamburgerBtn} alt="메뉴열기" />
         </button>
       </div>
     </div>

@@ -1,23 +1,27 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
-import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper';
 import classes from './Banner.module.scss';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper';
 
 export function Banner() {
   const items = [
-    { src: '../assets/banner_1.svg', link: 'https://www.baemin.com/' },
+    {
+      src: '../assets/banner_1.svg',
+      link: 'https://www.baemin.com/',
+      alt: '배달의민족',
+    },
     {
       src: '../assets/banner_2.svg',
       link: 'https://www.ivips.co.kr:7002/intro/230330/intro.asp',
+      alt: '빕스',
     },
     {
       src: '../assets/banner_3.svg',
       link: 'https://www.burgerking.co.kr/#/home',
+      alt: '버거킹',
     },
   ];
   return (
@@ -45,7 +49,7 @@ export function Banner() {
           return (
             <SwiperSlide key={idx} className={classes.swiperSlide}>
               <a href={item.link} target="_blank" rel="noreferrer">
-                <img src={item.src} alt="배너광고" />
+                <img src={item.src} alt={item.alt} />
               </a>
             </SwiperSlide>
           );

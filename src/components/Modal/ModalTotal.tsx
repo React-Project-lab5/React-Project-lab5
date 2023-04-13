@@ -6,27 +6,26 @@ import {
   Modal,
   ModalPotal,
 } from '@/components/index';
-import React, { ChangeEvent, useEffect } from 'react';
 import { useState } from 'react';
 import { debounce } from 'lodash';
 import classes from './Modal.module.scss';
 import DatePicker from 'react-datepicker';
-import { useRecoilState, useSetRecoilState } from 'recoil';
 import 'react-datepicker/dist/react-datepicker.css';
+import { addressState } from '@/@recoil/addressState';
+import React, { ChangeEvent, useEffect } from 'react';
 import { titleMainState } from '@/@recoil/titleMainState';
-import { MapContainer } from '../../utils/MapContainer/MapContainer';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { MapContainer } from '../MapContainer/MapContainer';
 import { detailMainState } from '@/@recoil/detailMainState';
 import { cardDataState } from '../../@recoil/cardDataState';
-import { addressState } from '@/@recoil/addressState';
 
 export function ModalTotal({ createUsers, getUsers }: SearchFormProps) {
-  const [modalOpened, setModalOpened] = useState(false);
   const [startDate, setStartDate] = useState(null);
-  const [address, setAddress] = useRecoilState(addressState);
-
+  const [modalOpened, setModalOpened] = useState(false);
   const setTitle = useSetRecoilState(titleMainState);
   const setDetail = useSetRecoilState(detailMainState);
   const setCardData = useSetRecoilState(cardDataState);
+  const [address, setAddress] = useRecoilState(addressState);
 
   useEffect(() => {
     getUsers();
@@ -42,11 +41,11 @@ export function ModalTotal({ createUsers, getUsers }: SearchFormProps) {
     setAddress(null);
     createUsers();
     alert('모임이 작성되었습니다.');
-    console.log('작성완');
   };
 
   const handleClose = () => {
     setModalOpened(false);
+    getUsers();
   };
 
   const handleDebounceTitle = debounce(

@@ -4,11 +4,11 @@ import { useRecoilState } from 'recoil';
 import classes from './Navbar.module.scss';
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { handleSignOut } from '@/utils/signOut';
 import { AuthContext } from '@/context/AuthContext';
-import { signOut, deleteUser } from '@firebase/auth';
 import { authImagState } from '@/@recoil/authImgState';
 import defaultAvatar from '/public/assets/chatAvatars.svg';
-import { doc, getDoc, collection, deleteDoc } from '@firebase/firestore';
+import { doc, getDoc, collection } from '@firebase/firestore';
 
 export function Navbar() {
   const [imageUrl, setImageUrl] = useRecoilState(authImagState);
@@ -17,25 +17,8 @@ export function Navbar() {
   const navigation = useNavigate();
   const { currentUser } = useContext(AuthContext);
 
-  const handleSignOut = async () => {
-    await signOut(auth);
-
-    if (user.providerData[0].photoURL.includes('kakao')) {
-      const { Kakao, location } = window;
-      const CLIENT_ID = import.meta.env.VITE_KAKAO_API_KEY;
-      const LOGOUT_REDIRECT_URI = 'http://localhost:3000';
-
-      // Kakao API 토큰 만료 설정
-      await Kakao.Auth.logout();
-
-      // Kakao 계정 로그아웃 설정
-      location.replace(
-        `https://kauth.kakao.com/oauth/logout?client_id=${CLIENT_ID}&logout_redirect_uri=${LOGOUT_REDIRECT_URI}`
-      );
-    } else {
-      alert('로그아웃이 되었습니다.');
-      navigation('/');
-    }
+  const handlerSignOut = async () => {
+    await handleSignOut(auth, user, navigation);
   };
 
   useEffect(() => {
@@ -61,7 +44,7 @@ export function Navbar() {
       <div className={classes.user}>
         <img src={imageUrl || defaultAvatar} alt="사용자" />
         <p>{currentUser.displayName}</p>
-        <button type="button" onClick={handleSignOut}>
+        <button type="button" onClick={handlerSignOut}>
           로그아웃
         </button>
       </div>

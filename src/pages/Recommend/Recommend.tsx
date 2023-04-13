@@ -1,34 +1,56 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import axios from 'axios';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import ReactPaginate from 'react-paginate';
-import { ChangeEvent, useEffect, useState } from 'react';
 import { Banner, Input } from '@/components';
 import classes from './Recommend.module.scss';
 import search from '/public/assets/search.svg';
 import { loadingState } from '@/@recoil/loadingState';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { FoodList } from '@/components/FoodList/FoodList';
 import { searchTermState } from '@/@recoil/searchTermState';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { ScrollButton } from '@/components/Button/ScrollButton/ScrollButton';
+import { currentPageState } from '@/@recoil/currentPageState';
+
+const API_BASE_URL =
+  'https://api.odcloud.kr/api/15097008/v1/uddi:1e5a6f2e-3f79-49bd-819b-d17541e6df78';
+const API_KEY = import.meta.env.VITE_SERVICE_KEY;
+const PER_PAGE = 168;
+
+const API_URL = `${API_BASE_URL}?page=1&perPage=${PER_PAGE}&serviceKey=${API_KEY}`;
 
 export default function Recommend() {
-  useDocumentTitle('슬기로운 N밥 생활 | 추천');
+  useDocumentTitle('슬기로운 N밥생활 | 추천');
 
   const postsPerPage = 24;
 
-  const [posts, setPosts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [loading, setLoading] = useRecoilState(loadingState);
   //검색어를 입력하면 searchTerm 상태 변수에 저장
   const [searchTerm, setSearchTerm] = useRecoilState(searchTermState);
 
-  const API_BASE_URL =
-    'https://api.odcloud.kr/api/15097008/v1/uddi:1e5a6f2e-3f79-49bd-819b-d17541e6df78';
-  const API_KEY = import.meta.env.VITE_SERVICE_KEY;
-  const PER_PAGE = 168;
+  const setLoading = useSetRecoilState(loadingState);
 
-  const API_URL = `${API_BASE_URL}?page=1&perPage=${PER_PAGE}&serviceKey=${API_KEY}`;
+  const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
+
+  // 페이지 변경
+  const handlePageClick = ({ selected }): void => {
+    setCurrentPage(selected);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // 검색어를 상태에 업데이트
+  const handlerSearchTerm = (e: ChangeEvent<HTMLInputElement>): void => {
+    setSearchTerm(e.target.value);
+  };
+
+  // 현재 게시물 가져오기
+  const indexOfLastPost = (currentPage + 1) * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+  // 총 페이지 수
+  const [totalPageNum, setTotalPageNum] = useState<number>(posts.length);
 
   //API 데이터를 가져와서 posts 상태 변수에 저장
   useEffect(() => {
@@ -38,6 +60,7 @@ export default function Recommend() {
         const { data } = await axios.get(API_URL);
 
         setPosts(data.data);
+        setTotalPageNum(data.data.length);
       } catch (error) {
         console.error(error);
       }
@@ -45,34 +68,21 @@ export default function Recommend() {
     };
 
     fetchData();
-  }, [API_URL, currentPage, setLoading]);
+  }, [currentPage, setLoading]);
 
-  // 현재 게시물 가져오기
-  const indexOfLastPost = (currentPage + 1) * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-
-  // 페이지 변경
-  const handlePageClick = ({ selected }): void => setCurrentPage(selected);
-
-  // 검색어를 상태에 업데이트
-  const handlerSearchTerm = (e: ChangeEvent<HTMLInputElement>): void => {
-    setSearchTerm(e.target.value);
-  };
-
-  // 총 페이지 수
-  const totalPageNum = Math.ceil(posts.length / postsPerPage);
   return (
     <>
       <Banner />
-      <h1 className={classes.title}> 서울 맛집 추천</h1>
+      <h2 className="a11yHidden">추천</h2>
+      <h3 className={classes.title}> 서울 맛집 추천</h3>
       <div className={classes['InputContainer']}>
+        <h3 className="a11yHidden"> 음식점 검색</h3>
         <form
           className={classes['formInput']}
           role="search"
           onSubmit={(e) => {
             e.preventDefault();
-            setCurrentPage(1);
+            setCurrentPage(0);
           }}
         >
           <div className={classes['inputSearchButton']}>
@@ -96,7 +106,11 @@ export default function Recommend() {
           </div>
         </form>
       </div>
-      <FoodList posts={currentPosts} loading={loading} />
+      <FoodList
+        posts={currentPosts}
+        totalPosts={posts}
+        updateFilteredPostsNum={setTotalPageNum}
+      />
       <ReactPaginate
         previousLabel={'<'}
         nextLabel={'>'}
