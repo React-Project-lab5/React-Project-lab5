@@ -13,45 +13,25 @@ import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { ScrollButton } from '@/components/Button/ScrollButton/ScrollButton';
 import { currentPageState } from '@/@recoil/currentPageState';
 
+const API_BASE_URL =
+  'https://api.odcloud.kr/api/15097008/v1/uddi:1e5a6f2e-3f79-49bd-819b-d17541e6df78';
+const API_KEY = import.meta.env.VITE_SERVICE_KEY;
+const PER_PAGE = 168;
+
+const API_URL = `${API_BASE_URL}?page=1&perPage=${PER_PAGE}&serviceKey=${API_KEY}`;
+
 export default function Recommend() {
   useDocumentTitle('슬기로운 N밥생활 | 추천');
 
   const postsPerPage = 24;
 
-  const [posts, setPosts] = useState([]);
-  const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
-  const setLoading = useSetRecoilState(loadingState);
   //검색어를 입력하면 searchTerm 상태 변수에 저장
   const [searchTerm, setSearchTerm] = useRecoilState(searchTermState);
 
-  const API_BASE_URL =
-    'https://api.odcloud.kr/api/15097008/v1/uddi:1e5a6f2e-3f79-49bd-819b-d17541e6df78';
-  const API_KEY = import.meta.env.VITE_SERVICE_KEY;
-  const PER_PAGE = 168;
+  const setLoading = useSetRecoilState(loadingState);
 
-  const API_URL = `${API_BASE_URL}?page=1&perPage=${PER_PAGE}&serviceKey=${API_KEY}`;
-
-  //API 데이터를 가져와서 posts 상태 변수에 저장
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const { data } = await axios.get(API_URL);
-
-        setPosts(data.data);
-      } catch (error) {
-        console.error(error);
-      }
-      setLoading(false);
-    };
-
-    fetchData();
-  }, [API_URL, currentPage, setLoading]);
-
-  // 현재 게시물 가져오기
-  const indexOfLastPost = (currentPage + 1) * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
 
   // 페이지 변경
   const handlePageClick = ({ selected }): void => {
@@ -64,8 +44,31 @@ export default function Recommend() {
     setSearchTerm(e.target.value);
   };
 
+  // 현재 게시물 가져오기
+  const indexOfLastPost = (currentPage + 1) * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
   // 총 페이지 수
-  const totalPageNum = Math.ceil(posts.length / 24);
+  const [totalPageNum, setTotalPageNum] = useState<number>(posts.length);
+
+  //API 데이터를 가져와서 posts 상태 변수에 저장
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const { data } = await axios.get(API_URL);
+
+        setPosts(data.data);
+        setTotalPageNum(data.data.length);
+      } catch (error) {
+        console.error(error);
+      }
+      setLoading(false);
+    };
+
+    fetchData();
+  }, [currentPage, setLoading]);
 
   return (
     <>
@@ -103,7 +106,11 @@ export default function Recommend() {
           </div>
         </form>
       </div>
-      <FoodList posts={currentPosts} totalPosts={posts} />
+      <FoodList
+        posts={currentPosts}
+        totalPosts={posts}
+        updateFilteredPostsNum={setTotalPageNum}
+      />
       <ReactPaginate
         previousLabel={'<'}
         nextLabel={'>'}
