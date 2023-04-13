@@ -1,11 +1,17 @@
-import Home from '@/pages/Home/Home';
-import Chat from '@/pages/Chat/Chat';
-import MyPage from '@/pages/MyPage/MyPage';
-import NotFound from '@/pages/NotFound/NotFound';
-import MainPage from '@/pages/MainPage/MainPage';
-import Recommend from '@/pages/Recommend/Recommend';
 import RootLayout, { BaseLayout } from './pages/Layout/Layout';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+
+/* PAGES -------------------------------------------------------------------- */
+
+const Home = lazy(() => import('./pages/Home/Home'));
+const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
+const Chat = lazy(() => import('./pages/Chat/Chat'));
+const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
+const MyPage = lazy(() => import('./pages/MyPage/MyPage'));
+const Recommend = lazy(() => import('./pages/Recommend/Recommend'));
+
+/* ROUTES ------------------------------------------------------------------- */
 
 const router = createBrowserRouter([
   {
@@ -51,7 +57,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <Suspense fallback={<div>로딩 중...</div>}>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 }
 
 export default App;
