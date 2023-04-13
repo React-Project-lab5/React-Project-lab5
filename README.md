@@ -12,11 +12,20 @@ https://docs.google.com/presentation/d/1Dl5YEi4h9hueUgTIufx8OlWW3Kn6gF8yXMurp2Jx
 
 ## 📌 배포 링크
 
-https://calkolab5.web.app
+https://babjo-life.web.app/
 
 ## 📌 프로젝트 성능 및 접근성
+<div style= "display:flex;">
+<img src="https://user-images.githubusercontent.com/38703262/231710091-19e5c181-48e8-489c-a835-14f3f61db69a.png" width="300" height="130"/>
+<img src="https://user-images.githubusercontent.com/38703262/231710667-238ec647-21c8-42ac-b1ca-c5c6167cd5f8.png" width="300" height="130"/>
+</div>
+<div style= " display:flex;">
+<img src="https://user-images.githubusercontent.com/38703262/231710592-37287535-65db-4941-ae6b-3240fd603e7f.png" width="300" height="130"/>
+<img src="https://user-images.githubusercontent.com/38703262/231710442-6591c1ad-c9da-4d50-a1f3-5498b2e78cdf.png" width="300" height="130"/>
+<img src="https://user-images.githubusercontent.com/38703262/231710350-d8144cbf-7248-4741-90ef-7503427b7fdc.png" width="300" height="130"/>
+</div>
 
-![image](https://user-images.githubusercontent.com/38703262/228428408-8c4027dd-20d4-4bda-a947-2265f8f2a091.png)
+
 
 ## 📌 팀원 소개
 
@@ -123,9 +132,14 @@ https://calkolab5.web.app
 
 ![로그인페이지-구글-로그인-시연-영상](https://user-images.githubusercontent.com/38703262/228307803-1f5e83f1-c1be-4076-9372-19508a6769a6.gif)
 
-### 2.카카오 로그인
+### 2-1.카카오 로그인
 
 ![로그인페이지-카카오-로그인-시연-영상_1](https://user-images.githubusercontent.com/38703262/228307849-3961d240-99bc-4349-ae9a-95cc66a6d612.gif)
+
+### 2-2.카카오 로그아웃
+
+![카카오로그인로그아웃](https://user-images.githubusercontent.com/38703262/231715503-6dea8c88-f69c-4579-b19e-172cad59c184.gif)
+
 
 ### 3.이메일 회원가입 및 로그인
 
@@ -137,6 +151,10 @@ https://calkolab5.web.app
 ![로그인페이지-게스트 로그인](https://user-images.githubusercontent.com/38703262/228308164-4c45e696-7a28-40dc-90b8-c9cb9de5f6e7.gif)
 
 ### [메인 페이지]
+
+### 전체적인 기능
+
+![메인페이지전체](https://user-images.githubusercontent.com/38703262/231714659-2f08382e-fb78-4d25-8645-c229b86eb93c.gif)
 
 ### 검색 기능
 
@@ -161,12 +179,13 @@ https://calkolab5.web.app
 
 ### [추천 페이지]
 
-![Mar-29-2023_01-57-50](https://user-images.githubusercontent.com/38703262/228313706-7b1a3def-fe63-48cf-bb24-e36b08a96d24.gif)
+![추천검색](https://user-images.githubusercontent.com/38703262/231715151-6abe9721-0a8b-40b2-85ac-9f99870306c9.gif)
+
 
 ### [채팅 페이지]
 
-![채팅1](https://user-images.githubusercontent.com/38703262/228312408-54ba8995-b984-4d7c-9674-c87ec5b26283.gif)
-![채팅2](https://user-images.githubusercontent.com/38703262/228312395-5d04d8e7-b7ce-405d-aba2-a4a4a54907a0.gif)
+![실시간채팅](https://user-images.githubusercontent.com/38703262/231714872-9e408da4-d782-4fa2-95d0-2e4e4364497f.gif)
+
 
 ### [마이페이지]
 

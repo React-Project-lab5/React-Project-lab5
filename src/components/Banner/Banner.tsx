@@ -49,7 +49,7 @@ export function Banner() {
           return (
             <SwiperSlide key={idx} className={classes.swiperSlide}>
               <a href={item.link} target="_blank" rel="noreferrer">
-                <img src={item.src} alt={item.alt} />
+                <img src={item.src} alt={item.alt} width="1440" height="200" />
               </a>
             </SwiperSlide>
           );

@@ -174,7 +174,7 @@ export default function MyPage() {
     if (user.providerData[0].photoURL.includes('kakao')) {
       const { Kakao, location } = window;
       const CLIENT_ID = import.meta.env.VITE_KAKAO_API_KEY;
-      const LOGOUT_REDIRECT_URI = 'http://localhost:3000';
+      const LOGOUT_REDIRECT_URI = 'https://babjo-life.web.app';
 
       // Kakao API 토큰 만료 설정
       await Kakao.Auth.logout();
